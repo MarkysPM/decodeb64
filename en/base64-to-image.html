@@ -2025,26 +2025,25 @@ applyLang(currentLang);
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "WebApplication",
-  "name": "Base64 to Image Converter",
-  "url": "https://decodeb64.com/base64-to-image",
-  "description": "Convert Base64 strings to images instantly in your browser. Paste raw Base64 or a Data URI and preview, download PNG, JPG, WebP — 100% private, no uploads.",
-  "applicationCategory": "DeveloperApplication",
-  "operatingSystem": "Any",
-  "offers": {
-    "@type": "Offer",
-    "price": "0",
-    "priceCurrency": "USD"
-  },
-  "featureList": "Base64 to image, Data URI decode, PNG JPG WebP download, animated GIF support, SVG support, 100% client-side"
-}
-</script>
-
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
+  "@graph": [
+    {
+      "@type": "WebApplication",
+      "@id": "https://decodeb64.com/#img-webapp",
+      "name": "Base64 to Image Converter",
+      "url": "https://decodeb64.com/en/base64-to-image.html",
+      "applicationCategory": "DeveloperApplication",
+      "operatingSystem": "Any",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "description": "Convert Base64 strings to images instantly in your browser. Paste raw Base64 or a Data URI and preview, download PNG, JPG, WebP — 100% private, no uploads."
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://decodeb64.com/#img-faq",
+      "mainEntity": [
     {
       "@type": "Question",
       "name": "What image formats does this tool support?",
@@ -2074,7 +2073,7 @@ applyLang(currentLang);
       "name": "Why does my image fail to decode?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Common causes: the Base64 string is corrupted or truncated; the input is not actually an image (it may be text or binary data); or a URL-safe Base64 string was pasted without converting - and _ back to + and /. Check the input and try selecting the image type manually."
+        "text": "Common causes: the Base64 string is corrupted or truncated; the input is not actually an image; or a URL-safe Base64 string was pasted without converting - and _ back to + and /. Check the input and try selecting the image type manually."
       }
     },
     {
@@ -2084,6 +2083,8 @@ applyLang(currentLang);
         "@type": "Answer",
         "text": "A Data URI embeds file content directly into HTML or CSS using the format: data:image/png;base64,iVBOR... It lets browsers display images without a separate HTTP request — commonly used in emails, CSS backgrounds, and API responses."
       }
+    }
+      ]
     }
   ]
 }

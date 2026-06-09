@@ -2025,65 +2025,66 @@ applyLang(currentLang);
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "WebApplication",
-  "name": "Base64 to Image Converter",
-  "url": "https://decodeb64.com/base64-to-image",
-  "description": "Convert Base64 strings to images instantly in your browser. Paste raw Base64 or a Data URI and preview, download PNG, JPG, WebP — 100% private, no uploads.",
-  "applicationCategory": "DeveloperApplication",
-  "operatingSystem": "Any",
-  "offers": {
-    "@type": "Offer",
-    "price": "0",
-    "priceCurrency": "USD"
-  },
-  "featureList": "Base64 to image, Data URI decode, PNG JPG WebP download, animated GIF support, SVG support, 100% client-side"
-}
-</script>
-
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
+  "@graph": [
+    {
+      "@type": "WebApplication",
+      "@id": "https://decodeb64.com/#img-webapp",
+      "name": "Конвертер Base64 в изображение",
+      "url": "https://decodeb64.com/ru/base64-to-image.html",
+      "applicationCategory": "DeveloperApplication",
+      "operatingSystem": "Any",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "description": "Мгновенно конвертируйте строки Base64 в изображения в браузере. Вставьте Base64 или Data URI и загружайте PNG, JPG, WebP — 100% конфиденциально, без загрузок."
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://decodeb64.com/#img-faq",
+      "mainEntity": [
     {
       "@type": "Question",
-      "name": "What image formats does this tool support?",
+      "name": "Какие форматы изображений поддерживает этот инструмент?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "PNG, JPEG, GIF (including animated), WebP, SVG, BMP, ICO, TIFF, and AVIF are all supported. The tool auto-detects the format from the Data URI prefix or from the file's magic bytes."
+        "text": "Поддерживаются PNG, JPEG, GIF (включая анимированные), WebP, SVG, BMP, ICO, TIFF и AVIF. Инструмент автоматически определяет формат по префиксу Data URI или магическим байтам файла."
       }
     },
     {
       "@type": "Question",
-      "name": "Can I download the image in a different format?",
+      "name": "Можно ли скачать изображение в другом формате?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Yes. After decoding, you can download the image as PNG, JPG, or WebP using the format buttons. Conversion uses the browser's Canvas API. Note: JPEG conversion is lossy. Animated GIFs and SVGs are only downloadable in their original format."
+        "text": "Да. После декодирования вы можете скачать изображение в формате PNG, JPG или WebP, используя кнопки формата. Конвертация использует Canvas API браузера. Примечание: конвертация JPEG является lossy. Анимированные GIF и SVG можно скачать только в исходном формате."
       }
     },
     {
       "@type": "Question",
-      "name": "Is this tool private? Does it upload my data?",
+      "name": "Приватен ли этот инструмент? Загружает ли он мои данные?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Completely private. All decoding happens in your browser using standard Web APIs (atob, FileReader, Canvas, Blob). Your Base64 data is never sent to any server — not ours, not anyone's."
+        "text": "Полностью приватно. Всё декодирование происходит в вашем браузере с использованием стандартных Web API (atob, FileReader, Canvas, Blob). Ваши данные Base64 никогда не отправляются ни на какой сервер."
       }
     },
     {
       "@type": "Question",
-      "name": "Why does my image fail to decode?",
+      "name": "Почему моё изображение не декодируется?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Common causes: the Base64 string is corrupted or truncated; the input is not actually an image (it may be text or binary data); or a URL-safe Base64 string was pasted without converting - and _ back to + and /. Check the input and try selecting the image type manually."
+        "text": "Распространённые причины: строка Base64 повреждена или обрезана; входные данные не являются изображением; или вставлена строка Base64URL без обратного преобразования - и _ в + и /. Проверьте ввод и попробуйте выбрать тип изображения вручную."
       }
     },
     {
       "@type": "Question",
-      "name": "What is a Data URI?",
+      "name": "Что такое Data URI?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "A Data URI embeds file content directly into HTML or CSS using the format: data:image/png;base64,iVBOR... It lets browsers display images without a separate HTTP request — commonly used in emails, CSS backgrounds, and API responses."
+        "text": "Data URI встраивает содержимое файла непосредственно в HTML или CSS в формате: data:image/png;base64,iVBOR... Это позволяет браузерам отображать изображения без отдельного HTTP-запроса — часто используется в письмах, CSS-фонах и ответах API."
       }
+    }
+      ]
     }
   ]
 }

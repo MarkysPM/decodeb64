@@ -2024,64 +2024,66 @@ applyLang(currentLang);
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "WebApplication",
-  "name": "Base64 Decoder Online",
-  "url": "https://decodeb64.com/",
-  "description": "Free online Base64 decoder. Decode Base64 strings and files back to text, images, and binary instantly — UTF-8 auto-detect, URL-safe support, 100% private.",
-  "applicationCategory": "DeveloperApplication",
-  "operatingSystem": "Any",
-  "offers": {
-    "@type": "Offer",
-    "price": "0",
-    "priceCurrency": "USD"
-  },
-  "featureList": "Base64 decode, File decode, UTF-8 auto-detect, Base64URL support, line-by-line decode, live mode"
-}
-</script>
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
+  "@graph": [
+    {
+      "@type": "WebApplication",
+      "@id": "https://decodeb64.com/#webapp",
+      "name": "Decodificatore Base64 Online",
+      "url": "https://decodeb64.com/it/",
+      "applicationCategory": "DeveloperApplication",
+      "operatingSystem": "Any",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "description": "Decodificatore Base64 online gratuito. Decodifica stringhe e file Base64 in testo, immagini e binari istantaneamente — rilevamento UTF-8 automatico, supporto URL-safe, 100% privato."
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://decodeb64.com/#faq",
+      "mainEntity": [
     {
       "@type": "Question",
-      "name": "What is Base64 decoding?",
+      "name": "Cos'è la decodifica Base64?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Base64 decoding is the reverse of encoding — it converts a Base64 string back to its original binary or text data. Used to recover data from JWT tokens, email attachments (MIME), API responses, and data URIs."
+        "text": "La decodifica Base64 è l'inverso della codifica — converte una stringa Base64 nei suoi dati binari o testuali originali. Usata per recuperare dati da token JWT, allegati e-mail (MIME), risposte API e data URI."
       }
     },
     {
       "@type": "Question",
-      "name": "Is Base64 decoding the same as decryption?",
+      "name": "La decodifica Base64 è uguale alla decifrazione?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "No. Base64 is encoding, not encryption. Anyone can decode a Base64 string instantly — there is no key or password required. Never use Base64 alone to protect sensitive data."
+        "text": "No. Base64 è codifica, non crittografia. Chiunque può decodificare istantaneamente una stringa Base64 — non è richiesta alcuna chiave o password. Non usare mai Base64 da solo per proteggere dati sensibili."
       }
     },
     {
       "@type": "Question",
-      "name": "What does Invalid Base64 input mean?",
+      "name": "\"Input Base64 non valido\": cosa significa?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "The input contains characters outside the Base64 alphabet (A–Z, a–z, 0–9, +, /, =). Common causes: extra whitespace, missing = padding, or the URL-safe variant (- and _ instead of + and /)."
+        "text": "L'input contiene caratteri al di fuori dell'alfabeto Base64 (A–Z, a–z, 0–9, +, /, =). Cause comuni: spazi extra, padding = mancante o la variante URL-safe (- e _ invece di + e /)."
       }
     },
     {
       "@type": "Question",
-      "name": "How do I decode a Base64URL string?",
+      "name": "Come decodifico una stringa Base64URL?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Base64URL replaces + with - and / with _ and removes = padding. Before decoding, replace - with +, _ with /, and add missing = padding so the length is a multiple of 4."
+        "text": "Base64URL sostituisce + con - e / con _, e rimuove il padding =. Prima di decodificare, sostituisci - con +, _ con /, e aggiungi il padding = mancante in modo che la lunghezza sia un multiplo di 4."
       }
     },
     {
       "@type": "Question",
-      "name": "Can I decode binary files like images or PDFs?",
+      "name": "Posso decodificare file binari come immagini o PDF?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Yes. Use the file decode section to upload a Base64-encoded .txt file. The tool decodes the binary content and offers it as a download with the correct file type detected automatically."
+        "text": "Sì. Usa la sezione di decodifica file per caricare un file .txt codificato in Base64. Lo strumento decodifica il contenuto binario e lo offre come download con il tipo di file rilevato automaticamente."
       }
+    }
+      ]
     }
   ]
 }

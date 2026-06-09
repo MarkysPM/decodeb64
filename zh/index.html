@@ -2024,64 +2024,66 @@ applyLang(currentLang);
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "WebApplication",
-  "name": "Base64 Decoder Online",
-  "url": "https://decodeb64.com/",
-  "description": "Free online Base64 decoder. Decode Base64 strings and files back to text, images, and binary instantly — UTF-8 auto-detect, URL-safe support, 100% private.",
-  "applicationCategory": "DeveloperApplication",
-  "operatingSystem": "Any",
-  "offers": {
-    "@type": "Offer",
-    "price": "0",
-    "priceCurrency": "USD"
-  },
-  "featureList": "Base64 decode, File decode, UTF-8 auto-detect, Base64URL support, line-by-line decode, live mode"
-}
-</script>
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
+  "@graph": [
+    {
+      "@type": "WebApplication",
+      "@id": "https://decodeb64.com/#webapp",
+      "name": "在线Base64解码器",
+      "url": "https://decodeb64.com/zh/",
+      "applicationCategory": "DeveloperApplication",
+      "operatingSystem": "Any",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "description": "免费在线Base64解码工具。即时将Base64字符串和文件解码回文本、图片和二进制数据——UTF-8自动检测，支持URL安全模式，100%隐私保护。"
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://decodeb64.com/#faq",
+      "mainEntity": [
     {
       "@type": "Question",
-      "name": "What is Base64 decoding?",
+      "name": "什么是Base64解码？",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Base64 decoding is the reverse of encoding — it converts a Base64 string back to its original binary or text data. Used to recover data from JWT tokens, email attachments (MIME), API responses, and data URIs."
+        "text": "Base64解码是编码的逆过程——将Base64字符串转换回原始的二进制或文本数据。用于从JWT令牌、电子邮件附件（MIME）、API响应和Data URI中恢复数据。"
       }
     },
     {
       "@type": "Question",
-      "name": "Is Base64 decoding the same as decryption?",
+      "name": "Base64解码与解密相同吗？",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "No. Base64 is encoding, not encryption. Anyone can decode a Base64 string instantly — there is no key or password required. Never use Base64 alone to protect sensitive data."
+        "text": "不同。Base64是编码，不是加密。任何人都可以立即解码Base64字符串——不需要密钥或密码。切勿单独使用Base64来保护敏感数据。"
       }
     },
     {
       "@type": "Question",
-      "name": "What does Invalid Base64 input mean?",
+      "name": "\"Base64输入无效\"是什么意思？",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "The input contains characters outside the Base64 alphabet (A–Z, a–z, 0–9, +, /, =). Common causes: extra whitespace, missing = padding, or the URL-safe variant (- and _ instead of + and /)."
+        "text": "Base64输入包含Base64字母表之外的字符（A–Z、a–z、0–9、+、/、=）。常见原因：多余的空白字符、缺少=填充，或URL安全变体（用-和_代替+和/）。"
       }
     },
     {
       "@type": "Question",
-      "name": "How do I decode a Base64URL string?",
+      "name": "如何解码Base64URL字符串？",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Base64URL replaces + with - and / with _ and removes = padding. Before decoding, replace - with +, _ with /, and add missing = padding so the length is a multiple of 4."
+        "text": "Base64URL用-替换+，用_替换/，并删除=填充。解码前，将-替换为+，将_替换为/，并补充缺失的=填充，使长度为4的倍数。"
       }
     },
     {
       "@type": "Question",
-      "name": "Can I decode binary files like images or PDFs?",
+      "name": "我可以解码图片或PDF等二进制文件吗？",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Yes. Use the file decode section to upload a Base64-encoded .txt file. The tool decodes the binary content and offers it as a download with the correct file type detected automatically."
+        "text": "可以。使用文件解码区域上传Base64编码的.txt文件。工具会解码二进制内容并提供下载，自动检测正确的文件类型。"
       }
+    }
+      ]
     }
   ]
 }

@@ -2025,65 +2025,66 @@ applyLang(currentLang);
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "WebApplication",
-  "name": "Base64 to Image Converter",
-  "url": "https://decodeb64.com/base64-to-image",
-  "description": "Convert Base64 strings to images instantly in your browser. Paste raw Base64 or a Data URI and preview, download PNG, JPG, WebP — 100% private, no uploads.",
-  "applicationCategory": "DeveloperApplication",
-  "operatingSystem": "Any",
-  "offers": {
-    "@type": "Offer",
-    "price": "0",
-    "priceCurrency": "USD"
-  },
-  "featureList": "Base64 to image, Data URI decode, PNG JPG WebP download, animated GIF support, SVG support, 100% client-side"
-}
-</script>
-
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
+  "@graph": [
+    {
+      "@type": "WebApplication",
+      "@id": "https://decodeb64.com/#img-webapp",
+      "name": "Base64转图片转换器",
+      "url": "https://decodeb64.com/zh/base64-to-image.html",
+      "applicationCategory": "DeveloperApplication",
+      "operatingSystem": "Any",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "description": "在浏览器中即时将Base64字符串转换为图片。粘贴原始Base64或Data URI，预览并下载PNG、JPG、WebP——100%隐私，无需上传。"
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://decodeb64.com/#img-faq",
+      "mainEntity": [
     {
       "@type": "Question",
-      "name": "What image formats does this tool support?",
+      "name": "此工具支持哪些图片格式？",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "PNG, JPEG, GIF (including animated), WebP, SVG, BMP, ICO, TIFF, and AVIF are all supported. The tool auto-detects the format from the Data URI prefix or from the file's magic bytes."
+        "text": "PNG、JPEG、GIF（包括动画）、WebP、SVG、BMP、ICO、TIFF和AVIF均受支持。工具会根据Data URI前缀或文件的魔术字节自动检测格式。"
       }
     },
     {
       "@type": "Question",
-      "name": "Can I download the image in a different format?",
+      "name": "我可以用不同格式下载图片吗？",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Yes. After decoding, you can download the image as PNG, JPG, or WebP using the format buttons. Conversion uses the browser's Canvas API. Note: JPEG conversion is lossy. Animated GIFs and SVGs are only downloadable in their original format."
+        "text": "可以。解码后，您可以使用格式按钮将图片下载为PNG、JPG或WebP。转换使用浏览器的Canvas API。注意：JPEG转换是有损的。动画GIF和SVG只能以其原始格式下载。"
       }
     },
     {
       "@type": "Question",
-      "name": "Is this tool private? Does it upload my data?",
+      "name": "此工具是否保护隐私？会上传我的数据吗？",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Completely private. All decoding happens in your browser using standard Web APIs (atob, FileReader, Canvas, Blob). Your Base64 data is never sent to any server — not ours, not anyone's."
+        "text": "完全私密。所有解码均在您的浏览器中使用标准Web API（atob、FileReader、Canvas、Blob）进行。您的Base64数据永远不会发送到任何服务器。"
       }
     },
     {
       "@type": "Question",
-      "name": "Why does my image fail to decode?",
+      "name": "为什么我的图片解码失败？",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Common causes: the Base64 string is corrupted or truncated; the input is not actually an image (it may be text or binary data); or a URL-safe Base64 string was pasted without converting - and _ back to + and /. Check the input and try selecting the image type manually."
+        "text": "常见原因：Base64字符串已损坏或被截断；输入实际上不是图片；或粘贴了URL安全的Base64字符串但未将-和_转换回+和/。检查输入并尝试手动选择图片类型。"
       }
     },
     {
       "@type": "Question",
-      "name": "What is a Data URI?",
+      "name": "什么是Data URI？",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "A Data URI embeds file content directly into HTML or CSS using the format: data:image/png;base64,iVBOR... It lets browsers display images without a separate HTTP request — commonly used in emails, CSS backgrounds, and API responses."
+        "text": "Data URI使用以下格式将文件内容直接嵌入HTML或CSS：data:image/png;base64,iVBOR... 它让浏览器无需单独的HTTP请求即可显示图片——常用于电子邮件、CSS背景和API响应。"
       }
+    }
+      ]
     }
   ]
 }

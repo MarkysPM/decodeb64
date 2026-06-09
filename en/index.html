@@ -2024,25 +2024,25 @@ applyLang(currentLang);
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "WebApplication",
-  "name": "Base64 Decoder Online",
-  "url": "https://decodeb64.com/",
-  "description": "Free online Base64 decoder. Decode Base64 strings and files back to text, images, and binary instantly — UTF-8 auto-detect, URL-safe support, 100% private.",
-  "applicationCategory": "DeveloperApplication",
-  "operatingSystem": "Any",
-  "offers": {
-    "@type": "Offer",
-    "price": "0",
-    "priceCurrency": "USD"
-  },
-  "featureList": "Base64 decode, File decode, UTF-8 auto-detect, Base64URL support, line-by-line decode, live mode"
-}
-</script>
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
+  "@graph": [
+    {
+      "@type": "WebApplication",
+      "@id": "https://decodeb64.com/#webapp",
+      "name": "Base64 Decoder Online",
+      "url": "https://decodeb64.com/en/",
+      "applicationCategory": "DeveloperApplication",
+      "operatingSystem": "Any",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "description": "Free online Base64 decoder. Decode Base64 strings and files back to text, images, and binary instantly — UTF-8 auto-detect, URL-safe support, 100% private."
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://decodeb64.com/#faq",
+      "mainEntity": [
     {
       "@type": "Question",
       "name": "What is Base64 decoding?",
@@ -2082,6 +2082,8 @@ applyLang(currentLang);
         "@type": "Answer",
         "text": "Yes. Use the file decode section to upload a Base64-encoded .txt file. The tool decodes the binary content and offers it as a download with the correct file type detected automatically."
       }
+    }
+      ]
     }
   ]
 }
