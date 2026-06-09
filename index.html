@@ -1,37 +1,77 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <script src="https://cdn.cookiehub.eu/c2/37267253.js"></script>
-  <script type="text/javascript">document.addEventListener("DOMContentLoaded", function(event) {var cpm = {};window.cookiehub.load(cpm);});</script>
+  <script>
+    // Production-only: CookieHub, Google Analytics, AdSense
+    // Skipped entirely on localhost / file:// to avoid blocking the page locally.
+    (function () {
+      var isProd = /decodeb64\.com$/.test(window.location.hostname);
+
+      // Always define gtag stub so any inline references don't throw in dev
+      window.dataLayer = window.dataLayer || [];
+      function gtag() { dataLayer.push(arguments); }
+      window.gtag = gtag;
+
+      // Consent defaults (harmless in dev; required before GA fires in prod)
+      gtag('consent', 'default', {
+        analytics_storage: 'denied',
+        ad_storage: 'denied',
+        ad_user_data: 'denied',
+        ad_personalization: 'denied',
+        wait_for_update: 500
+      });
+
+      if (!isProd) return;
+
+      // CookieHub
+      var ch = document.createElement('script');
+      ch.src = 'https://cdn.cookiehub.eu/c2/37267253.js';
+      ch.onload = function () {
+        document.addEventListener('DOMContentLoaded', function () {
+          window.cookiehub && window.cookiehub.load({});
+        });
+      };
+      document.head.appendChild(ch);
+
+      // Google Analytics
+      var ga = document.createElement('script');
+      ga.async = true;
+      ga.src = 'https://www.googletagmanager.com/gtag/js?id=G-JVDER6MN4Y';
+      document.head.appendChild(ga);
+      gtag('js', new Date());
+      gtag('config', 'G-JVDER6MN4Y');
+
+      // AdSense
+      var ad = document.createElement('script');
+      ad.async = true;
+      ad.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7602115974474104';
+      ad.crossOrigin = 'anonymous';
+      document.head.appendChild(ad);
+    })();
+  </script>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Base64 Decode Online — decodeb64.com</title>
-  <meta name="description" content="Instantly decode Base64 strings or files back to their original format, right in your browser. Free, private, no server." />
-  <meta property="og:title" content="Base64 Decode Online — decodeb64.com" />
-  <meta property="og:description" content="Instantly decode Base64 strings or files back to their original format, right in your browser." />
-  <meta property="og:url" content="https://decodeb64.com" />
+  <title>Base64 Decoder Online — Free Tool | decodeb64.com</title>
+  <meta name="description" content="Free online Base64 decoder. Decode Base64 strings and files back to text, images, and binary instantly — UTF-8 auto-detect, URL-safe support, 100% private." />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://decodeb64.com/" />
+  <link rel="alternate" hreflang="en" href="https://decodeb64.com/" />
+  <link rel="alternate" hreflang="es" href="https://decodeb64.com/es/" />
+  <link rel="alternate" hreflang="pt" href="https://decodeb64.com/pt/" />
+  <link rel="alternate" hreflang="fr" href="https://decodeb64.com/fr/" />
+  <link rel="alternate" hreflang="de" href="https://decodeb64.com/de/" />
+  <link rel="alternate" hreflang="it" href="https://decodeb64.com/it/" />
+  <link rel="alternate" hreflang="zh" href="https://decodeb64.com/zh/" />
+  <link rel="alternate" hreflang="ru" href="https://decodeb64.com/ru/" />
+  <link rel="alternate" hreflang="x-default" href="https://decodeb64.com/" />
+  <meta property="og:title" content="Base64 Decoder Online — Free Tool | decodeb64.com" />
+  <meta property="og:description" content="Free online Base64 decoder. Decode Base64 strings and files back to text, images, and binary instantly — UTF-8 auto-detect, URL-safe support, 100% private." />
+  <meta property="og:url" content="https://decodeb64.com/" />
   <meta property="og:type" content="website" />
-  <!-- Google Consent Mode v2 defaults — must be before GA loads -->
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('consent', 'default', {
-      'analytics_storage': 'denied',
-      'ad_storage': 'denied',
-      'ad_user_data': 'denied',
-      'ad_personalization': 'denied',
-      'wait_for_update': 500
-    });
-  </script>
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-JVDER6MN4Y"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-JVDER6MN4Y');
-  </script>
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7602115974474104" crossorigin="anonymous"></script>
+  <meta property="og:image" content="https://decodeb64.com/og-image.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Base64 Decoder Online — Free Tool | decodeb64.com" />
+  <meta name="twitter:description" content="Free online Base64 decoder. Decode Base64 strings and files back to text, images, and binary instantly. UTF-8 auto-detect, URL-safe, 100% private." />
   <meta name="google-site-verification" content="junzsHbXiK1myji8ElW3o_AukNcT47nJtXPseZPteOU" />
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%230d0d14'/><text x='50%25' y='54%25' dominant-baseline='middle' text-anchor='middle' font-family='monospace' font-weight='bold' font-size='11' fill='%23ff8c42'>B64</text></svg>" />
   <style>
@@ -723,6 +763,32 @@
       box-shadow: 0 0 16px rgba(62,207,126,0.2);
     }
 
+    /* ─── CONTENT SECTIONS ─── */
+    .content-h2 {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 12px;
+      letter-spacing: -0.2px;
+    }
+    .other-tool-link {
+      display: inline-flex;
+      align-items: center;
+      padding: 8px 18px;
+      background: var(--glass-bg);
+      border: 1px solid var(--glass-border);
+      border-radius: 20px;
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.82rem;
+      font-weight: 500;
+      transition: all 0.2s;
+    }
+    .other-tool-link:hover {
+      border-color: rgba(255,140,66,0.4);
+      color: var(--amber);
+    }
+
     /* ─── ACCORDION ─── */
     .accordion-item {
       border: 1px solid var(--glass-border);
@@ -875,8 +941,9 @@
   </a>
   <div class="header-right">
     <nav class="nav-pills">
-      <a href="https://encodeb64.com" class="nav-pill inactive" data-i18n="nav_encode">Encode</a>
+      <a href="https://encodeb64.com" class="nav-pill inactive" data-i18n="nav_encode" rel="noopener noreferrer" target="_blank">Encode</a>
       <span class="nav-pill active" data-i18n="nav_decode">Decode</span>
+      <a href="/base64-to-image" class="nav-pill inactive" data-i18n="nav_b2i">Base64 to Image</a>
     </nav>
     <div class="lang-selector">
       <button class="lang-btn" id="langBtn" aria-haspopup="listbox" aria-expanded="false">
@@ -1058,6 +1125,65 @@
     </div>
   </section>
 
+  <!-- FAQ -->
+  <section style="margin-top:8px;" itemscope itemtype="https://schema.org/FAQPage">
+    <h2 class="content-h2" data-i18n="faq_title">Frequently Asked Questions</h2>
+    <div class="accordion-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+      <div class="accordion-header" onclick="toggleAccordion(this)">
+        <span data-i18n="faq_q1" itemprop="name">What is Base64 decoding?</span>
+        <svg class="accordion-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+      </div>
+      <div class="accordion-body" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+        <div class="accordion-content" data-i18n="faq_a1" itemprop="text">Base64 decoding is the reverse of encoding — it converts a Base64 string back to its original binary or text data. Used to recover data from JWT tokens, email attachments (MIME), API responses, and data URIs.</div>
+      </div>
+    </div>
+    <div class="accordion-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+      <div class="accordion-header" onclick="toggleAccordion(this)">
+        <span data-i18n="faq_q2" itemprop="name">Is Base64 decoding the same as decryption?</span>
+        <svg class="accordion-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+      </div>
+      <div class="accordion-body" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+        <div class="accordion-content" data-i18n="faq_a2" itemprop="text">No. Base64 is encoding, not encryption. Anyone can decode a Base64 string instantly — there is no key or password required. Never use Base64 alone to protect sensitive data.</div>
+      </div>
+    </div>
+    <div class="accordion-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+      <div class="accordion-header" onclick="toggleAccordion(this)">
+        <span data-i18n="faq_q3" itemprop="name">What does "Invalid Base64 input" mean?</span>
+        <svg class="accordion-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+      </div>
+      <div class="accordion-body" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+        <div class="accordion-content" data-i18n="faq_a3" itemprop="text">The input contains characters outside the Base64 alphabet (A–Z, a–z, 0–9, +, /, =). Common causes: extra whitespace, missing = padding, or the URL-safe variant (- and _ instead of + and /).</div>
+      </div>
+    </div>
+    <div class="accordion-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+      <div class="accordion-header" onclick="toggleAccordion(this)">
+        <span data-i18n="faq_q4" itemprop="name">How do I decode a Base64URL string?</span>
+        <svg class="accordion-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+      </div>
+      <div class="accordion-body" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+        <div class="accordion-content" data-i18n="faq_a4" itemprop="text">Base64URL replaces + with - and / with _ and removes = padding. Before decoding, replace - with +, _ with /, and add missing = padding so the length is a multiple of 4.</div>
+      </div>
+    </div>
+    <div class="accordion-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+      <div class="accordion-header" onclick="toggleAccordion(this)">
+        <span data-i18n="faq_q5" itemprop="name">Can I decode binary files like images or PDFs?</span>
+        <svg class="accordion-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+      </div>
+      <div class="accordion-body" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+        <div class="accordion-content" data-i18n="faq_a5" itemprop="text">Yes. Use the file decode section to upload a Base64-encoded .txt file. The tool decodes the binary content and offers it as a download with the correct file type detected automatically.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- OTHER TOOLS -->
+  <section style="margin-top:28px;margin-bottom:8px;">
+    <h2 class="content-h2" data-i18n="other_tools_title">Other Tools</h2>
+    <div style="display:flex;gap:12px;flex-wrap:wrap;">
+      <a href="https://encodeb64.com" class="other-tool-link" rel="noopener noreferrer" target="_blank">Base64 Encode →</a>
+      <a href="/base64-to-image" class="other-tool-link">Base64 to Image →</a>
+    </div>
+  </section>
+
 </main>
 
 <!-- FOOTER -->
@@ -1069,18 +1195,19 @@
     <a href="#" data-i18n="footer_terms">Terms of Use</a>
     <a href="#" data-i18n="footer_contact">Contact</a>
   </div>
-  <span class="footer-right"><span data-i18n="footer_also_try">Also try:</span> <a href="https://encodeb64.com">encodeb64.com →</a></span>
+  <span class="footer-right"><span data-i18n="footer_also_try">Also try:</span> <a href="https://encodeb64.com" rel="noopener noreferrer" target="_blank">Base64 Encode — encodeb64.com →</a></span>
 </footer>
 
 <script>
 // ─── TRANSLATIONS ─────────────────────────────────────────────────────────────
 const T = {
   en: {
-    page_title: "Base64 Decode Online — decodeb64.com",
+    page_title: "Base64 Decoder Online — Free Tool | decodeb64.com",
     nav_encode: "Encode",
     nav_decode: "Decode",
-    hero_h1: "Decode from Base64",
-    hero_sub: "Instantly decode Base64 strings or files back to their original format, right in your browser.",
+    nav_b2i: "Base64 to Image",
+    hero_h1: "Base64 Decoder Online",
+    hero_sub: "The fastest online Base64 decoder. Decode Base64 strings and files back to text, images, and binary instantly — UTF-8 auto-detect, URL-safe support, 100% private.",
     input_label: "Base64 string to decode",
     input_placeholder: "Paste your Base64 encoded text here...",
     output_label: "Decoded output",
@@ -1118,6 +1245,18 @@ const T = {
       </tbody>
     </table>
     <p style="margin-top:12px;">The 24 bits of "Man" (3 bytes) are split into four 6-bit groups (T=19, W=22, F=5, u=46), mapped to Base64 chars. Decoding reverses this: each Base64 character is looked up in the index table, the bits are reassembled into bytes, and interpreted as text using the selected character set.</p>`,
+    faq_title: "Frequently Asked Questions",
+    faq_q1: "What is Base64 decoding?",
+    faq_a1: "Base64 decoding is the reverse of encoding — it converts a Base64 string back to its original binary or text data. Used to recover data from JWT tokens, email attachments (MIME), API responses, and data URIs.",
+    faq_q2: "Is Base64 decoding the same as decryption?",
+    faq_a2: "No. Base64 is encoding, not encryption. Anyone can decode a Base64 string instantly — there is no key or password required. Never use Base64 alone to protect sensitive data.",
+    faq_q3: "What does \"Invalid Base64 input\" mean?",
+    faq_a3: "The input contains characters outside the Base64 alphabet (A–Z, a–z, 0–9, +, /, =). Common causes: extra whitespace, missing = padding, or the URL-safe variant (- and _ instead of + and /).",
+    faq_q4: "How do I decode a Base64URL string?",
+    faq_a4: "Base64URL replaces + with - and / with _ and removes = padding. Before decoding, replace - with +, _ with /, and add missing = padding so the length is a multiple of 4.",
+    faq_q5: "Can I decode binary files like images or PDFs?",
+    faq_a5: "Yes. Use the file decode section to upload a Base64-encoded .txt file. The tool decodes the binary content and offers it as a download with the correct file type detected automatically.",
+    other_tools_title: "Other Tools",
     footer_about: "About",
     footer_privacy: "Privacy Policy",
     footer_terms: "Terms of Use",
@@ -1128,6 +1267,7 @@ const T = {
     page_title: "Decodificador Base64 Online — decodeb64.com",
     nav_encode: "Codificar",
     nav_decode: "Decodificar",
+    nav_b2i: "Base64 a imagen",
     hero_h1: "Decodificar desde Base64",
     hero_sub: "Decodifica cadenas o archivos Base64 de vuelta a su formato original, directamente en tu navegador.",
     input_label: "Cadena Base64 a decodificar",
@@ -1177,6 +1317,7 @@ const T = {
     page_title: "Decodificador Base64 Online — decodeb64.com",
     nav_encode: "Codificar",
     nav_decode: "Decodificar",
+    nav_b2i: "Base64 para imagem",
     hero_h1: "Decodificar do Base64",
     hero_sub: "Decodifique strings ou arquivos Base64 de volta ao formato original, diretamente no seu navegador.",
     input_label: "String Base64 para decodificar",
@@ -1221,6 +1362,7 @@ const T = {
     page_title: "Décodeur Base64 en ligne — decodeb64.com",
     nav_encode: "Encoder",
     nav_decode: "Décoder",
+    nav_b2i: "Base64 en image",
     hero_h1: "Décoder depuis Base64",
     hero_sub: "Décodez instantanément des chaînes ou fichiers Base64 vers leur format original, directement dans votre navigateur.",
     input_label: "Chaîne Base64 à décoder",
@@ -1265,6 +1407,7 @@ const T = {
     page_title: "Base64 Decoder Online — decodeb64.com",
     nav_encode: "Kodieren",
     nav_decode: "Dekodieren",
+    nav_b2i: "Base64 zu Bild",
     hero_h1: "Von Base64 dekodieren",
     hero_sub: "Dekodieren Sie Base64-Strings oder Dateien sofort zurück in ihr ursprüngliches Format, direkt in Ihrem Browser.",
     input_label: "Base64-String zum Dekodieren",
@@ -1309,6 +1452,7 @@ const T = {
     page_title: "Decodificatore Base64 Online — decodeb64.com",
     nav_encode: "Codifica",
     nav_decode: "Decodifica",
+    nav_b2i: "Base64 in immagine",
     hero_h1: "Decodifica da Base64",
     hero_sub: "Decodifica istantaneamente stringhe o file Base64 nel loro formato originale, direttamente nel tuo browser.",
     input_label: "Stringa Base64 da decodificare",
@@ -1353,6 +1497,7 @@ const T = {
     page_title: "Base64 在线解码 — decodeb64.com",
     nav_encode: "编码",
     nav_decode: "解码",
+    nav_b2i: "Base64 转图片",
     hero_h1: "从 Base64 解码",
     hero_sub: "在浏览器中即时将 Base64 字符串或文件解码回原始格式，无需服务器。",
     input_label: "待解码的 Base64 字符串",
@@ -1397,6 +1542,7 @@ const T = {
     page_title: "Декодировщик Base64 онлайн — decodeb64.com",
     nav_encode: "Кодировать",
     nav_decode: "Декодировать",
+    nav_b2i: "Base64 в изображение",
     hero_h1: "Декодировать из Base64",
     hero_sub: "Мгновенно декодируйте строки или файлы Base64 обратно в исходный формат, прямо в вашем браузере.",
     input_label: "Строка Base64 для декодирования",
@@ -1780,6 +1926,71 @@ function toggleAccordion(header) {
 
 // ─── INIT ─────────────────────────────────────────────────────────────────────
 applyLang(currentLang);
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Base64 Decoder Online",
+  "url": "https://decodeb64.com/",
+  "description": "Free online Base64 decoder. Decode Base64 strings and files back to text, images, and binary instantly — UTF-8 auto-detect, URL-safe support, 100% private.",
+  "applicationCategory": "DeveloperApplication",
+  "operatingSystem": "Any",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "featureList": "Base64 decode, File decode, UTF-8 auto-detect, Base64URL support, line-by-line decode, live mode"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is Base64 decoding?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Base64 decoding is the reverse of encoding — it converts a Base64 string back to its original binary or text data. Used to recover data from JWT tokens, email attachments (MIME), API responses, and data URIs."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is Base64 decoding the same as decryption?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. Base64 is encoding, not encryption. Anyone can decode a Base64 string instantly — there is no key or password required. Never use Base64 alone to protect sensitive data."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What does Invalid Base64 input mean?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The input contains characters outside the Base64 alphabet (A–Z, a–z, 0–9, +, /, =). Common causes: extra whitespace, missing = padding, or the URL-safe variant (- and _ instead of + and /)."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I decode a Base64URL string?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Base64URL replaces + with - and / with _ and removes = padding. Before decoding, replace - with +, _ with /, and add missing = padding so the length is a multiple of 4."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I decode binary files like images or PDFs?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Use the file decode section to upload a Base64-encoded .txt file. The tool decodes the binary content and offers it as a download with the correct file type detected automatically."
+      }
+    }
+  ]
+}
 </script>
 </body>
 </html>
