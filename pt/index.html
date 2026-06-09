@@ -1,6 +1,17 @@
 <!DOCTYPE html>
 <html lang="pt">
 <head>
+  <!-- Ezoic privacy scripts -->
+  <script data-cfasync="false" src="https://cmp.gatekeeperconsent.com/min.js"></script>
+  <script data-cfasync="false" src="https://the.gatekeeperconsent.com/cmp.min.js"></script>
+  <!-- Ezoic main script -->
+  <script async src="//www.ezojs.com/ezoic/sa.min.js"></script>
+  <script>
+    window.ezstandalone = window.ezstandalone || {};
+    ezstandalone.cmd = ezstandalone.cmd || [];
+  </script>
+  <!-- Ezoic analytics -->
+  <script src="//ezoicanalytics.com/analytics.js"></script>
   <script>
     // Production-only: CookieHub, Google Analytics, AdSense
     // Skipped entirely on localhost / file:// to avoid blocking the page locally.
@@ -983,7 +994,9 @@
     <p class="hero-sub" data-i18n="hero_sub">Instantly decode Base64 strings or files back to their original format, right in your browser.</p>
   </section>
 
-  <!-- TOOL CARD -->
+  <div id="ezoic-pub-ad-placeholder-101"></div>
+
+<!-- TOOL CARD -->
   <div class="glass-card">
 
     <!-- TEXT DECODE -->
@@ -1133,7 +1146,9 @@
     </div>
   </section>
 
-  <!-- FAQ -->
+  
+  <div id="ezoic-pub-ad-placeholder-102"></div>
+<!-- FAQ -->
   <section style="margin-top:8px;" itemscope itemtype="https://schema.org/FAQPage">
     <h2 class="content-h2" data-i18n="faq_title">Frequently Asked Questions</h2>
     <div class="accordion-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
@@ -1196,7 +1211,8 @@
 
 <!-- FOOTER -->
 <footer>
-  <span>decodeb64.com &copy; 2025</span>
+    <div id="ezoic-pub-ad-placeholder-103"></div>
+<span>decodeb64.com &copy; 2025</span>
   <div class="footer-links">
     <a href="#" data-i18n="footer_about">About</a>
     <a href="#" data-i18n="footer_privacy">Privacy Policy</a>
@@ -2087,6 +2103,13 @@ applyLang(currentLang);
     }
   ]
 }
+</script>
+<script>
+  ezstandalone.cmd.push(function() {
+    ezstandalone.define(101, 102, 103);
+    ezstandalone.enable();
+    ezstandalone.display();
+  });
 </script>
 </body>
 </html>
