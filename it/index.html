@@ -1,0 +1,2082 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <script>
+    // Production-only: CookieHub, Google Analytics, AdSense
+    // Skipped entirely on localhost / file:// to avoid blocking the page locally.
+    (function () {
+      var isProd = /decodeb64\.com$/.test(window.location.hostname);
+
+      // Always define gtag stub so any inline references don't throw in dev
+      window.dataLayer = window.dataLayer || [];
+      function gtag() { dataLayer.push(arguments); }
+      window.gtag = gtag;
+
+      // Consent defaults (harmless in dev; required before GA fires in prod)
+      gtag('consent', 'default', {
+        analytics_storage: 'denied',
+        ad_storage: 'denied',
+        ad_user_data: 'denied',
+        ad_personalization: 'denied',
+        wait_for_update: 500
+      });
+
+      if (!isProd) return;
+
+      // CookieHub
+      var ch = document.createElement('script');
+      ch.src = 'https://cdn.cookiehub.eu/c2/37267253.js';
+      ch.onload = function () {
+        document.addEventListener('DOMContentLoaded', function () {
+          window.cookiehub && window.cookiehub.load({});
+        });
+      };
+      document.head.appendChild(ch);
+
+      // Google Analytics
+      var ga = document.createElement('script');
+      ga.async = true;
+      ga.src = 'https://www.googletagmanager.com/gtag/js?id=G-JVDER6MN4Y';
+      document.head.appendChild(ga);
+      gtag('js', new Date());
+      gtag('config', 'G-JVDER6MN4Y');
+
+      // AdSense
+      var ad = document.createElement('script');
+      ad.async = true;
+      ad.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7602115974474104';
+      ad.crossOrigin = 'anonymous';
+      document.head.appendChild(ad);
+    })();
+  </script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Base64 Decoder Online — Free Tool | decodeb64.com</title>
+  <meta name="description" content="Free online Base64 decoder. Decode Base64 strings and files back to text, images, and binary instantly — UTF-8 auto-detect, URL-safe support, 100% private." />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://decodeb64.com/it/" />
+  <link rel="alternate" hreflang="en" href="https://decodeb64.com/en/" />
+  <link rel="alternate" hreflang="es" href="https://decodeb64.com/es/" />
+  <link rel="alternate" hreflang="pt" href="https://decodeb64.com/pt/" />
+  <link rel="alternate" hreflang="fr" href="https://decodeb64.com/fr/" />
+  <link rel="alternate" hreflang="de" href="https://decodeb64.com/de/" />
+  <link rel="alternate" hreflang="it" href="https://decodeb64.com/it/" />
+  <link rel="alternate" hreflang="zh" href="https://decodeb64.com/zh/" />
+  <link rel="alternate" hreflang="ru" href="https://decodeb64.com/ru/" />
+  <link rel="alternate" hreflang="x-default" href="https://decodeb64.com/" />
+  <meta property="og:title" content="Base64 Decoder Online — Free Tool | decodeb64.com" />
+  <meta property="og:description" content="Free online Base64 decoder. Decode Base64 strings and files back to text, images, and binary instantly — UTF-8 auto-detect, URL-safe support, 100% private." />
+  <meta property="og:url" content="https://decodeb64.com/it/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="https://decodeb64.com/og-image.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Base64 Decoder Online — Free Tool | decodeb64.com" />
+  <meta name="twitter:description" content="Free online Base64 decoder. Decode Base64 strings and files back to text, images, and binary instantly. UTF-8 auto-detect, URL-safe, 100% private." />
+  <meta name="google-site-verification" content="junzsHbXiK1myji8ElW3o_AukNcT47nJtXPseZPteOU" />
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%230d0d14'/><text x='50%25' y='54%25' dominant-baseline='middle' text-anchor='middle' font-family='monospace' font-weight='bold' font-size='11' fill='%23ff8c42'>B64</text></svg>" />
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Sora:wght@300;400;500;600;700&display=swap');
+
+    :root {
+      --bg: #0d0d14;
+      --bg2: #12121c;
+      --bg3: #1a1a28;
+      --amber: #ff8c42;
+      --amber-dim: rgba(255,140,66,0.15);
+      --amber-glow: rgba(255,140,66,0.35);
+      --amber-light: #ffb07a;
+      --glass-bg: rgba(255,255,255,0.04);
+      --glass-border: rgba(255,255,255,0.09);
+      --text: #e8e8f0;
+      --text-muted: #7a7a9a;
+      --text-dim: #4a4a6a;
+      --green: #3ecf7e;
+      --red: #ff5a5a;
+      --red-dim: rgba(255,90,90,0.15);
+      --radius: 14px;
+      --radius-sm: 8px;
+      --mono: 'JetBrains Mono', monospace;
+      --sans: 'Sora', sans-serif;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--sans);
+      background-color: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    /* Dot-grid background */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: radial-gradient(circle, rgba(255,140,66,0.12) 1px, transparent 1px);
+      background-size: 28px 28px;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* Ambient glow */
+    body::after {
+      content: '';
+      position: fixed;
+      top: -20%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 800px;
+      height: 500px;
+      background: radial-gradient(ellipse, rgba(255,140,66,0.06) 0%, transparent 70%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* ─── HEADER ─── */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(13,13,20,0.85);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--glass-border);
+      padding: 0 24px;
+      height: 62px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .logo {
+      font-family: var(--mono);
+      font-size: 1.2rem;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+      text-decoration: none;
+      flex-shrink: 0;
+    }
+    .logo span.decode { color: #ffffff; }
+    .logo span.b64 { color: var(--amber); }
+
+    .header-right {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .nav-pills {
+      display: flex;
+      gap: 6px;
+    }
+
+    .nav-pill {
+      font-family: var(--sans);
+      font-size: 0.78rem;
+      font-weight: 500;
+      padding: 5px 14px;
+      border-radius: 20px;
+      text-decoration: none;
+      transition: all 0.2s;
+      border: 1px solid transparent;
+    }
+    .nav-pill.inactive {
+      color: var(--text-muted);
+      border-color: var(--glass-border);
+      background: transparent;
+    }
+    .nav-pill.inactive:hover {
+      color: var(--text);
+      border-color: rgba(255,255,255,0.18);
+    }
+    .nav-pill.active {
+      color: var(--bg);
+      background: var(--amber);
+      font-weight: 600;
+    }
+
+    /* Language selector */
+    .lang-selector {
+      position: relative;
+    }
+
+    .lang-btn {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 5px 12px;
+      background: var(--glass-bg);
+      border: 1px solid var(--glass-border);
+      border-radius: 20px;
+      color: var(--text-muted);
+      cursor: pointer;
+      font-family: var(--sans);
+      font-size: 0.78rem;
+      transition: all 0.2s;
+      white-space: nowrap;
+    }
+    .lang-btn:hover { color: var(--text); border-color: rgba(255,255,255,0.18); }
+    .lang-btn svg { width: 14px; height: 14px; flex-shrink: 0; }
+
+    .lang-dropdown {
+      display: none;
+      position: absolute;
+      top: calc(100% + 8px);
+      right: 0;
+      background: #1a1a2e;
+      border: 1px solid var(--glass-border);
+      border-radius: var(--radius-sm);
+      overflow: hidden;
+      min-width: 160px;
+      box-shadow: 0 12px 40px rgba(0,0,0,0.5);
+      z-index: 200;
+    }
+    .lang-dropdown.open { display: block; }
+
+    .lang-option {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 9px 14px;
+      cursor: pointer;
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      transition: all 0.15s;
+    }
+    .lang-option:hover { background: var(--amber-dim); color: var(--text); }
+    .lang-option.selected { color: var(--amber); }
+
+    /* ─── MAIN CONTENT ─── */
+    main {
+      position: relative;
+      z-index: 1;
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 20px 80px;
+    }
+
+    /* ─── HERO ─── */
+    .hero {
+      text-align: center;
+      padding: 64px 20px 48px;
+      position: relative;
+    }
+
+    .hero-glow {
+      position: absolute;
+      top: 40%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 600px;
+      height: 300px;
+      background: radial-gradient(ellipse, rgba(255,140,66,0.1) 0%, transparent 65%);
+      pointer-events: none;
+    }
+
+    .hero h1 {
+      font-size: clamp(2.2rem, 5vw, 3.5rem);
+      font-weight: 700;
+      letter-spacing: -1.5px;
+      line-height: 1.1;
+      margin-bottom: 18px;
+      position: relative;
+    }
+
+    .hero-sub {
+      font-size: clamp(0.95rem, 2vw, 1.1rem);
+      color: var(--text-muted);
+      font-weight: 300;
+      max-width: 560px;
+      margin: 0 auto;
+      line-height: 1.6;
+      position: relative;
+    }
+
+    /* ─── GLASS CARD ─── */
+    .glass-card {
+      background: var(--glass-bg);
+      border: 1px solid var(--glass-border);
+      border-radius: var(--radius);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      padding: 28px;
+      margin-bottom: 20px;
+    }
+
+    /* ─── FORM ELEMENTS ─── */
+    label {
+      display: block;
+      font-size: 0.78rem;
+      font-weight: 500;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      margin-bottom: 8px;
+    }
+
+    textarea, select, input[type="text"] {
+      width: 100%;
+      background: rgba(0,0,0,0.35);
+      border: 1px solid var(--glass-border);
+      border-radius: var(--radius-sm);
+      color: var(--text);
+      font-family: var(--mono);
+      font-size: 0.85rem;
+      padding: 12px 14px;
+      transition: border-color 0.2s, box-shadow 0.2s;
+      resize: vertical;
+      outline: none;
+    }
+    textarea:focus, select:focus {
+      border-color: rgba(255,140,66,0.45);
+      box-shadow: 0 0 0 3px rgba(255,140,66,0.08);
+    }
+
+    #inputText {
+      min-height: 150px;
+      line-height: 1.6;
+    }
+
+    #outputText {
+      min-height: 120px;
+      line-height: 1.6;
+      cursor: default;
+      background: rgba(0,0,0,0.45);
+    }
+
+    select {
+      cursor: pointer;
+      font-family: var(--sans);
+      font-size: 0.82rem;
+      appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='%237a7a9a' viewBox='0 0 16 16'%3E%3Cpath d='M7.247 11.14L2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 10px center;
+      padding-right: 30px;
+    }
+    select option { background: #1a1a2e; }
+
+    /* ─── OPTIONS ROW ─── */
+    .options-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      align-items: center;
+      margin: 14px 0;
+    }
+
+    .option-group {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-shrink: 0;
+    }
+
+    .option-group label {
+      margin-bottom: 0;
+      font-size: 0.8rem;
+      text-transform: none;
+      letter-spacing: 0;
+      color: var(--text);
+      font-weight: 400;
+      cursor: pointer;
+    }
+
+    .select-wrap {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      min-width: 160px;
+    }
+    .select-wrap label {
+      margin-bottom: 0;
+    }
+    .select-wrap select {
+      width: auto;
+      min-width: 160px;
+    }
+
+    /* Checkbox */
+    .custom-checkbox {
+      width: 16px;
+      height: 16px;
+      border: 1.5px solid var(--glass-border);
+      border-radius: 4px;
+      background: rgba(0,0,0,0.3);
+      cursor: pointer;
+      appearance: none;
+      -webkit-appearance: none;
+      transition: all 0.15s;
+      flex-shrink: 0;
+      position: relative;
+    }
+    .custom-checkbox:checked {
+      background: var(--amber);
+      border-color: var(--amber);
+    }
+    .custom-checkbox:checked::after {
+      content: '';
+      position: absolute;
+      left: 4px;
+      top: 1px;
+      width: 5px;
+      height: 9px;
+      border: 2px solid #0d0d14;
+      border-top: none;
+      border-left: none;
+      transform: rotate(45deg);
+    }
+
+    /* Tooltip */
+    .tooltip-wrap {
+      position: relative;
+      display: inline-flex;
+    }
+    .tooltip-icon {
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      border: 1.5px solid var(--text-dim);
+      color: var(--text-dim);
+      font-size: 10px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: help;
+      transition: all 0.2s;
+      font-family: var(--mono);
+      line-height: 1;
+    }
+    .tooltip-icon:hover { border-color: var(--amber); color: var(--amber); }
+    .tooltip-text {
+      display: none;
+      position: absolute;
+      bottom: calc(100% + 8px);
+      left: 50%;
+      transform: translateX(-50%);
+      background: #1e1e32;
+      border: 1px solid var(--glass-border);
+      border-radius: 6px;
+      padding: 8px 12px;
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      white-space: nowrap;
+      max-width: 280px;
+      white-space: normal;
+      z-index: 50;
+      line-height: 1.4;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+    }
+    .tooltip-wrap:hover .tooltip-text { display: block; }
+
+    /* Toggle */
+    .toggle-wrap {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .toggle {
+      position: relative;
+      width: 36px;
+      height: 20px;
+      flex-shrink: 0;
+    }
+    .toggle input { opacity: 0; width: 0; height: 0; position: absolute; }
+    .toggle-slider {
+      position: absolute;
+      cursor: pointer;
+      inset: 0;
+      background: rgba(0,0,0,0.4);
+      border: 1px solid var(--glass-border);
+      border-radius: 20px;
+      transition: all 0.25s;
+    }
+    .toggle-slider::before {
+      content: '';
+      position: absolute;
+      width: 14px;
+      height: 14px;
+      background: var(--text-dim);
+      border-radius: 50%;
+      top: 2px;
+      left: 2px;
+      transition: all 0.25s;
+    }
+    .toggle input:checked + .toggle-slider {
+      background: var(--amber-dim);
+      border-color: var(--amber);
+    }
+    .toggle input:checked + .toggle-slider::before {
+      transform: translateX(16px);
+      background: var(--amber);
+    }
+    .toggle-label {
+      font-size: 0.8rem;
+      color: var(--text);
+      cursor: pointer;
+      margin-bottom: 0 !important;
+      text-transform: none !important;
+      letter-spacing: 0 !important;
+    }
+
+    /* LIVE badge */
+    .live-badge {
+      display: none;
+      align-items: center;
+      gap: 5px;
+      font-size: 0.68rem;
+      font-weight: 700;
+      font-family: var(--mono);
+      color: var(--amber);
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+    .live-badge.visible { display: flex; }
+    .live-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--amber);
+      animation: pulseDot 1.4s ease-in-out infinite;
+    }
+    @keyframes pulseDot {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.4; transform: scale(0.7); }
+    }
+
+    /* ─── DECODE BUTTON ─── */
+    .btn-decode {
+      width: 100%;
+      padding: 14px;
+      background: linear-gradient(135deg, #ff8c42 0%, #e96b20 100%);
+      border: none;
+      border-radius: var(--radius-sm);
+      color: #0d0d14;
+      font-family: var(--sans);
+      font-size: 0.95rem;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      cursor: pointer;
+      transition: all 0.2s;
+      margin: 16px 0;
+      position: relative;
+      overflow: hidden;
+    }
+    .btn-decode::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 50% 50%, rgba(255,255,255,0.2) 0%, transparent 60%);
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+    .btn-decode:hover {
+      box-shadow: 0 0 24px rgba(255,140,66,0.45);
+      transform: translateY(-1px);
+    }
+    .btn-decode:hover::after { opacity: 1; }
+    .btn-decode:active {
+      transform: scale(0.97);
+      box-shadow: 0 0 36px rgba(255,140,66,0.6);
+    }
+
+    /* ─── OUTPUT SECTION ─── */
+    .output-section {
+      opacity: 0;
+      transform: translateY(8px);
+      transition: opacity 0.3s ease, transform 0.3s ease;
+    }
+    .output-section.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .output-label-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 8px;
+    }
+
+    .error-msg {
+      display: none;
+      background: var(--red-dim);
+      border: 1px solid rgba(255,90,90,0.3);
+      border-radius: var(--radius-sm);
+      padding: 10px 14px;
+      color: var(--red);
+      font-size: 0.82rem;
+      margin-top: 10px;
+      animation: slideIn 0.2s ease;
+    }
+    .error-msg.show { display: block; }
+
+    @keyframes slideIn {
+      from { opacity: 0; transform: translateY(-4px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .error-border { border-color: rgba(255,90,90,0.5) !important; }
+    @keyframes flashRed {
+      0% { border-color: var(--red); box-shadow: 0 0 0 3px rgba(255,90,90,0.15); }
+      100% { border-color: rgba(255,90,90,0.5); box-shadow: none; }
+    }
+    .flash-red { animation: flashRed 0.4s ease forwards; }
+
+    /* ─── ACTION BUTTONS ─── */
+    .action-btns {
+      display: flex;
+      gap: 10px;
+      margin-top: 12px;
+      flex-wrap: wrap;
+    }
+
+    .btn-secondary {
+      flex: 1;
+      min-width: 120px;
+      padding: 9px 16px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid var(--glass-border);
+      border-radius: var(--radius-sm);
+      color: var(--text-muted);
+      font-family: var(--sans);
+      font-size: 0.82rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.2s;
+      text-align: center;
+    }
+    .btn-secondary:hover {
+      border-color: rgba(255,255,255,0.2);
+      color: var(--text);
+      background: rgba(255,255,255,0.07);
+    }
+    .btn-secondary:active { transform: scale(0.97); }
+
+    .btn-copy.success {
+      background: rgba(62,207,126,0.15);
+      border-color: rgba(62,207,126,0.4);
+      color: var(--green);
+    }
+
+    /* ─── DIVIDER ─── */
+    .section-divider {
+      border: none;
+      border-top: 1px solid var(--glass-border);
+      margin: 28px 0;
+    }
+
+    .section-title {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 18px;
+    }
+
+    /* ─── FILE DROP ZONE ─── */
+    .drop-zone {
+      border: 2px dashed rgba(255,140,66,0.25);
+      border-radius: var(--radius);
+      padding: 36px 20px;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.25s;
+      background: rgba(255,140,66,0.02);
+    }
+    .drop-zone:hover, .drop-zone.dragover {
+      border-color: var(--amber);
+      background: var(--amber-dim);
+      box-shadow: 0 0 20px rgba(255,140,66,0.15), inset 0 0 20px rgba(255,140,66,0.04);
+    }
+
+    .drop-icon {
+      width: 40px;
+      height: 40px;
+      margin: 0 auto 12px;
+      color: var(--amber);
+      opacity: 0.6;
+    }
+    .drop-zone:hover .drop-icon, .drop-zone.dragover .drop-icon { opacity: 1; }
+
+    .drop-text {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+    }
+    .drop-text strong { color: var(--amber); }
+
+    .file-info {
+      display: none;
+      margin-top: 12px;
+      padding: 10px 14px;
+      background: rgba(255,140,66,0.08);
+      border: 1px solid rgba(255,140,66,0.2);
+      border-radius: var(--radius-sm);
+      font-size: 0.82rem;
+      color: var(--amber-light);
+      font-family: var(--mono);
+    }
+    .file-info.visible { display: block; }
+
+    /* Security warning */
+    .security-warning {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      background: rgba(255,140,66,0.07);
+      border: 1px solid rgba(255,140,66,0.2);
+      border-radius: var(--radius-sm);
+      padding: 12px 14px;
+      margin: 14px 0;
+      font-size: 0.82rem;
+      color: var(--amber-light);
+      line-height: 1.5;
+    }
+    .security-warning svg { flex-shrink: 0; margin-top: 1px; }
+
+    .btn-download {
+      display: none;
+      width: 100%;
+      padding: 11px;
+      background: rgba(62,207,126,0.1);
+      border: 1px solid rgba(62,207,126,0.3);
+      border-radius: var(--radius-sm);
+      color: var(--green);
+      font-family: var(--sans);
+      font-size: 0.88rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+      text-align: center;
+      margin-top: 12px;
+      text-decoration: none;
+    }
+    .btn-download.visible { display: block; }
+    .btn-download:hover {
+      background: rgba(62,207,126,0.18);
+      box-shadow: 0 0 16px rgba(62,207,126,0.2);
+    }
+
+    /* ─── CONTENT SECTIONS ─── */
+    .content-h2 {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 12px;
+      letter-spacing: -0.2px;
+    }
+    .other-tool-link {
+      display: inline-flex;
+      align-items: center;
+      padding: 8px 18px;
+      background: var(--glass-bg);
+      border: 1px solid var(--glass-border);
+      border-radius: 20px;
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.82rem;
+      font-weight: 500;
+      transition: all 0.2s;
+    }
+    .other-tool-link:hover {
+      border-color: rgba(255,140,66,0.4);
+      color: var(--amber);
+    }
+
+    /* ─── ACCORDION ─── */
+    .accordion-item {
+      border: 1px solid var(--glass-border);
+      border-radius: var(--radius-sm);
+      overflow: hidden;
+      margin-bottom: 8px;
+      background: var(--glass-bg);
+    }
+
+    .accordion-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px 20px;
+      cursor: pointer;
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--text);
+      transition: background 0.2s;
+      user-select: none;
+    }
+    .accordion-header:hover { background: rgba(255,255,255,0.03); }
+    .accordion-header.open { color: var(--amber); }
+
+    .accordion-arrow {
+      width: 18px;
+      height: 18px;
+      color: var(--text-dim);
+      transition: transform 0.25s;
+      flex-shrink: 0;
+    }
+    .accordion-header.open .accordion-arrow {
+      transform: rotate(180deg);
+      color: var(--amber);
+    }
+
+    .accordion-body {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.35s cubic-bezier(0.4,0,0.2,1);
+    }
+    .accordion-body.open { max-height: 2000px; }
+
+    .accordion-content {
+      padding: 0 20px 20px;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      line-height: 1.75;
+    }
+    .accordion-content p + p { margin-top: 10px; }
+
+    /* B64 table */
+    .b64-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 16px;
+      font-family: var(--mono);
+      font-size: 0.8rem;
+    }
+    .b64-table th {
+      background: rgba(255,140,66,0.1);
+      color: var(--amber);
+      padding: 8px 12px;
+      text-align: left;
+      font-weight: 600;
+      border-bottom: 1px solid rgba(255,140,66,0.2);
+    }
+    .b64-table td {
+      padding: 7px 12px;
+      border-bottom: 1px solid var(--glass-border);
+      color: var(--text-muted);
+    }
+    .b64-table tr:last-child td { border-bottom: none; }
+    .b64-table td:first-child { color: var(--amber-light); font-weight: 600; }
+
+    .b64-example {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin: 12px 0;
+      font-family: var(--mono);
+      font-size: 0.9rem;
+    }
+    .b64-arrow { color: var(--amber); font-size: 1.2rem; }
+    .b64-enc { color: var(--amber-light); }
+    .b64-dec { color: var(--green); }
+
+    /* ─── FOOTER ─── */
+    footer {
+      position: relative;
+      z-index: 1;
+      border-top: 1px solid var(--glass-border);
+      padding: 24px 20px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      align-items: center;
+      justify-content: space-between;
+      max-width: 900px;
+      margin: 0 auto;
+      font-size: 0.78rem;
+      color: var(--text-dim);
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .footer-links a, footer a {
+      color: var(--text-dim);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .footer-links a:hover, footer a:hover { color: var(--amber); }
+    footer .footer-right { color: var(--text-dim); }
+    footer .footer-right a { color: var(--amber); }
+
+    /* ─── LANG TRANSITION ─── */
+    .lang-transition {
+      animation: langFade 0.15s ease;
+    }
+    @keyframes langFade {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 640px) {
+      header { padding: 0 16px; }
+      .logo { font-size: 1rem; }
+      .nav-pill { padding: 4px 10px; font-size: 0.73rem; }
+      .lang-btn span { display: none; }
+      main { padding: 0 16px 60px; }
+      .hero { padding: 40px 10px 32px; }
+      .glass-card { padding: 20px 16px; }
+      footer { flex-direction: column; align-items: flex-start; gap: 10px; }
+      .options-row { gap: 12px; }
+      .select-wrap { min-width: 100%; }
+      .select-wrap select { min-width: 100%; width: 100%; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <a href="./" class="logo">
+    <span class="decode">decode</span><span class="b64">B64</span>
+  </a>
+  <div class="header-right">
+    <nav class="nav-pills">
+      <a href="https://encodeb64.com" class="nav-pill inactive" data-i18n="nav_encode" rel="noopener noreferrer" target="_blank">Encode</a>
+      <span class="nav-pill active" data-i18n="nav_decode">Decode</span>
+      <a href="base64-to-image.html" class="nav-pill inactive" data-i18n="nav_b2i">Base64 to Image</a>
+    </nav>
+    <div class="lang-selector">
+      <button class="lang-btn" id="langBtn" aria-haspopup="listbox" aria-expanded="false">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+        <span id="langLabel">English</span>
+        <svg viewBox="0 0 10 6" fill="currentColor" width="10" height="6"><path d="M0 0l5 6 5-6z"/></svg>
+      </button>
+      <div class="lang-dropdown" id="langDropdown" role="listbox">
+        <div class="lang-option selected" data-lang="en" role="option">🇺🇸 English</div>
+        <div class="lang-option" data-lang="es" role="option">🇪🇸 Español</div>
+        <div class="lang-option" data-lang="pt" role="option">🇧🇷 Português</div>
+        <div class="lang-option" data-lang="fr" role="option">🇫🇷 Français</div>
+        <div class="lang-option" data-lang="de" role="option">🇩🇪 Deutsch</div>
+        <div class="lang-option" data-lang="it" role="option">🇮🇹 Italiano</div>
+        <div class="lang-option" data-lang="zh" role="option">🇨🇳 中文</div>
+        <div class="lang-option" data-lang="ru" role="option">🇷🇺 Русский</div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- MAIN -->
+<main>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-glow"></div>
+    <h1 data-i18n="hero_h1">Decode from Base64</h1>
+    <p class="hero-sub" data-i18n="hero_sub">Instantly decode Base64 strings or files back to their original format, right in your browser.</p>
+  </section>
+
+  <!-- TOOL CARD -->
+  <div class="glass-card">
+
+    <!-- TEXT DECODE -->
+    <div>
+      <label for="inputText" data-i18n="input_label">Base64 string to decode</label>
+      <textarea id="inputText" spellcheck="false" data-i18n-placeholder="input_placeholder" placeholder="Paste your Base64 encoded text here..."></textarea>
+
+      <!-- Options row -->
+      <div class="options-row">
+        <div class="select-wrap">
+          <label for="charsetSelect" data-i18n="charset_label">Character set</label>
+          <select id="charsetSelect">
+            <option value="auto">AUTO-DETECT</option>
+            <option value="utf-8">UTF-8</option>
+            <option value="ascii">ASCII</option>
+            <option value="iso-8859-1">ISO-8859-1</option>
+            <option value="iso-8859-15">ISO-8859-15</option>
+            <option value="windows-1252">Windows-1252</option>
+            <option value="utf-16">UTF-16</option>
+            <option value="utf-32">UTF-32</option>
+          </select>
+        </div>
+
+        <div class="option-group">
+          <input type="checkbox" class="custom-checkbox" id="decodeLines" />
+          <label for="decodeLines" data-i18n="decode_lines_label">Decode each line separately</label>
+          <div class="tooltip-wrap">
+            <span class="tooltip-icon">?</span>
+            <span class="tooltip-text" data-i18n="decode_lines_tooltip">Decodes each line of the input independently. Useful for multiple separate Base64 entries separated by line breaks.</span>
+          </div>
+        </div>
+
+        <div class="option-group toggle-wrap">
+          <label class="toggle" for="liveMode">
+            <input type="checkbox" id="liveMode" />
+            <span class="toggle-slider"></span>
+          </label>
+          <label for="liveMode" class="toggle-label" data-i18n="live_mode_label">Live mode</label>
+        </div>
+      </div>
+
+      <button class="btn-decode" id="decodeBtn" data-i18n="decode_btn">Decode</button>
+
+      <!-- Output -->
+      <div class="output-section" id="outputSection">
+        <div class="output-label-row">
+          <label data-i18n="output_label">Decoded output</label>
+          <div class="live-badge" id="liveBadge">
+            <span class="live-dot"></span>
+            LIVE
+          </div>
+        </div>
+        <textarea id="outputText" readonly spellcheck="false"></textarea>
+        <div class="error-msg" id="errorMsg" data-i18n="error_msg">Invalid Base64 input. Please check your data and try again.</div>
+        <div class="action-btns">
+          <button class="btn-secondary btn-copy" id="copyBtn" data-i18n="copy_btn">Copy to clipboard</button>
+          <button class="btn-secondary" id="clearBtn" data-i18n="clear_btn">Clear all</button>
+        </div>
+      </div>
+    </div>
+
+    <hr class="section-divider" />
+
+    <!-- FILE DECODE -->
+    <div>
+      <p class="section-title" data-i18n="file_section_title">Decode a file from Base64</p>
+
+      <div class="drop-zone" id="dropZone">
+        <svg class="drop-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="16 16 12 12 8 16"/><line x1="12" y1="12" x2="12" y2="21"/>
+          <path d="M20.39 18.39A5 5 0 0 0 18 9h-1.26A8 8 0 1 0 3 16.3"/>
+        </svg>
+        <p class="drop-text" data-i18n="drop_zone_text"><strong>Drop your Base64 file here</strong>, or click to browse</p>
+        <input type="file" id="fileInput" style="display:none" />
+      </div>
+
+      <div class="file-info" id="fileInfo"></div>
+
+      <div class="security-warning">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+        <span data-i18n="security_warning">Do not execute decoded files from untrusted sources.</span>
+      </div>
+
+      <div class="option-group" style="margin-bottom:14px;">
+        <input type="checkbox" class="custom-checkbox" id="decodeLinesFile" />
+        <label for="decodeLinesFile" data-i18n="decode_lines_label">Decode each line separately</label>
+      </div>
+
+      <button class="btn-decode" id="decodeFileBtn" data-i18n="decode_file_btn">Decode File</button>
+
+      <div class="error-msg" id="fileErrorMsg"></div>
+      <a class="btn-download" id="downloadBtn" download data-i18n="download_btn">Download decoded file</a>
+    </div>
+
+  </div>
+
+  <!-- INFO ACCORDION -->
+  <section>
+    <div class="accordion-item">
+      <div class="accordion-header" onclick="toggleAccordion(this)">
+        <span data-i18n="acc1_title">What is Base64 decoding?</span>
+        <svg class="accordion-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+      </div>
+      <div class="accordion-body">
+        <div class="accordion-content" data-i18n-html="acc1_body"></div>
+      </div>
+    </div>
+
+    <div class="accordion-item">
+      <div class="accordion-header" onclick="toggleAccordion(this)">
+        <span data-i18n="acc2_title">Advanced options explained</span>
+        <svg class="accordion-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+      </div>
+      <div class="accordion-body">
+        <div class="accordion-content" data-i18n-html="acc2_body"></div>
+      </div>
+    </div>
+
+    <div class="accordion-item">
+      <div class="accordion-header" onclick="toggleAccordion(this)">
+        <span data-i18n="acc3_title">Security &amp; Privacy</span>
+        <svg class="accordion-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+      </div>
+      <div class="accordion-body">
+        <div class="accordion-content" data-i18n-html="acc3_body"></div>
+      </div>
+    </div>
+
+    <div class="accordion-item">
+      <div class="accordion-header" onclick="toggleAccordion(this)">
+        <span data-i18n="acc4_title">Completely free</span>
+        <svg class="accordion-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+      </div>
+      <div class="accordion-body">
+        <div class="accordion-content" data-i18n-html="acc4_body"></div>
+      </div>
+    </div>
+
+    <div class="accordion-item">
+      <div class="accordion-header" onclick="toggleAccordion(this)">
+        <span data-i18n="acc5_title">How Base64 works</span>
+        <svg class="accordion-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+      </div>
+      <div class="accordion-body">
+        <div class="accordion-content" data-i18n-html="acc5_body"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section style="margin-top:8px;" itemscope itemtype="https://schema.org/FAQPage">
+    <h2 class="content-h2" data-i18n="faq_title">Frequently Asked Questions</h2>
+    <div class="accordion-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+      <div class="accordion-header" onclick="toggleAccordion(this)">
+        <span data-i18n="faq_q1" itemprop="name">What is Base64 decoding?</span>
+        <svg class="accordion-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+      </div>
+      <div class="accordion-body" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+        <div class="accordion-content" data-i18n="faq_a1" itemprop="text">Base64 decoding is the reverse of encoding — it converts a Base64 string back to its original binary or text data. Used to recover data from JWT tokens, email attachments (MIME), API responses, and data URIs.</div>
+      </div>
+    </div>
+    <div class="accordion-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+      <div class="accordion-header" onclick="toggleAccordion(this)">
+        <span data-i18n="faq_q2" itemprop="name">Is Base64 decoding the same as decryption?</span>
+        <svg class="accordion-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+      </div>
+      <div class="accordion-body" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+        <div class="accordion-content" data-i18n="faq_a2" itemprop="text">No. Base64 is encoding, not encryption. Anyone can decode a Base64 string instantly — there is no key or password required. Never use Base64 alone to protect sensitive data.</div>
+      </div>
+    </div>
+    <div class="accordion-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+      <div class="accordion-header" onclick="toggleAccordion(this)">
+        <span data-i18n="faq_q3" itemprop="name">What does "Invalid Base64 input" mean?</span>
+        <svg class="accordion-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+      </div>
+      <div class="accordion-body" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+        <div class="accordion-content" data-i18n="faq_a3" itemprop="text">The input contains characters outside the Base64 alphabet (A–Z, a–z, 0–9, +, /, =). Common causes: extra whitespace, missing = padding, or the URL-safe variant (- and _ instead of + and /).</div>
+      </div>
+    </div>
+    <div class="accordion-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+      <div class="accordion-header" onclick="toggleAccordion(this)">
+        <span data-i18n="faq_q4" itemprop="name">How do I decode a Base64URL string?</span>
+        <svg class="accordion-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+      </div>
+      <div class="accordion-body" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+        <div class="accordion-content" data-i18n="faq_a4" itemprop="text">Base64URL replaces + with - and / with _ and removes = padding. Before decoding, replace - with +, _ with /, and add missing = padding so the length is a multiple of 4.</div>
+      </div>
+    </div>
+    <div class="accordion-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+      <div class="accordion-header" onclick="toggleAccordion(this)">
+        <span data-i18n="faq_q5" itemprop="name">Can I decode binary files like images or PDFs?</span>
+        <svg class="accordion-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+      </div>
+      <div class="accordion-body" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+        <div class="accordion-content" data-i18n="faq_a5" itemprop="text">Yes. Use the file decode section to upload a Base64-encoded .txt file. The tool decodes the binary content and offers it as a download with the correct file type detected automatically.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- OTHER TOOLS -->
+  <section style="margin-top:28px;margin-bottom:8px;">
+    <h2 class="content-h2" data-i18n="other_tools_title">Other Tools</h2>
+    <div style="display:flex;gap:12px;flex-wrap:wrap;">
+      <a href="https://encodeb64.com" class="other-tool-link" rel="noopener noreferrer" target="_blank">Base64 Encode →</a>
+      <a href="/base64-to-image" class="other-tool-link">Base64 to Image →</a>
+    </div>
+  </section>
+
+</main>
+
+<!-- FOOTER -->
+<footer>
+  <span>decodeb64.com &copy; 2025</span>
+  <div class="footer-links">
+    <a href="#" data-i18n="footer_about">About</a>
+    <a href="#" data-i18n="footer_privacy">Privacy Policy</a>
+    <a href="#" data-i18n="footer_terms">Terms of Use</a>
+    <a href="#" data-i18n="footer_contact">Contact</a>
+  </div>
+  <span class="footer-right"><span data-i18n="footer_also_try">Also try:</span> <a href="https://encodeb64.com" rel="noopener noreferrer" target="_blank">Base64 Encode — encodeb64.com →</a></span>
+</footer>
+
+<script>
+// ─── TRANSLATIONS ─────────────────────────────────────────────────────────────
+const T = {
+  en: {
+    page_title: "Base64 Decoder Online — Free Tool | decodeb64.com",
+    nav_encode: "Encode",
+    nav_decode: "Decode",
+    nav_b2i: "Base64 to Image",
+    hero_h1: "Base64 Decoder Online",
+    hero_sub: "The fastest online Base64 decoder. Decode Base64 strings and files back to text, images, and binary instantly — UTF-8 auto-detect, URL-safe support, 100% private.",
+    input_label: "Base64 string to decode",
+    input_placeholder: "Paste your Base64 encoded text here...",
+    output_label: "Decoded output",
+    decode_btn: "Decode",
+    copy_btn: "Copy to clipboard",
+    copied_state: "Copied! ✓",
+    clear_btn: "Clear all",
+    file_section_title: "Decode a file from Base64",
+    drop_zone_text: "<strong>Drop your Base64 file here</strong>, or click to browse",
+    security_warning: "Do not execute decoded files from untrusted sources.",
+    download_btn: "Download decoded file",
+    decode_file_btn: "Decode File",
+    live_mode_label: "Live mode",
+    charset_label: "Character set",
+    decode_lines_label: "Decode each line separately",
+    decode_lines_tooltip: "Decodes each line of the input independently. Useful for multiple separate Base64 entries separated by line breaks.",
+    error_msg: "Invalid Base64 input. Please check your data and try again.",
+    acc1_title: "What is Base64 decoding?",
+    acc1_body: "<p>Base64 decoding is the reverse of Base64 encoding — it converts a Base64-encoded string back to its original binary or text data. Base64 is a binary-to-text encoding scheme that represents binary data using 64 printable ASCII characters (A–Z, a–z, 0–9, +, /).</p><p>Decoding takes each group of 4 Base64 characters and converts them back to 3 bytes of binary data (24 bits). This is the standard way to recover data that was encoded for safe transmission in text-based protocols like email, JSON, or URLs.</p>",
+    acc2_title: "Advanced options explained",
+    acc2_body: "<p><strong>Character set / Auto-detect:</strong> After decoding the Base64 to raw bytes, the tool needs to interpret those bytes as text. Auto-detect tries UTF-8 first (the most common encoding), and falls back gracefully if it fails. You can manually select a charset if you know the original encoding (e.g., ISO-8859-1 for legacy Western European text).</p><p><strong>Decode each line separately:</strong> When enabled, each line of your input is decoded independently. This is useful when you have multiple Base64 entries separated by newlines.</p><p><strong>Live mode:</strong> Enables real-time decoding as you type. The output updates instantly without pressing the Decode button. Uses UTF-8 encoding. Best for quick, interactive exploration.</p>",
+    acc3_title: "Security & Privacy",
+    acc3_body: "<p>All processing happens entirely in your browser using standard JavaScript APIs (atob, TextDecoder, FileReader, Blob). No data is ever sent to our servers — not your input text, not your files, nothing.</p><p><strong>Important:</strong> Do not execute or open decoded files from untrusted sources. A decoded file could be an executable, script, or malicious document. Decoding itself is safe; running the result may not be.</p>",
+    acc4_title: "Completely free",
+    acc4_body: "<p>decodeb64.com is and always will be completely free to use — no registration, no limits, no ads injected into your decoded content.</p>",
+    acc5_title: "How Base64 works",
+    acc5_body: `<p>The word <strong>Man</strong> encodes to <strong>TWFu</strong> in Base64. To decode <em>TWFu</em> back to <em>Man</em>, the process is reversed:</p>
+    <div class="b64-example"><span class="b64-enc">TWFu</span><span class="b64-arrow">→</span><span class="b64-dec">Man</span></div>
+    <table class="b64-table">
+      <thead><tr><th>Char</th><th>ASCII</th><th>Bits (8)</th><th>Base64 groups (6-bit)</th><th>B64 chars</th></tr></thead>
+      <tbody>
+        <tr><td>M</td><td>77</td><td>01001101</td><td>010011 / 01…</td><td>T / W</td></tr>
+        <tr><td>a</td><td>97</td><td>01100001</td><td>…0110 / 0001…</td><td>W / F</td></tr>
+        <tr><td>n</td><td>110</td><td>01101110</td><td>…011011 / 10</td><td>F / u</td></tr>
+      </tbody>
+    </table>
+    <p style="margin-top:12px;">The 24 bits of "Man" (3 bytes) are split into four 6-bit groups (T=19, W=22, F=5, u=46), mapped to Base64 chars. Decoding reverses this: each Base64 character is looked up in the index table, the bits are reassembled into bytes, and interpreted as text using the selected character set.</p>`,
+    faq_title: "Frequently Asked Questions",
+    faq_q1: "What is Base64 decoding?",
+    faq_a1: "Base64 decoding is the reverse of encoding — it converts a Base64 string back to its original binary or text data. Used to recover data from JWT tokens, email attachments (MIME), API responses, and data URIs.",
+    faq_q2: "Is Base64 decoding the same as decryption?",
+    faq_a2: "No. Base64 is encoding, not encryption. Anyone can decode a Base64 string instantly — there is no key or password required. Never use Base64 alone to protect sensitive data.",
+    faq_q3: "What does \"Invalid Base64 input\" mean?",
+    faq_a3: "The input contains characters outside the Base64 alphabet (A–Z, a–z, 0–9, +, /, =). Common causes: extra whitespace, missing = padding, or the URL-safe variant (- and _ instead of + and /).",
+    faq_q4: "How do I decode a Base64URL string?",
+    faq_a4: "Base64URL replaces + with - and / with _ and removes = padding. Before decoding, replace - with +, _ with /, and add missing = padding so the length is a multiple of 4.",
+    faq_q5: "Can I decode binary files like images or PDFs?",
+    faq_a5: "Yes. Use the file decode section to upload a Base64-encoded .txt file. The tool decodes the binary content and offers it as a download with the correct file type detected automatically.",
+    other_tools_title: "Other Tools",
+    footer_about: "About",
+    footer_privacy: "Privacy Policy",
+    footer_terms: "Terms of Use",
+    footer_contact: "Contact",
+    footer_also_try: "Also try:",
+  },
+  es: {
+    page_title: "Decodificador Base64 Online — Herramienta Gratuita | decodeb64.com",
+    nav_encode: "Codificar",
+    nav_decode: "Decodificar",
+    nav_b2i: "Base64 a imagen",
+    hero_h1: "Decodificador Base64 Online",
+    hero_sub: "Decodifica cadenas y archivos Base64 al instante — texto, imágenes y datos binarios. Detección UTF-8 automática, soporte URL-safe, 100% privado.",
+    input_label: "Cadena Base64 a decodificar",
+    input_placeholder: "Pega aquí tu texto codificado en Base64...",
+    output_label: "Resultado decodificado",
+    decode_btn: "Decodificar",
+    copy_btn: "Copiar al portapapeles",
+    copied_state: "¡Copiado! ✓",
+    clear_btn: "Limpiar todo",
+    file_section_title: "Decodificar un archivo desde Base64",
+    drop_zone_text: "<strong>Arrastra tu archivo Base64 aquí</strong>, o haz clic para explorar",
+    security_warning: "No ejecutes archivos decodificados de fuentes no confiables.",
+    download_btn: "Descargar archivo decodificado",
+    decode_file_btn: "Decodificar archivo",
+    live_mode_label: "Modo en vivo",
+    charset_label: "Conjunto de caracteres",
+    decode_lines_label: "Decodificar cada línea por separado",
+    decode_lines_tooltip: "Decodifica cada línea de forma independiente. Útil para múltiples entradas Base64 separadas por saltos de línea.",
+    error_msg: "Entrada Base64 inválida. Por favor revisa tus datos e intenta de nuevo.",
+    acc1_title: "¿Qué es la decodificación Base64?",
+    acc1_body: "<p>La decodificación Base64 es el proceso inverso a la codificación: convierte una cadena codificada en Base64 de vuelta a sus datos binarios o de texto originales. Base64 es un esquema de codificación binaria a texto que usa 64 caracteres ASCII imprimibles (A–Z, a–z, 0–9, +, /).</p><p>La decodificación toma cada grupo de 4 caracteres Base64 y los convierte de vuelta a 3 bytes de datos binarios (24 bits). Esta es la forma estándar de recuperar datos que fueron codificados para transmisión segura en protocolos basados en texto como email, JSON o URLs.</p>",
+    acc2_title: "Opciones avanzadas explicadas",
+    acc2_body: "<p><strong>Conjunto de caracteres / Detección automática:</strong> Tras decodificar el Base64 a bytes crudos, la herramienta interpreta esos bytes como texto. La detección automática prueba UTF-8 primero y recurre a otras opciones si falla. Puedes seleccionar manualmente un charset si conoces la codificación original.</p><p><strong>Decodificar cada línea por separado:</strong> Cuando está activado, cada línea del input se decodifica de forma independiente. Útil para múltiples entradas Base64 separadas por saltos de línea.</p><p><strong>Modo en vivo:</strong> Activa la decodificación en tiempo real mientras escribes. La salida se actualiza instantáneamente sin presionar el botón Decodificar.</p>",
+    acc3_title: "Seguridad y privacidad",
+    acc3_body: "<p>Todo el procesamiento ocurre completamente en tu navegador usando APIs estándar de JavaScript (atob, TextDecoder, FileReader, Blob). Ningún dato es enviado a nuestros servidores — ni tu texto, ni tus archivos, nada.</p><p><strong>Importante:</strong> No ejecutes ni abras archivos decodificados de fuentes no confiables. Un archivo decodificado podría ser un ejecutable, script o documento malicioso.</p>",
+    acc4_title: "Completamente gratuito",
+    acc4_body: "<p>decodeb64.com es y siempre será completamente gratuito — sin registro, sin límites, sin anuncios inyectados en tu contenido decodificado.</p>",
+    acc5_title: "Cómo funciona Base64",
+    acc5_body: `<p>La palabra <strong>Man</strong> se codifica como <strong>TWFu</strong> en Base64. Para decodificar <em>TWFu</em> de vuelta a <em>Man</em>, el proceso se invierte:</p>
+    <div class="b64-example"><span class="b64-enc">TWFu</span><span class="b64-arrow">→</span><span class="b64-dec">Man</span></div>
+    <table class="b64-table">
+      <thead><tr><th>Char</th><th>ASCII</th><th>Bits (8)</th><th>Grupos Base64 (6 bits)</th><th>Chars B64</th></tr></thead>
+      <tbody>
+        <tr><td>M</td><td>77</td><td>01001101</td><td>010011 / 01…</td><td>T / W</td></tr>
+        <tr><td>a</td><td>97</td><td>01100001</td><td>…0110 / 0001…</td><td>W / F</td></tr>
+        <tr><td>n</td><td>110</td><td>01101110</td><td>…011011 / 10</td><td>F / u</td></tr>
+      </tbody>
+    </table>
+    <p style="margin-top:12px;">Los 24 bits de "Man" se dividen en cuatro grupos de 6 bits, mapeados a caracteres Base64. La decodificación invierte esto: cada carácter Base64 se busca en la tabla de índices, los bits se reensamblan en bytes y se interpretan como texto según el charset seleccionado.</p>`,
+    faq_title: "Preguntas Frecuentes",
+    faq_q1: "¿Qué es la decodificación Base64?",
+    faq_a1: "La decodificación Base64 es el proceso inverso a la codificación: convierte una cadena Base64 de vuelta a sus datos binarios o de texto originales. Se usa para recuperar datos de tokens JWT, adjuntos de email (MIME), respuestas de API y URIs de datos.",
+    faq_q2: "¿La decodificación Base64 es lo mismo que el descifrado?",
+    faq_a2: "No. Base64 es codificación, no cifrado. Cualquiera puede decodificar una cadena Base64 al instante, sin clave ni contraseña. Nunca uses Base64 solo para proteger datos sensibles.",
+    faq_q3: "¿Qué significa «Entrada Base64 inválida»?",
+    faq_a3: "La entrada contiene caracteres fuera del alfabeto Base64 (A–Z, a–z, 0–9, +, /, =). Causas comunes: espacios extra, falta de relleno =, o la variante URL-safe (- y _ en vez de + y /).",
+    faq_q4: "¿Cómo decodifico una cadena Base64URL?",
+    faq_a4: "Base64URL reemplaza + con - y / con _ y elimina el relleno =. Antes de decodificar, reemplaza - con +, _ con / y añade el relleno = faltante para que la longitud sea múltiplo de 4.",
+    faq_q5: "¿Puedo decodificar archivos binarios como imágenes o PDFs?",
+    faq_a5: "Sí. Usa la sección de decodificación de archivos para subir un archivo .txt con Base64. La herramienta decodifica el contenido binario y lo ofrece para descargar detectando automáticamente el tipo de archivo.",
+    other_tools_title: "Otras Herramientas",
+    footer_about: "Acerca de",
+    footer_privacy: "Política de privacidad",
+    footer_terms: "Términos de uso",
+    footer_contact: "Contacto",
+    footer_also_try: "Prueba también:",
+  },
+  pt: {
+    page_title: "Decodificador Base64 Online — Ferramenta Gratuita | decodeb64.com",
+    nav_encode: "Codificar",
+    nav_decode: "Decodificar",
+    nav_b2i: "Base64 para imagem",
+    hero_h1: "Decodificador Base64 Online",
+    hero_sub: "Decodifique strings e arquivos Base64 instantaneamente — texto, imagens e dados binários. Detecção automática UTF-8, suporte URL-safe, 100% privado.",
+    input_label: "String Base64 para decodificar",
+    input_placeholder: "Cole aqui seu texto codificado em Base64...",
+    output_label: "Resultado decodificado",
+    decode_btn: "Decodificar",
+    copy_btn: "Copiar para a área de transferência",
+    copied_state: "Copiado! ✓",
+    clear_btn: "Limpar tudo",
+    file_section_title: "Decodificar um arquivo do Base64",
+    drop_zone_text: "<strong>Arraste seu arquivo Base64 aqui</strong>, ou clique para navegar",
+    security_warning: "Não execute arquivos decodificados de fontes não confiáveis.",
+    download_btn: "Baixar arquivo decodificado",
+    decode_file_btn: "Decodificar arquivo",
+    live_mode_label: "Modo ao vivo",
+    charset_label: "Conjunto de caracteres",
+    decode_lines_label: "Decodificar cada linha separadamente",
+    decode_lines_tooltip: "Decodifica cada linha de forma independente. Útil para múltiplas entradas Base64 separadas por quebras de linha.",
+    error_msg: "Entrada Base64 inválida. Verifique seus dados e tente novamente.",
+    acc1_title: "O que é decodificação Base64?",
+    acc1_body: "<p>A decodificação Base64 é o processo inverso da codificação — converte uma string codificada em Base64 de volta aos seus dados binários ou de texto originais. Base64 é um esquema de codificação binária para texto que usa 64 caracteres ASCII imprimíveis.</p><p>A decodificação pega cada grupo de 4 caracteres Base64 e os converte de volta a 3 bytes de dados binários (24 bits).</p>",
+    acc2_title: "Opções avançadas explicadas",
+    acc2_body: "<p><strong>Conjunto de caracteres / Detecção automática:</strong> Após decodificar o Base64 em bytes brutos, a ferramenta interpreta esses bytes como texto. A detecção automática tenta UTF-8 primeiro. Você pode selecionar manualmente um charset se souber a codificação original.</p><p><strong>Decodificar cada linha separadamente:</strong> Quando ativado, cada linha é decodificada de forma independente.</p><p><strong>Modo ao vivo:</strong> Ativa a decodificação em tempo real enquanto você digita.</p>",
+    acc3_title: "Segurança e privacidade",
+    acc3_body: "<p>Todo o processamento ocorre completamente no seu navegador usando APIs padrão do JavaScript. Nenhum dado é enviado para nossos servidores.</p><p><strong>Importante:</strong> Não execute arquivos decodificados de fontes não confiáveis.</p>",
+    acc4_title: "Completamente gratuito",
+    acc4_body: "<p>decodeb64.com é e sempre será completamente gratuito — sem cadastro, sem limites, sem anúncios no seu conteúdo decodificado.</p>",
+    acc5_title: "Como o Base64 funciona",
+    acc5_body: `<p>A palavra <strong>Man</strong> é codificada como <strong>TWFu</strong> em Base64. Para decodificar <em>TWFu</em> de volta para <em>Man</em>:</p>
+    <div class="b64-example"><span class="b64-enc">TWFu</span><span class="b64-arrow">→</span><span class="b64-dec">Man</span></div>
+    <table class="b64-table"><thead><tr><th>Char</th><th>ASCII</th><th>Bits</th><th>Grupos B64</th><th>Chars B64</th></tr></thead>
+    <tbody><tr><td>M</td><td>77</td><td>01001101</td><td>010011/01…</td><td>T/W</td></tr>
+    <tr><td>a</td><td>97</td><td>01100001</td><td>…0110/0001…</td><td>W/F</td></tr>
+    <tr><td>n</td><td>110</td><td>01101110</td><td>…011011/10</td><td>F/u</td></tr></tbody></table>`,
+    faq_title: "Perguntas Frequentes",
+    faq_q1: "O que é decodificação Base64?",
+    faq_a1: "A decodificação Base64 é o processo inverso da codificação — converte uma string Base64 de volta aos seus dados binários ou de texto originais. Usado para recuperar dados de tokens JWT, anexos de email (MIME), respostas de API e URIs de dados.",
+    faq_q2: "A decodificação Base64 é o mesmo que descriptografia?",
+    faq_a2: "Não. Base64 é codificação, não criptografia. Qualquer pessoa pode decodificar uma string Base64 instantaneamente — não é necessária chave ou senha. Nunca use Base64 sozinho para proteger dados sensíveis.",
+    faq_q3: "O que significa «Entrada Base64 inválida»?",
+    faq_a3: "A entrada contém caracteres fora do alfabeto Base64 (A–Z, a–z, 0–9, +, /, =). Causas comuns: espaços extras, padding = ausente, ou a variante URL-safe (- e _ em vez de + e /).",
+    faq_q4: "Como decodifico uma string Base64URL?",
+    faq_a4: "Base64URL substitui + por - e / por _ e remove o padding =. Antes de decodificar, substitua - por +, _ por / e adicione o padding = ausente para que o comprimento seja múltiplo de 4.",
+    faq_q5: "Posso decodificar arquivos binários como imagens ou PDFs?",
+    faq_a5: "Sim. Use a seção de decodificação de arquivos para fazer upload de um arquivo .txt com Base64. A ferramenta decodifica o conteúdo binário e oferece para download detectando automaticamente o tipo de arquivo.",
+    other_tools_title: "Outras Ferramentas",
+    footer_about: "Sobre",
+    footer_privacy: "Política de Privacidade",
+    footer_terms: "Termos de Uso",
+    footer_contact: "Contato",
+    footer_also_try: "Experimente também:",
+  },
+  fr: {
+    page_title: "Décodeur Base64 en Ligne — Outil Gratuit | decodeb64.com",
+    nav_encode: "Encoder",
+    nav_decode: "Décoder",
+    nav_b2i: "Base64 en image",
+    hero_h1: "Décodeur Base64 en Ligne",
+    hero_sub: "Décodez instantanément des chaînes et fichiers Base64 — texte, images et données binaires. Détection UTF-8 automatique, support URL-safe, 100% privé.",
+    input_label: "Chaîne Base64 à décoder",
+    input_placeholder: "Collez votre texte encodé en Base64 ici...",
+    output_label: "Résultat décodé",
+    decode_btn: "Décoder",
+    copy_btn: "Copier dans le presse-papiers",
+    copied_state: "Copié ! ✓",
+    clear_btn: "Tout effacer",
+    file_section_title: "Décoder un fichier depuis Base64",
+    drop_zone_text: "<strong>Déposez votre fichier Base64 ici</strong>, ou cliquez pour parcourir",
+    security_warning: "N'exécutez pas les fichiers décodés provenant de sources non fiables.",
+    download_btn: "Télécharger le fichier décodé",
+    decode_file_btn: "Décoder le fichier",
+    live_mode_label: "Mode en direct",
+    charset_label: "Jeu de caractères",
+    decode_lines_label: "Décoder chaque ligne séparément",
+    decode_lines_tooltip: "Décode chaque ligne de manière indépendante. Utile pour plusieurs entrées Base64 séparées par des sauts de ligne.",
+    error_msg: "Entrée Base64 invalide. Veuillez vérifier vos données et réessayer.",
+    acc1_title: "Qu'est-ce que le décodage Base64 ?",
+    acc1_body: "<p>Le décodage Base64 est l'inverse de l'encodage — il convertit une chaîne encodée en Base64 vers ses données binaires ou textuelles d'origine. Base64 est un schéma d'encodage binaire vers texte utilisant 64 caractères ASCII imprimables.</p><p>Le décodage prend chaque groupe de 4 caractères Base64 et les reconvertit en 3 octets de données binaires (24 bits).</p>",
+    acc2_title: "Options avancées expliquées",
+    acc2_body: "<p><strong>Jeu de caractères / Détection automatique :</strong> Après décodage en octets bruts, l'outil interprète ces octets comme du texte. La détection automatique essaie UTF-8 en premier.</p><p><strong>Décoder chaque ligne séparément :</strong> Chaque ligne est décodée indépendamment.</p><p><strong>Mode en direct :</strong> Active le décodage en temps réel pendant la frappe.</p>",
+    acc3_title: "Sécurité et confidentialité",
+    acc3_body: "<p>Tout le traitement se fait entièrement dans votre navigateur. Aucune donnée n'est envoyée à nos serveurs.</p><p><strong>Important :</strong> N'exécutez pas les fichiers décodés provenant de sources non fiables.</p>",
+    acc4_title: "Entièrement gratuit",
+    acc4_body: "<p>decodeb64.com est et sera toujours entièrement gratuit — sans inscription, sans limites, sans publicités dans votre contenu décodé.</p>",
+    acc5_title: "Comment fonctionne Base64",
+    acc5_body: `<p>Le mot <strong>Man</strong> est encodé comme <strong>TWFu</strong> en Base64. Pour décoder <em>TWFu</em> en <em>Man</em> :</p>
+    <div class="b64-example"><span class="b64-enc">TWFu</span><span class="b64-arrow">→</span><span class="b64-dec">Man</span></div>
+    <table class="b64-table"><thead><tr><th>Char</th><th>ASCII</th><th>Bits</th><th>Groupes B64</th><th>Chars B64</th></tr></thead>
+    <tbody><tr><td>M</td><td>77</td><td>01001101</td><td>010011/01…</td><td>T/W</td></tr>
+    <tr><td>a</td><td>97</td><td>01100001</td><td>…0110/0001…</td><td>W/F</td></tr>
+    <tr><td>n</td><td>110</td><td>01101110</td><td>…011011/10</td><td>F/u</td></tr></tbody></table>`,
+    faq_title: "Questions Fréquentes",
+    faq_q1: "Qu'est-ce que le décodage Base64 ?",
+    faq_a1: "Le décodage Base64 est l'inverse de l'encodage — il convertit une chaîne Base64 en données binaires ou textuelles originales. Utilisé pour récupérer des données depuis des tokens JWT, des pièces jointes email (MIME), des réponses API et des URI de données.",
+    faq_q2: "Le décodage Base64 est-il identique au déchiffrement ?",
+    faq_a2: "Non. Base64 est un encodage, pas un chiffrement. N'importe qui peut décoder une chaîne Base64 instantanément — aucune clé ni mot de passe n'est requis. N'utilisez jamais Base64 seul pour protéger des données sensibles.",
+    faq_q3: "Que signifie « Entrée Base64 invalide » ?",
+    faq_a3: "L'entrée contient des caractères hors de l'alphabet Base64 (A–Z, a–z, 0–9, +, /, =). Causes fréquentes : espaces supplémentaires, rembourrage = manquant, ou la variante URL-safe (- et _ à la place de + et /).",
+    faq_q4: "Comment décoder une chaîne Base64URL ?",
+    faq_a4: "Base64URL remplace + par - et / par _ et supprime le rembourrage =. Avant de décoder, remplacez - par +, _ par / et ajoutez le rembourrage = manquant pour que la longueur soit un multiple de 4.",
+    faq_q5: "Puis-je décoder des fichiers binaires comme des images ou des PDFs ?",
+    faq_a5: "Oui. Utilisez la section de décodage de fichiers pour télécharger un fichier .txt contenant du Base64. L'outil décode le contenu binaire et le propose au téléchargement en détectant automatiquement le type de fichier.",
+    other_tools_title: "Autres Outils",
+    footer_about: "À propos",
+    footer_privacy: "Politique de confidentialité",
+    footer_terms: "Conditions d'utilisation",
+    footer_contact: "Contact",
+    footer_also_try: "Essayez aussi :",
+  },
+  de: {
+    page_title: "Base64 Decoder Online — Kostenloses Tool | decodeb64.com",
+    nav_encode: "Kodieren",
+    nav_decode: "Dekodieren",
+    nav_b2i: "Base64 zu Bild",
+    hero_h1: "Base64 Decoder Online",
+    hero_sub: "Base64-Strings und Dateien sofort dekodieren — Text, Bilder und Binärdaten. Automatische UTF-8-Erkennung, URL-safe-Unterstützung, 100% privat.",
+    input_label: "Base64-String zum Dekodieren",
+    input_placeholder: "Fügen Sie Ihren Base64-kodierten Text hier ein...",
+    output_label: "Dekodierte Ausgabe",
+    decode_btn: "Dekodieren",
+    copy_btn: "In Zwischenablage kopieren",
+    copied_state: "Kopiert! ✓",
+    clear_btn: "Alles löschen",
+    file_section_title: "Eine Datei von Base64 dekodieren",
+    drop_zone_text: "<strong>Ziehen Sie Ihre Base64-Datei hierher</strong>, oder klicken Sie zum Durchsuchen",
+    security_warning: "Führen Sie keine dekodierten Dateien aus nicht vertrauenswürdigen Quellen aus.",
+    download_btn: "Dekodierte Datei herunterladen",
+    decode_file_btn: "Datei dekodieren",
+    live_mode_label: "Live-Modus",
+    charset_label: "Zeichensatz",
+    decode_lines_label: "Jede Zeile separat dekodieren",
+    decode_lines_tooltip: "Dekodiert jede Zeile unabhängig. Nützlich für mehrere Base64-Einträge, die durch Zeilenumbrüche getrennt sind.",
+    error_msg: "Ungültige Base64-Eingabe. Bitte überprüfen Sie Ihre Daten und versuchen Sie es erneut.",
+    acc1_title: "Was ist Base64-Dekodierung?",
+    acc1_body: "<p>Die Base64-Dekodierung ist die Umkehrung der Kodierung — sie wandelt einen Base64-kodierten String zurück in seine ursprünglichen Binär- oder Textdaten um. Base64 ist ein Schema zur Kodierung von Binärdaten als Text mit 64 druckbaren ASCII-Zeichen.</p>",
+    acc2_title: "Erweiterte Optionen erklärt",
+    acc2_body: "<p><strong>Zeichensatz / Automatische Erkennung:</strong> Nach dem Dekodieren in rohe Bytes interpretiert das Tool diese als Text. Die automatische Erkennung versucht zunächst UTF-8.</p><p><strong>Jede Zeile separat dekodieren:</strong> Jede Zeile wird unabhängig dekodiert.</p><p><strong>Live-Modus:</strong> Aktiviert die Echtzeit-Dekodierung beim Tippen.</p>",
+    acc3_title: "Sicherheit & Datenschutz",
+    acc3_body: "<p>Die gesamte Verarbeitung erfolgt vollständig in Ihrem Browser. Es werden keine Daten an unsere Server gesendet.</p><p><strong>Wichtig:</strong> Führen Sie keine dekodierten Dateien aus nicht vertrauenswürdigen Quellen aus.</p>",
+    acc4_title: "Völlig kostenlos",
+    acc4_body: "<p>decodeb64.com ist und wird immer völlig kostenlos sein — ohne Registrierung, ohne Limits, ohne Werbung in Ihren dekodierten Inhalten.</p>",
+    acc5_title: "Wie Base64 funktioniert",
+    acc5_body: `<p>Das Wort <strong>Man</strong> wird in Base64 als <strong>TWFu</strong> kodiert. Um <em>TWFu</em> zurück zu <em>Man</em> zu dekodieren:</p>
+    <div class="b64-example"><span class="b64-enc">TWFu</span><span class="b64-arrow">→</span><span class="b64-dec">Man</span></div>
+    <table class="b64-table"><thead><tr><th>Zeichen</th><th>ASCII</th><th>Bits</th><th>B64-Gruppen</th><th>B64-Zeichen</th></tr></thead>
+    <tbody><tr><td>M</td><td>77</td><td>01001101</td><td>010011/01…</td><td>T/W</td></tr>
+    <tr><td>a</td><td>97</td><td>01100001</td><td>…0110/0001…</td><td>W/F</td></tr>
+    <tr><td>n</td><td>110</td><td>01101110</td><td>…011011/10</td><td>F/u</td></tr></tbody></table>`,
+    faq_title: "Häufig gestellte Fragen",
+    faq_q1: "Was ist Base64-Dekodierung?",
+    faq_a1: "Die Base64-Dekodierung ist die Umkehrung der Kodierung — sie wandelt einen Base64-String zurück in die ursprünglichen Binär- oder Textdaten. Wird verwendet, um Daten aus JWT-Tokens, E-Mail-Anhängen (MIME), API-Antworten und Daten-URIs wiederherzustellen.",
+    faq_q2: "Ist Base64-Dekodierung dasselbe wie Entschlüsselung?",
+    faq_a2: "Nein. Base64 ist Kodierung, keine Verschlüsselung. Jeder kann einen Base64-String sofort dekodieren — kein Schlüssel oder Passwort erforderlich. Verwenden Sie Base64 niemals allein zum Schutz sensibler Daten.",
+    faq_q3: "Was bedeutet „Ungültige Base64-Eingabe"?",
+    faq_a3: "Die Eingabe enthält Zeichen außerhalb des Base64-Alphabets (A–Z, a–z, 0–9, +, /, =). Häufige Ursachen: zusätzliche Leerzeichen, fehlendes = Padding, oder die URL-safe-Variante (- und _ statt + und /).",
+    faq_q4: "Wie dekodiere ich einen Base64URL-String?",
+    faq_a4: "Base64URL ersetzt + durch - und / durch _ und entfernt das = Padding. Ersetzen Sie vor dem Dekodieren - durch +, _ durch / und fügen Sie das fehlende = Padding hinzu, sodass die Länge ein Vielfaches von 4 ist.",
+    faq_q5: "Kann ich binäre Dateien wie Bilder oder PDFs dekodieren?",
+    faq_a5: "Ja. Verwenden Sie den Datei-Dekodierungsbereich, um eine Base64-kodierte .txt-Datei hochzuladen. Das Tool dekodiert den Binärinhalt und bietet ihn mit automatisch erkanntem Dateityp zum Download an.",
+    other_tools_title: "Weitere Tools",
+    footer_about: "Über uns",
+    footer_privacy: "Datenschutzrichtlinie",
+    footer_terms: "Nutzungsbedingungen",
+    footer_contact: "Kontakt",
+    footer_also_try: "Auch ausprobieren:",
+  },
+  it: {
+    page_title: "Decodificatore Base64 Online — Strumento Gratuito | decodeb64.com",
+    nav_encode: "Codifica",
+    nav_decode: "Decodifica",
+    nav_b2i: "Base64 in immagine",
+    hero_h1: "Decodificatore Base64 Online",
+    hero_sub: "Decodifica istantaneamente stringhe e file Base64 — testo, immagini e dati binari. Rilevamento UTF-8 automatico, supporto URL-safe, 100% privato.",
+    input_label: "Stringa Base64 da decodificare",
+    input_placeholder: "Incolla qui il tuo testo codificato in Base64...",
+    output_label: "Output decodificato",
+    decode_btn: "Decodifica",
+    copy_btn: "Copia negli appunti",
+    copied_state: "Copiato! ✓",
+    clear_btn: "Cancella tutto",
+    file_section_title: "Decodifica un file da Base64",
+    drop_zone_text: "<strong>Trascina il tuo file Base64 qui</strong>, o clicca per sfogliare",
+    security_warning: "Non eseguire file decodificati da fonti non affidabili.",
+    download_btn: "Scarica file decodificato",
+    decode_file_btn: "Decodifica file",
+    live_mode_label: "Modalità live",
+    charset_label: "Set di caratteri",
+    decode_lines_label: "Decodifica ogni riga separatamente",
+    decode_lines_tooltip: "Decodifica ogni riga in modo indipendente. Utile per più voci Base64 separate da interruzioni di riga.",
+    error_msg: "Input Base64 non valido. Controlla i tuoi dati e riprova.",
+    acc1_title: "Cos'è la decodifica Base64?",
+    acc1_body: "<p>La decodifica Base64 è l'inverso della codifica — converte una stringa codificata in Base64 nei suoi dati binari o testuali originali. Base64 è uno schema di codifica da binario a testo che usa 64 caratteri ASCII stampabili.</p>",
+    acc2_title: "Opzioni avanzate spiegate",
+    acc2_body: "<p><strong>Set di caratteri / Rilevamento automatico:</strong> Dopo aver decodificato il Base64 in byte grezzi, lo strumento interpreta quei byte come testo. Il rilevamento automatico prova prima UTF-8.</p><p><strong>Decodifica ogni riga separatamente:</strong> Ogni riga viene decodificata in modo indipendente.</p><p><strong>Modalità live:</strong> Abilita la decodifica in tempo reale mentre si digita.</p>",
+    acc3_title: "Sicurezza e privacy",
+    acc3_body: "<p>Tutta l'elaborazione avviene interamente nel tuo browser. Nessun dato viene mai inviato ai nostri server.</p><p><strong>Importante:</strong> Non eseguire file decodificati da fonti non affidabili.</p>",
+    acc4_title: "Completamente gratuito",
+    acc4_body: "<p>decodeb64.com è e sarà sempre completamente gratuito — senza registrazione, senza limiti, senza pubblicità nel contenuto decodificato.</p>",
+    acc5_title: "Come funziona Base64",
+    acc5_body: `<p>La parola <strong>Man</strong> si codifica come <strong>TWFu</strong> in Base64. Per decodificare <em>TWFu</em> in <em>Man</em>:</p>
+    <div class="b64-example"><span class="b64-enc">TWFu</span><span class="b64-arrow">→</span><span class="b64-dec">Man</span></div>
+    <table class="b64-table"><thead><tr><th>Char</th><th>ASCII</th><th>Bit</th><th>Gruppi B64</th><th>Char B64</th></tr></thead>
+    <tbody><tr><td>M</td><td>77</td><td>01001101</td><td>010011/01…</td><td>T/W</td></tr>
+    <tr><td>a</td><td>97</td><td>01100001</td><td>…0110/0001…</td><td>W/F</td></tr>
+    <tr><td>n</td><td>110</td><td>01101110</td><td>…011011/10</td><td>F/u</td></tr></tbody></table>`,
+    faq_title: "Domande Frequenti",
+    faq_q1: "Cos'è la decodifica Base64?",
+    faq_a1: "La decodifica Base64 è l'inverso della codifica — converte una stringa Base64 nei dati binari o testuali originali. Usata per recuperare dati da token JWT, allegati email (MIME), risposte API e URI di dati.",
+    faq_q2: "La decodifica Base64 è uguale alla decrittografia?",
+    faq_a2: "No. Base64 è codifica, non crittografia. Chiunque può decodificare una stringa Base64 istantaneamente — non serve alcuna chiave o password. Non usare mai Base64 da solo per proteggere dati sensibili.",
+    faq_q3: "Cosa significa «Input Base64 non valido»?",
+    faq_a3: "L'input contiene caratteri fuori dall'alfabeto Base64 (A–Z, a–z, 0–9, +, /, =). Cause comuni: spazi extra, padding = mancante, o la variante URL-safe (- e _ al posto di + e /).",
+    faq_q4: "Come decodifico una stringa Base64URL?",
+    faq_a4: "Base64URL sostituisce + con - e / con _ e rimuove il padding =. Prima di decodificare, sostituisci - con +, _ con / e aggiungi il padding = mancante affinché la lunghezza sia un multiplo di 4.",
+    faq_q5: "Posso decodificare file binari come immagini o PDF?",
+    faq_a5: "Sì. Usa la sezione di decodifica file per caricare un file .txt con contenuto Base64. Lo strumento decodifica il contenuto binario e lo offre come download rilevando automaticamente il tipo di file.",
+    other_tools_title: "Altri Strumenti",
+    footer_about: "Chi siamo",
+    footer_privacy: "Informativa sulla privacy",
+    footer_terms: "Termini di utilizzo",
+    footer_contact: "Contatto",
+    footer_also_try: "Prova anche:",
+  },
+  zh: {
+    page_title: "Base64 在线解码器 — 免费工具 | decodeb64.com",
+    nav_encode: "编码",
+    nav_decode: "解码",
+    nav_b2i: "Base64 转图片",
+    hero_h1: "Base64 在线解码器",
+    hero_sub: "即时将 Base64 字符串和文件解码为文本、图片和二进制数据 — 自动 UTF-8 检测，支持 URL-safe，100% 私密。",
+    input_label: "待解码的 Base64 字符串",
+    input_placeholder: "在此粘贴您的 Base64 编码文本...",
+    output_label: "解码结果",
+    decode_btn: "解码",
+    copy_btn: "复制到剪贴板",
+    copied_state: "已复制！✓",
+    clear_btn: "清除全部",
+    file_section_title: "从 Base64 解码文件",
+    drop_zone_text: "<strong>将您的 Base64 文件拖放到此处</strong>，或点击浏览",
+    security_warning: "请勿执行来自不可信来源的解码文件。",
+    download_btn: "下载解码文件",
+    decode_file_btn: "解码文件",
+    live_mode_label: "实时模式",
+    charset_label: "字符集",
+    decode_lines_label: "逐行解码",
+    decode_lines_tooltip: "独立解码每一行。适用于多个以换行符分隔的 Base64 条目。",
+    error_msg: "无效的 Base64 输入，请检查您的数据后重试。",
+    acc1_title: "什么是 Base64 解码？",
+    acc1_body: "<p>Base64 解码是编码的逆过程——将 Base64 编码的字符串转换回原始的二进制或文本数据。Base64 是一种使用 64 个可打印 ASCII 字符表示二进制数据的编码方案（A–Z、a–z、0–9、+、/）。</p><p>解码将每组 4 个 Base64 字符转换回 3 个字节的二进制数据（24 位）。这是恢复为电子邮件、JSON 或 URL 等文本协议安全传输而编码的数据的标准方式。</p>",
+    acc2_title: "高级选项说明",
+    acc2_body: "<p><strong>字符集 / 自动检测：</strong>将 Base64 解码为原始字节后，工具需要将这些字节解释为文本。自动检测首先尝试 UTF-8，如果失败则优雅回退。</p><p><strong>逐行解码：</strong>启用后，每行输入将独立解码。</p><p><strong>实时模式：</strong>在输入时实时解码，无需点击解码按钮。</p>",
+    acc3_title: "安全与隐私",
+    acc3_body: "<p>所有处理完全在您的浏览器中进行，使用标准 JavaScript API。您的数据从不发送到我们的服务器。</p><p><strong>重要提示：</strong>请勿执行来自不可信来源的解码文件。</p>",
+    acc4_title: "完全免费",
+    acc4_body: "<p>decodeb64.com 永久完全免费——无需注册，无限制，解码内容中无广告。</p>",
+    acc5_title: "Base64 的工作原理",
+    acc5_body: `<p>单词 <strong>Man</strong> 编码为 Base64 的 <strong>TWFu</strong>。将 <em>TWFu</em> 解码回 <em>Man</em> 的过程如下：</p>
+    <div class="b64-example"><span class="b64-enc">TWFu</span><span class="b64-arrow">→</span><span class="b64-dec">Man</span></div>
+    <table class="b64-table"><thead><tr><th>字符</th><th>ASCII</th><th>位</th><th>Base64 组（6位）</th><th>B64 字符</th></tr></thead>
+    <tbody><tr><td>M</td><td>77</td><td>01001101</td><td>010011/01…</td><td>T/W</td></tr>
+    <tr><td>a</td><td>97</td><td>01100001</td><td>…0110/0001…</td><td>W/F</td></tr>
+    <tr><td>n</td><td>110</td><td>01101110</td><td>…011011/10</td><td>F/u</td></tr></tbody></table>`,
+    faq_title: "常见问题",
+    faq_q1: "什么是 Base64 解码？",
+    faq_a1: "Base64 解码是编码的逆过程——将 Base64 字符串转换回原始的二进制或文本数据。用于从 JWT 令牌、电子邮件附件（MIME）、API 响应和数据 URI 中恢复数据。",
+    faq_q2: "Base64 解码与解密相同吗？",
+    faq_a2: "不相同。Base64 是编码，不是加密。任何人都可以立即解码 Base64 字符串——不需要密钥或密码。永远不要单独使用 Base64 来保护敏感数据。",
+    faq_q3: "「无效的 Base64 输入」是什么意思？",
+    faq_a3: "输入包含 Base64 字母表以外的字符（A–Z、a–z、0–9、+、/、=）。常见原因：多余的空格、缺少 = 填充，或 URL 安全变体（- 和 _ 代替 + 和 /）。",
+    faq_q4: "如何解码 Base64URL 字符串？",
+    faq_a4: "Base64URL 用 - 替换 +，用 _ 替换 /，并去掉 = 填充。解码前，将 - 替换为 +，将 _ 替换为 /，并添加缺失的 = 填充，使长度为 4 的倍数。",
+    faq_q5: "我可以解码图片或 PDF 等二进制文件吗？",
+    faq_a5: "可以。使用文件解码部分上传包含 Base64 内容的 .txt 文件。工具会解码二进制内容，并自动检测文件类型后提供下载。",
+    other_tools_title: "其他工具",
+    footer_about: "关于",
+    footer_privacy: "隐私政策",
+    footer_terms: "使用条款",
+    footer_contact: "联系我们",
+    footer_also_try: "也可以试试：",
+  },
+  ru: {
+    page_title: "Декодировщик Base64 Онлайн — Бесплатный Инструмент | decodeb64.com",
+    nav_encode: "Кодировать",
+    nav_decode: "Декодировать",
+    nav_b2i: "Base64 в изображение",
+    hero_h1: "Декодировщик Base64 Онлайн",
+    hero_sub: "Мгновенно декодируйте строки и файлы Base64 в текст, изображения и бинарные данные — автоопределение UTF-8, поддержка URL-safe, 100% конфиденциально.",
+    input_label: "Строка Base64 для декодирования",
+    input_placeholder: "Вставьте сюда текст, закодированный в Base64...",
+    output_label: "Декодированный результат",
+    decode_btn: "Декодировать",
+    copy_btn: "Копировать в буфер обмена",
+    copied_state: "Скопировано! ✓",
+    clear_btn: "Очистить всё",
+    file_section_title: "Декодировать файл из Base64",
+    drop_zone_text: "<strong>Перетащите файл Base64 сюда</strong>, или нажмите для обзора",
+    security_warning: "Не запускайте декодированные файлы из ненадёжных источников.",
+    download_btn: "Скачать декодированный файл",
+    decode_file_btn: "Декодировать файл",
+    live_mode_label: "Режим реального времени",
+    charset_label: "Набор символов",
+    decode_lines_label: "Декодировать каждую строку отдельно",
+    decode_lines_tooltip: "Декодирует каждую строку независимо. Полезно для нескольких записей Base64, разделённых переносами строк.",
+    error_msg: "Неверный ввод Base64. Проверьте данные и попробуйте снова.",
+    acc1_title: "Что такое декодирование Base64?",
+    acc1_body: "<p>Декодирование Base64 — это обратный процесс кодирования: преобразование строки, закодированной в Base64, обратно в исходные двоичные или текстовые данные. Base64 — схема кодирования двоичных данных в виде текста, использующая 64 печатных символа ASCII.</p><p>При декодировании каждая группа из 4 символов Base64 преобразуется обратно в 3 байта двоичных данных (24 бита).</p>",
+    acc2_title: "Описание расширенных опций",
+    acc2_body: "<p><strong>Набор символов / Автоопределение:</strong> После декодирования Base64 в сырые байты, инструмент интерпретирует их как текст. Автоопределение сначала пробует UTF-8.</p><p><strong>Декодировать каждую строку отдельно:</strong> Каждая строка декодируется независимо.</p><p><strong>Режим реального времени:</strong> Декодирование в реальном времени при вводе текста.</p>",
+    acc3_title: "Безопасность и конфиденциальность",
+    acc3_body: "<p>Вся обработка происходит полностью в вашем браузере с использованием стандартных JavaScript API. Никакие данные никогда не отправляются на наши серверы.</p><p><strong>Важно:</strong> Не запускайте декодированные файлы из ненадёжных источников.</p>",
+    acc4_title: "Полностью бесплатно",
+    acc4_body: "<p>decodeb64.com является и всегда будет полностью бесплатным — без регистрации, без ограничений, без рекламы в декодированном контенте.</p>",
+    acc5_title: "Как работает Base64",
+    acc5_body: `<p>Слово <strong>Man</strong> кодируется как <strong>TWFu</strong> в Base64. Для декодирования <em>TWFu</em> обратно в <em>Man</em>:</p>
+    <div class="b64-example"><span class="b64-enc">TWFu</span><span class="b64-arrow">→</span><span class="b64-dec">Man</span></div>
+    <table class="b64-table"><thead><tr><th>Символ</th><th>ASCII</th><th>Биты</th><th>Группы B64</th><th>Символы B64</th></tr></thead>
+    <tbody><tr><td>M</td><td>77</td><td>01001101</td><td>010011/01…</td><td>T/W</td></tr>
+    <tr><td>a</td><td>97</td><td>01100001</td><td>…0110/0001…</td><td>W/F</td></tr>
+    <tr><td>n</td><td>110</td><td>01101110</td><td>…011011/10</td><td>F/u</td></tr></tbody></table>`,
+    faq_title: "Часто задаваемые вопросы",
+    faq_q1: "Что такое декодирование Base64?",
+    faq_a1: "Декодирование Base64 — это обратный процесс кодирования: преобразование строки Base64 обратно в исходные двоичные или текстовые данные. Используется для восстановления данных из JWT-токенов, вложений email (MIME), ответов API и URI данных.",
+    faq_q2: "Декодирование Base64 — это то же самое, что и расшифровка?",
+    faq_a2: "Нет. Base64 — это кодирование, а не шифрование. Любой может мгновенно декодировать строку Base64 — ключ или пароль не требуются. Никогда не используйте Base64 в одиночку для защиты конфиденциальных данных.",
+    faq_q3: "Что означает «Неверный ввод Base64»?",
+    faq_a3: "Входные данные содержат символы вне алфавита Base64 (A–Z, a–z, 0–9, +, /, =). Распространённые причины: лишние пробелы, отсутствие заполнения =, или URL-safe вариант (- и _ вместо + и /).",
+    faq_q4: "Как декодировать строку Base64URL?",
+    faq_a4: "Base64URL заменяет + на - и / на _ и убирает заполнение =. Перед декодированием замените - на +, _ на / и добавьте недостающее заполнение =, чтобы длина была кратна 4.",
+    faq_q5: "Могу ли я декодировать бинарные файлы, такие как изображения или PDF?",
+    faq_a5: "Да. Используйте раздел декодирования файлов для загрузки файла .txt с содержимым Base64. Инструмент декодирует двоичное содержимое и предлагает его для скачивания с автоматическим определением типа файла.",
+    other_tools_title: "Другие Инструменты",
+    footer_about: "О нас",
+    footer_privacy: "Политика конфиденциальности",
+    footer_terms: "Условия использования",
+    footer_contact: "Контакты",
+    footer_also_try: "Попробуйте также:",
+  },
+};
+
+// ─── LANGUAGE SYSTEM ──────────────────────────────────────────────────────────
+const pageLang = 'it';
+let currentLang = pageLang;
+
+const langNames = {
+  en: 'English', es: 'Español', pt: 'Português',
+  fr: 'Français', de: 'Deutsch', it: 'Italiano',
+  zh: '中文', ru: 'Русский'
+};
+
+function applyLang(lang) {
+  document.documentElement.lang = lang;
+  const t = T[lang] || T['en'];
+  currentLang = lang;
+  localStorage.setItem('b64_lang', lang);
+
+  // Page title
+  document.title = t.page_title;
+
+  // Update all data-i18n elements
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    if (t[key] !== undefined) el.textContent = t[key];
+  });
+
+  // Update data-i18n-html elements
+  document.querySelectorAll('[data-i18n-html]').forEach(el => {
+    const key = el.getAttribute('data-i18n-html');
+    if (t[key] !== undefined) el.innerHTML = t[key];
+  });
+
+  // Update placeholders
+  document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+    const key = el.getAttribute('data-i18n-placeholder');
+    if (t[key] !== undefined) el.placeholder = t[key];
+  });
+
+  // Update drop zone (has HTML)
+  const dropText = document.querySelector('.drop-text');
+  if (dropText) dropText.innerHTML = t.drop_zone_text;
+
+  // Lang button label
+  document.getElementById('langLabel').textContent = langNames[lang];
+
+  // Update active state in dropdown
+  document.querySelectorAll('.lang-option').forEach(opt => {
+    opt.classList.toggle('selected', opt.dataset.lang === lang);
+  });
+
+  // Cross-fade
+  document.body.classList.remove('lang-transition');
+  void document.body.offsetWidth;
+  document.body.classList.add('lang-transition');
+}
+
+// Lang dropdown toggle
+const langBtn = document.getElementById('langBtn');
+const langDropdown = document.getElementById('langDropdown');
+
+langBtn.addEventListener('click', (e) => {
+  e.stopPropagation();
+  const open = langDropdown.classList.toggle('open');
+  langBtn.setAttribute('aria-expanded', open);
+});
+
+document.addEventListener('click', () => {
+  langDropdown.classList.remove('open');
+  langBtn.setAttribute('aria-expanded', false);
+});
+
+langDropdown.addEventListener('click', (e) => {
+  const opt = e.target.closest('.lang-option');
+  if (opt) {
+    const sel = opt.dataset.lang;
+    localStorage.setItem('b64_lang', sel);
+    window.location.href = '/' + sel + '/';
+  }
+});
+
+// ─── BASE64 DECODE LOGIC ──────────────────────────────────────────────────────
+function b64ToBinary(b64) {
+  const binary = atob(b64);
+  const bytes = new Uint8Array(binary.length);
+  for (let i = 0; i < binary.length; i++) bytes[i] = binary.charCodeAt(i);
+  return bytes;
+}
+
+function decodeBase64Text(input, charset, eachLine) {
+  const stripped = input.replace(/\s+/g, '');
+  if (!stripped) return '';
+
+  if (eachLine) {
+    const lines = input.split('\n');
+    return lines.map(line => {
+      const l = line.replace(/\s+/g, '');
+      if (!l) return '';
+      const bytes = b64ToBinary(l);
+      return decodeBytes(bytes, charset);
+    }).join('\n');
+  }
+
+  const bytes = b64ToBinary(stripped);
+  return decodeBytes(bytes, charset);
+}
+
+function decodeBytes(bytes, charset) {
+  if (charset === 'auto') {
+    try {
+      const dec = new TextDecoder('utf-8', { fatal: true });
+      return dec.decode(bytes);
+    } catch {
+      try {
+        const dec = new TextDecoder('windows-1252', { fatal: false });
+        return dec.decode(bytes);
+      } catch {
+        return new TextDecoder('utf-8', { fatal: false }).decode(bytes);
+      }
+    }
+  }
+  try {
+    const dec = new TextDecoder(charset, { fatal: false });
+    return dec.decode(bytes);
+  } catch {
+    return new TextDecoder('utf-8', { fatal: false }).decode(bytes);
+  }
+}
+
+// ─── TEXT DECODE UI ───────────────────────────────────────────────────────────
+const inputText = document.getElementById('inputText');
+const outputText = document.getElementById('outputText');
+const outputSection = document.getElementById('outputSection');
+const errorMsg = document.getElementById('errorMsg');
+const decodeBtn = document.getElementById('decodeBtn');
+const copyBtn = document.getElementById('copyBtn');
+const clearBtn = document.getElementById('clearBtn');
+const charsetSelect = document.getElementById('charsetSelect');
+const decodeLines = document.getElementById('decodeLines');
+const liveModeToggle = document.getElementById('liveMode');
+const liveBadge = document.getElementById('liveBadge');
+
+function showOutput(text) {
+  outputText.value = text;
+  outputText.classList.remove('error-border', 'flash-red');
+  errorMsg.classList.remove('show');
+  outputSection.classList.add('visible');
+}
+
+function showError() {
+  const t = T[currentLang] || T['en'];
+  outputText.value = '';
+  errorMsg.textContent = t.error_msg;
+  errorMsg.classList.add('show');
+  outputText.classList.remove('flash-red');
+  void outputText.offsetWidth;
+  outputText.classList.add('flash-red', 'error-border');
+  outputSection.classList.add('visible');
+}
+
+decodeBtn.addEventListener('click', () => {
+  const raw = inputText.value;
+  if (!raw.trim()) return;
+  try {
+    const result = decodeBase64Text(raw, charsetSelect.value, decodeLines.checked);
+    showOutput(result);
+  } catch {
+    showError();
+  }
+});
+
+liveModeToggle.addEventListener('change', () => {
+  liveBadge.classList.toggle('visible', liveModeToggle.checked);
+  if (liveModeToggle.checked && inputText.value.trim()) {
+    try {
+      showOutput(decodeBase64Text(inputText.value, charsetSelect.value, decodeLines.checked));
+    } catch { showError(); }
+  }
+});
+
+inputText.addEventListener('input', () => {
+  if (!liveModeToggle.checked) return;
+  const raw = inputText.value;
+  if (!raw.trim()) {
+    outputSection.classList.remove('visible');
+    return;
+  }
+  try {
+    showOutput(decodeBase64Text(raw, charsetSelect.value, decodeLines.checked));
+  } catch {
+    showError();
+  }
+});
+
+copyBtn.addEventListener('click', async () => {
+  const t = T[currentLang] || T['en'];
+  if (!outputText.value) return;
+  try {
+    await navigator.clipboard.writeText(outputText.value);
+  } catch {
+    outputText.select();
+    document.execCommand('copy');
+  }
+  const orig = copyBtn.textContent;
+  copyBtn.textContent = t.copied_state;
+  copyBtn.classList.add('success');
+  setTimeout(() => {
+    copyBtn.textContent = orig;
+    copyBtn.classList.remove('success');
+  }, 2000);
+});
+
+clearBtn.addEventListener('click', () => {
+  inputText.value = '';
+  outputText.value = '';
+  outputSection.classList.remove('visible');
+  errorMsg.classList.remove('show');
+  outputText.classList.remove('error-border', 'flash-red');
+  liveModeToggle.checked = false;
+  liveBadge.classList.remove('visible');
+  document.getElementById('fileInfo').classList.remove('visible');
+  document.getElementById('downloadBtn').classList.remove('visible');
+  document.getElementById('fileErrorMsg').classList.remove('show');
+  currentFile = null;
+});
+
+// ─── FILE DECODE ──────────────────────────────────────────────────────────────
+const dropZone = document.getElementById('dropZone');
+const fileInput = document.getElementById('fileInput');
+const fileInfo = document.getElementById('fileInfo');
+const decodeFileBtn = document.getElementById('decodeFileBtn');
+const downloadBtn = document.getElementById('downloadBtn');
+const fileErrorMsg = document.getElementById('fileErrorMsg');
+let currentFile = null;
+let currentBlobUrl = null;
+
+const MAX_FILE_SIZE = 50 * 1024 * 1024; // 50 MB
+
+dropZone.addEventListener('click', () => fileInput.click());
+fileInput.addEventListener('change', (e) => handleFile(e.target.files[0]));
+
+dropZone.addEventListener('dragover', (e) => { e.preventDefault(); dropZone.classList.add('dragover'); });
+dropZone.addEventListener('dragleave', () => dropZone.classList.remove('dragover'));
+dropZone.addEventListener('drop', (e) => {
+  e.preventDefault();
+  dropZone.classList.remove('dragover');
+  handleFile(e.dataTransfer.files[0]);
+});
+
+function formatSize(bytes) {
+  if (bytes < 1024) return bytes + ' B';
+  if (bytes < 1024 * 1024) return (bytes / 1024).toFixed(1) + ' KB';
+  return (bytes / (1024 * 1024)).toFixed(2) + ' MB';
+}
+
+function handleFile(file) {
+  if (!file) return;
+  if (file.size > MAX_FILE_SIZE) {
+    const t = T[currentLang] || T['en'];
+    showFileError('File too large (max 50 MB). ' + t.error_msg);
+    return;
+  }
+  currentFile = file;
+  fileInfo.textContent = `${file.name}  ·  ${formatSize(file.size)}`;
+  fileInfo.classList.add('visible');
+  downloadBtn.classList.remove('visible');
+  fileErrorMsg.classList.remove('show');
+}
+
+function detectMime(bytes) {
+  const h = bytes.slice(0, 16);
+  const sig = Array.from(h).map(b => b.toString(16).padStart(2,'0')).join('');
+  if (sig.startsWith('ffd8ff')) return { mime: 'image/jpeg', ext: '.jpg' };
+  if (sig.startsWith('89504e47')) return { mime: 'image/png', ext: '.png' };
+  if (sig.startsWith('47494638')) return { mime: 'image/gif', ext: '.gif' };
+  if (sig.startsWith('25504446')) return { mime: 'application/pdf', ext: '.pdf' };
+  if (sig.startsWith('504b0304')) return { mime: 'application/zip', ext: '.zip' };
+  if (sig.startsWith('7f454c46')) return { mime: 'application/octet-stream', ext: '.elf' };
+  if (sig.startsWith('d0cf11e0')) return { mime: 'application/vnd.ms-office', ext: '.doc' };
+  const textCheck = bytes.slice(0, 512);
+  const isText = textCheck.every(b => (b >= 0x20 && b <= 0x7e) || b === 0x09 || b === 0x0a || b === 0x0d);
+  if (isText) return { mime: 'text/plain', ext: '.txt' };
+  return { mime: 'application/octet-stream', ext: '.bin' };
+}
+
+function showFileError(msg) {
+  const t = T[currentLang] || T['en'];
+  fileErrorMsg.textContent = msg || t.error_msg;
+  fileErrorMsg.classList.add('show');
+  downloadBtn.classList.remove('visible');
+}
+
+decodeFileBtn.addEventListener('click', () => {
+  if (!currentFile) return;
+  const reader = new FileReader();
+  reader.onload = (e) => {
+    try {
+      const content = e.target.result;
+      const eachLine = document.getElementById('decodeLinesFile').checked;
+      let decoded;
+      if (eachLine) {
+        const lines = content.split('\n');
+        const allBytes = [];
+        for (const line of lines) {
+          const l = line.replace(/\s+/g, '');
+          if (!l) continue;
+          const bytes = b64ToBinary(l);
+          allBytes.push(...bytes);
+        }
+        decoded = new Uint8Array(allBytes);
+      } else {
+        const stripped = content.replace(/\s+/g, '');
+        decoded = b64ToBinary(stripped);
+      }
+
+      const { mime, ext } = detectMime(decoded);
+      const blob = new Blob([decoded], { type: mime });
+      if (currentBlobUrl) URL.revokeObjectURL(currentBlobUrl);
+      currentBlobUrl = URL.createObjectURL(blob);
+
+      const origName = currentFile.name.replace(/\.(txt|b64|base64)$/i, '');
+      downloadBtn.href = currentBlobUrl;
+      downloadBtn.download = origName + ext;
+      const t = T[currentLang] || T['en'];
+      downloadBtn.textContent = t.download_btn;
+      downloadBtn.classList.add('visible');
+      fileErrorMsg.classList.remove('show');
+    } catch {
+      showFileError();
+    }
+  };
+  reader.onerror = () => showFileError();
+  reader.readAsText(currentFile);
+});
+
+// ─── ACCORDION ────────────────────────────────────────────────────────────────
+function toggleAccordion(header) {
+  const body = header.nextElementSibling;
+  const isOpen = body.classList.contains('open');
+  header.classList.toggle('open', !isOpen);
+  body.classList.toggle('open', !isOpen);
+}
+
+// ─── INIT ─────────────────────────────────────────────────────────────────────
+applyLang(currentLang);
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Base64 Decoder Online",
+  "url": "https://decodeb64.com/",
+  "description": "Free online Base64 decoder. Decode Base64 strings and files back to text, images, and binary instantly — UTF-8 auto-detect, URL-safe support, 100% private.",
+  "applicationCategory": "DeveloperApplication",
+  "operatingSystem": "Any",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "featureList": "Base64 decode, File decode, UTF-8 auto-detect, Base64URL support, line-by-line decode, live mode"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is Base64 decoding?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Base64 decoding is the reverse of encoding — it converts a Base64 string back to its original binary or text data. Used to recover data from JWT tokens, email attachments (MIME), API responses, and data URIs."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is Base64 decoding the same as decryption?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. Base64 is encoding, not encryption. Anyone can decode a Base64 string instantly — there is no key or password required. Never use Base64 alone to protect sensitive data."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What does Invalid Base64 input mean?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The input contains characters outside the Base64 alphabet (A–Z, a–z, 0–9, +, /, =). Common causes: extra whitespace, missing = padding, or the URL-safe variant (- and _ instead of + and /)."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I decode a Base64URL string?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Base64URL replaces + with - and / with _ and removes = padding. Before decoding, replace - with +, _ with /, and add missing = padding so the length is a multiple of 4."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I decode binary files like images or PDFs?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Use the file decode section to upload a Base64-encoded .txt file. The tool decodes the binary content and offers it as a download with the correct file type detected automatically."
+      }
+    }
+  ]
+}
+</script>
+</body>
+</html>
