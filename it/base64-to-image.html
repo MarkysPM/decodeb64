@@ -74,6 +74,10 @@
   <link rel="alternate" hreflang="it" href="https://decodeb64.com/it/base64-to-image.html" />
   <link rel="alternate" hreflang="zh" href="https://decodeb64.com/zh/base64-to-image.html" />
   <link rel="alternate" hreflang="ru" href="https://decodeb64.com/ru/base64-to-image.html" />
+  <link rel="alternate" hreflang="ja" href="https://decodeb64.com/ja/base64-to-image.html" />
+  <link rel="alternate" hreflang="ko" href="https://decodeb64.com/ko/base64-to-image.html" />
+  <link rel="alternate" hreflang="nl" href="https://decodeb64.com/nl/base64-to-image.html" />
+  <link rel="alternate" hreflang="hi" href="https://decodeb64.com/hi/base64-to-image.html" />
   <link rel="alternate" hreflang="x-default" href="https://decodeb64.com/base64-to-image" />
   <meta property="og:locale" content="it_IT" />
   <meta property="og:type" content="website" />
@@ -897,6 +901,10 @@
         <div class="lang-option" data-lang="it" role="option">🇮🇹 Italiano</div>
         <div class="lang-option" data-lang="zh" role="option">🇨🇳 中文</div>
         <div class="lang-option" data-lang="ru" role="option">🇷🇺 Русский</div>
+        <div class="lang-option" data-lang="ja" role="option">🇯🇵 日本語</div>
+        <div class="lang-option" data-lang="ko" role="option">🇰🇷 한국어</div>
+        <div class="lang-option" data-lang="nl" role="option">🇳🇱 Nederlands</div>
+        <div class="lang-option" data-lang="hi" role="option">🇮🇳 हिन्दी</div>
       </div>
     </div>
   </div>
@@ -1664,6 +1672,171 @@ const T = {
     footer_contact: "Контакт",
     footer_also_try: "Попробуйте также:",
   }
+
+  ja: {
+    page_title: 'Base64 画像変換ツール — 無料オンラインツール | decodeb64.com',
+    nav_encode: 'エンコード', nav_decode: 'デコード', nav_b2i: 'Base64を画像に',
+    hero_h1: 'Base64 画像変換ツール',
+    hero_sub: 'Base64文字列またはData URIを貼り付けて、PNG・JPG・WebP形式で即座に画像をプレビュー・ダウンロード — 100%ブラウザ内処理。',
+    tab_paste: 'Base64を貼り付け', tab_upload: '.txtファイルをアップロード',
+    textarea_label: 'Base64文字列またはData URI',
+    textarea_placeholder: 'Base64エンコードされた画像をここに貼り付け...（生のBase64またはData URI）',
+    char_count_label: '文字',
+    drop_zone_text: '<strong>Base64の.txtファイルをここにドロップ</strong>、またはクリックして選択',
+    img_type_label: '画像タイプ',
+    img_type_tooltip: 'Data URIプレフィックスなしの生のBase64文字列の場合、画像タイプを手動で選択してください。',
+    type_auto: 'Data URIから自動検出',
+    convert_btn: '画像に変換', preview_label: '画像プレビュー',
+    badge_format: '形式', badge_dims: '寸法', badge_size: 'サイズ',
+    detected_label: '検出された形式',
+    download_btn: 'ダウンロード', download_png: 'PNG', download_jpg: 'JPG', download_webp: 'WebP',
+    format_note: '注意：JPEGは非可逆変換。アニメーションGIFとSVGは元の形式のみ。',
+    copy_uri_btn: 'Data URIをコピー', copied_state: 'コピーしました！', clear_btn: 'クリア',
+    security_banner: 'すべてのデータはブラウザ内で処理されます — サーバーには何も送信されません。',
+    error_invalid: '有効なBase64エンコード画像が検出されませんでした。入力を確認して再試行してください。',
+    gif_animated_note: 'アニメーションGIFが検出されました。GIF形式でダウンロードしてアニメーションを保持してください。',
+    other_tools_label: '他のツール', tool_img2b64: '画像をBase64に', tool_text_decode: 'テキストデコード', tool_text_encode: 'テキストエンコード',
+    acc1_title: 'Base64から画像への変換とは？',
+    acc1_body: `<p>Base64は、バイナリデータ（画像など）をASCIIテキストとしてエンコードするスキームです。HTMLのData URI、CSS背景、API JSON応答で使用されます。このツールはブラウザ内でそのプロセスを逆転させます。</p>`,
+    acc2_title: '受け入れ可能な入力形式',
+    acc2_body: `<ul><li><strong>生のBase64：</strong> プレフィックスなしのエンコードされた文字列。</li><li><strong>Data URI：</strong> data:image/png;base64,iVBOR...の形式。</li><li><strong>.txtファイル：</strong> Base64文字列を含むテキストファイル。</li></ul>`,
+    acc3_title: '対応画像タイプ',
+    acc3_body: `<p>PNG、JPEG、GIF（アニメーション含む）、WebP、SVG、BMP、ICO、TIFF、AVIFに対応しています。</p>`,
+    acc4_title: '形式変換',
+    acc4_body: `<p>デコード後、PNG、JPG、WebPとしてダウンロードできます。変換にはCanvas APIを使用します。注：JPEG変換は非可逆。アニメーションGIFとSVGは元の形式のみ。</p>`,
+    acc5_title: 'プライバシーとセキュリティ',
+    acc5_body: `<p>すべてのデコードはブラウザ内で行われます。Base64データはいかなるサーバーにも送信されません。</p>`,
+    faq_title: 'よくある質問',
+    faq_q1: 'このツールはどの画像形式に対応していますか？', faq_a1: 'PNG、JPEG、GIF（アニメーション含む）、WebP、SVG、BMP、ICO、TIFF、AVIFに対応しています。',
+    faq_q2: '別の形式で画像をダウンロードできますか？', faq_a2: 'はい。デコード後、形式ボタンでPNG、JPG、WebPとしてダウンロードできます。',
+    faq_q3: 'このツールはプライベートですか？', faq_a3: '完全にプライベートです。すべてのデコードはブラウザ内で行われます。',
+    faq_q4: '画像のデコードに失敗するのはなぜですか？', faq_a4: 'Base64文字列が破損しているか、URLセーフBase64が変換されずに貼り付けられた可能性があります。',
+    faq_q5: 'Data URIとは何ですか？', faq_a5: 'Data URIはファイルコンテンツをHTMLやCSSに直接埋め込むフォーマットです。',
+    footer_about: '概要', footer_privacy: 'プライバシーポリシー', footer_terms: '利用規約', footer_contact: 'お問い合わせ', footer_also_try: 'こちらもお試しください：',
+  },
+  ko: {
+    page_title: 'Base64 이미지 변환기 — 무료 온라인 도구 | decodeb64.com',
+    nav_encode: '인코딩', nav_decode: '디코딩', nav_b2i: 'Base64를 이미지로',
+    hero_h1: 'Base64 이미지 변환기',
+    hero_sub: 'Base64 문자열 또는 Data URI를 붙여넣어 PNG, JPG, WebP로 즉시 이미지를 미리보기 및 다운로드 — 100% 브라우저에서 처리.',
+    tab_paste: 'Base64 붙여넣기', tab_upload: '.txt 파일 업로드',
+    textarea_label: 'Base64 문자열 또는 Data URI',
+    textarea_placeholder: 'Base64 인코딩된 이미지를 여기에 붙여넣으세요...',
+    char_count_label: '문자',
+    drop_zone_text: '<strong>Base64 .txt 파일을 여기에 끌어다 놓거나</strong> 클릭하여 선택',
+    img_type_label: '이미지 유형',
+    img_type_tooltip: 'Data URI 접두사 없는 순수 Base64 문자열인 경우 이미지 유형을 수동으로 선택하세요.',
+    type_auto: 'Data URI에서 자동 감지',
+    convert_btn: '이미지로 변환', preview_label: '이미지 미리보기',
+    badge_format: '형식', badge_dims: '크기', badge_size: '용량',
+    detected_label: '감지된 형식',
+    download_btn: '다운로드', download_png: 'PNG', download_jpg: 'JPG', download_webp: 'WebP',
+    format_note: '참고: JPEG 변환은 손실 방식. 애니메이션 GIF와 SVG는 원본 형식만 가능.',
+    copy_uri_btn: 'Data URI 복사', copied_state: '복사됨!', clear_btn: '지우기',
+    security_banner: '모든 데이터는 브라우저에서 처리됩니다 — 서버에 아무것도 전송되지 않습니다.',
+    error_invalid: '유효한 Base64 인코딩 이미지가 감지되지 않았습니다. 입력을 확인하고 다시 시도하세요.',
+    gif_animated_note: '애니메이션 GIF가 감지되었습니다. GIF 형식으로 다운로드하여 애니메이션을 유지하세요.',
+    other_tools_label: '다른 도구', tool_img2b64: '이미지를 Base64로', tool_text_decode: '텍스트 디코딩', tool_text_encode: '텍스트 인코딩',
+    acc1_title: 'Base64에서 이미지 변환이란?',
+    acc1_body: `<p>Base64는 이미지 등 바이너리 데이터를 ASCII 텍스트로 인코딩하는 방식입니다. HTML Data URI, CSS 배경, API JSON 응답에서 사용됩니다.</p>`,
+    acc2_title: '허용되는 입력 형식',
+    acc2_body: `<ul><li><strong>순수 Base64:</strong> 접두사 없는 인코딩 문자열.</li><li><strong>Data URI:</strong> data:image/png;base64,iVBOR... 형식.</li><li><strong>.txt 파일:</strong> Base64 문자열이 담긴 텍스트 파일.</li></ul>`,
+    acc3_title: '지원되는 이미지 유형',
+    acc3_body: `<p>PNG, JPEG, GIF(애니메이션 포함), WebP, SVG, BMP, ICO, TIFF, AVIF가 지원됩니다.</p>`,
+    acc4_title: '형식 변환',
+    acc4_body: `<p>디코딩 후 PNG, JPG, WebP로 다운로드할 수 있습니다. Canvas API를 사용합니다. JPEG 변환은 손실 방식이며 애니메이션 GIF와 SVG는 원본 형식만 가능합니다.</p>`,
+    acc5_title: '개인정보 및 보안',
+    acc5_body: `<p>모든 디코딩은 브라우저에서 이루어집니다. Base64 데이터는 어떤 서버에도 전송되지 않습니다.</p>`,
+    faq_title: '자주 묻는 질문',
+    faq_q1: '이 도구는 어떤 이미지 형식을 지원하나요?', faq_a1: 'PNG, JPEG, GIF(애니메이션 포함), WebP, SVG, BMP, ICO, TIFF, AVIF가 지원됩니다.',
+    faq_q2: '다른 형식으로 이미지를 다운로드할 수 있나요?', faq_a2: '네. 형식 버튼으로 PNG, JPG, WebP로 다운로드할 수 있습니다.',
+    faq_q3: '이 도구는 개인정보를 보호하나요?', faq_a3: '완전히 비공개입니다. 모든 디코딩은 브라우저에서 이루어집니다.',
+    faq_q4: '이미지 디코딩에 실패하는 이유는 무엇인가요?', faq_a4: 'Base64 문자열이 손상되었거나 URL 안전 Base64가 변환 없이 붙여넣어졌을 수 있습니다.',
+    faq_q5: 'Data URI란 무엇인가요?', faq_a5: 'Data URI는 파일 내용을 HTML이나 CSS에 직접 삽입하는 형식입니다.',
+    footer_about: '소개', footer_privacy: '개인정보 처리방침', footer_terms: '이용약관', footer_contact: '문의하기', footer_also_try: '함께 사용해 보세요:',
+  },
+  nl: {
+    page_title: 'Base64 naar Afbeelding Converter — Gratis Online Tool | decodeb64.com',
+    nav_encode: 'Coderen', nav_decode: 'Decoderen', nav_b2i: 'Base64 naar afbeelding',
+    hero_h1: 'Base64 naar Afbeelding Converter',
+    hero_sub: 'Plak een Base64-string of Data URI en bekijk en download de afbeelding direct als PNG, JPG of WebP — 100% in uw browser.',
+    tab_paste: 'Base64 plakken', tab_upload: '.txt-bestand uploaden',
+    textarea_label: 'Base64-string of Data URI',
+    textarea_placeholder: 'Plak hier uw Base64-gecodeerde afbeelding...',
+    char_count_label: 'tekens',
+    drop_zone_text: '<strong>Zet uw Base64 .txt-bestand hier neer</strong>, of klik om te bladeren',
+    img_type_label: 'Afbeeldingstype',
+    img_type_tooltip: 'Als uw invoer een pure Base64-string is zonder Data URI-prefix, selecteer dan het afbeeldingstype handmatig.',
+    type_auto: 'Automatisch detecteren uit Data URI',
+    convert_btn: 'Converteren naar afbeelding', preview_label: 'Afbeeldingsvoorvertoning',
+    badge_format: 'Formaat', badge_dims: 'Afmetingen', badge_size: 'Grootte',
+    detected_label: 'Gedetecteerd formaat',
+    download_btn: 'Downloaden', download_png: 'PNG', download_jpg: 'JPG', download_webp: 'WebP',
+    format_note: 'Let op: JPEG-conversie is verliesgevend. Geanimeerde GIF's en SVG's alleen in origineel formaat.',
+    copy_uri_btn: 'Data URI kopiëren', copied_state: 'Gekopieerd!', clear_btn: 'Wissen',
+    security_banner: 'Alle gegevens worden in uw browser verwerkt — er wordt niets naar een server verzonden.',
+    error_invalid: 'Geen geldige Base64-gecodeerde afbeelding gedetecteerd. Controleer de invoer en probeer opnieuw.',
+    gif_animated_note: 'Geanimeerde GIF gedetecteerd. Download als GIF om de animatie te behouden.',
+    other_tools_label: 'Andere hulpmiddelen', tool_img2b64: 'Afbeelding naar Base64', tool_text_decode: 'Tekst decoderen', tool_text_encode: 'Tekst coderen',
+    acc1_title: 'Wat is Base64 naar afbeelding conversie?',
+    acc1_body: `<p>Base64 is een coderingsschema dat binaire gegevens (zoals afbeeldingen) omzet naar ASCII-tekst. Het wordt gebruikt in HTML Data URI's, CSS-achtergronden en API JSON-responses.</p>`,
+    acc2_title: 'Geaccepteerde invoerformaten',
+    acc2_body: `<ul><li><strong>Pure Base64:</strong> gecodeerde string zonder prefix.</li><li><strong>Data URI:</strong> formaat data:image/png;base64,iVBOR...</li><li><strong>.txt-bestand:</strong> tekstbestand met Base64-string.</li></ul>`,
+    acc3_title: 'Ondersteunde afbeeldingstypen',
+    acc3_body: `<p>PNG, JPEG, GIF (inclusief geanimeerd), WebP, SVG, BMP, ICO, TIFF en AVIF worden ondersteund.</p>`,
+    acc4_title: 'Formaatconversie',
+    acc4_body: `<p>Na het decoderen kunt u de afbeelding als PNG, JPG of WebP downloaden. Conversie gebruikt de Canvas API. JPEG-conversie is verliesgevend. Geanimeerde GIF's en SVG's zijn alleen in origineel formaat beschikbaar.</p>`,
+    acc5_title: 'Privacy en beveiliging',
+    acc5_body: `<p>Alle decodering vindt plaats in uw browser. Uw Base64-gegevens worden nooit naar een server verzonden.</p>`,
+    faq_title: 'Veelgestelde vragen',
+    faq_q1: 'Welke afbeeldingsformaten ondersteunt dit hulpprogramma?', faq_a1: 'PNG, JPEG, GIF (inclusief geanimeerd), WebP, SVG, BMP, ICO, TIFF en AVIF worden ondersteund.',
+    faq_q2: 'Kan ik de afbeelding in een ander formaat downloaden?', faq_a2: 'Ja. Na het decoderen kunt u de afbeelding als PNG, JPG of WebP downloaden.',
+    faq_q3: 'Is dit hulpprogramma privé?', faq_a3: 'Volledig privé. Alle decodering gebeurt in uw browser.',
+    faq_q4: 'Waarom mislukt de decodering van mijn afbeelding?', faq_a4: 'De Base64-string is mogelijk beschadigd of een URL-veilige variant werd geplakt zonder omzetting.',
+    faq_q5: 'Wat is een Data URI?', faq_a5: 'Een Data URI sluit bestandsinhoud direct in HTML of CSS in.',
+    footer_about: 'Over ons', footer_privacy: 'Privacybeleid', footer_terms: 'Gebruiksvoorwaarden', footer_contact: 'Contact', footer_also_try: 'Probeer ook:',
+  },
+  hi: {
+    page_title: 'Base64 इमेज कन्वर्टर — मुफ़्त ऑनलाइन टूल | decodeb64.com',
+    nav_encode: 'एन्कोड', nav_decode: 'डिकोड', nav_b2i: 'Base64 को इमेज में',
+    hero_h1: 'Base64 इमेज कन्वर्टर',
+    hero_sub: 'कोई भी Base64 स्ट्रिंग या Data URI पेस्ट करें और PNG, JPG या WebP के रूप में तुरंत इमेज देखें और डाउनलोड करें — 100% ब्राउज़र में।',
+    tab_paste: 'Base64 पेस्ट करें', tab_upload: '.txt फ़ाइल अपलोड करें',
+    textarea_label: 'Base64 स्ट्रिंग या Data URI',
+    textarea_placeholder: 'यहाँ अपना Base64 एन्कोडेड इमेज पेस्ट करें...',
+    char_count_label: 'अक्षर',
+    drop_zone_text: '<strong>Base64 .txt फ़ाइल यहाँ छोड़ें</strong>, या ब्राउज़ करने के लिए क्लिक करें',
+    img_type_label: 'इमेज टाइप',
+    img_type_tooltip: 'यदि आपका इनपुट Data URI प्रीफ़िक्स के बिना एक सादा Base64 स्ट्रिंग है, तो इमेज टाइप मैन्युअली चुनें।',
+    type_auto: 'Data URI से ऑटो-डिटेक्ट',
+    convert_btn: 'इमेज में बदलें', preview_label: 'इमेज प्रीव्यू',
+    badge_format: 'फ़ॉर्मेट', badge_dims: 'आयाम', badge_size: 'साइज़',
+    detected_label: 'पहचाना गया फ़ॉर्मेट',
+    download_btn: 'डाउनलोड', download_png: 'PNG', download_jpg: 'JPG', download_webp: 'WebP',
+    format_note: 'नोट: JPEG रूपांतरण नुकसानदेह है। एनिमेटेड GIF और SVG केवल मूल फ़ॉर्मेट में।',
+    copy_uri_btn: 'Data URI कॉपी करें', copied_state: 'कॉपी हो गया!', clear_btn: 'साफ़ करें',
+    security_banner: 'सभी डेटा आपके ब्राउज़र में प्रोसेस होता है — कोई भी सर्वर को नहीं भेजा जाता।',
+    error_invalid: 'कोई वैध Base64 एन्कोडेड इमेज नहीं मिली। इनपुट जांचें और पुनः प्रयास करें।',
+    gif_animated_note: 'एनिमेटेड GIF मिली। एनिमेशन बनाए रखने के लिए GIF फ़ॉर्मेट में डाउनलोड करें।',
+    other_tools_label: 'अन्य टूल', tool_img2b64: 'इमेज को Base64 में', tool_text_decode: 'टेक्स्ट डिकोड', tool_text_encode: 'टेक्स्ट एन्कोड',
+    acc1_title: 'Base64 से इमेज कन्वर्ज़न क्या है?',
+    acc1_body: `<p>Base64 एक एन्कोडिंग स्कीम है जो बाइनरी डेटा (जैसे इमेज) को ASCII टेक्स्ट में बदलती है। इसका उपयोग HTML Data URI, CSS बैकग्राउंड और API JSON रिस्पांस में होता है।</p>`,
+    acc2_title: 'स्वीकार्य इनपुट फ़ॉर्मेट',
+    acc2_body: `<ul><li><strong>रॉ Base64:</strong> बिना प्रीफ़िक्स की एन्कोडेड स्ट्रिंग।</li><li><strong>Data URI:</strong> data:image/png;base64,iVBOR... फ़ॉर्मेट।</li><li><strong>.txt फ़ाइल:</strong> Base64 स्ट्रिंग वाली टेक्स्ट फ़ाइल।</li></ul>`,
+    acc3_title: 'समर्थित इमेज टाइप',
+    acc3_body: `<p>PNG, JPEG, GIF (एनिमेटेड सहित), WebP, SVG, BMP, ICO, TIFF और AVIF सभी सपोर्टेड हैं।</p>`,
+    acc4_title: 'फ़ॉर्मेट कन्वर्ज़न',
+    acc4_body: `<p>डिकोड करने के बाद PNG, JPG या WebP में डाउनलोड करें। Canvas API का उपयोग होता है। JPEG रूपांतरण नुकसानदेह है। एनिमेटेड GIF और SVG केवल मूल फ़ॉर्मेट में।</p>`,
+    acc5_title: 'गोपनीयता और सुरक्षा',
+    acc5_body: `<p>सभी डिकोडिंग आपके ब्राउज़र में होती है। आपका Base64 डेटा कभी किसी सर्वर को नहीं भेजा जाता।</p>`,
+    faq_title: 'अक्सर पूछे जाने वाले प्रश्न',
+    faq_q1: 'यह टूल कौन से इमेज फ़ॉर्मेट सपोर्ट करता है?', faq_a1: 'PNG, JPEG, GIF (एनिमेटेड सहित), WebP, SVG, BMP, ICO, TIFF और AVIF सभी सपोर्टेड हैं।',
+    faq_q2: 'क्या मैं इमेज को दूसरे फ़ॉर्मेट में डाउनलोड कर सकता हूँ?', faq_a2: 'हाँ। डिकोड करने के बाद PNG, JPG या WebP में डाउनलोड करें।',
+    faq_q3: 'क्या यह टूल प्राइवेट है?', faq_a3: 'पूरी तरह प्राइवेट। सभी डिकोडिंग ब्राउज़र में होती है।',
+    faq_q4: 'मेरी इमेज डिकोड क्यों नहीं हो रही?', faq_a4: 'Base64 स्ट्रिंग दूषित है या URL-safe Base64 बिना रूपांतरण के पेस्ट किया गया।',
+    faq_q5: 'Data URI क्या है?', faq_a5: 'Data URI फ़ाइल सामग्री को HTML या CSS में सीधे एम्बेड करता है।',
+    footer_about: 'हमारे बारे में', footer_privacy: 'गोपनीयता नीति', footer_terms: 'उपयोग की शर्तें', footer_contact: 'संपर्क करें', footer_also_try: 'यह भी आज़माएँ:',
+  },
 };
 
 // ─── LANGUAGE ─────────────────────────────────────────────────────────────────
@@ -1690,7 +1863,7 @@ function applyLang(lang) {
     if (T[lang][key] !== undefined) el.placeholder = T[lang][key];
   });
 
-  const langNames = { en:'English', es:'Español', pt:'Português', fr:'Français', de:'Deutsch', it:'Italiano', zh:'中文', ru:'Русский' };
+  const langNames = { en:'English', es:'Español', pt:'Português', fr:'Français', de:'Deutsch', it:'Italiano', zh:'中文', ru:'Русский', ja:'日本語', ko:'한국어', nl:'Nederlands', hi:'हिन्दी' };
   document.getElementById('langLabel').textContent = langNames[lang] || 'English';
 
   document.querySelectorAll('.lang-option').forEach(opt => {
