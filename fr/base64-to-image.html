@@ -1717,7 +1717,8 @@ document.querySelectorAll('.lang-option').forEach(opt => {
     e.stopPropagation();
     const sel = opt.dataset.lang;
     localStorage.setItem('b64_lang', sel);
-    window.location.href = '/' + sel + '/base64-to-image.html';
+		const path = sel === 'en' ? '/base64-to-image.html' : '/' + sel + '/base64-to-image.html';
+		window.location.href = path;
     document.getElementById('langDropdown').classList.remove('open');
   });
 });

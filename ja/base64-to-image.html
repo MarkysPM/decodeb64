@@ -66,7 +66,7 @@
   <meta name="description" content="Base64文字列を即座にブラウザで画像に変換。生のBase64またはData URIを貼り付けてPNG・JPG・WebPで表示・ダウンロード — 100%プライベート。" />
   <meta name="robots" content="index, follow" />
   <link rel="canonical" href="https://decodeb64.com/ja/base64-to-image.html" />
-  <link rel="alternate" hreflang="en" href="https://decodeb64.com/en/base64-to-image.html" />
+  <link rel="alternate" hreflang="en" href="https://decodeb64.com/base64-to-image.html" />
   <link rel="alternate" hreflang="es" href="https://decodeb64.com/es/base64-to-image.html" />
   <link rel="alternate" hreflang="pt" href="https://decodeb64.com/pt/base64-to-image.html" />
   <link rel="alternate" hreflang="fr" href="https://decodeb64.com/fr/base64-to-image.html" />
@@ -1981,7 +1981,8 @@ document.querySelectorAll('.lang-option').forEach(opt => {
     e.stopPropagation();
     const sel = opt.dataset.lang;
     localStorage.setItem('b64_lang', sel);
-    window.location.href = '/' + sel + '/base64-to-image.html';
+		const path = sel === 'en' ? '/base64-to-image.html' : '/' + sel + '/base64-to-image.html';
+		window.location.href = path;
     document.getElementById('langDropdown').classList.remove('open');
   });
 });
