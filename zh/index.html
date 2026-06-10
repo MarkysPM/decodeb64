@@ -968,14 +968,14 @@
   </a>
   <div class="header-right">
     <nav class="nav-pills">
-      <a href="https://encodeb64.com" class="nav-pill inactive" data-i18n="nav_encode" rel="noopener noreferrer" target="_blank">Encode</a>
-      <span class="nav-pill active" data-i18n="nav_decode">Decode</span>
-      <a href="base64-to-image.html" class="nav-pill inactive" data-i18n="nav_b2i">Base64 to Image</a>
+      <a href="https://encodeb64.com" class="nav-pill inactive" data-i18n="nav_encode" rel="noopener noreferrer" target="_blank">编码</a>
+      <span class="nav-pill active" data-i18n="nav_decode">解码</span>
+      <a href="base64-to-image.html" class="nav-pill inactive" data-i18n="nav_b2i">Base64 转图片</a>
     </nav>
     <div class="lang-selector">
       <button class="lang-btn" id="langBtn" aria-haspopup="listbox" aria-expanded="false">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
-        <span id="langLabel">English</span>
+        <span id="langLabel">中文</span>
         <svg viewBox="0 0 10 6" fill="currentColor" width="10" height="6"><path d="M0 0l5 6 5-6z"/></svg>
       </button>
       <div class="lang-dropdown" id="langDropdown" role="listbox">
@@ -998,8 +998,8 @@
   <!-- HERO -->
   <section class="hero">
     <div class="hero-glow"></div>
-    <h1 data-i18n="hero_h1">Decode from Base64</h1>
-    <p class="hero-sub" data-i18n="hero_sub">Instantly decode Base64 strings or files back to their original format, right in your browser.</p>
+    <h1 data-i18n="hero_h1">Base64 在线解码器</h1>
+    <p class="hero-sub" data-i18n="hero_sub">即时将 Base64 字符串和文件解码为文本、图片和二进制数据 — 自动 UTF-8 检测，支持 URL-safe，100% 私密。</p>
   </section>
 
   <div id="ezoic-pub-ad-placeholder-101"></div>
@@ -1009,13 +1009,13 @@
 
     <!-- TEXT DECODE -->
     <div>
-      <label for="inputText" data-i18n="input_label">Base64 string to decode</label>
-      <textarea id="inputText" spellcheck="false" data-i18n-placeholder="input_placeholder" placeholder="Paste your Base64 encoded text here..."></textarea>
+      <label for="inputText" data-i18n="input_label">待解码的 Base64 字符串</label>
+      <textarea id="inputText" spellcheck="false" data-i18n-placeholder="input_placeholder" placeholder="在此粘贴您的 Base64 编码文本..."></textarea>
 
       <!-- Options row -->
       <div class="options-row">
         <div class="select-wrap">
-          <label for="charsetSelect" data-i18n="charset_label">Character set</label>
+          <label for="charsetSelect" data-i18n="charset_label">字符集</label>
           <select id="charsetSelect">
             <option value="auto">AUTO-DETECT</option>
             <option value="utf-8">UTF-8</option>
@@ -1030,10 +1030,10 @@
 
         <div class="option-group">
           <input type="checkbox" class="custom-checkbox" id="decodeLines" />
-          <label for="decodeLines" data-i18n="decode_lines_label">Decode each line separately</label>
+          <label for="decodeLines" data-i18n="decode_lines_label">逐行解码</label>
           <div class="tooltip-wrap">
             <span class="tooltip-icon">?</span>
-            <span class="tooltip-text" data-i18n="decode_lines_tooltip">Decodes each line of the input independently. Useful for multiple separate Base64 entries separated by line breaks.</span>
+            <span class="tooltip-text" data-i18n="decode_lines_tooltip">独立解码每一行。适用于多个以换行符分隔的 Base64 条目。</span>
           </div>
         </div>
 
@@ -1042,26 +1042,26 @@
             <input type="checkbox" id="liveMode" />
             <span class="toggle-slider"></span>
           </label>
-          <label for="liveMode" class="toggle-label" data-i18n="live_mode_label">Live mode</label>
+          <label for="liveMode" class="toggle-label" data-i18n="live_mode_label">实时模式</label>
         </div>
       </div>
 
-      <button class="btn-decode" id="decodeBtn" data-i18n="decode_btn">Decode</button>
+      <button class="btn-decode" id="decodeBtn" data-i18n="decode_btn">解码</button>
 
       <!-- Output -->
       <div class="output-section" id="outputSection">
         <div class="output-label-row">
-          <label data-i18n="output_label">Decoded output</label>
+          <label data-i18n="output_label">解码结果</label>
           <div class="live-badge" id="liveBadge">
             <span class="live-dot"></span>
             LIVE
           </div>
         </div>
         <textarea id="outputText" readonly spellcheck="false"></textarea>
-        <div class="error-msg" id="errorMsg" data-i18n="error_msg">Invalid Base64 input. Please check your data and try again.</div>
+        <div class="error-msg" id="errorMsg" data-i18n="error_msg">无效的 Base64 输入，请检查您的数据后重试。</div>
         <div class="action-btns">
-          <button class="btn-secondary btn-copy" id="copyBtn" data-i18n="copy_btn">Copy to clipboard</button>
-          <button class="btn-secondary" id="clearBtn" data-i18n="clear_btn">Clear all</button>
+          <button class="btn-secondary btn-copy" id="copyBtn" data-i18n="copy_btn">复制到剪贴板</button>
+          <button class="btn-secondary" id="clearBtn" data-i18n="clear_btn">清除全部</button>
         </div>
       </div>
     </div>
@@ -1070,14 +1070,14 @@
 
     <!-- FILE DECODE -->
     <div>
-      <p class="section-title" data-i18n="file_section_title">Decode a file from Base64</p>
+      <p class="section-title" data-i18n="file_section_title">从 Base64 解码文件</p>
 
       <div class="drop-zone" id="dropZone">
         <svg class="drop-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
           <polyline points="16 16 12 12 8 16"/><line x1="12" y1="12" x2="12" y2="21"/>
           <path d="M20.39 18.39A5 5 0 0 0 18 9h-1.26A8 8 0 1 0 3 16.3"/>
         </svg>
-        <p class="drop-text" data-i18n="drop_zone_text"><strong>Drop your Base64 file here</strong>, or click to browse</p>
+        <p class="drop-text" data-i18n="drop_zone_text"><strong>将您的 Base64 文件拖放到此处</strong>，或点击浏览</p>
         <input type="file" id="fileInput" style="display:none" />
       </div>
 
@@ -1085,18 +1085,18 @@
 
       <div class="security-warning">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
-        <span data-i18n="security_warning">Do not execute decoded files from untrusted sources.</span>
+        <span data-i18n="security_warning">请勿执行来自不可信来源的解码文件。</span>
       </div>
 
       <div class="option-group" style="margin-bottom:14px;">
         <input type="checkbox" class="custom-checkbox" id="decodeLinesFile" />
-        <label for="decodeLinesFile" data-i18n="decode_lines_label">Decode each line separately</label>
+        <label for="decodeLinesFile" data-i18n="decode_lines_label">逐行解码</label>
       </div>
 
-      <button class="btn-decode" id="decodeFileBtn" data-i18n="decode_file_btn">Decode File</button>
+      <button class="btn-decode" id="decodeFileBtn" data-i18n="decode_file_btn">解码文件</button>
 
       <div class="error-msg" id="fileErrorMsg"></div>
-      <a class="btn-download" id="downloadBtn" download data-i18n="download_btn">Download decoded file</a>
+      <a class="btn-download" id="downloadBtn" download data-i18n="download_btn">下载解码文件</a>
     </div>
 
   </div>
@@ -1105,7 +1105,7 @@
   <section>
     <div class="accordion-item">
       <div class="accordion-header" onclick="toggleAccordion(this)">
-        <span data-i18n="acc1_title">What is Base64 decoding?</span>
+        <span data-i18n="acc1_title">什么是 Base64 解码？</span>
         <svg class="accordion-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
       </div>
       <div class="accordion-body">
@@ -1115,7 +1115,7 @@
 
     <div class="accordion-item">
       <div class="accordion-header" onclick="toggleAccordion(this)">
-        <span data-i18n="acc2_title">Advanced options explained</span>
+        <span data-i18n="acc2_title">高级选项说明</span>
         <svg class="accordion-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
       </div>
       <div class="accordion-body">
@@ -1125,7 +1125,7 @@
 
     <div class="accordion-item">
       <div class="accordion-header" onclick="toggleAccordion(this)">
-        <span data-i18n="acc3_title">Security &amp; Privacy</span>
+        <span data-i18n="acc3_title">安全与隐私</span>
         <svg class="accordion-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
       </div>
       <div class="accordion-body">
@@ -1135,7 +1135,7 @@
 
     <div class="accordion-item">
       <div class="accordion-header" onclick="toggleAccordion(this)">
-        <span data-i18n="acc4_title">Completely free</span>
+        <span data-i18n="acc4_title">完全免费</span>
         <svg class="accordion-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
       </div>
       <div class="accordion-body">
@@ -1145,7 +1145,7 @@
 
     <div class="accordion-item">
       <div class="accordion-header" onclick="toggleAccordion(this)">
-        <span data-i18n="acc5_title">How Base64 works</span>
+        <span data-i18n="acc5_title">Base64 的工作原理</span>
         <svg class="accordion-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
       </div>
       <div class="accordion-body">
@@ -1158,60 +1158,60 @@
   <div id="ezoic-pub-ad-placeholder-102"></div>
 <!-- FAQ -->
   <section style="margin-top:8px;" itemscope itemtype="https://schema.org/FAQPage">
-    <h2 class="content-h2" data-i18n="faq_title">Frequently Asked Questions</h2>
+    <h2 class="content-h2" data-i18n="faq_title">常见问题</h2>
     <div class="accordion-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
       <div class="accordion-header" onclick="toggleAccordion(this)">
-        <span data-i18n="faq_q1" itemprop="name">What is Base64 decoding?</span>
+        <span data-i18n="faq_q1" itemprop="name">什么是 Base64 解码？</span>
         <svg class="accordion-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
       </div>
       <div class="accordion-body" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
-        <div class="accordion-content" data-i18n="faq_a1" itemprop="text">Base64 decoding is the reverse of encoding — it converts a Base64 string back to its original binary or text data. Used to recover data from JWT tokens, email attachments (MIME), API responses, and data URIs.</div>
+        <div class="accordion-content" data-i18n="faq_a1" itemprop="text">Base64 解码是编码的逆过程——将 Base64 字符串转换回原始的二进制或文本数据。用于从 JWT 令牌、电子邮件附件（MIME）、API 响应和数据 URI 中恢复数据。</div>
       </div>
     </div>
     <div class="accordion-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
       <div class="accordion-header" onclick="toggleAccordion(this)">
-        <span data-i18n="faq_q2" itemprop="name">Is Base64 decoding the same as decryption?</span>
+        <span data-i18n="faq_q2" itemprop="name">Base64 解码与解密相同吗？</span>
         <svg class="accordion-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
       </div>
       <div class="accordion-body" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
-        <div class="accordion-content" data-i18n="faq_a2" itemprop="text">No. Base64 is encoding, not encryption. Anyone can decode a Base64 string instantly — there is no key or password required. Never use Base64 alone to protect sensitive data.</div>
+        <div class="accordion-content" data-i18n="faq_a2" itemprop="text">不相同。Base64 是编码，不是加密。任何人都可以立即解码 Base64 字符串——不需要密钥或密码。永远不要单独使用 Base64 来保护敏感数据。</div>
       </div>
     </div>
     <div class="accordion-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
       <div class="accordion-header" onclick="toggleAccordion(this)">
-        <span data-i18n="faq_q3" itemprop="name">What does "Invalid Base64 input" mean?</span>
+        <span data-i18n="faq_q3" itemprop="name">「无效的 Base64 输入」是什么意思？</span>
         <svg class="accordion-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
       </div>
       <div class="accordion-body" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
-        <div class="accordion-content" data-i18n="faq_a3" itemprop="text">The input contains characters outside the Base64 alphabet (A–Z, a–z, 0–9, +, /, =). Common causes: extra whitespace, missing = padding, or the URL-safe variant (- and _ instead of + and /).</div>
+        <div class="accordion-content" data-i18n="faq_a3" itemprop="text">输入包含 Base64 字母表以外的字符（A–Z、a–z、0–9、+、/、=）。常见原因：多余的空格、缺少 = 填充，或 URL 安全变体（- 和 _ 代替 + 和 /）。</div>
       </div>
     </div>
     <div class="accordion-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
       <div class="accordion-header" onclick="toggleAccordion(this)">
-        <span data-i18n="faq_q4" itemprop="name">How do I decode a Base64URL string?</span>
+        <span data-i18n="faq_q4" itemprop="name">如何解码 Base64URL 字符串？</span>
         <svg class="accordion-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
       </div>
       <div class="accordion-body" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
-        <div class="accordion-content" data-i18n="faq_a4" itemprop="text">Base64URL replaces + with - and / with _ and removes = padding. Before decoding, replace - with +, _ with /, and add missing = padding so the length is a multiple of 4.</div>
+        <div class="accordion-content" data-i18n="faq_a4" itemprop="text">Base64URL 用 - 替换 +，用 _ 替换 /，并去掉 = 填充。解码前，将 - 替换为 +，将 _ 替换为 /，并添加缺失的 = 填充，使长度为 4 的倍数。</div>
       </div>
     </div>
     <div class="accordion-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
       <div class="accordion-header" onclick="toggleAccordion(this)">
-        <span data-i18n="faq_q5" itemprop="name">Can I decode binary files like images or PDFs?</span>
+        <span data-i18n="faq_q5" itemprop="name">我可以解码图片或 PDF 等二进制文件吗？</span>
         <svg class="accordion-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
       </div>
       <div class="accordion-body" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
-        <div class="accordion-content" data-i18n="faq_a5" itemprop="text">Yes. Use the file decode section to upload a Base64-encoded .txt file. The tool decodes the binary content and offers it as a download with the correct file type detected automatically.</div>
+        <div class="accordion-content" data-i18n="faq_a5" itemprop="text">可以。使用文件解码部分上传包含 Base64 内容的 .txt 文件。工具会解码二进制内容，并自动检测文件类型后提供下载。</div>
       </div>
     </div>
   </section>
 
   <!-- OTHER TOOLS -->
   <section style="margin-top:28px;margin-bottom:8px;">
-    <h2 class="content-h2" data-i18n="other_tools_title">Other Tools</h2>
+    <h2 class="content-h2" data-i18n="other_tools_title">其他工具</h2>
     <div style="display:flex;gap:12px;flex-wrap:wrap;">
-      <a href="https://encodeb64.com" class="other-tool-link" rel="noopener noreferrer" target="_blank">Base64 Encode →</a>
-      <a href="/base64-to-image" class="other-tool-link">Base64 to Image →</a>
+      <a href="https://encodeb64.com" class="other-tool-link" rel="noopener noreferrer" target="_blank">Base64 编码 →</a>
+      <a href="/base64-to-image" class="other-tool-link">Base64 转图片 →</a>
     </div>
   </section>
 
@@ -1222,12 +1222,12 @@
     <div id="ezoic-pub-ad-placeholder-103"></div>
 <span>decodeb64.com &copy; 2025</span>
   <div class="footer-links">
-    <a href="#" data-i18n="footer_about">About</a>
-    <a href="#" data-i18n="footer_privacy">Privacy Policy</a>
-    <a href="#" data-i18n="footer_terms">Terms of Use</a>
-    <a href="#" data-i18n="footer_contact">Contact</a>
+    <a href="#" data-i18n="footer_about">关于</a>
+    <a href="#" data-i18n="footer_privacy">隐私政策</a>
+    <a href="#" data-i18n="footer_terms">使用条款</a>
+    <a href="#" data-i18n="footer_contact">联系我们</a>
   </div>
-  <span class="footer-right"><span data-i18n="footer_also_try">Also try:</span> <a href="https://encodeb64.com" rel="noopener noreferrer" target="_blank">Base64 Encode — encodeb64.com →</a></span>
+  <span class="footer-right"><span data-i18n="footer_also_try">也可以试试：</span> <a href="https://encodeb64.com" rel="noopener noreferrer" target="_blank">Base64 Encode — encodeb64.com →</a></span>
 </footer>
 
 <script>

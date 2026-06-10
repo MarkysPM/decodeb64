@@ -968,14 +968,14 @@
   </a>
   <div class="header-right">
     <nav class="nav-pills">
-      <a href="https://encodeb64.com" class="nav-pill inactive" data-i18n="nav_encode" rel="noopener noreferrer" target="_blank">Encode</a>
-      <span class="nav-pill active" data-i18n="nav_decode">Decode</span>
-      <a href="base64-to-image.html" class="nav-pill inactive" data-i18n="nav_b2i">Base64 to Image</a>
+      <a href="https://encodeb64.com" class="nav-pill inactive" data-i18n="nav_encode" rel="noopener noreferrer" target="_blank">Codifica</a>
+      <span class="nav-pill active" data-i18n="nav_decode">Decodifica</span>
+      <a href="base64-to-image.html" class="nav-pill inactive" data-i18n="nav_b2i">Base64 in immagine</a>
     </nav>
     <div class="lang-selector">
       <button class="lang-btn" id="langBtn" aria-haspopup="listbox" aria-expanded="false">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
-        <span id="langLabel">English</span>
+        <span id="langLabel">Italiano</span>
         <svg viewBox="0 0 10 6" fill="currentColor" width="10" height="6"><path d="M0 0l5 6 5-6z"/></svg>
       </button>
       <div class="lang-dropdown" id="langDropdown" role="listbox">
@@ -998,8 +998,8 @@
   <!-- HERO -->
   <section class="hero">
     <div class="hero-glow"></div>
-    <h1 data-i18n="hero_h1">Decode from Base64</h1>
-    <p class="hero-sub" data-i18n="hero_sub">Instantly decode Base64 strings or files back to their original format, right in your browser.</p>
+    <h1 data-i18n="hero_h1">Decodificatore Base64 Online</h1>
+    <p class="hero-sub" data-i18n="hero_sub">Decodifica istantaneamente stringhe e file Base64 — testo, immagini e dati binari. Rilevamento UTF-8 automatico, supporto URL-safe, 100% privato.</p>
   </section>
 
   <div id="ezoic-pub-ad-placeholder-101"></div>
@@ -1009,13 +1009,13 @@
 
     <!-- TEXT DECODE -->
     <div>
-      <label for="inputText" data-i18n="input_label">Base64 string to decode</label>
-      <textarea id="inputText" spellcheck="false" data-i18n-placeholder="input_placeholder" placeholder="Paste your Base64 encoded text here..."></textarea>
+      <label for="inputText" data-i18n="input_label">Stringa Base64 da decodificare</label>
+      <textarea id="inputText" spellcheck="false" data-i18n-placeholder="input_placeholder" placeholder="Incolla qui il tuo testo codificato in Base64..."></textarea>
 
       <!-- Options row -->
       <div class="options-row">
         <div class="select-wrap">
-          <label for="charsetSelect" data-i18n="charset_label">Character set</label>
+          <label for="charsetSelect" data-i18n="charset_label">Set di caratteri</label>
           <select id="charsetSelect">
             <option value="auto">AUTO-DETECT</option>
             <option value="utf-8">UTF-8</option>
@@ -1030,10 +1030,10 @@
 
         <div class="option-group">
           <input type="checkbox" class="custom-checkbox" id="decodeLines" />
-          <label for="decodeLines" data-i18n="decode_lines_label">Decode each line separately</label>
+          <label for="decodeLines" data-i18n="decode_lines_label">Decodifica ogni riga separatamente</label>
           <div class="tooltip-wrap">
             <span class="tooltip-icon">?</span>
-            <span class="tooltip-text" data-i18n="decode_lines_tooltip">Decodes each line of the input independently. Useful for multiple separate Base64 entries separated by line breaks.</span>
+            <span class="tooltip-text" data-i18n="decode_lines_tooltip">Decodifica ogni riga in modo indipendente. Utile per più voci Base64 separate da interruzioni di riga.</span>
           </div>
         </div>
 
@@ -1042,26 +1042,26 @@
             <input type="checkbox" id="liveMode" />
             <span class="toggle-slider"></span>
           </label>
-          <label for="liveMode" class="toggle-label" data-i18n="live_mode_label">Live mode</label>
+          <label for="liveMode" class="toggle-label" data-i18n="live_mode_label">Modalità live</label>
         </div>
       </div>
 
-      <button class="btn-decode" id="decodeBtn" data-i18n="decode_btn">Decode</button>
+      <button class="btn-decode" id="decodeBtn" data-i18n="decode_btn">Decodifica</button>
 
       <!-- Output -->
       <div class="output-section" id="outputSection">
         <div class="output-label-row">
-          <label data-i18n="output_label">Decoded output</label>
+          <label data-i18n="output_label">Output decodificato</label>
           <div class="live-badge" id="liveBadge">
             <span class="live-dot"></span>
             LIVE
           </div>
         </div>
         <textarea id="outputText" readonly spellcheck="false"></textarea>
-        <div class="error-msg" id="errorMsg" data-i18n="error_msg">Invalid Base64 input. Please check your data and try again.</div>
+        <div class="error-msg" id="errorMsg" data-i18n="error_msg">Input Base64 non valido. Controlla i tuoi dati e riprova.</div>
         <div class="action-btns">
-          <button class="btn-secondary btn-copy" id="copyBtn" data-i18n="copy_btn">Copy to clipboard</button>
-          <button class="btn-secondary" id="clearBtn" data-i18n="clear_btn">Clear all</button>
+          <button class="btn-secondary btn-copy" id="copyBtn" data-i18n="copy_btn">Copia negli appunti</button>
+          <button class="btn-secondary" id="clearBtn" data-i18n="clear_btn">Cancella tutto</button>
         </div>
       </div>
     </div>
@@ -1070,14 +1070,14 @@
 
     <!-- FILE DECODE -->
     <div>
-      <p class="section-title" data-i18n="file_section_title">Decode a file from Base64</p>
+      <p class="section-title" data-i18n="file_section_title">Decodifica un file da Base64</p>
 
       <div class="drop-zone" id="dropZone">
         <svg class="drop-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
           <polyline points="16 16 12 12 8 16"/><line x1="12" y1="12" x2="12" y2="21"/>
           <path d="M20.39 18.39A5 5 0 0 0 18 9h-1.26A8 8 0 1 0 3 16.3"/>
         </svg>
-        <p class="drop-text" data-i18n="drop_zone_text"><strong>Drop your Base64 file here</strong>, or click to browse</p>
+        <p class="drop-text" data-i18n="drop_zone_text"><strong>Trascina il tuo file Base64 qui</strong>, o clicca per sfogliare</p>
         <input type="file" id="fileInput" style="display:none" />
       </div>
 
@@ -1085,18 +1085,18 @@
 
       <div class="security-warning">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
-        <span data-i18n="security_warning">Do not execute decoded files from untrusted sources.</span>
+        <span data-i18n="security_warning">Non eseguire file decodificati da fonti non affidabili.</span>
       </div>
 
       <div class="option-group" style="margin-bottom:14px;">
         <input type="checkbox" class="custom-checkbox" id="decodeLinesFile" />
-        <label for="decodeLinesFile" data-i18n="decode_lines_label">Decode each line separately</label>
+        <label for="decodeLinesFile" data-i18n="decode_lines_label">Decodifica ogni riga separatamente</label>
       </div>
 
-      <button class="btn-decode" id="decodeFileBtn" data-i18n="decode_file_btn">Decode File</button>
+      <button class="btn-decode" id="decodeFileBtn" data-i18n="decode_file_btn">Decodifica file</button>
 
       <div class="error-msg" id="fileErrorMsg"></div>
-      <a class="btn-download" id="downloadBtn" download data-i18n="download_btn">Download decoded file</a>
+      <a class="btn-download" id="downloadBtn" download data-i18n="download_btn">Scarica file decodificato</a>
     </div>
 
   </div>
@@ -1105,7 +1105,7 @@
   <section>
     <div class="accordion-item">
       <div class="accordion-header" onclick="toggleAccordion(this)">
-        <span data-i18n="acc1_title">What is Base64 decoding?</span>
+        <span data-i18n="acc1_title">Cos'è la decodifica Base64?</span>
         <svg class="accordion-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
       </div>
       <div class="accordion-body">
@@ -1115,7 +1115,7 @@
 
     <div class="accordion-item">
       <div class="accordion-header" onclick="toggleAccordion(this)">
-        <span data-i18n="acc2_title">Advanced options explained</span>
+        <span data-i18n="acc2_title">Opzioni avanzate spiegate</span>
         <svg class="accordion-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
       </div>
       <div class="accordion-body">
@@ -1125,7 +1125,7 @@
 
     <div class="accordion-item">
       <div class="accordion-header" onclick="toggleAccordion(this)">
-        <span data-i18n="acc3_title">Security &amp; Privacy</span>
+        <span data-i18n="acc3_title">Sicurezza e privacy</span>
         <svg class="accordion-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
       </div>
       <div class="accordion-body">
@@ -1135,7 +1135,7 @@
 
     <div class="accordion-item">
       <div class="accordion-header" onclick="toggleAccordion(this)">
-        <span data-i18n="acc4_title">Completely free</span>
+        <span data-i18n="acc4_title">Completamente gratuito</span>
         <svg class="accordion-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
       </div>
       <div class="accordion-body">
@@ -1145,7 +1145,7 @@
 
     <div class="accordion-item">
       <div class="accordion-header" onclick="toggleAccordion(this)">
-        <span data-i18n="acc5_title">How Base64 works</span>
+        <span data-i18n="acc5_title">Come funziona Base64</span>
         <svg class="accordion-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
       </div>
       <div class="accordion-body">
@@ -1158,60 +1158,60 @@
   <div id="ezoic-pub-ad-placeholder-102"></div>
 <!-- FAQ -->
   <section style="margin-top:8px;" itemscope itemtype="https://schema.org/FAQPage">
-    <h2 class="content-h2" data-i18n="faq_title">Frequently Asked Questions</h2>
+    <h2 class="content-h2" data-i18n="faq_title">Domande Frequenti</h2>
     <div class="accordion-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
       <div class="accordion-header" onclick="toggleAccordion(this)">
-        <span data-i18n="faq_q1" itemprop="name">What is Base64 decoding?</span>
+        <span data-i18n="faq_q1" itemprop="name">Cos'è la decodifica Base64?</span>
         <svg class="accordion-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
       </div>
       <div class="accordion-body" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
-        <div class="accordion-content" data-i18n="faq_a1" itemprop="text">Base64 decoding is the reverse of encoding — it converts a Base64 string back to its original binary or text data. Used to recover data from JWT tokens, email attachments (MIME), API responses, and data URIs.</div>
+        <div class="accordion-content" data-i18n="faq_a1" itemprop="text">La decodifica Base64 è l'inverso della codifica — converte una stringa Base64 nei dati binari o testuali originali. Usata per recuperare dati da token JWT, allegati email (MIME), risposte API e URI di dati.</div>
       </div>
     </div>
     <div class="accordion-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
       <div class="accordion-header" onclick="toggleAccordion(this)">
-        <span data-i18n="faq_q2" itemprop="name">Is Base64 decoding the same as decryption?</span>
+        <span data-i18n="faq_q2" itemprop="name">La decodifica Base64 è uguale alla decrittografia?</span>
         <svg class="accordion-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
       </div>
       <div class="accordion-body" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
-        <div class="accordion-content" data-i18n="faq_a2" itemprop="text">No. Base64 is encoding, not encryption. Anyone can decode a Base64 string instantly — there is no key or password required. Never use Base64 alone to protect sensitive data.</div>
+        <div class="accordion-content" data-i18n="faq_a2" itemprop="text">No. Base64 è codifica, non crittografia. Chiunque può decodificare una stringa Base64 istantaneamente — non serve alcuna chiave o password. Non usare mai Base64 da solo per proteggere dati sensibili.</div>
       </div>
     </div>
     <div class="accordion-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
       <div class="accordion-header" onclick="toggleAccordion(this)">
-        <span data-i18n="faq_q3" itemprop="name">What does "Invalid Base64 input" mean?</span>
+        <span data-i18n="faq_q3" itemprop="name">Cosa significa «Input Base64 non valido»?</span>
         <svg class="accordion-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
       </div>
       <div class="accordion-body" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
-        <div class="accordion-content" data-i18n="faq_a3" itemprop="text">The input contains characters outside the Base64 alphabet (A–Z, a–z, 0–9, +, /, =). Common causes: extra whitespace, missing = padding, or the URL-safe variant (- and _ instead of + and /).</div>
+        <div class="accordion-content" data-i18n="faq_a3" itemprop="text">L'input contiene caratteri fuori dall'alfabeto Base64 (A–Z, a–z, 0–9, +, /, =). Cause comuni: spazi extra, padding = mancante, o la variante URL-safe (- e _ al posto di + e /).</div>
       </div>
     </div>
     <div class="accordion-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
       <div class="accordion-header" onclick="toggleAccordion(this)">
-        <span data-i18n="faq_q4" itemprop="name">How do I decode a Base64URL string?</span>
+        <span data-i18n="faq_q4" itemprop="name">Come decodifico una stringa Base64URL?</span>
         <svg class="accordion-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
       </div>
       <div class="accordion-body" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
-        <div class="accordion-content" data-i18n="faq_a4" itemprop="text">Base64URL replaces + with - and / with _ and removes = padding. Before decoding, replace - with +, _ with /, and add missing = padding so the length is a multiple of 4.</div>
+        <div class="accordion-content" data-i18n="faq_a4" itemprop="text">Base64URL sostituisce + con - e / con _ e rimuove il padding =. Prima di decodificare, sostituisci - con +, _ con / e aggiungi il padding = mancante affinché la lunghezza sia un multiplo di 4.</div>
       </div>
     </div>
     <div class="accordion-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
       <div class="accordion-header" onclick="toggleAccordion(this)">
-        <span data-i18n="faq_q5" itemprop="name">Can I decode binary files like images or PDFs?</span>
+        <span data-i18n="faq_q5" itemprop="name">Posso decodificare file binari come immagini o PDF?</span>
         <svg class="accordion-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
       </div>
       <div class="accordion-body" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
-        <div class="accordion-content" data-i18n="faq_a5" itemprop="text">Yes. Use the file decode section to upload a Base64-encoded .txt file. The tool decodes the binary content and offers it as a download with the correct file type detected automatically.</div>
+        <div class="accordion-content" data-i18n="faq_a5" itemprop="text">Sì. Usa la sezione di decodifica file per caricare un file .txt con contenuto Base64. Lo strumento decodifica il contenuto binario e lo offre come download rilevando automaticamente il tipo di file.</div>
       </div>
     </div>
   </section>
 
   <!-- OTHER TOOLS -->
   <section style="margin-top:28px;margin-bottom:8px;">
-    <h2 class="content-h2" data-i18n="other_tools_title">Other Tools</h2>
+    <h2 class="content-h2" data-i18n="other_tools_title">Altri Strumenti</h2>
     <div style="display:flex;gap:12px;flex-wrap:wrap;">
-      <a href="https://encodeb64.com" class="other-tool-link" rel="noopener noreferrer" target="_blank">Base64 Encode →</a>
-      <a href="/base64-to-image" class="other-tool-link">Base64 to Image →</a>
+      <a href="https://encodeb64.com" class="other-tool-link" rel="noopener noreferrer" target="_blank">Codifica Base64 →</a>
+      <a href="/base64-to-image" class="other-tool-link">Base64 in immagine →</a>
     </div>
   </section>
 
@@ -1222,12 +1222,12 @@
     <div id="ezoic-pub-ad-placeholder-103"></div>
 <span>decodeb64.com &copy; 2025</span>
   <div class="footer-links">
-    <a href="#" data-i18n="footer_about">About</a>
-    <a href="#" data-i18n="footer_privacy">Privacy Policy</a>
-    <a href="#" data-i18n="footer_terms">Terms of Use</a>
-    <a href="#" data-i18n="footer_contact">Contact</a>
+    <a href="#" data-i18n="footer_about">Chi siamo</a>
+    <a href="#" data-i18n="footer_privacy">Informativa sulla privacy</a>
+    <a href="#" data-i18n="footer_terms">Termini di utilizzo</a>
+    <a href="#" data-i18n="footer_contact">Contatto</a>
   </div>
-  <span class="footer-right"><span data-i18n="footer_also_try">Also try:</span> <a href="https://encodeb64.com" rel="noopener noreferrer" target="_blank">Base64 Encode — encodeb64.com →</a></span>
+  <span class="footer-right"><span data-i18n="footer_also_try">Prova anche:</span> <a href="https://encodeb64.com" rel="noopener noreferrer" target="_blank">Base64 Encode — encodeb64.com →</a></span>
 </footer>
 
 <script>
