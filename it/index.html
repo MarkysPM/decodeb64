@@ -66,7 +66,7 @@
   <meta name="description" content="Decodificatore Base64 online gratuito. Decodifica stringhe e file Base64 in testo, immagini e dati binari istantaneamente — rilevamento UTF-8, supporto URL-safe, 100% privato." />
   <meta name="robots" content="index, follow" />
   <link rel="canonical" href="https://decodeb64.com/it/" />
-  <link rel="alternate" hreflang="en" href="https://decodeb64.com/en/" />
+  <link rel="alternate" hreflang="en" href="https://decodeb64.com/" />
   <link rel="alternate" hreflang="es" href="https://decodeb64.com/es/" />
   <link rel="alternate" hreflang="pt" href="https://decodeb64.com/pt/" />
   <link rel="alternate" hreflang="fr" href="https://decodeb64.com/fr/" />
@@ -93,6 +93,14 @@
   <meta name="twitter:image:alt" content="Decodificatore Base64 Online su decodeb64.com" />
   <meta name="google-site-verification" content="junzsHbXiK1myji8ElW3o_AukNcT47nJtXPseZPteOU" />
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%230d0d14'/><text x='50%25' y='54%25' dominant-baseline='middle' text-anchor='middle' font-family='monospace' font-weight='bold' font-size='11' fill='%23ff8c42'>B64</text></svg>" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="referrer" content="strict-origin-when-cross-origin" />
+	<meta name="theme-color" content="#0d0d14" />
+	<meta name="color-scheme" content="dark" />
+	<meta name="googlebot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+	<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+	<link rel="preconnect" href="https://fonts.googleapis.com" />
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <style>
     @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Sora:wght@300;400;500;600;700&display=swap');
 
@@ -2043,9 +2051,10 @@ applyLang(currentLang);
   "@graph": [
     {
       "@type": "WebApplication",
-      "@id": "https://decodeb64.com/#webapp",
+      "@id": "https://decodeb64.com/it/#webapp",
       "name": "Decodificatore Base64 Online",
       "url": "https://decodeb64.com/it/",
+      "inLanguage": "it",
       "applicationCategory": "DeveloperApplication",
       "operatingSystem": "Any",
       "offers": {
@@ -2053,52 +2062,53 @@ applyLang(currentLang);
         "price": "0",
         "priceCurrency": "USD"
       },
-      "description": "Decodificatore Base64 online gratuito. Decodifica stringhe e file Base64 in testo, immagini e binari istantaneamente — rilevamento UTF-8 automatico, supporto URL-safe, 100% privato."
+      "description": "Decodificatore Base64 online gratuito. Decodifica stringhe e file Base64 in testo, immagini e dati binari istantaneamente — rilevamento UTF-8 automatico, supporto URL-safe, 100% privato."
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://decodeb64.com/it/#website",
+      "url": "https://decodeb64.com/it/",
+      "name": "decodeb64.com",
+      "inLanguage": "it"
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://decodeb64.com/it/#breadcrumb",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://decodeb64.com/it/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Decodificatore Base64 Online",
+          "item": "https://decodeb64.com/it/"
+        }
+      ]
     },
     {
       "@type": "FAQPage",
-      "@id": "https://decodeb64.com/#faq",
+      "@id": "https://decodeb64.com/it/#faq",
       "mainEntity": [
-    {
-      "@type": "Question",
-      "name": "Cos'è la decodifica Base64?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "La decodifica Base64 è l'inverso della codifica — converte una stringa Base64 nei suoi dati binari o testuali originali. Usata per recuperare dati da token JWT, allegati e-mail (MIME), risposte API e data URI."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "La decodifica Base64 è uguale alla decifrazione?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "No. Base64 è codifica, non crittografia. Chiunque può decodificare istantaneamente una stringa Base64 — non è richiesta alcuna chiave o password. Non usare mai Base64 da solo per proteggere dati sensibili."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "\"Input Base64 non valido\": cosa significa?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "L'input contiene caratteri al di fuori dell'alfabeto Base64 (A–Z, a–z, 0–9, +, /, =). Cause comuni: spazi extra, padding = mancante o la variante URL-safe (- e _ invece di + e /)."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Come decodifico una stringa Base64URL?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Base64URL sostituisce + con - e / con _, e rimuove il padding =. Prima di decodificare, sostituisci - con +, _ con /, e aggiungi il padding = mancante in modo che la lunghezza sia un multiplo di 4."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Posso decodificare file binari come immagini o PDF?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Sì. Usa la sezione di decodifica file per caricare un file .txt codificato in Base64. Lo strumento decodifica il contenuto binario e lo offre come download con il tipo di file rilevato automaticamente."
-      }
-    }
+        {
+          "@type": "Question",
+          "name": "Cos'è la decodifica Base64?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "La decodifica Base64 è l'inverso della codifica e converte una stringa Base64 nei dati originali."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "La decodifica Base64 è uguale alla decifrazione?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. Base64 è codifica, non crittografia."
+          }
+        }
       ]
     }
   ]
