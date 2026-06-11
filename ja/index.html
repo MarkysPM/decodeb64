@@ -1006,7 +1006,7 @@
   <!-- HERO -->
   <section class="hero">
     <div class="hero-glow"></div>
-    <h1 data-i18n="hero_h1">Base64デコーダー オンライン</h1>
+    <h1 data-i18n="hero_h1">Base64 オンラインデコーダー</h1>
     <p class="hero-sub" data-i18n="hero_sub">Base64文字列やファイルをテキスト、画像、バイナリデータに即座に変換 — すべてブラウザ内で完結します。</p>
   </section>
 
@@ -1213,7 +1213,39 @@
       </div>
     </div>
   </section>
-
+  <!-- H2-SECTIONS -->
+  <section style="margin-top:28px;">
+    <div class="glass-card" style="padding:24px 28px;">
+      <h2 class="content-h2" style="margin-top:0;">Base64デコードとは？</h2>
+    <p style="margin:0 0 12px;">Base64デコードはBase64エンコードの逆処理です — Base64文字列を元のバイナリまたはテキストデータに変換します。有効なBase64文字列があれば、どのデコーダーもキーやパスワードなしに元のデータを復元できます。そのためBase64は暗号化の一形態ではありません。</p>
+    <p style="margin:0 0 12px;">Base64エンコードされたデータは以下の場所でよく見られます：JWTトークン（ヘッダーとペイロードがBase64URLエンコードされている）、MIME経由で送信されるメール添付ファイル、HTMLやCSSに埋め込まれた画像のData URI、REST APIのJSONレスポンスで返されるバイナリデータ、バイナリ値をテキストとして保存する設定ファイル。</p>
+    <p style="margin:0 0 12px;">デコード時には、テキストデータの元の文字エンコーディングを知ることが重要です。元のテキストがUTF-8だった場合、UTF-8またはAUTO-DETECTを選択すると正しい結果が得られます。</p>
+    </div>
+  </section>
+  <section style="margin-top:28px;">
+    <div class="glass-card" style="padding:24px 28px;">
+      <h2 class="content-h2" style="margin-top:0;">Base64をオンラインでデコードする方法</h2>
+    <p style="margin:0 0 12px;">decodeb64.comでBase64文字列をデコードするには、エンコードされた文字列を入力フィールドに貼り付け、「デコード」をクリックしてください。ツールはデコード前に空白と改行を自動的に除去するため、手動でクリーニングする必要はありません。</p>
+    <p style="margin:0 0 12px;">Base64URL文字列（+と/の代わりに-と_を使用）をデコードする場合、ツールが自動的に処理します。文字エンコーディングが不明な場合はAUTO-DETECTを選択してください。</p>
+    <p style="margin:0 0 12px;">バッチデコードには「各行を個別にデコード」オプションを有効にしてください — 各行が独立してデコードされ、複数のBase64エントリのリストに便利です。</p>
+    </div>
+  </section>
+  <section style="margin-top:28px;">
+    <div class="glass-card" style="padding:24px 28px;">
+      <h2 class="content-h2" style="margin-top:0;">Base64URLとJWTトークンのデコード</h2>
+    <p style="margin:0 0 12px;">JWT（JSON Web Token）はドットで区切られた3つの部分から成ります：ヘッダー.ペイロード.署名。ヘッダーとペイロードはBase64URLエンコードされています — 標準のBase64ではありません。Base64URLは+の代わりに-、/の代わりに_を使用し、=パディングを省略します。</p>
+    <p style="margin:0 0 12px;">decodeb64.comはBase64URL入力を自動的に検出して処理します。JWTトークンを検査するには、完全なトークンまたはヘッダーかペイロード部分のみを貼り付けてください。</p>
+    <p style="margin:0 0 12px;">JWTペイロードをデコードするとそのclaimsが明らかになりますが、署名は検証されないことに注意してください。セキュリティ検証には常に適切なライブラリを使用してください。</p>
+    </div>
+  </section>
+  <section style="margin-top:28px;">
+    <div class="glass-card" style="padding:24px 28px;">
+      <h2 class="content-h2" style="margin-top:0;">Base64ファイルとバイナリデータのデコード</h2>
+    <p style="margin:0 0 12px;">エンコードされたファイルに対して、decodeb64.comはBase64エンコードされた.txtファイルを受け付けるファイルデコードセクションを提供しています。Base64文字列を含むファイルをアップロードすると、ツールが元のバイナリコンテンツにデコードします。ファイルタイプはマジックバイトシグネチャを使って自動的に検出されます。</p>
+    <p style="margin:0 0 12px;">これはメールやAPIレスポンスの送信用にエンコードされたファイルの復元、設定ファイルにBase64として埋め込まれた画像の抽出に役立ちます。</p>
+    <p style="margin:0 0 12px;">セキュリティの注意事項：ファイルをデコードして実行する前に、Base64データのソースを必ず確認してください。信頼できないソースからのデコードされたファイルは絶対に実行しないでください。</p>
+    </div>
+  </section>
   <!-- OTHER TOOLS -->
   <section style="margin-top:28px;margin-bottom:8px;">
     <h2 class="content-h2" data-i18n="other_tools_title">他のツール</h2>

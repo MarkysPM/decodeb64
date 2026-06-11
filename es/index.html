@@ -1213,7 +1213,39 @@
       </div>
     </div>
   </section>
-
+  <!-- H2-SECTIONS -->
+  <section style="margin-top:28px;">
+    <div class="glass-card" style="padding:24px 28px;">
+      <h2 class="content-h2" style="margin-top:0;">¿Qué es la Decodificación Base64?</h2>
+    <p style="margin:0 0 12px;">La decodificación Base64 es la inversa de la codificación Base64 — convierte una cadena Base64 de vuelta a sus datos binarios o de texto originales. Dado una cadena Base64 válida, cualquier decodificador puede reconstruir los datos originales sin ninguna clave ni contraseña, por lo que Base64 no es una forma de cifrado.</p>
+    <p style="margin:0 0 12px;">Los datos codificados en Base64 se encuentran comúnmente en tokens JWT, archivos adjuntos de correo electrónico transmitidos via MIME, Data URIs de imágenes incrustadas en HTML y CSS, datos binarios devueltos por APIs REST en respuestas JSON, y archivos de configuración que almacenan valores binarios como texto.</p>
+    <p style="margin:0 0 12px;">Al decodificar, es importante conocer la codificación de caracteres original. Si el texto original era UTF-8, seleccionar UTF-8 o AUTO-DETECT producirá resultados correctos.</p>
+    </div>
+  </section>
+  <section style="margin-top:28px;">
+    <div class="glass-card" style="padding:24px 28px;">
+      <h2 class="content-h2" style="margin-top:0;">Cómo Decodificar Base64 Online</h2>
+    <p style="margin:0 0 12px;">Para decodificar una cadena Base64 con decodeb64.com, pega tu cadena codificada en el campo de entrada y haz clic en Decodificar. La herramienta elimina automáticamente los espacios y saltos de línea antes de decodificar, por lo que no necesitas limpiar la cadena manualmente.</p>
+    <p style="margin:0 0 12px;">Si decodificas una cadena Base64URL (que usa - y _ en lugar de + y /), la herramienta lo maneja automáticamente. Si se desconoce la codificación de caracteres del texto original, selecciona AUTO-DETECT.</p>
+    <p style="margin:0 0 12px;">Para la decodificación por lotes, activa "Decodificar cada línea por separado" — cada línea se decodificará de forma independiente, útil para listas de tokens o identificadores codificados.</p>
+    </div>
+  </section>
+  <section style="margin-top:28px;">
+    <div class="glass-card" style="padding:24px 28px;">
+      <h2 class="content-h2" style="margin-top:0;">Decodificar Base64URL y Tokens JWT</h2>
+    <p style="margin:0 0 12px;">Los JWT (JSON Web Tokens) constan de tres partes separadas por puntos: encabezado.carga_útil.firma. El encabezado y la carga útil están codificados en Base64URL — no en Base64 estándar. Base64URL usa - en lugar de + y _ en lugar de /, y omite el carácter de relleno =.</p>
+    <p style="margin:0 0 12px;">decodeb64.com detecta y maneja automáticamente la entrada Base64URL. Para inspeccionar un token JWT, pega el token completo o solo la parte del encabezado o carga útil.</p>
+    <p style="margin:0 0 12px;">Ten en cuenta que decodificar un payload JWT revela los claims que contiene, pero no verifica la firma. Para validación de seguridad, siempre verifica la firma JWT con la librería adecuada.</p>
+    </div>
+  </section>
+  <section style="margin-top:28px;">
+    <div class="glass-card" style="padding:24px 28px;">
+      <h2 class="content-h2" style="margin-top:0;">Decodificar Archivos Base64 y Datos Binarios</h2>
+    <p style="margin:0 0 12px;">Para archivos codificados, decodeb64.com incluye una sección de decodificación de archivos que acepta archivos .txt codificados en Base64. Sube el archivo con la cadena Base64 y la herramienta lo decodificará al contenido binario original. El tipo de archivo se detecta automáticamente usando firmas de bytes mágicos.</p>
+    <p style="margin:0 0 12px;">Esto es útil para recuperar archivos codificados para transmisión por correo o respuestas API, extraer imágenes incrustadas como Base64 en archivos de configuración, y decodificar datos binarios almacenados en bases de datos.</p>
+    <p style="margin:0 0 12px;">Recordatorio de seguridad: siempre verifica la fuente de los datos Base64 antes de decodificar y ejecutar archivos. Nunca ejecutes un archivo decodificado de una fuente no confiable.</p>
+    </div>
+  </section>
   <!-- OTHER TOOLS -->
   <section style="margin-top:28px;margin-bottom:8px;">
     <h2 class="content-h2" data-i18n="other_tools_title">Otras Herramientas</h2>

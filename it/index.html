@@ -1213,7 +1213,39 @@
       </div>
     </div>
   </section>
-
+  <!-- H2-SECTIONS -->
+  <section style="margin-top:28px;">
+    <div class="glass-card" style="padding:24px 28px;">
+      <h2 class="content-h2" style="margin-top:0;">Cos'è la Decodifica Base64?</h2>
+    <p style="margin:0 0 12px;">La decodifica Base64 è l'inverso della codifica Base64 — converte una stringa Base64 nei suoi dati binari o testuali originali. Data una stringa Base64 valida, qualsiasi decoder può ricostruire i dati originali senza alcuna chiave o password, ecco perché Base64 non è una forma di crittografia.</p>
+    <p style="margin:0 0 12px;">I dati codificati in Base64 si incontrano comunemente nei token JWT, negli allegati e-mail trasmessi via MIME, nei Data URI di immagini incorporati in HTML e CSS, nei dati binari restituiti da API REST in risposte JSON, e nei file di configurazione che memorizzano valori binari come testo.</p>
+    <p style="margin:0 0 12px;">Durante la decodifica, è importante conoscere la codifica dei caratteri originale. Se il testo originale era UTF-8, selezionare UTF-8 o AUTO-DETECT produrrà risultati corretti.</p>
+    </div>
+  </section>
+  <section style="margin-top:28px;">
+    <div class="glass-card" style="padding:24px 28px;">
+      <h2 class="content-h2" style="margin-top:0;">Come decodificare Base64 online</h2>
+    <p style="margin:0 0 12px;">Per decodificare una stringa Base64 con decodeb64.com, incolla la tua stringa codificata nel campo di input e clicca su Decodifica. Lo strumento rimuove automaticamente spazi e a capo prima di decodificare.</p>
+    <p style="margin:0 0 12px;">Se stai decodificando una stringa Base64URL (che usa - e _ invece di + e /), lo strumento lo gestisce automaticamente. Se la codifica dei caratteri è sconosciuta, seleziona AUTO-DETECT.</p>
+    <p style="margin:0 0 12px;">Per la decodifica batch, abilita "Decodifica ogni riga separatamente" — ogni riga verrà decodificata in modo indipendente, utile per liste di token o identificatori codificati.</p>
+    </div>
+  </section>
+  <section style="margin-top:28px;">
+    <div class="glass-card" style="padding:24px 28px;">
+      <h2 class="content-h2" style="margin-top:0;">Decodificare Base64URL e Token JWT</h2>
+    <p style="margin:0 0 12px;">I JWT (JSON Web Token) sono composti da tre parti separate da punti: intestazione.payload.firma. L'intestazione e il payload sono codificati in Base64URL — non in Base64 standard. Base64URL usa - invece di + e _ invece di /, e omette il carattere di padding =.</p>
+    <p style="margin:0 0 12px;">decodeb64.com rileva e gestisce automaticamente l'input Base64URL. Per ispezionare un token JWT, incolla il token completo o solo la parte dell'intestazione o del payload.</p>
+    <p style="margin:0 0 12px;">Tieni presente che decodificare un payload JWT rivela i claim che contiene, ma non verifica la firma. Per la validazione di sicurezza, usa sempre la libreria appropriata.</p>
+    </div>
+  </section>
+  <section style="margin-top:28px;">
+    <div class="glass-card" style="padding:24px 28px;">
+      <h2 class="content-h2" style="margin-top:0;">Decodificare file Base64 e dati binari</h2>
+    <p style="margin:0 0 12px;">Per i file codificati, decodeb64.com include una sezione di decodifica file che accetta file .txt codificati in Base64. Carica il file con la stringa Base64 e lo strumento lo decodificherà al contenuto binario originale. Il tipo di file viene rilevato automaticamente dai magic byte.</p>
+    <p style="margin:0 0 12px;">Questo è utile per recuperare file codificati per la trasmissione via e-mail o risposte API, estrarre immagini incorporate come Base64 in file di configurazione.</p>
+    <p style="margin:0 0 12px;">Promemoria sulla sicurezza: verifica sempre la fonte dei dati Base64 prima di decodificare ed eseguire file. Non eseguire mai un file decodificato da una fonte non attendibile.</p>
+    </div>
+  </section>
   <!-- OTHER TOOLS -->
   <section style="margin-top:28px;margin-bottom:8px;">
     <h2 class="content-h2" data-i18n="other_tools_title">Altri Strumenti</h2>

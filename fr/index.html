@@ -1214,6 +1214,40 @@
     </div>
   </section>
 
+
+  <!-- H2-SECTIONS -->
+  <section style="margin-top:28px;">
+    <div class="glass-card" style="padding:24px 28px;">
+      <h2 class="content-h2" style="margin-top:0;">Qu'est-ce que le décodage Base64 ?</h2>
+    <p style="margin:0 0 12px;">Le décodage Base64 est l'inverse de l'encodage Base64 — il convertit une chaîne Base64 en ses données binaires ou textuelles d'origine. Étant donné une chaîne Base64 valide, tout décodeur peut reconstruire les données d'origine sans aucune clé ni mot de passe, c'est pourquoi Base64 n'est pas une forme de chiffrement.</p>
+    <p style="margin:0 0 12px;">Les données encodées en Base64 se rencontrent couramment dans les tokens JWT, les pièces jointes d'e-mail transmises via MIME, les Data URI d'images intégrées dans HTML et CSS, les données binaires retournées par les API REST dans des réponses JSON, et les fichiers de configuration qui stockent des valeurs binaires sous forme de texte.</p>
+    <p style="margin:0 0 12px;">Lors du décodage, il est important de connaître l'encodage de caractères d'origine. Si le texte original était UTF-8, sélectionner UTF-8 ou AUTO-DETECT produira des résultats corrects.</p>
+    </div>
+  </section>
+  <section style="margin-top:28px;">
+    <div class="glass-card" style="padding:24px 28px;">
+      <h2 class="content-h2" style="margin-top:0;">Comment décoder du Base64 en ligne</h2>
+    <p style="margin:0 0 12px;">Pour décoder une chaîne Base64 avec decodeb64.com, collez votre chaîne encodée dans le champ de saisie et cliquez sur Décoder. L'outil supprime automatiquement les espaces et les sauts de ligne avant le décodage.</p>
+    <p style="margin:0 0 12px;">Si vous décodez une chaîne Base64URL (qui utilise - et _ au lieu de + et /), l'outil gère cela automatiquement. Si l'encodage de caractères est inconnu, sélectionnez AUTO-DETECT.</p>
+    <p style="margin:0 0 12px;">Pour le décodage par lots, activez "Décoder chaque ligne séparément" — chaque ligne sera décodée indépendamment, utile pour les listes de tokens ou d'identifiants encodés.</p>
+    </div>
+  </section>
+  <section style="margin-top:28px;">
+    <div class="glass-card" style="padding:24px 28px;">
+      <h2 class="content-h2" style="margin-top:0;">Décoder Base64URL et les tokens JWT</h2>
+    <p style="margin:0 0 12px;">Les JWT (JSON Web Tokens) sont composés de trois parties séparées par des points : en-tête.charge_utile.signature. L'en-tête et la charge utile sont encodés en Base64URL — pas en Base64 standard. Base64URL utilise - au lieu de + et _ au lieu de /, et omet le caractère de rembourrage =.</p>
+    <p style="margin:0 0 12px;">decodeb64.com détecte et gère automatiquement l'entrée Base64URL. Pour inspecter un token JWT, collez le token complet ou seulement la partie en-tête ou charge utile.</p>
+    <p style="margin:0 0 12px;">Notez que décoder un payload JWT révèle les claims qu'il contient, mais ne vérifie pas la signature. Pour la validation de sécurité, vérifiez toujours la signature JWT avec la bibliothèque appropriée.</p>
+    </div>
+  </section>
+  <section style="margin-top:28px;">
+    <div class="glass-card" style="padding:24px 28px;">
+      <h2 class="content-h2" style="margin-top:0;">Décoder des fichiers Base64 et des données binaires</h2>
+    <p style="margin:0 0 12px;">Pour les fichiers encodés, decodeb64.com inclut une section de décodage de fichiers qui accepte les fichiers .txt encodés en Base64. Téléchargez le fichier contenant la chaîne Base64 et l'outil le décodera vers le contenu binaire d'origine. Le type de fichier est détecté automatiquement en utilisant les signatures de bytes magiques.</p>
+    <p style="margin:0 0 12px;">Ceci est utile pour récupérer des fichiers encodés pour la transmission par e-mail ou des réponses API, extraire des images incorporées en Base64 dans des fichiers de configuration.</p>
+    <p style="margin:0 0 12px;">Rappel de sécurité : vérifiez toujours la source des données Base64 avant de décoder et d'exécuter des fichiers. N'exécutez jamais un fichier décodé provenant d'une source non fiable.</p>
+    </div>
+  </section>
   <!-- OTHER TOOLS -->
   <section style="margin-top:28px;margin-bottom:8px;">
     <h2 class="content-h2" data-i18n="other_tools_title">Autres Outils</h2>

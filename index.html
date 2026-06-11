@@ -1006,7 +1006,7 @@
   <!-- HERO -->
   <section class="hero">
     <div class="hero-glow"></div>
-    <h1 data-i18n="hero_h1">Decode from Base64</h1>
+    <h1 data-i18n="hero_h1">Base64 Decoder Online</h1>
     <p class="hero-sub" data-i18n="hero_sub">Instantly decode Base64 strings or files back to their original format, right in your browser.</p>
   </section>
 
@@ -1213,7 +1213,39 @@
       </div>
     </div>
   </section>
-
+  <!-- H2-SECTIONS -->
+  <section style="margin-top:28px;">
+    <div class="glass-card" style="padding:24px 28px;">
+      <h2 class="content-h2" style="margin-top:0;">What is Base64 Decoding?</h2>
+    <p style="margin:0 0 12px;">Base64 decoding is the reverse of Base64 encoding — it converts a Base64 string back into its original binary or text data. Given a valid Base64 string, any decoder can reconstruct the original data without any key or password, which is why Base64 is not a form of encryption.</p>
+    <p style="margin:0 0 12px;">Base64 encoded data is commonly encountered in JWT tokens (where header and payload are Base64URL encoded), email attachments transmitted via MIME, image Data URIs embedded in HTML and CSS, binary data returned by REST APIs in JSON responses, and configuration files that store binary values as text.</p>
+    <p style="margin:0 0 12px;">When decoding, it is important to know the original character encoding of the text data. If the original text was UTF-8 (the most common case), selecting UTF-8 or AUTO-DETECT will produce correct results. For legacy systems, you may need to select ISO-8859-1 or Windows-1252 to correctly decode accented characters and special symbols.</p>
+    </div>
+  </section>
+  <section style="margin-top:28px;">
+    <div class="glass-card" style="padding:24px 28px;">
+      <h2 class="content-h2" style="margin-top:0;">How to Decode Base64 Online</h2>
+    <p style="margin:0 0 12px;">To decode a Base64 string with decodeb64.com, paste your encoded string into the input field and click Decode. The tool automatically strips whitespace and line breaks from the input before decoding, so you do not need to clean the string manually. The decoded output appears in the result field, ready to copy.</p>
+    <p style="margin:0 0 12px;">If you are decoding a Base64URL string (which uses - and _ instead of + and /), the tool handles this automatically — no manual replacement needed. If the character encoding of the original text is unknown, select AUTO-DETECT and the tool will attempt to identify the correct charset from the decoded bytes.</p>
+    <p style="margin:0 0 12px;">For batch decoding, enable the "Decode each line separately" option. Each line of your input will be decoded independently, which is useful when you have multiple Base64 entries separated by newlines, such as a list of encoded API tokens or identifiers.</p>
+    </div>
+  </section>
+  <section style="margin-top:28px;">
+    <div class="glass-card" style="padding:24px 28px;">
+      <h2 class="content-h2" style="margin-top:0;">Decode Base64URL and JWT Tokens</h2>
+    <p style="margin:0 0 12px;">JWT (JSON Web Tokens) consist of three parts separated by dots: header.payload.signature. The header and payload are Base64URL encoded — not standard Base64. Base64URL uses - instead of + and _ instead of /, and omits the = padding character. Standard Base64 decoders will fail on JWT strings unless they handle this variant automatically.</p>
+    <p style="margin:0 0 12px;">decodeb64.com automatically detects and handles Base64URL input. To inspect a JWT token, paste the full token, then use the "Decode each line separately" option with a dot as the line separator — or simply paste just the header or payload portion (the text before the first or second dot).</p>
+    <p style="margin:0 0 12px;">Note that decoding a JWT payload reveals the claims it contains (user ID, expiration time, roles, etc.) but does not verify the signature. For security validation, always verify the JWT signature using the appropriate library for your programming language.</p>
+    </div>
+  </section>
+  <section style="margin-top:28px;">
+    <div class="glass-card" style="padding:24px 28px;">
+      <h2 class="content-h2" style="margin-top:0;">Decode Base64 Files and Binary Data</h2>
+    <p style="margin:0 0 12px;">For encoded files, decodeb64.com includes a file decode section that accepts Base64-encoded .txt files. Upload the file containing the Base64 string, and the tool will decode it back to the original binary content. The file type is automatically detected from the decoded binary using magic byte signatures — PNG header bytes, JPEG SOI marker, GIF signature, WebP RIFF header, and others — so the downloaded file will have the correct extension.</p>
+    <p style="margin:0 0 12px;">This is useful for recovering files that were encoded for transmission in email or API responses, extracting images embedded as Base64 in configuration files, and decoding binary data stored in databases or log files as Base64 strings.</p>
+    <p style="margin:0 0 12px;">A security reminder: always verify the source of Base64 data before decoding and executing files. Base64 encoding is sometimes used to obfuscate malicious payloads. Never execute a decoded file from an untrusted source.</p>
+    </div>
+  </section>
   <!-- OTHER TOOLS -->
   <section style="margin-top:28px;margin-bottom:8px;">
     <h2 class="content-h2" data-i18n="other_tools_title">Other Tools</h2>

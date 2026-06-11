@@ -1006,7 +1006,7 @@
   <!-- HERO -->
   <section class="hero">
     <div class="hero-glow"></div>
-    <h1 data-i18n="hero_h1">Base64 디코더 온라인</h1>
+    <h1 data-i18n="hero_h1">Base64 온라인 디코더</h1>
     <p class="hero-sub" data-i18n="hero_sub">Base64 문자열과 파일을 텍스트, 이미지, 바이너리 데이터로 즉시 변환 — 모두 브라우저에서 처리됩니다.</p>
   </section>
 
@@ -1213,7 +1213,39 @@
       </div>
     </div>
   </section>
-
+  <!-- H2-SECTIONS -->
+  <section style="margin-top:28px;">
+    <div class="glass-card" style="padding:24px 28px;">
+      <h2 class="content-h2" style="margin-top:0;">Base64 디코딩이란?</h2>
+    <p style="margin:0 0 12px;">Base64 디코딩은 Base64 인코딩의 역과정입니다 — Base64 문자열을 원래의 바이너리 또는 텍스트 데이터로 다시 변환합니다. 유효한 Base64 문자열이 있으면 어떤 디코더든 키나 비밀번호 없이 원본 데이터를 복원할 수 있습니다. 그래서 Base64는 암호화의 한 형태가 아닙니다.</p>
+    <p style="margin:0 0 12px;">Base64로 인코딩된 데이터는 다음에서 자주 볼 수 있습니다: JWT 토큰, MIME을 통해 전송되는 이메일 첨부 파일, HTML과 CSS에 삽입된 이미지 Data URI, REST API의 JSON 응답에서 반환되는 바이너리 데이터, 바이너리 값을 텍스트로 저장하는 구성 파일.</p>
+    <p style="margin:0 0 12px;">디코딩할 때 텍스트 데이터의 원래 문자 인코딩을 아는 것이 중요합니다. 원본 텍스트가 UTF-8이었다면 UTF-8 또는 AUTO-DETECT를 선택하면 올바른 결과가 나옵니다.</p>
+    </div>
+  </section>
+  <section style="margin-top:28px;">
+    <div class="glass-card" style="padding:24px 28px;">
+      <h2 class="content-h2" style="margin-top:0;">온라인으로 Base64를 디코딩하는 방법</h2>
+    <p style="margin:0 0 12px;">decodeb64.com으로 Base64 문자열을 디코딩하려면 인코딩된 문자열을 입력 필드에 붙여넣고 디코딩 버튼을 클릭하세요. 도구는 디코딩 전에 자동으로 공백과 줄 바꿈을 제거합니다.</p>
+    <p style="margin:0 0 12px;">Base64URL 문자열(+ 와 / 대신 - 와 _ 사용)을 디코딩하는 경우 도구가 자동으로 처리합니다. 문자 인코딩을 모르는 경우 AUTO-DETECT를 선택하세요.</p>
+    <p style="margin:0 0 12px;">"각 줄을 개별적으로 디코딩" 옵션을 활성화하면 배치 디코딩이 가능합니다 — 각 줄이 독립적으로 디코딩되어 여러 Base64 항목 목록에 유용합니다.</p>
+    </div>
+  </section>
+  <section style="margin-top:28px;">
+    <div class="glass-card" style="padding:24px 28px;">
+      <h2 class="content-h2" style="margin-top:0;">Base64URL 및 JWT 토큰 디코딩</h2>
+    <p style="margin:0 0 12px;">JWT(JSON Web Token)는 점으로 구분된 세 부분으로 구성됩니다: 헤더.페이로드.서명. 헤더와 페이로드는 Base64URL로 인코딩되어 있습니다 — 표준 Base64가 아닙니다. Base64URL은 + 대신 -, / 대신 _를 사용하고 = 패딩 문자를 생략합니다.</p>
+    <p style="margin:0 0 12px;">decodeb64.com은 Base64URL 입력을 자동으로 감지하고 처리합니다. JWT 토큰을 검사하려면 전체 토큰이나 헤더 또는 페이로드 부분만 붙여넣으세요.</p>
+    <p style="margin:0 0 12px;">JWT 페이로드를 디코딩하면 포함된 클레임이 드러나지만 서명은 검증되지 않습니다. 보안 검증을 위해서는 항상 적절한 라이브러리로 JWT 서명을 확인하세요.</p>
+    </div>
+  </section>
+  <section style="margin-top:28px;">
+    <div class="glass-card" style="padding:24px 28px;">
+      <h2 class="content-h2" style="margin-top:0;">Base64 파일 및 바이너리 데이터 디코딩</h2>
+    <p style="margin:0 0 12px;">イン코딩된 파일의 경우 decodeb64.com은 Base64로 인코딩된 .txt 파일을 받는 파일 디코딩 섹션을 제공합니다. Base64 문자열이 담긴 파일을 업로드하면 도구가 원래 바이너리 콘텐츠로 디코딩합니다. 파일 유형은 매직 바이트 시그니처를 사용하여 자동으로 감지됩니다.</p>
+    <p style="margin:0 0 12px;">이는 이메일이나 API 응답으로 전송하기 위해 인코딩된 파일을 복원하고, 구성 파일에 Base64로 삽입된 이미지를 추출하는 데 유용합니다.</p>
+    <p style="margin:0 0 12px;">보안 알림: 파일을 디코딩하고 실행하기 전에 항상 Base64 데이터의 출처를 확인하세요. 신뢰할 수 없는 출처의 디코딩된 파일은 절대 실행하지 마세요.</p>
+    </div>
+  </section>
   <!-- OTHER TOOLS -->
   <section style="margin-top:28px;margin-bottom:8px;">
     <h2 class="content-h2" data-i18n="other_tools_title">다른 도구</h2>

@@ -1213,7 +1213,39 @@
       </div>
     </div>
   </section>
-
+  <!-- H2-SECTIONS -->
+  <section style="margin-top:28px;">
+    <div class="glass-card" style="padding:24px 28px;">
+      <h2 class="content-h2" style="margin-top:0;">什么是 Base64 解码？</h2>
+    <p style="margin:0 0 12px;">Base64 解码是 Base64 编码的逆过程——它将 Base64 字符串转换回原始的二进制或文本数据。给定一个有效的 Base64 字符串，任何解码器都可以在没有任何密钥或密码的情况下重建原始数据，这就是为什么 Base64 不是一种加密形式。</p>
+    <p style="margin:0 0 12px;">Base64 编码的数据常见于：JWT 令牌（其中标头和负载使用 Base64URL 编码）、通过 MIME 传输的电子邮件附件、嵌入 HTML 和 CSS 的图片 Data URI、REST API 在 JSON 响应中返回的二进制数据，以及将二进制值存储为文本的配置文件。</p>
+    <p style="margin:0 0 12px;">解码时，了解文本数据的原始字符编码非常重要。如果原始文本是 UTF-8（最常见的情况），选择 UTF-8 或自动检测将产生正确结果。</p>
+    </div>
+  </section>
+  <section style="margin-top:28px;">
+    <div class="glass-card" style="padding:24px 28px;">
+      <h2 class="content-h2" style="margin-top:0;">如何在线解码 Base64</h2>
+    <p style="margin:0 0 12px;">要使用 decodeb64.com 解码 Base64 字符串，请将编码后的字符串粘贴到输入框中，然后点击"解码"。该工具在解码前会自动去除空格和换行符，无需手动清理字符串。</p>
+    <p style="margin:0 0 12px;">如果您正在解码 Base64URL 字符串（使用 - 和 _ 代替 + 和 /），工具会自动处理。如果字符编码未知，请选择自动检测。</p>
+    <p style="margin:0 0 12px;">对于批量解码，启用"逐行解码"选项——每行将被独立解码，适用于多个 Base64 条目的列表。</p>
+    </div>
+  </section>
+  <section style="margin-top:28px;">
+    <div class="glass-card" style="padding:24px 28px;">
+      <h2 class="content-h2" style="margin-top:0;">解码 Base64URL 和 JWT 令牌</h2>
+    <p style="margin:0 0 12px;">JWT（JSON Web Token）由三个用点分隔的部分组成：标头.负载.签名。标头和负载使用 Base64URL 编码——而非标准 Base64。Base64URL 使用 - 代替 +，_ 代替 /，并省略 = 填充字符。</p>
+    <p style="margin:0 0 12px;">decodeb64.com 会自动检测并处理 Base64URL 输入。要检查 JWT 令牌，请粘贴完整令牌或仅粘贴标头或负载部分。</p>
+    <p style="margin:0 0 12px;">请注意，解码 JWT 负载会显示其中包含的声明，但不会验证签名。对于安全验证，请始终使用适当的库验证 JWT 签名。</p>
+    </div>
+  </section>
+  <section style="margin-top:28px;">
+    <div class="glass-card" style="padding:24px 28px;">
+      <h2 class="content-h2" style="margin-top:0;">解码 Base64 文件和二进制数据</h2>
+    <p style="margin:0 0 12px;">对于编码文件，decodeb64.com 提供文件解码部分，接受 Base64 编码的 .txt 文件。上传包含 Base64 字符串的文件，工具会将其解码回原始二进制内容。文件类型通过魔术字节签名从解码后的二进制中自动检测。</p>
+    <p style="margin:0 0 12px;">这对于恢复通过电子邮件或 API 响应传输的编码文件、提取配置文件中嵌入的 Base64 图片非常有用。</p>
+    <p style="margin:0 0 12px;">安全提醒：在解码和执行文件之前，请始终验证 Base64 数据的来源。切勿执行来自不受信任来源的解码文件。</p>
+    </div>
+  </section>
   <!-- OTHER TOOLS -->
   <section style="margin-top:28px;margin-bottom:8px;">
     <h2 class="content-h2" data-i18n="other_tools_title">其他工具</h2>

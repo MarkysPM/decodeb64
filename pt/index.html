@@ -1213,7 +1213,39 @@
       </div>
     </div>
   </section>
-
+  <!-- H2-SECTIONS -->
+  <section style="margin-top:28px;">
+    <div class="glass-card" style="padding:24px 28px;">
+      <h2 class="content-h2" style="margin-top:0;">O que é Decodificação Base64?</h2>
+    <p style="margin:0 0 12px;">A decodificação Base64 é o inverso da codificação Base64 — ela converte uma string Base64 de volta aos seus dados binários ou de texto originais. Dada uma string Base64 válida, qualquer decodificador pode reconstruir os dados originais sem nenhuma chave ou senha, por isso o Base64 não é uma forma de criptografia.</p>
+    <p style="margin:0 0 12px;">Dados codificados em Base64 são comumente encontrados em tokens JWT, anexos de e-mail transmitidos via MIME, Data URIs de imagens incorporadas em HTML e CSS, dados binários retornados por APIs REST em respostas JSON, e arquivos de configuração que armazenam valores binários como texto.</p>
+    <p style="margin:0 0 12px;">Ao decodificar, é importante conhecer a codificação de caracteres original. Se o texto original era UTF-8, selecionar UTF-8 ou AUTO-DETECT produzirá resultados corretos.</p>
+    </div>
+  </section>
+  <section style="margin-top:28px;">
+    <div class="glass-card" style="padding:24px 28px;">
+      <h2 class="content-h2" style="margin-top:0;">Como Decodificar Base64 Online</h2>
+    <p style="margin:0 0 12px;">Para decodificar uma string Base64 com decodeb64.com, cole sua string codificada no campo de entrada e clique em Decodificar. A ferramenta remove automaticamente espaços e quebras de linha antes de decodificar.</p>
+    <p style="margin:0 0 12px;">Se você estiver decodificando uma string Base64URL (que usa - e _ em vez de + e /), a ferramenta lida com isso automaticamente. Se a codificação de caracteres for desconhecida, selecione AUTO-DETECT.</p>
+    <p style="margin:0 0 12px;">Para decodificação em lote, ative "Decodificar cada linha separadamente" — cada linha será decodificada de forma independente, útil para listas de tokens ou identificadores codificados.</p>
+    </div>
+  </section>
+  <section style="margin-top:28px;">
+    <div class="glass-card" style="padding:24px 28px;">
+      <h2 class="content-h2" style="margin-top:0;">Decodificar Base64URL e Tokens JWT</h2>
+    <p style="margin:0 0 12px;">JWTs (JSON Web Tokens) consistem em três partes separadas por pontos: cabeçalho.payload.assinatura. O cabeçalho e o payload são codificados em Base64URL — não em Base64 padrão. Base64URL usa - em vez de + e _ em vez de /, e omite o caractere de preenchimento =.</p>
+    <p style="margin:0 0 12px;">decodeb64.com detecta e lida automaticamente com a entrada Base64URL. Para inspecionar um token JWT, cole o token completo ou apenas a parte do cabeçalho ou payload.</p>
+    <p style="margin:0 0 12px;">Observe que decodificar um payload JWT revela os claims que ele contém, mas não verifica a assinatura. Para validação de segurança, sempre verifique a assinatura JWT com a biblioteca adequada.</p>
+    </div>
+  </section>
+  <section style="margin-top:28px;">
+    <div class="glass-card" style="padding:24px 28px;">
+      <h2 class="content-h2" style="margin-top:0;">Decodificar Arquivos Base64 e Dados Binários</h2>
+    <p style="margin:0 0 12px;">Para arquivos codificados, decodeb64.com inclui uma seção de decodificação de arquivos que aceita arquivos .txt codificados em Base64. Faça upload do arquivo com a string Base64 e a ferramenta o decodificará de volta ao conteúdo binário original. O tipo de arquivo é detectado automaticamente usando assinaturas de bytes mágicos.</p>
+    <p style="margin:0 0 12px;">Isso é útil para recuperar arquivos codificados para transmissão por e-mail ou respostas de API, extrair imagens incorporadas como Base64 em arquivos de configuração.</p>
+    <p style="margin:0 0 12px;">Lembrete de segurança: sempre verifique a fonte dos dados Base64 antes de decodificar e executar arquivos. Nunca execute um arquivo decodificado de uma fonte não confiável.</p>
+    </div>
+  </section>
   <!-- OTHER TOOLS -->
   <section style="margin-top:28px;margin-bottom:8px;">
     <h2 class="content-h2" data-i18n="other_tools_title">Outras Ferramentas</h2>
