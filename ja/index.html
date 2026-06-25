@@ -1010,6 +1010,16 @@
     <p class="hero-sub" data-i18n="hero_sub">Base64文字列やファイルをテキスト、画像、バイナリデータに即座に変換 — すべてブラウザ内で完結します。</p>
   </section>
 
+  <!-- H2-SECTIONS -->
+  <section style="margin-top:28px;">
+    <div class="glass-card" style="padding:24px 28px;">
+      <h2 class="content-h2" style="margin-top:0;">Base64デコードとは？</h2>
+    <p style="margin:0 0 12px;">Base64デコードはBase64エンコードの逆処理です — Base64文字列を元のバイナリまたはテキストデータに変換します。有効なBase64文字列があれば、どのデコーダーもキーやパスワードなしに元のデータを復元できます。そのためBase64は暗号化の一形態ではありません。</p>
+    <p style="margin:0 0 12px;">Base64エンコードされたデータは以下の場所でよく見られます：JWTトークン（ヘッダーとペイロードがBase64URLエンコードされている）、MIME経由で送信されるメール添付ファイル、HTMLやCSSに埋め込まれた画像のData URI、REST APIのJSONレスポンスで返されるバイナリデータ、バイナリ値をテキストとして保存する設定ファイル。</p>
+    <p style="margin:0 0 12px;">デコード時には、テキストデータの元の文字エンコーディングを知ることが重要です。元のテキストがUTF-8だった場合、UTF-8またはAUTO-DETECTを選択すると正しい結果が得られます。</p>
+    </div>
+  </section>
+
   <div id="ezoic-pub-ad-placeholder-101"></div>
 
 <!-- TOOL CARD -->
@@ -1109,6 +1119,83 @@
 
   </div>
 
+  <section style="margin-top:28px;">
+    <div class="glass-card" style="padding:24px 28px;">
+      <h2 class="content-h2" style="margin-top:0;">Base64をオンラインでデコードする方法</h2>
+    <p style="margin:0 0 12px;">decodeb64.comでBase64文字列をデコードするには、エンコードされた文字列を入力フィールドに貼り付け、「デコード」をクリックしてください。ツールはデコード前に空白と改行を自動的に除去するため、手動でクリーニングする必要はありません。</p>
+    <p style="margin:0 0 12px;">Base64URL文字列（+と/の代わりに-と_を使用）をデコードする場合、ツールが自動的に処理します。文字エンコーディングが不明な場合はAUTO-DETECTを選択してください。</p>
+    <p style="margin:0 0 12px;">バッチデコードには「各行を個別にデコード」オプションを有効にしてください — 各行が独立してデコードされ、複数のBase64エントリのリストに便利です。</p>
+    </div>
+  </section>
+  <section style="margin-top:28px;">
+    <div class="glass-card" style="padding:24px 28px;">
+      <h2 class="content-h2" style="margin-top:0;">Base64URLとJWTトークンのデコード</h2>
+    <p style="margin:0 0 12px;">JWT（JSON Web Token）はドットで区切られた3つの部分から成ります：ヘッダー.ペイロード.署名。ヘッダーとペイロードはBase64URLエンコードされています — 標準のBase64ではありません。Base64URLは+の代わりに-、/の代わりに_を使用し、=パディングを省略します。</p>
+    <p style="margin:0 0 12px;">decodeb64.comはBase64URL入力を自動的に検出して処理します。JWTトークンを検査するには、完全なトークンまたはヘッダーかペイロード部分のみを貼り付けてください。</p>
+    <p style="margin:0 0 12px;">JWTペイロードをデコードするとそのclaimsが明らかになりますが、署名は検証されないことに注意してください。セキュリティ検証には常に適切なライブラリを使用してください。</p>
+    </div>
+  </section>
+  <section style="margin-top:28px;">
+    <div class="glass-card" style="padding:24px 28px;">
+      <h2 class="content-h2" style="margin-top:0;">Base64ファイルとバイナリデータのデコード</h2>
+    <p style="margin:0 0 12px;">エンコードされたファイルに対して、decodeb64.comはBase64エンコードされた.txtファイルを受け付けるファイルデコードセクションを提供しています。Base64文字列を含むファイルをアップロードすると、ツールが元のバイナリコンテンツにデコードします。ファイルタイプはマジックバイトシグネチャを使って自動的に検出されます。</p>
+    <p style="margin:0 0 12px;">これはメールやAPIレスポンスの送信用にエンコードされたファイルの復元、設定ファイルにBase64として埋め込まれた画像の抽出に役立ちます。</p>
+    <p style="margin:0 0 12px;">セキュリティの注意事項：ファイルをデコードして実行する前に、Base64データのソースを必ず確認してください。信頼できないソースからのデコードされたファイルは絶対に実行しないでください。</p>
+    </div>
+  </section>
+
+  <div id="ezoic-pub-ad-placeholder-102"></div>
+
+<!-- FAQ -->
+  <section style="margin-top:8px;" itemscope itemtype="https://schema.org/FAQPage">
+    <h2 class="content-h2" data-i18n="faq_title">よくある質問</h2>
+    <div class="accordion-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+      <div class="accordion-header" onclick="toggleAccordion(this)">
+        <span data-i18n="faq_q1" itemprop="name">Base64デコードとは何ですか？</span>
+        <svg class="accordion-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+      </div>
+      <div class="accordion-body" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+        <div class="accordion-content" data-i18n="faq_a1" itemprop="text">Base64デコードはエンコードの逆処理で、Base64文字列を元のバイナリまたはテキストデータに変換します。JWTトークン、メール添付ファイル（MIME）、APIレスポンス、データURIのデータ復元に使用されます。</div>
+      </div>
+    </div>
+    <div class="accordion-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+      <div class="accordion-header" onclick="toggleAccordion(this)">
+        <span data-i18n="faq_q2" itemprop="name">Base64デコードは復号化と同じですか？</span>
+        <svg class="accordion-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+      </div>
+      <div class="accordion-body" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+        <div class="accordion-content" data-i18n="faq_a2" itemprop="text">いいえ。Base64はエンコードであり、暗号化ではありません。誰でも即座にBase64文字列をデコードできます。機密データの保護にBase64単体を使用しないでください。</div>
+      </div>
+    </div>
+    <div class="accordion-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+      <div class="accordion-header" onclick="toggleAccordion(this)">
+        <span data-i18n="faq_q3" itemprop="name">「無効なBase64入力」とはどういう意味ですか？</span>
+        <svg class="accordion-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+      </div>
+      <div class="accordion-body" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+        <div class="accordion-content" data-i18n="faq_a3" itemprop="text">入力にBase64アルファベット（A～Z、a～z、0～9、+、/、=）以外の文字が含まれています。よくある原因：余分な空白、=パディングの欠落、URLセーフ変形（+の代わりに-、/の代わりに_）。</div>
+      </div>
+    </div>
+    <div class="accordion-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+      <div class="accordion-header" onclick="toggleAccordion(this)">
+        <span data-i18n="faq_q4" itemprop="name">Base64URL文字列をデコードするには？</span>
+        <svg class="accordion-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+      </div>
+      <div class="accordion-body" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+        <div class="accordion-content" data-i18n="faq_a4" itemprop="text">Base64URLは+を-に、/を_に置き換え、=パディングを削除します。デコード前に-を+に、_を/に置き換え、長さが4の倍数になるよう=パディングを補完してください。</div>
+      </div>
+    </div>
+    <div class="accordion-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+      <div class="accordion-header" onclick="toggleAccordion(this)">
+        <span data-i18n="faq_q5" itemprop="name">画像やPDFなどのバイナリファイルをデコードできますか？</span>
+        <svg class="accordion-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+      </div>
+      <div class="accordion-body" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+        <div class="accordion-content" data-i18n="faq_a5" itemprop="text">はい。ファイルデコードセクションを使用して、Base64エンコードされた.txtファイルをアップロードしてください。ツールがバイナリコンテンツをデコードし、ファイルタイプを自動検出してダウンロードを提供します。</div>
+      </div>
+    </div>
+  </section>
+
   <!-- INFO ACCORDION -->
   <section>
     <div class="accordion-item">
@@ -1162,90 +1249,6 @@
     </div>
   </section>
 
-  
-  <div id="ezoic-pub-ad-placeholder-102"></div>
-<!-- FAQ -->
-  <section style="margin-top:8px;" itemscope itemtype="https://schema.org/FAQPage">
-    <h2 class="content-h2" data-i18n="faq_title">よくある質問</h2>
-    <div class="accordion-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
-      <div class="accordion-header" onclick="toggleAccordion(this)">
-        <span data-i18n="faq_q1" itemprop="name">Base64デコードとは何ですか？</span>
-        <svg class="accordion-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
-      </div>
-      <div class="accordion-body" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
-        <div class="accordion-content" data-i18n="faq_a1" itemprop="text">Base64デコードはエンコードの逆処理で、Base64文字列を元のバイナリまたはテキストデータに変換します。JWTトークン、メール添付ファイル（MIME）、APIレスポンス、データURIのデータ復元に使用されます。</div>
-      </div>
-    </div>
-    <div class="accordion-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
-      <div class="accordion-header" onclick="toggleAccordion(this)">
-        <span data-i18n="faq_q2" itemprop="name">Base64デコードは復号化と同じですか？</span>
-        <svg class="accordion-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
-      </div>
-      <div class="accordion-body" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
-        <div class="accordion-content" data-i18n="faq_a2" itemprop="text">いいえ。Base64はエンコードであり、暗号化ではありません。誰でも即座にBase64文字列をデコードできます。機密データの保護にBase64単体を使用しないでください。</div>
-      </div>
-    </div>
-    <div class="accordion-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
-      <div class="accordion-header" onclick="toggleAccordion(this)">
-        <span data-i18n="faq_q3" itemprop="name">「無効なBase64入力」とはどういう意味ですか？</span>
-        <svg class="accordion-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
-      </div>
-      <div class="accordion-body" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
-        <div class="accordion-content" data-i18n="faq_a3" itemprop="text">入力にBase64アルファベット（A～Z、a～z、0～9、+、/、=）以外の文字が含まれています。よくある原因：余分な空白、=パディングの欠落、URLセーフ変形（+の代わりに-、/の代わりに_）。</div>
-      </div>
-    </div>
-    <div class="accordion-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
-      <div class="accordion-header" onclick="toggleAccordion(this)">
-        <span data-i18n="faq_q4" itemprop="name">Base64URL文字列をデコードするには？</span>
-        <svg class="accordion-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
-      </div>
-      <div class="accordion-body" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
-        <div class="accordion-content" data-i18n="faq_a4" itemprop="text">Base64URLは+を-に、/を_に置き換え、=パディングを削除します。デコード前に-を+に、_を/に置き換え、長さが4の倍数になるよう=パディングを補完してください。</div>
-      </div>
-    </div>
-    <div class="accordion-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
-      <div class="accordion-header" onclick="toggleAccordion(this)">
-        <span data-i18n="faq_q5" itemprop="name">画像やPDFなどのバイナリファイルをデコードできますか？</span>
-        <svg class="accordion-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
-      </div>
-      <div class="accordion-body" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
-        <div class="accordion-content" data-i18n="faq_a5" itemprop="text">はい。ファイルデコードセクションを使用して、Base64エンコードされた.txtファイルをアップロードしてください。ツールがバイナリコンテンツをデコードし、ファイルタイプを自動検出してダウンロードを提供します。</div>
-      </div>
-    </div>
-  </section>
-  <!-- H2-SECTIONS -->
-  <section style="margin-top:28px;">
-    <div class="glass-card" style="padding:24px 28px;">
-      <h2 class="content-h2" style="margin-top:0;">Base64デコードとは？</h2>
-    <p style="margin:0 0 12px;">Base64デコードはBase64エンコードの逆処理です — Base64文字列を元のバイナリまたはテキストデータに変換します。有効なBase64文字列があれば、どのデコーダーもキーやパスワードなしに元のデータを復元できます。そのためBase64は暗号化の一形態ではありません。</p>
-    <p style="margin:0 0 12px;">Base64エンコードされたデータは以下の場所でよく見られます：JWTトークン（ヘッダーとペイロードがBase64URLエンコードされている）、MIME経由で送信されるメール添付ファイル、HTMLやCSSに埋め込まれた画像のData URI、REST APIのJSONレスポンスで返されるバイナリデータ、バイナリ値をテキストとして保存する設定ファイル。</p>
-    <p style="margin:0 0 12px;">デコード時には、テキストデータの元の文字エンコーディングを知ることが重要です。元のテキストがUTF-8だった場合、UTF-8またはAUTO-DETECTを選択すると正しい結果が得られます。</p>
-    </div>
-  </section>
-  <section style="margin-top:28px;">
-    <div class="glass-card" style="padding:24px 28px;">
-      <h2 class="content-h2" style="margin-top:0;">Base64をオンラインでデコードする方法</h2>
-    <p style="margin:0 0 12px;">decodeb64.comでBase64文字列をデコードするには、エンコードされた文字列を入力フィールドに貼り付け、「デコード」をクリックしてください。ツールはデコード前に空白と改行を自動的に除去するため、手動でクリーニングする必要はありません。</p>
-    <p style="margin:0 0 12px;">Base64URL文字列（+と/の代わりに-と_を使用）をデコードする場合、ツールが自動的に処理します。文字エンコーディングが不明な場合はAUTO-DETECTを選択してください。</p>
-    <p style="margin:0 0 12px;">バッチデコードには「各行を個別にデコード」オプションを有効にしてください — 各行が独立してデコードされ、複数のBase64エントリのリストに便利です。</p>
-    </div>
-  </section>
-  <section style="margin-top:28px;">
-    <div class="glass-card" style="padding:24px 28px;">
-      <h2 class="content-h2" style="margin-top:0;">Base64URLとJWTトークンのデコード</h2>
-    <p style="margin:0 0 12px;">JWT（JSON Web Token）はドットで区切られた3つの部分から成ります：ヘッダー.ペイロード.署名。ヘッダーとペイロードはBase64URLエンコードされています — 標準のBase64ではありません。Base64URLは+の代わりに-、/の代わりに_を使用し、=パディングを省略します。</p>
-    <p style="margin:0 0 12px;">decodeb64.comはBase64URL入力を自動的に検出して処理します。JWTトークンを検査するには、完全なトークンまたはヘッダーかペイロード部分のみを貼り付けてください。</p>
-    <p style="margin:0 0 12px;">JWTペイロードをデコードするとそのclaimsが明らかになりますが、署名は検証されないことに注意してください。セキュリティ検証には常に適切なライブラリを使用してください。</p>
-    </div>
-  </section>
-  <section style="margin-top:28px;">
-    <div class="glass-card" style="padding:24px 28px;">
-      <h2 class="content-h2" style="margin-top:0;">Base64ファイルとバイナリデータのデコード</h2>
-    <p style="margin:0 0 12px;">エンコードされたファイルに対して、decodeb64.comはBase64エンコードされた.txtファイルを受け付けるファイルデコードセクションを提供しています。Base64文字列を含むファイルをアップロードすると、ツールが元のバイナリコンテンツにデコードします。ファイルタイプはマジックバイトシグネチャを使って自動的に検出されます。</p>
-    <p style="margin:0 0 12px;">これはメールやAPIレスポンスの送信用にエンコードされたファイルの復元、設定ファイルにBase64として埋め込まれた画像の抽出に役立ちます。</p>
-    <p style="margin:0 0 12px;">セキュリティの注意事項：ファイルをデコードして実行する前に、Base64データのソースを必ず確認してください。信頼できないソースからのデコードされたファイルは絶対に実行しないでください。</p>
-    </div>
-  </section>
   <!-- OTHER TOOLS -->
   <section style="margin-top:28px;margin-bottom:8px;">
     <h2 class="content-h2" data-i18n="other_tools_title">他のツール</h2>

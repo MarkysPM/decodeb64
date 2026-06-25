@@ -1010,6 +1010,16 @@
     <p class="hero-sub" data-i18n="hero_sub">Decodifica istantaneamente stringhe e file Base64 — testo, immagini e dati binari. Rilevamento UTF-8 automatico, supporto URL-safe, 100% privato.</p>
   </section>
 
+  <!-- H2-SECTIONS -->
+  <section style="margin-top:28px;">
+    <div class="glass-card" style="padding:24px 28px;">
+      <h2 class="content-h2" style="margin-top:0;">Cos'è la Decodifica Base64?</h2>
+    <p style="margin:0 0 12px;">La decodifica Base64 è l'inverso della codifica Base64 — converte una stringa Base64 nei suoi dati binari o testuali originali. Data una stringa Base64 valida, qualsiasi decoder può ricostruire i dati originali senza alcuna chiave o password, ecco perché Base64 non è una forma di crittografia.</p>
+    <p style="margin:0 0 12px;">I dati codificati in Base64 si incontrano comunemente nei token JWT, negli allegati e-mail trasmessi via MIME, nei Data URI di immagini incorporati in HTML e CSS, nei dati binari restituiti da API REST in risposte JSON, e nei file di configurazione che memorizzano valori binari come testo.</p>
+    <p style="margin:0 0 12px;">Durante la decodifica, è importante conoscere la codifica dei caratteri originale. Se il testo originale era UTF-8, selezionare UTF-8 o AUTO-DETECT produrrà risultati corretti.</p>
+    </div>
+  </section>
+
   <div id="ezoic-pub-ad-placeholder-101"></div>
 
 <!-- TOOL CARD -->
@@ -1109,6 +1119,83 @@
 
   </div>
 
+  <section style="margin-top:28px;">
+    <div class="glass-card" style="padding:24px 28px;">
+      <h2 class="content-h2" style="margin-top:0;">Come decodificare Base64 online</h2>
+    <p style="margin:0 0 12px;">Per decodificare una stringa Base64 con decodeb64.com, incolla la tua stringa codificata nel campo di input e clicca su Decodifica. Lo strumento rimuove automaticamente spazi e a capo prima di decodificare.</p>
+    <p style="margin:0 0 12px;">Se stai decodificando una stringa Base64URL (che usa - e _ invece di + e /), lo strumento lo gestisce automaticamente. Se la codifica dei caratteri è sconosciuta, seleziona AUTO-DETECT.</p>
+    <p style="margin:0 0 12px;">Per la decodifica batch, abilita "Decodifica ogni riga separatamente" — ogni riga verrà decodificata in modo indipendente, utile per liste di token o identificatori codificati.</p>
+    </div>
+  </section>
+  <section style="margin-top:28px;">
+    <div class="glass-card" style="padding:24px 28px;">
+      <h2 class="content-h2" style="margin-top:0;">Decodificare Base64URL e Token JWT</h2>
+    <p style="margin:0 0 12px;">I JWT (JSON Web Token) sono composti da tre parti separate da punti: intestazione.payload.firma. L'intestazione e il payload sono codificati in Base64URL — non in Base64 standard. Base64URL usa - invece di + e _ invece di /, e omette il carattere di padding =.</p>
+    <p style="margin:0 0 12px;">decodeb64.com rileva e gestisce automaticamente l'input Base64URL. Per ispezionare un token JWT, incolla il token completo o solo la parte dell'intestazione o del payload.</p>
+    <p style="margin:0 0 12px;">Tieni presente che decodificare un payload JWT rivela i claim che contiene, ma non verifica la firma. Per la validazione di sicurezza, usa sempre la libreria appropriata.</p>
+    </div>
+  </section>
+  <section style="margin-top:28px;">
+    <div class="glass-card" style="padding:24px 28px;">
+      <h2 class="content-h2" style="margin-top:0;">Decodificare file Base64 e dati binari</h2>
+    <p style="margin:0 0 12px;">Per i file codificati, decodeb64.com include una sezione di decodifica file che accetta file .txt codificati in Base64. Carica il file con la stringa Base64 e lo strumento lo decodificherà al contenuto binario originale. Il tipo di file viene rilevato automaticamente dai magic byte.</p>
+    <p style="margin:0 0 12px;">Questo è utile per recuperare file codificati per la trasmissione via e-mail o risposte API, estrarre immagini incorporate come Base64 in file di configurazione.</p>
+    <p style="margin:0 0 12px;">Promemoria sulla sicurezza: verifica sempre la fonte dei dati Base64 prima di decodificare ed eseguire file. Non eseguire mai un file decodificato da una fonte non attendibile.</p>
+    </div>
+  </section>
+
+  <div id="ezoic-pub-ad-placeholder-102"></div>
+
+<!-- FAQ -->
+  <section style="margin-top:8px;" itemscope itemtype="https://schema.org/FAQPage">
+    <h2 class="content-h2" data-i18n="faq_title">Domande Frequenti</h2>
+    <div class="accordion-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+      <div class="accordion-header" onclick="toggleAccordion(this)">
+        <span data-i18n="faq_q1" itemprop="name">Cos'è la decodifica Base64?</span>
+        <svg class="accordion-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+      </div>
+      <div class="accordion-body" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+        <div class="accordion-content" data-i18n="faq_a1" itemprop="text">La decodifica Base64 è l'inverso della codifica — converte una stringa Base64 nei dati binari o testuali originali. Usata per recuperare dati da token JWT, allegati email (MIME), risposte API e URI di dati.</div>
+      </div>
+    </div>
+    <div class="accordion-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+      <div class="accordion-header" onclick="toggleAccordion(this)">
+        <span data-i18n="faq_q2" itemprop="name">La decodifica Base64 è uguale alla decrittografia?</span>
+        <svg class="accordion-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+      </div>
+      <div class="accordion-body" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+        <div class="accordion-content" data-i18n="faq_a2" itemprop="text">No. Base64 è codifica, non crittografia. Chiunque può decodificare una stringa Base64 istantaneamente — non serve alcuna chiave o password. Non usare mai Base64 da solo per proteggere dati sensibili.</div>
+      </div>
+    </div>
+    <div class="accordion-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+      <div class="accordion-header" onclick="toggleAccordion(this)">
+        <span data-i18n="faq_q3" itemprop="name">Cosa significa «Input Base64 non valido»?</span>
+        <svg class="accordion-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+      </div>
+      <div class="accordion-body" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+        <div class="accordion-content" data-i18n="faq_a3" itemprop="text">L'input contiene caratteri fuori dall'alfabeto Base64 (A–Z, a–z, 0–9, +, /, =). Cause comuni: spazi extra, padding = mancante, o la variante URL-safe (- e _ al posto di + e /).</div>
+      </div>
+    </div>
+    <div class="accordion-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+      <div class="accordion-header" onclick="toggleAccordion(this)">
+        <span data-i18n="faq_q4" itemprop="name">Come decodifico una stringa Base64URL?</span>
+        <svg class="accordion-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+      </div>
+      <div class="accordion-body" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+        <div class="accordion-content" data-i18n="faq_a4" itemprop="text">Base64URL sostituisce + con - e / con _ e rimuove il padding =. Prima di decodificare, sostituisci - con +, _ con / e aggiungi il padding = mancante affinché la lunghezza sia un multiplo di 4.</div>
+      </div>
+    </div>
+    <div class="accordion-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+      <div class="accordion-header" onclick="toggleAccordion(this)">
+        <span data-i18n="faq_q5" itemprop="name">Posso decodificare file binari come immagini o PDF?</span>
+        <svg class="accordion-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+      </div>
+      <div class="accordion-body" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+        <div class="accordion-content" data-i18n="faq_a5" itemprop="text">Sì. Usa la sezione di decodifica file per caricare un file .txt con contenuto Base64. Lo strumento decodifica il contenuto binario e lo offre come download rilevando automaticamente il tipo di file.</div>
+      </div>
+    </div>
+  </section>
+
   <!-- INFO ACCORDION -->
   <section>
     <div class="accordion-item">
@@ -1162,90 +1249,6 @@
     </div>
   </section>
 
-  
-  <div id="ezoic-pub-ad-placeholder-102"></div>
-<!-- FAQ -->
-  <section style="margin-top:8px;" itemscope itemtype="https://schema.org/FAQPage">
-    <h2 class="content-h2" data-i18n="faq_title">Domande Frequenti</h2>
-    <div class="accordion-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
-      <div class="accordion-header" onclick="toggleAccordion(this)">
-        <span data-i18n="faq_q1" itemprop="name">Cos'è la decodifica Base64?</span>
-        <svg class="accordion-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
-      </div>
-      <div class="accordion-body" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
-        <div class="accordion-content" data-i18n="faq_a1" itemprop="text">La decodifica Base64 è l'inverso della codifica — converte una stringa Base64 nei dati binari o testuali originali. Usata per recuperare dati da token JWT, allegati email (MIME), risposte API e URI di dati.</div>
-      </div>
-    </div>
-    <div class="accordion-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
-      <div class="accordion-header" onclick="toggleAccordion(this)">
-        <span data-i18n="faq_q2" itemprop="name">La decodifica Base64 è uguale alla decrittografia?</span>
-        <svg class="accordion-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
-      </div>
-      <div class="accordion-body" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
-        <div class="accordion-content" data-i18n="faq_a2" itemprop="text">No. Base64 è codifica, non crittografia. Chiunque può decodificare una stringa Base64 istantaneamente — non serve alcuna chiave o password. Non usare mai Base64 da solo per proteggere dati sensibili.</div>
-      </div>
-    </div>
-    <div class="accordion-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
-      <div class="accordion-header" onclick="toggleAccordion(this)">
-        <span data-i18n="faq_q3" itemprop="name">Cosa significa «Input Base64 non valido»?</span>
-        <svg class="accordion-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
-      </div>
-      <div class="accordion-body" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
-        <div class="accordion-content" data-i18n="faq_a3" itemprop="text">L'input contiene caratteri fuori dall'alfabeto Base64 (A–Z, a–z, 0–9, +, /, =). Cause comuni: spazi extra, padding = mancante, o la variante URL-safe (- e _ al posto di + e /).</div>
-      </div>
-    </div>
-    <div class="accordion-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
-      <div class="accordion-header" onclick="toggleAccordion(this)">
-        <span data-i18n="faq_q4" itemprop="name">Come decodifico una stringa Base64URL?</span>
-        <svg class="accordion-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
-      </div>
-      <div class="accordion-body" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
-        <div class="accordion-content" data-i18n="faq_a4" itemprop="text">Base64URL sostituisce + con - e / con _ e rimuove il padding =. Prima di decodificare, sostituisci - con +, _ con / e aggiungi il padding = mancante affinché la lunghezza sia un multiplo di 4.</div>
-      </div>
-    </div>
-    <div class="accordion-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
-      <div class="accordion-header" onclick="toggleAccordion(this)">
-        <span data-i18n="faq_q5" itemprop="name">Posso decodificare file binari come immagini o PDF?</span>
-        <svg class="accordion-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
-      </div>
-      <div class="accordion-body" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
-        <div class="accordion-content" data-i18n="faq_a5" itemprop="text">Sì. Usa la sezione di decodifica file per caricare un file .txt con contenuto Base64. Lo strumento decodifica il contenuto binario e lo offre come download rilevando automaticamente il tipo di file.</div>
-      </div>
-    </div>
-  </section>
-  <!-- H2-SECTIONS -->
-  <section style="margin-top:28px;">
-    <div class="glass-card" style="padding:24px 28px;">
-      <h2 class="content-h2" style="margin-top:0;">Cos'è la Decodifica Base64?</h2>
-    <p style="margin:0 0 12px;">La decodifica Base64 è l'inverso della codifica Base64 — converte una stringa Base64 nei suoi dati binari o testuali originali. Data una stringa Base64 valida, qualsiasi decoder può ricostruire i dati originali senza alcuna chiave o password, ecco perché Base64 non è una forma di crittografia.</p>
-    <p style="margin:0 0 12px;">I dati codificati in Base64 si incontrano comunemente nei token JWT, negli allegati e-mail trasmessi via MIME, nei Data URI di immagini incorporati in HTML e CSS, nei dati binari restituiti da API REST in risposte JSON, e nei file di configurazione che memorizzano valori binari come testo.</p>
-    <p style="margin:0 0 12px;">Durante la decodifica, è importante conoscere la codifica dei caratteri originale. Se il testo originale era UTF-8, selezionare UTF-8 o AUTO-DETECT produrrà risultati corretti.</p>
-    </div>
-  </section>
-  <section style="margin-top:28px;">
-    <div class="glass-card" style="padding:24px 28px;">
-      <h2 class="content-h2" style="margin-top:0;">Come decodificare Base64 online</h2>
-    <p style="margin:0 0 12px;">Per decodificare una stringa Base64 con decodeb64.com, incolla la tua stringa codificata nel campo di input e clicca su Decodifica. Lo strumento rimuove automaticamente spazi e a capo prima di decodificare.</p>
-    <p style="margin:0 0 12px;">Se stai decodificando una stringa Base64URL (che usa - e _ invece di + e /), lo strumento lo gestisce automaticamente. Se la codifica dei caratteri è sconosciuta, seleziona AUTO-DETECT.</p>
-    <p style="margin:0 0 12px;">Per la decodifica batch, abilita "Decodifica ogni riga separatamente" — ogni riga verrà decodificata in modo indipendente, utile per liste di token o identificatori codificati.</p>
-    </div>
-  </section>
-  <section style="margin-top:28px;">
-    <div class="glass-card" style="padding:24px 28px;">
-      <h2 class="content-h2" style="margin-top:0;">Decodificare Base64URL e Token JWT</h2>
-    <p style="margin:0 0 12px;">I JWT (JSON Web Token) sono composti da tre parti separate da punti: intestazione.payload.firma. L'intestazione e il payload sono codificati in Base64URL — non in Base64 standard. Base64URL usa - invece di + e _ invece di /, e omette il carattere di padding =.</p>
-    <p style="margin:0 0 12px;">decodeb64.com rileva e gestisce automaticamente l'input Base64URL. Per ispezionare un token JWT, incolla il token completo o solo la parte dell'intestazione o del payload.</p>
-    <p style="margin:0 0 12px;">Tieni presente che decodificare un payload JWT rivela i claim che contiene, ma non verifica la firma. Per la validazione di sicurezza, usa sempre la libreria appropriata.</p>
-    </div>
-  </section>
-  <section style="margin-top:28px;">
-    <div class="glass-card" style="padding:24px 28px;">
-      <h2 class="content-h2" style="margin-top:0;">Decodificare file Base64 e dati binari</h2>
-    <p style="margin:0 0 12px;">Per i file codificati, decodeb64.com include una sezione di decodifica file che accetta file .txt codificati in Base64. Carica il file con la stringa Base64 e lo strumento lo decodificherà al contenuto binario originale. Il tipo di file viene rilevato automaticamente dai magic byte.</p>
-    <p style="margin:0 0 12px;">Questo è utile per recuperare file codificati per la trasmissione via e-mail o risposte API, estrarre immagini incorporate come Base64 in file di configurazione.</p>
-    <p style="margin:0 0 12px;">Promemoria sulla sicurezza: verifica sempre la fonte dei dati Base64 prima di decodificare ed eseguire file. Non eseguire mai un file decodificato da una fonte non attendibile.</p>
-    </div>
-  </section>
   <!-- OTHER TOOLS -->
   <section style="margin-top:28px;margin-bottom:8px;">
     <h2 class="content-h2" data-i18n="other_tools_title">Altri Strumenti</h2>

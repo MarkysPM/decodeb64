@@ -1010,6 +1010,16 @@
     <p class="hero-sub" data-i18n="hero_sub">Decodeer Base64-strings en bestanden direct naar tekst, afbeeldingen en binaire gegevens — volledig in uw browser.</p>
   </section>
 
+  <!-- H2-SECTIONS -->
+  <section style="margin-top:28px;">
+    <div class="glass-card" style="padding:24px 28px;">
+      <h2 class="content-h2" style="margin-top:0;">Wat is Base64-decodering?</h2>
+    <p style="margin:0 0 12px;">Base64-decodering is het omgekeerde van Base64-codering — het converteert een Base64-string terug naar de originele binaire of tekstgegevens. Met een geldige Base64-string kan elke decoder de originele gegevens reconstrueren zonder sleutel of wachtwoord, daarom is Base64 geen vorm van versleuteling.</p>
+    <p style="margin:0 0 12px;">Base64-gecodeerde gegevens komen veel voor in JWT-tokens, e-mailbijlagen via MIME, afbeeldings-Data-URI's in HTML en CSS, binaire gegevens van REST API's in JSON-reacties, en configuratiebestanden die binaire waarden als tekst opslaan.</p>
+    <p style="margin:0 0 12px;">Bij het decoderen is het belangrijk de originele tekencodering van de tekstgegevens te kennen. Als de originele tekst UTF-8 was, geeft het selecteren van UTF-8 of AUTO-DETECT correcte resultaten.</p>
+    </div>
+  </section>
+
   <div id="ezoic-pub-ad-placeholder-101"></div>
 
 <!-- TOOL CARD -->
@@ -1109,6 +1119,83 @@
 
   </div>
 
+  <section style="margin-top:28px;">
+    <div class="glass-card" style="padding:24px 28px;">
+      <h2 class="content-h2" style="margin-top:0;">Hoe Base64 online decoderen</h2>
+    <p style="margin:0 0 12px;">Om een Base64-string te decoderen met decodeb64.com, plakt u uw gecodeerde string in het invoerveld en klikt u op Decoderen. Het hulpmiddel verwijdert automatisch spaties en regeleinden voor het decoderen.</p>
+    <p style="margin:0 0 12px;">Bij het decoderen van een Base64URL-string (die - en _ gebruikt in plaats van + en /) wordt dit automatisch afgehandeld. Als de tekencodering onbekend is, selecteer dan AUTO-DETECT.</p>
+    <p style="margin:0 0 12px;">Voor batchdecodering schakelt u "Elke regel afzonderlijk decoderen" in — elke regel wordt onafhankelijk gedecodeerd, handig voor lijsten met gecodeerde tokens of identifiers.</p>
+    </div>
+  </section>
+  <section style="margin-top:28px;">
+    <div class="glass-card" style="padding:24px 28px;">
+      <h2 class="content-h2" style="margin-top:0;">Base64URL en JWT-tokens decoderen</h2>
+    <p style="margin:0 0 12px;">JWT's (JSON Web Tokens) bestaan uit drie delen gescheiden door punten: header.payload.handtekening. De header en payload zijn Base64URL-gecodeerd — niet standaard Base64. Base64URL gebruikt - in plaats van + en _ in plaats van /, en laat het =-opvulteken weg.</p>
+    <p style="margin:0 0 12px;">decodeb64.com detecteert en verwerkt Base64URL-invoer automatisch. Om een JWT-token te inspecteren, plakt u het volledige token of alleen het header- of payload-gedeelte.</p>
+    <p style="margin:0 0 12px;">Merk op dat het decoderen van een JWT-payload de claims onthult, maar de handtekening niet verifieert. Gebruik voor beveiligingsvalidatie altijd de juiste bibliotheek.</p>
+    </div>
+  </section>
+  <section style="margin-top:28px;">
+    <div class="glass-card" style="padding:24px 28px;">
+      <h2 class="content-h2" style="margin-top:0;">Base64-bestanden en binaire gegevens decoderen</h2>
+    <p style="margin:0 0 12px;">Voor gecodeerde bestanden biedt decodeb64.com een bestandsdecoderingsgedeelte dat Base64-gecodeerde .txt-bestanden accepteert. Upload het bestand met de Base64-string en het hulpmiddel decodeert het terug naar de originele binaire inhoud. Het bestandstype wordt automatisch gedetecteerd met behulp van magic byte-handtekeningen.</p>
+    <p style="margin:0 0 12px;">Dit is handig voor het herstellen van bestanden die zijn gecodeerd voor verzending via e-mail of API-reacties, en voor het extraheren van als Base64 ingebedde afbeeldingen in configuratiebestanden.</p>
+    <p style="margin:0 0 12px;">Beveiligingsherinnering: controleer altijd de bron van Base64-gegevens voordat u bestanden decodeert en uitvoert. Voer nooit een gedecodeerd bestand uit van een niet-vertrouwde bron.</p>
+    </div>
+  </section>
+
+  <div id="ezoic-pub-ad-placeholder-102"></div>
+
+<!-- FAQ -->
+  <section style="margin-top:8px;" itemscope itemtype="https://schema.org/FAQPage">
+    <h2 class="content-h2" data-i18n="faq_title">Veelgestelde vragen</h2>
+    <div class="accordion-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+      <div class="accordion-header" onclick="toggleAccordion(this)">
+        <span data-i18n="faq_q1" itemprop="name">Wat is Base64-decodering?</span>
+        <svg class="accordion-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+      </div>
+      <div class="accordion-body" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+        <div class="accordion-content" data-i18n="faq_a1" itemprop="text">Base64-decodering is het omgekeerde van codering — het converteert een Base64-string terug naar de originele binaire of tekstgegevens. Gebruikt om gegevens te herstellen uit JWT-tokens, e-mailbijlagen (MIME), API-reacties en data-URI's.</div>
+      </div>
+    </div>
+    <div class="accordion-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+      <div class="accordion-header" onclick="toggleAccordion(this)">
+        <span data-i18n="faq_q2" itemprop="name">Is Base64-decodering hetzelfde als ontsleuteling?</span>
+        <svg class="accordion-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+      </div>
+      <div class="accordion-body" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+        <div class="accordion-content" data-i18n="faq_a2" itemprop="text">Nee. Base64 is codering, geen versleuteling. Iedereen kan een Base64-string direct decoderen — er is geen sleutel of wachtwoord vereist.</div>
+      </div>
+    </div>
+    <div class="accordion-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+      <div class="accordion-header" onclick="toggleAccordion(this)">
+        <span data-i18n="faq_q3" itemprop="name">Wat betekent 'Ongeldige Base64-invoer'?</span>
+        <svg class="accordion-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+      </div>
+      <div class="accordion-body" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+        <div class="accordion-content" data-i18n="faq_a3" itemprop="text">De invoer bevat tekens buiten het Base64-alfabet (A–Z, a–z, 0–9, +, /, =).</div>
+      </div>
+    </div>
+    <div class="accordion-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+      <div class="accordion-header" onclick="toggleAccordion(this)">
+        <span data-i18n="faq_q4" itemprop="name">Hoe decodeer ik een Base64URL-string?</span>
+        <svg class="accordion-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+      </div>
+      <div class="accordion-body" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+        <div class="accordion-content" data-i18n="faq_a4" itemprop="text">Base64URL vervangt + door - en / door _ en verwijdert =-opvulling. Vervang vóór het decoderen - door + en _ door / en voeg opvulling toe.</div>
+      </div>
+    </div>
+    <div class="accordion-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+      <div class="accordion-header" onclick="toggleAccordion(this)">
+        <span data-i18n="faq_q5" itemprop="name">Kan ik binaire bestanden zoals afbeeldingen of PDF's decoderen?</span>
+        <svg class="accordion-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+      </div>
+      <div class="accordion-body" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+        <div class="accordion-content" data-i18n="faq_a5" itemprop="text">Ja. Upload een Base64-gecodeerd .txt-bestand via de bestandsdecoderingsectie.</div>
+      </div>
+    </div>
+  </section>
+
   <!-- INFO ACCORDION -->
   <section>
     <div class="accordion-item">
@@ -1162,92 +1249,6 @@
     </div>
   </section>
 
-  
-  <div id="ezoic-pub-ad-placeholder-102"></div>
-<!-- FAQ -->
-  <section style="margin-top:8px;" itemscope itemtype="https://schema.org/FAQPage">
-    <h2 class="content-h2" data-i18n="faq_title">Veelgestelde vragen</h2>
-    <div class="accordion-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
-      <div class="accordion-header" onclick="toggleAccordion(this)">
-        <span data-i18n="faq_q1" itemprop="name">Wat is Base64-decodering?</span>
-        <svg class="accordion-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
-      </div>
-      <div class="accordion-body" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
-        <div class="accordion-content" data-i18n="faq_a1" itemprop="text">Base64-decodering is het omgekeerde van codering — het converteert een Base64-string terug naar de originele binaire of tekstgegevens. Gebruikt om gegevens te herstellen uit JWT-tokens, e-mailbijlagen (MIME), API-reacties en data-URI's.</div>
-      </div>
-    </div>
-    <div class="accordion-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
-      <div class="accordion-header" onclick="toggleAccordion(this)">
-        <span data-i18n="faq_q2" itemprop="name">Is Base64-decodering hetzelfde als ontsleuteling?</span>
-        <svg class="accordion-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
-      </div>
-      <div class="accordion-body" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
-        <div class="accordion-content" data-i18n="faq_a2" itemprop="text">Nee. Base64 is codering, geen versleuteling. Iedereen kan een Base64-string direct decoderen — er is geen sleutel of wachtwoord vereist.</div>
-      </div>
-    </div>
-    <div class="accordion-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
-      <div class="accordion-header" onclick="toggleAccordion(this)">
-        <span data-i18n="faq_q3" itemprop="name">Wat betekent 'Ongeldige Base64-invoer'?</span>
-        <svg class="accordion-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
-      </div>
-      <div class="accordion-body" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
-        <div class="accordion-content" data-i18n="faq_a3" itemprop="text">De invoer bevat tekens buiten het Base64-alfabet (A–Z, a–z, 0–9, +, /, =).</div>
-      </div>
-    </div>
-    <div class="accordion-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
-      <div class="accordion-header" onclick="toggleAccordion(this)">
-        <span data-i18n="faq_q4" itemprop="name">Hoe decodeer ik een Base64URL-string?</span>
-        <svg class="accordion-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
-      </div>
-      <div class="accordion-body" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
-        <div class="accordion-content" data-i18n="faq_a4" itemprop="text">Base64URL vervangt + door - en / door _ en verwijdert =-opvulling. Vervang vóór het decoderen - door + en _ door / en voeg opvulling toe.</div>
-      </div>
-    </div>
-    <div class="accordion-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
-      <div class="accordion-header" onclick="toggleAccordion(this)">
-        <span data-i18n="faq_q5" itemprop="name">Kan ik binaire bestanden zoals afbeeldingen of PDF's decoderen?</span>
-        <svg class="accordion-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
-      </div>
-      <div class="accordion-body" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
-        <div class="accordion-content" data-i18n="faq_a5" itemprop="text">Ja. Upload een Base64-gecodeerd .txt-bestand via de bestandsdecoderingsectie.</div>
-      </div>
-    </div>
-  </section>
-
-
-  <!-- H2-SECTIONS -->
-  <section style="margin-top:28px;">
-    <div class="glass-card" style="padding:24px 28px;">
-      <h2 class="content-h2" style="margin-top:0;">Wat is Base64-decodering?</h2>
-    <p style="margin:0 0 12px;">Base64-decodering is het omgekeerde van Base64-codering — het converteert een Base64-string terug naar de originele binaire of tekstgegevens. Met een geldige Base64-string kan elke decoder de originele gegevens reconstrueren zonder sleutel of wachtwoord, daarom is Base64 geen vorm van versleuteling.</p>
-    <p style="margin:0 0 12px;">Base64-gecodeerde gegevens komen veel voor in JWT-tokens, e-mailbijlagen via MIME, afbeeldings-Data-URI's in HTML en CSS, binaire gegevens van REST API's in JSON-reacties, en configuratiebestanden die binaire waarden als tekst opslaan.</p>
-    <p style="margin:0 0 12px;">Bij het decoderen is het belangrijk de originele tekencodering van de tekstgegevens te kennen. Als de originele tekst UTF-8 was, geeft het selecteren van UTF-8 of AUTO-DETECT correcte resultaten.</p>
-    </div>
-  </section>
-  <section style="margin-top:28px;">
-    <div class="glass-card" style="padding:24px 28px;">
-      <h2 class="content-h2" style="margin-top:0;">Hoe Base64 online decoderen</h2>
-    <p style="margin:0 0 12px;">Om een Base64-string te decoderen met decodeb64.com, plakt u uw gecodeerde string in het invoerveld en klikt u op Decoderen. Het hulpmiddel verwijdert automatisch spaties en regeleinden voor het decoderen.</p>
-    <p style="margin:0 0 12px;">Bij het decoderen van een Base64URL-string (die - en _ gebruikt in plaats van + en /) wordt dit automatisch afgehandeld. Als de tekencodering onbekend is, selecteer dan AUTO-DETECT.</p>
-    <p style="margin:0 0 12px;">Voor batchdecodering schakelt u "Elke regel afzonderlijk decoderen" in — elke regel wordt onafhankelijk gedecodeerd, handig voor lijsten met gecodeerde tokens of identifiers.</p>
-    </div>
-  </section>
-  <section style="margin-top:28px;">
-    <div class="glass-card" style="padding:24px 28px;">
-      <h2 class="content-h2" style="margin-top:0;">Base64URL en JWT-tokens decoderen</h2>
-    <p style="margin:0 0 12px;">JWT's (JSON Web Tokens) bestaan uit drie delen gescheiden door punten: header.payload.handtekening. De header en payload zijn Base64URL-gecodeerd — niet standaard Base64. Base64URL gebruikt - in plaats van + en _ in plaats van /, en laat het =-opvulteken weg.</p>
-    <p style="margin:0 0 12px;">decodeb64.com detecteert en verwerkt Base64URL-invoer automatisch. Om een JWT-token te inspecteren, plakt u het volledige token of alleen het header- of payload-gedeelte.</p>
-    <p style="margin:0 0 12px;">Merk op dat het decoderen van een JWT-payload de claims onthult, maar de handtekening niet verifieert. Gebruik voor beveiligingsvalidatie altijd de juiste bibliotheek.</p>
-    </div>
-  </section>
-  <section style="margin-top:28px;">
-    <div class="glass-card" style="padding:24px 28px;">
-      <h2 class="content-h2" style="margin-top:0;">Base64-bestanden en binaire gegevens decoderen</h2>
-    <p style="margin:0 0 12px;">Voor gecodeerde bestanden biedt decodeb64.com een bestandsdecoderingsgedeelte dat Base64-gecodeerde .txt-bestanden accepteert. Upload het bestand met de Base64-string en het hulpmiddel decodeert het terug naar de originele binaire inhoud. Het bestandstype wordt automatisch gedetecteerd met behulp van magic byte-handtekeningen.</p>
-    <p style="margin:0 0 12px;">Dit is handig voor het herstellen van bestanden die zijn gecodeerd voor verzending via e-mail of API-reacties, en voor het extraheren van als Base64 ingebedde afbeeldingen in configuratiebestanden.</p>
-    <p style="margin:0 0 12px;">Beveiligingsherinnering: controleer altijd de bron van Base64-gegevens voordat u bestanden decodeert en uitvoert. Voer nooit een gedecodeerd bestand uit van een niet-vertrouwde bron.</p>
-    </div>
-  </section>
   <!-- OTHER TOOLS -->
   <section style="margin-top:28px;margin-bottom:8px;">
     <h2 class="content-h2" data-i18n="other_tools_title">Andere hulpmiddelen</h2>

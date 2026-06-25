@@ -1010,6 +1010,16 @@
     <p class="hero-sub" data-i18n="hero_sub">Мгновенно декодируйте строки и файлы Base64 в текст, изображения и бинарные данные — автоопределение UTF-8, поддержка URL-safe, 100% конфиденциально.</p>
   </section>
 
+  <!-- H2-SECTIONS -->
+  <section style="margin-top:28px;">
+    <div class="glass-card" style="padding:24px 28px;">
+      <h2 class="content-h2" style="margin-top:0;">Что такое декодирование Base64?</h2>
+    <p style="margin:0 0 12px;">Декодирование Base64 является обратным процессом кодирования Base64 — оно преобразует строку Base64 обратно в исходные бинарные или текстовые данные. При наличии корректной строки Base64 любой декодер может восстановить исходные данные без ключа или пароля, поэтому Base64 не является формой шифрования.</p>
+    <p style="margin:0 0 12px;">Закодированные в Base64 данные часто встречаются в JWT-токенах, вложениях электронной почты через MIME, Data URI изображений в HTML и CSS, бинарных данных из REST API в ответах JSON и конфигурационных файлах, хранящих бинарные значения в виде текста.</p>
+    <p style="margin:0 0 12px;">При декодировании важно знать исходную кодировку символов текстовых данных. Если исходный текст был UTF-8, выбор UTF-8 или AUTO-DETECT даст правильные результаты.</p>
+    </div>
+  </section>
+
   <div id="ezoic-pub-ad-placeholder-101"></div>
 
 <!-- TOOL CARD -->
@@ -1109,6 +1119,83 @@
 
   </div>
 
+  <section style="margin-top:28px;">
+    <div class="glass-card" style="padding:24px 28px;">
+      <h2 class="content-h2" style="margin-top:0;">Как декодировать Base64 онлайн</h2>
+    <p style="margin:0 0 12px;">Чтобы декодировать строку Base64 с помощью decodeb64.com, вставьте закодированную строку в поле ввода и нажмите «Декодировать». Инструмент автоматически удаляет пробелы и переносы строк перед декодированием.</p>
+    <p style="margin:0 0 12px;">При декодировании строки Base64URL (использующей - и _ вместо + и /) инструмент обрабатывает это автоматически. Если кодировка символов неизвестна, выберите AUTO-DETECT.</p>
+    <p style="margin:0 0 12px;">Для пакетного декодирования включите «Декодировать каждую строку отдельно» — каждая строка будет декодирована независимо, что удобно для списков токенов или идентификаторов.</p>
+    </div>
+  </section>
+  <section style="margin-top:28px;">
+    <div class="glass-card" style="padding:24px 28px;">
+      <h2 class="content-h2" style="margin-top:0;">Декодирование Base64URL и JWT-токенов</h2>
+    <p style="margin:0 0 12px;">JWT (JSON Web Tokens) состоят из трёх частей, разделённых точками: заголовок.полезная_нагрузка.подпись. Заголовок и полезная нагрузка закодированы в Base64URL — не в стандартном Base64. Base64URL использует - вместо + и _ вместо /, и не включает символ заполнения =.</p>
+    <p style="margin:0 0 12px;">decodeb64.com автоматически определяет и обрабатывает входные данные Base64URL. Для проверки JWT-токена вставьте полный токен или только часть заголовка или полезной нагрузки.</p>
+    <p style="margin:0 0 12px;">Обратите внимание, что декодирование полезной нагрузки JWT раскрывает содержащиеся в ней claims, но не проверяет подпись. Для проверки безопасности всегда используйте соответствующую библиотеку.</p>
+    </div>
+  </section>
+  <section style="margin-top:28px;">
+    <div class="glass-card" style="padding:24px 28px;">
+      <h2 class="content-h2" style="margin-top:0;">Декодирование файлов Base64 и бинарных данных</h2>
+    <p style="margin:0 0 12px;">Для закодированных файлов decodeb64.com включает раздел декодирования файлов, принимающий .txt файлы в кодировке Base64. Загрузите файл со строкой Base64, и инструмент декодирует его обратно в исходное бинарное содержимое. Тип файла автоматически определяется с помощью сигнатур magic bytes.</p>
+    <p style="margin:0 0 12px;">Это полезно для восстановления файлов, закодированных для передачи по электронной почте или в ответах API, и извлечения изображений, встроенных как Base64 в конфигурационные файлы.</p>
+    <p style="margin:0 0 12px;">Напоминание о безопасности: всегда проверяйте источник данных Base64 перед декодированием и запуском файлов. Никогда не запускайте декодированный файл из ненадёжного источника.</p>
+    </div>
+  </section>
+
+  <div id="ezoic-pub-ad-placeholder-102"></div>
+
+<!-- FAQ -->
+  <section style="margin-top:8px;" itemscope itemtype="https://schema.org/FAQPage">
+    <h2 class="content-h2" data-i18n="faq_title">Часто задаваемые вопросы</h2>
+    <div class="accordion-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+      <div class="accordion-header" onclick="toggleAccordion(this)">
+        <span data-i18n="faq_q1" itemprop="name">Что такое декодирование Base64?</span>
+        <svg class="accordion-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+      </div>
+      <div class="accordion-body" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+        <div class="accordion-content" data-i18n="faq_a1" itemprop="text">Декодирование Base64 — это обратный процесс кодирования: преобразование строки Base64 обратно в исходные двоичные или текстовые данные. Используется для восстановления данных из JWT-токенов, вложений email (MIME), ответов API и URI данных.</div>
+      </div>
+    </div>
+    <div class="accordion-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+      <div class="accordion-header" onclick="toggleAccordion(this)">
+        <span data-i18n="faq_q2" itemprop="name">Декодирование Base64 — это то же самое, что и расшифровка?</span>
+        <svg class="accordion-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+      </div>
+      <div class="accordion-body" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+        <div class="accordion-content" data-i18n="faq_a2" itemprop="text">Нет. Base64 — это кодирование, а не шифрование. Любой может мгновенно декодировать строку Base64 — ключ или пароль не требуются. Никогда не используйте Base64 в одиночку для защиты конфиденциальных данных.</div>
+      </div>
+    </div>
+    <div class="accordion-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+      <div class="accordion-header" onclick="toggleAccordion(this)">
+        <span data-i18n="faq_q3" itemprop="name">Что означает «Неверный ввод Base64»?</span>
+        <svg class="accordion-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+      </div>
+      <div class="accordion-body" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+        <div class="accordion-content" data-i18n="faq_a3" itemprop="text">Входные данные содержат символы вне алфавита Base64 (A–Z, a–z, 0–9, +, /, =). Распространённые причины: лишние пробелы, отсутствие заполнения =, или URL-safe вариант (- и _ вместо + и /).</div>
+      </div>
+    </div>
+    <div class="accordion-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+      <div class="accordion-header" onclick="toggleAccordion(this)">
+        <span data-i18n="faq_q4" itemprop="name">Как декодировать строку Base64URL?</span>
+        <svg class="accordion-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+      </div>
+      <div class="accordion-body" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+        <div class="accordion-content" data-i18n="faq_a4" itemprop="text">Base64URL заменяет + на - и / на _ и убирает заполнение =. Перед декодированием замените - на +, _ на / и добавьте недостающее заполнение =, чтобы длина была кратна 4.</div>
+      </div>
+    </div>
+    <div class="accordion-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+      <div class="accordion-header" onclick="toggleAccordion(this)">
+        <span data-i18n="faq_q5" itemprop="name">Могу ли я декодировать бинарные файлы, такие как изображения или PDF?</span>
+        <svg class="accordion-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+      </div>
+      <div class="accordion-body" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+        <div class="accordion-content" data-i18n="faq_a5" itemprop="text">Да. Используйте раздел декодирования файлов для загрузки файла .txt с содержимым Base64. Инструмент декодирует двоичное содержимое и предлагает его для скачивания с автоматическим определением типа файла.</div>
+      </div>
+    </div>
+  </section>
+
   <!-- INFO ACCORDION -->
   <section>
     <div class="accordion-item">
@@ -1162,90 +1249,6 @@
     </div>
   </section>
 
-  
-  <div id="ezoic-pub-ad-placeholder-102"></div>
-<!-- FAQ -->
-  <section style="margin-top:8px;" itemscope itemtype="https://schema.org/FAQPage">
-    <h2 class="content-h2" data-i18n="faq_title">Часто задаваемые вопросы</h2>
-    <div class="accordion-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
-      <div class="accordion-header" onclick="toggleAccordion(this)">
-        <span data-i18n="faq_q1" itemprop="name">Что такое декодирование Base64?</span>
-        <svg class="accordion-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
-      </div>
-      <div class="accordion-body" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
-        <div class="accordion-content" data-i18n="faq_a1" itemprop="text">Декодирование Base64 — это обратный процесс кодирования: преобразование строки Base64 обратно в исходные двоичные или текстовые данные. Используется для восстановления данных из JWT-токенов, вложений email (MIME), ответов API и URI данных.</div>
-      </div>
-    </div>
-    <div class="accordion-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
-      <div class="accordion-header" onclick="toggleAccordion(this)">
-        <span data-i18n="faq_q2" itemprop="name">Декодирование Base64 — это то же самое, что и расшифровка?</span>
-        <svg class="accordion-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
-      </div>
-      <div class="accordion-body" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
-        <div class="accordion-content" data-i18n="faq_a2" itemprop="text">Нет. Base64 — это кодирование, а не шифрование. Любой может мгновенно декодировать строку Base64 — ключ или пароль не требуются. Никогда не используйте Base64 в одиночку для защиты конфиденциальных данных.</div>
-      </div>
-    </div>
-    <div class="accordion-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
-      <div class="accordion-header" onclick="toggleAccordion(this)">
-        <span data-i18n="faq_q3" itemprop="name">Что означает «Неверный ввод Base64»?</span>
-        <svg class="accordion-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
-      </div>
-      <div class="accordion-body" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
-        <div class="accordion-content" data-i18n="faq_a3" itemprop="text">Входные данные содержат символы вне алфавита Base64 (A–Z, a–z, 0–9, +, /, =). Распространённые причины: лишние пробелы, отсутствие заполнения =, или URL-safe вариант (- и _ вместо + и /).</div>
-      </div>
-    </div>
-    <div class="accordion-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
-      <div class="accordion-header" onclick="toggleAccordion(this)">
-        <span data-i18n="faq_q4" itemprop="name">Как декодировать строку Base64URL?</span>
-        <svg class="accordion-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
-      </div>
-      <div class="accordion-body" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
-        <div class="accordion-content" data-i18n="faq_a4" itemprop="text">Base64URL заменяет + на - и / на _ и убирает заполнение =. Перед декодированием замените - на +, _ на / и добавьте недостающее заполнение =, чтобы длина была кратна 4.</div>
-      </div>
-    </div>
-    <div class="accordion-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
-      <div class="accordion-header" onclick="toggleAccordion(this)">
-        <span data-i18n="faq_q5" itemprop="name">Могу ли я декодировать бинарные файлы, такие как изображения или PDF?</span>
-        <svg class="accordion-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
-      </div>
-      <div class="accordion-body" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
-        <div class="accordion-content" data-i18n="faq_a5" itemprop="text">Да. Используйте раздел декодирования файлов для загрузки файла .txt с содержимым Base64. Инструмент декодирует двоичное содержимое и предлагает его для скачивания с автоматическим определением типа файла.</div>
-      </div>
-    </div>
-  </section>
-  <!-- H2-SECTIONS -->
-  <section style="margin-top:28px;">
-    <div class="glass-card" style="padding:24px 28px;">
-      <h2 class="content-h2" style="margin-top:0;">Что такое декодирование Base64?</h2>
-    <p style="margin:0 0 12px;">Декодирование Base64 является обратным процессом кодирования Base64 — оно преобразует строку Base64 обратно в исходные бинарные или текстовые данные. При наличии корректной строки Base64 любой декодер может восстановить исходные данные без ключа или пароля, поэтому Base64 не является формой шифрования.</p>
-    <p style="margin:0 0 12px;">Закодированные в Base64 данные часто встречаются в JWT-токенах, вложениях электронной почты через MIME, Data URI изображений в HTML и CSS, бинарных данных из REST API в ответах JSON и конфигурационных файлах, хранящих бинарные значения в виде текста.</p>
-    <p style="margin:0 0 12px;">При декодировании важно знать исходную кодировку символов текстовых данных. Если исходный текст был UTF-8, выбор UTF-8 или AUTO-DETECT даст правильные результаты.</p>
-    </div>
-  </section>
-  <section style="margin-top:28px;">
-    <div class="glass-card" style="padding:24px 28px;">
-      <h2 class="content-h2" style="margin-top:0;">Как декодировать Base64 онлайн</h2>
-    <p style="margin:0 0 12px;">Чтобы декодировать строку Base64 с помощью decodeb64.com, вставьте закодированную строку в поле ввода и нажмите «Декодировать». Инструмент автоматически удаляет пробелы и переносы строк перед декодированием.</p>
-    <p style="margin:0 0 12px;">При декодировании строки Base64URL (использующей - и _ вместо + и /) инструмент обрабатывает это автоматически. Если кодировка символов неизвестна, выберите AUTO-DETECT.</p>
-    <p style="margin:0 0 12px;">Для пакетного декодирования включите «Декодировать каждую строку отдельно» — каждая строка будет декодирована независимо, что удобно для списков токенов или идентификаторов.</p>
-    </div>
-  </section>
-  <section style="margin-top:28px;">
-    <div class="glass-card" style="padding:24px 28px;">
-      <h2 class="content-h2" style="margin-top:0;">Декодирование Base64URL и JWT-токенов</h2>
-    <p style="margin:0 0 12px;">JWT (JSON Web Tokens) состоят из трёх частей, разделённых точками: заголовок.полезная_нагрузка.подпись. Заголовок и полезная нагрузка закодированы в Base64URL — не в стандартном Base64. Base64URL использует - вместо + и _ вместо /, и не включает символ заполнения =.</p>
-    <p style="margin:0 0 12px;">decodeb64.com автоматически определяет и обрабатывает входные данные Base64URL. Для проверки JWT-токена вставьте полный токен или только часть заголовка или полезной нагрузки.</p>
-    <p style="margin:0 0 12px;">Обратите внимание, что декодирование полезной нагрузки JWT раскрывает содержащиеся в ней claims, но не проверяет подпись. Для проверки безопасности всегда используйте соответствующую библиотеку.</p>
-    </div>
-  </section>
-  <section style="margin-top:28px;">
-    <div class="glass-card" style="padding:24px 28px;">
-      <h2 class="content-h2" style="margin-top:0;">Декодирование файлов Base64 и бинарных данных</h2>
-    <p style="margin:0 0 12px;">Для закодированных файлов decodeb64.com включает раздел декодирования файлов, принимающий .txt файлы в кодировке Base64. Загрузите файл со строкой Base64, и инструмент декодирует его обратно в исходное бинарное содержимое. Тип файла автоматически определяется с помощью сигнатур magic bytes.</p>
-    <p style="margin:0 0 12px;">Это полезно для восстановления файлов, закодированных для передачи по электронной почте или в ответах API, и извлечения изображений, встроенных как Base64 в конфигурационные файлы.</p>
-    <p style="margin:0 0 12px;">Напоминание о безопасности: всегда проверяйте источник данных Base64 перед декодированием и запуском файлов. Никогда не запускайте декодированный файл из ненадёжного источника.</p>
-    </div>
-  </section>
   <!-- OTHER TOOLS -->
   <section style="margin-top:28px;margin-bottom:8px;">
     <h2 class="content-h2" data-i18n="other_tools_title">Другие Инструменты</h2>
