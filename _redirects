@@ -1,5 +1,7 @@
 /.git/* / 301
 /.env* / 301
+/en/ / 301
 /en/base64-to-image /base64-to-image 301
+/en/base64-to-image.html /base64-to-image.html 301
 /en/index.html / 301
 /en / 301
