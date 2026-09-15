@@ -13,7 +13,7 @@
   <!-- Ezoic analytics -->
   <script src="//ezoicanalytics.com/analytics.js"></script>
   <script>
-    // Production-only: CookieHub, Google Analytics, AdSense
+    // Production-only: Google Analytics, AdSense
     // Skipped entirely on localhost / file:// to avoid blocking the page locally.
     (function () {
       var isProd = /decodeb64\.com$/.test(window.location.hostname);
@@ -33,16 +33,6 @@
       });
 
       if (!isProd) return;
-
-      // CookieHub
-      var ch = document.createElement('script');
-      ch.src = 'https://cdn.cookiehub.eu/c2/37267253.js';
-      ch.onload = function () {
-        document.addEventListener('DOMContentLoaded', function () {
-          window.cookiehub && window.cookiehub.load({});
-        });
-      };
-      document.head.appendChild(ch);
 
       // Google Analytics
       var ga = document.createElement('script');
@@ -975,6 +965,7 @@
       <a href="https://encodeb64.com" class="nav-pill inactive" data-i18n="nav_encode" rel="noopener noreferrer" target="_blank">编码</a>
       <span class="nav-pill active" data-i18n="nav_decode">解码</span>
       <a href="base64-to-image.html" class="nav-pill inactive" data-i18n="nav_b2i">Base64 转图片</a>
+      <a href="/zh/blog" class="nav-pill inactive" data-i18n="nav_blog">博客</a>
     </nav>
     <div class="lang-selector">
       <button class="lang-btn" id="langBtn" aria-haspopup="listbox" aria-expanded="false">
@@ -1269,6 +1260,8 @@
     <a href="/privacy-policy" data-i18n="footer_privacy">隐私政策</a>
     <a href="/terms-of-use" data-i18n="footer_terms">使用条款</a>
     <a href="/contact" data-i18n="footer_contact">联系我们</a>
+  
+    <a href="/zh/blog" data-i18n="footer_blog">博客</a>
   </div>
   <span class="footer-right"><span data-i18n="footer_also_try">也可以试试：</span> <a href="https://encodeb64.com" rel="noopener noreferrer" target="_blank">Base64 Encode — encodeb64.com →</a></span>
 

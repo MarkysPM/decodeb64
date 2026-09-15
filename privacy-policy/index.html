@@ -23,14 +23,6 @@
         ad_user_data: 'denied', ad_personalization: 'denied', wait_for_update: 500
       });
       if (!isProd) return;
-      var ch = document.createElement('script');
-      ch.src = 'https://cdn.cookiehub.eu/c2/37267253.js';
-      ch.onload = function () {
-        document.addEventListener('DOMContentLoaded', function () {
-          window.cookiehub && window.cookiehub.load({});
-        });
-      };
-      document.head.appendChild(ch);
       var ga = document.createElement('script');
       ga.async = true;
       ga.src = 'https://www.googletagmanager.com/gtag/js?id=G-JVDER6MN4Y';
@@ -216,6 +208,7 @@
       <a href="https://encodeb64.com" class="nav-pill inactive" rel="noopener noreferrer" target="_blank">Encode</a>
       <a href="/" class="nav-pill inactive">Decode</a>
       <a href="/base64-to-image" class="nav-pill inactive">Base64 to Image</a>
+      <a href="/blog" class="nav-pill inactive" data-i18n="nav_blog">Blog</a>
     </nav>
     <div class="lang-selector">
       <button class="lang-btn" id="langBtn" aria-haspopup="listbox" aria-expanded="false">
@@ -269,7 +262,7 @@
     <p>We use Google AdSense to display advertisements. Google may use cookies to serve ads based on your prior visits to this or other websites. You can opt out of personalised advertising at <a href="https://adssettings.google.com/" rel="noopener noreferrer" target="_blank">Google's Ad Settings</a>.</p>
 
     <h2 class="content-h2">4. Cookies</h2>
-    <p>We use CookieHub to manage cookie consent in compliance with GDPR. Only strictly necessary cookies are set by default. You may update your preferences at any time via the cookie banner.</p>
+    <p>We use Ezoic's consent management platform to manage cookie consent in compliance with GDPR. Only strictly necessary cookies are set by default. You may update your preferences at any time via the cookie banner.</p>
 
     <h2 class="content-h2">5. Third-party services</h2>
     <p>Our website is hosted on Cloudflare Pages. Cloudflare may retain standard server access logs. Please refer to <a href="https://www.cloudflare.com/privacypolicy/" rel="noopener noreferrer" target="_blank">Cloudflare's Privacy Policy</a> for details.</p>
@@ -295,6 +288,8 @@
     <a href="/privacy-policy">Privacy Policy</a>
     <a href="/terms-of-use">Terms of Use</a>
     <a href="/contact">Contact</a>
+  
+    <a href="/blog" data-i18n="footer_blog">Blog</a>
   </div>
   <span class="footer-right"><span>Also try:</span> <a href="https://encodeb64.com" rel="noopener noreferrer" target="_blank">Base64 Encode — encodeb64.com →</a></span>
   <span class="footer-right" style="font-size:0.72rem;color:var(--text-dim);">

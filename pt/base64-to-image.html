@@ -13,7 +13,7 @@
   <!-- Ezoic analytics -->
   <script src="//ezoicanalytics.com/analytics.js"></script>
   <script>
-    // Production-only: CookieHub, Google Analytics, AdSense
+    // Production-only: Google Analytics, AdSense
     // Skipped entirely on localhost / file:// to avoid blocking the page locally.
     (function () {
       var isProd = /decodeb64\.com$/.test(window.location.hostname);
@@ -33,16 +33,6 @@
       });
 
       if (!isProd) return;
-
-      // CookieHub
-      var ch = document.createElement('script');
-      ch.src = 'https://cdn.cookiehub.eu/c2/37267253.js';
-      ch.onload = function () {
-        document.addEventListener('DOMContentLoaded', function () {
-          window.cookiehub && window.cookiehub.load({});
-        });
-      };
-      document.head.appendChild(ch);
 
       // Google Analytics
       var ga = document.createElement('script');
@@ -885,6 +875,7 @@
       <a href="https://encodeb64.com" class="nav-pill inactive" data-i18n="nav_encode" rel="noopener noreferrer" target="_blank">Encode</a>
       <a href="./" class="nav-pill inactive" data-i18n="nav_decode">Decode</a>
       <span class="nav-pill active" data-i18n="nav_b2i">Base64 to Image</span>
+      <a href="/pt/blog" class="nav-pill inactive" data-i18n="nav_blog">Blog</a>
     </nav>
     <div class="lang-selector">
       <button class="lang-btn" id="langBtn" aria-haspopup="listbox" aria-expanded="false">
@@ -1153,6 +1144,8 @@
     <a href="#" data-i18n="footer_privacy">Privacy Policy</a>
     <a href="#" data-i18n="footer_terms">Terms of Use</a>
     <a href="#" data-i18n="footer_contact">Contact</a>
+  
+    <a href="/pt/blog" data-i18n="footer_blog">Blog</a>
   </div>
   <span class="footer-right"><span data-i18n="footer_also_try">Also try:</span> <a href="https://encodeb64.com" rel="noopener noreferrer" target="_blank">Base64 Encode — encodeb64.com →</a></span>
 </footer>
