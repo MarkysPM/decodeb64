@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <!-- Ezoic privacy scripts -->
+  <script data-cfasync="false" src="https://cmp.gatekeeperconsent.com/min.js"></script>
+  <script data-cfasync="false" src="https://the.gatekeeperconsent.com/cmp.min.js"></script>
+  <!-- Ezoic main script -->
+  <script async src="//www.ezojs.com/ezoic/sa.min.js"></script>
+  <script>
+    window.ezstandalone = window.ezstandalone || {};
+    ezstandalone.cmd = ezstandalone.cmd || [];
+  </script>
+  <!-- Ezoic analytics -->
+  <script src="//ezoicanalytics.com/analytics.js"></script>
+  <script>
+    (function () {
+      var isProd = /decodeb64\.com$/.test(window.location.hostname);
+      window.dataLayer = window.dataLayer || [];
+      function gtag() { dataLayer.push(arguments); }
+      window.gtag = gtag;
+      gtag('consent', 'default', {
+        analytics_storage: 'denied', ad_storage: 'denied',
+        ad_user_data: 'denied', ad_personalization: 'denied', wait_for_update: 500
+      });
+      if (!isProd) return;
+      var ch = document.createElement('script');
+      ch.src = 'https://cdn.cookiehub.eu/c2/37267253.js';
+      ch.onload = function () {
+        document.addEventListener('DOMContentLoaded', function () {
+          window.cookiehub && window.cookiehub.load({});
+        });
+      };
+      document.head.appendChild(ch);
+      var ga = document.createElement('script');
+      ga.async = true;
+      ga.src = 'https://www.googletagmanager.com/gtag/js?id=G-JVDER6MN4Y';
+      document.head.appendChild(ga);
+      gtag('js', new Date());
+      gtag('config', 'G-JVDER6MN4Y');
+      var ad = document.createElement('script');
+      ad.async = true;
+      ad.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7602115974474104';
+      ad.crossOrigin = 'anonymous';
+      document.head.appendChild(ad);
+    })();
+  </script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Decodifica Base64 di file binari: immagini, PDF e altro</title>
+  <meta name="description" content="Scopri come decodificare file binari codificati in Base64 — immagini, PDF, audio e documenti. Con consigli sul riconoscimento del tipo di file e sulla gestione sicura dei file decodificati." />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://decodeb64.com/it/blog/base64-decoding-binary-files-images-pdfs-and-more/" />
+  <link rel="alternate" hreflang="en" href="https://decodeb64.com/blog/base64-decoding-binary-files-images-pdfs-and-more/" />
+  <link rel="alternate" hreflang="es" href="https://decodeb64.com/es/blog/base64-decoding-binary-files-images-pdfs-and-more/" />
+  <link rel="alternate" hreflang="pt" href="https://decodeb64.com/pt/blog/base64-decoding-binary-files-images-pdfs-and-more/" />
+  <link rel="alternate" hreflang="fr" href="https://decodeb64.com/fr/blog/base64-decoding-binary-files-images-pdfs-and-more/" />
+  <link rel="alternate" hreflang="de" href="https://decodeb64.com/de/blog/base64-decoding-binary-files-images-pdfs-and-more/" />
+  <link rel="alternate" hreflang="it" href="https://decodeb64.com/it/blog/base64-decoding-binary-files-images-pdfs-and-more/" />
+  <link rel="alternate" hreflang="zh" href="https://decodeb64.com/zh/blog/base64-decoding-binary-files-images-pdfs-and-more/" />
+  <link rel="alternate" hreflang="ru" href="https://decodeb64.com/ru/blog/base64-decoding-binary-files-images-pdfs-and-more/" />
+  <link rel="alternate" hreflang="ja" href="https://decodeb64.com/ja/blog/base64-decoding-binary-files-images-pdfs-and-more/" />
+  <link rel="alternate" hreflang="ko" href="https://decodeb64.com/ko/blog/base64-decoding-binary-files-images-pdfs-and-more/" />
+  <link rel="alternate" hreflang="nl" href="https://decodeb64.com/nl/blog/base64-decoding-binary-files-images-pdfs-and-more/" />
+  <link rel="alternate" hreflang="hi" href="https://decodeb64.com/hi/blog/base64-decoding-binary-files-images-pdfs-and-more/" />
+  <link rel="alternate" hreflang="x-default" href="https://decodeb64.com/blog/base64-decoding-binary-files-images-pdfs-and-more/" />
+  <meta property="og:locale" content="it_IT" />
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="decodeb64.com" />
+  <meta property="og:title" content="Decodifica Base64 di file binari: immagini, PDF e altro" />
+  <meta property="og:description" content="Scopri come decodificare file binari codificati in Base64 — immagini, PDF, audio e documenti. Con consigli sul riconoscimento del tipo di file e sulla gestione sicura dei file decodificati." />
+  <meta property="og:url" content="https://decodeb64.com/it/blog/base64-decoding-binary-files-images-pdfs-and-more/" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="theme-color" content="#0d0d14" />
+  <meta name="color-scheme" content="dark" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Sora:wght@300;400;500;600;700&display=swap');
+    :root {
+      --bg: #0d0d14; --bg2: #12121c; --bg3: #1a1a28;
+      --amber: #ff8c42; --amber-dim: rgba(255,140,66,0.15);
+      --amber-glow: rgba(255,140,66,0.35); --amber-light: #ffb07a;
+      --glass-bg: rgba(255,255,255,0.04); --glass-border: rgba(255,255,255,0.09);
+      --text: #e8e8f0; --text-muted: #7a7a9a; --text-dim: #4a4a6a;
+      --green: #3ecf7e; --red: #ff5a5a; --red-dim: rgba(255,90,90,0.15);
+      --radius: 14px; --radius-sm: 8px;
+      --mono: 'JetBrains Mono', monospace; --sans: 'Sora', sans-serif;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--sans); background-color: var(--bg); color: var(--text);
+      min-height: 100vh; overflow-x: hidden; position: relative;
+    }
+    body::before {
+      content: ''; position: fixed; inset: 0;
+      background-image: radial-gradient(circle, rgba(255,140,66,0.12) 1px, transparent 1px);
+      background-size: 28px 28px; pointer-events: none; z-index: 0;
+    }
+    body::after {
+      content: ''; position: fixed; top: -20%; left: 50%; transform: translateX(-50%);
+      width: 800px; height: 500px;
+      background: radial-gradient(ellipse, rgba(255,140,66,0.06) 0%, transparent 70%);
+      pointer-events: none; z-index: 0;
+    }
+    header {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(13,13,20,0.85); backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px); border-bottom: 1px solid var(--glass-border);
+      padding: 0 24px; height: 62px; display: flex; align-items: center;
+      justify-content: space-between; gap: 16px;
+    }
+    .logo { font-family: var(--mono); font-size: 1.2rem; font-weight: 700;
+      letter-spacing: -0.5px; text-decoration: none; flex-shrink: 0; }
+    .logo span.decode { color: #ffffff; }
+    .logo span.b64 { color: var(--amber); }
+    .header-right { display: flex; align-items: center; gap: 10px; }
+    .nav-pills { display: flex; gap: 6px; }
+    .nav-pill {
+      font-family: var(--sans); font-size: 0.78rem; font-weight: 500;
+      padding: 5px 14px; border-radius: 20px; text-decoration: none;
+      transition: all 0.2s; border: 1px solid transparent;
+    }
+    .nav-pill.inactive { color: var(--text-muted); border-color: var(--glass-border); background: transparent; }
+    .nav-pill.inactive:hover { color: var(--text); border-color: rgba(255,255,255,0.18); }
+    .nav-pill.active { color: var(--bg); background: var(--amber); font-weight: 600; }
+    .lang-selector { position: relative; }
+    .lang-btn {
+      display: flex; align-items: center; gap: 6px; padding: 5px 12px;
+      background: var(--glass-bg); border: 1px solid var(--glass-border);
+      border-radius: 20px; color: var(--text-muted); cursor: pointer;
+      font-family: var(--sans); font-size: 0.78rem; transition: all 0.2s; white-space: nowrap;
+    }
+    .lang-btn:hover { color: var(--text); border-color: rgba(255,255,255,0.18); }
+    .lang-btn svg { width: 14px; height: 14px; flex-shrink: 0; }
+    .lang-dropdown {
+      display: none; position: absolute; top: calc(100% + 8px); right: 0;
+      background: #1a1a2e; border: 1px solid var(--glass-border);
+      border-radius: var(--radius-sm); overflow: hidden; min-width: 160px;
+      box-shadow: 0 12px 40px rgba(0,0,0,0.5); z-index: 200;
+    }
+    .lang-dropdown.open { display: block; }
+    .lang-option {
+      display: flex; align-items: center; gap: 8px; padding: 9px 14px;
+      cursor: pointer; font-size: 0.82rem; color: var(--text-muted); transition: all 0.15s;
+    }
+    .lang-option:hover { background: var(--amber-dim); color: var(--text); }
+    .lang-option.selected { color: var(--amber); }
+    main {
+      position: relative; z-index: 1; max-width: 900px;
+      margin: 0 auto; padding: 0 20px 80px;
+    }
+    .page-hero {
+      text-align: center; padding: 48px 20px 36px; position: relative;
+    }
+    .page-hero h1 {
+      font-size: clamp(1.8rem, 4vw, 2.8rem); font-weight: 700;
+      letter-spacing: -1px; line-height: 1.15; margin-bottom: 12px;
+    }
+    .page-hero .sub { color: var(--text-muted); font-size: 1rem; max-width: 560px; margin: 0 auto; }
+    .breadcrumb {
+      font-size: 0.78rem; color: var(--text-dim); margin-bottom: 8px;
+    }
+    .breadcrumb a { color: var(--text-dim); text-decoration: none; transition: color 0.2s; }
+    .breadcrumb a:hover { color: var(--amber); }
+    .breadcrumb span { color: var(--text-muted); margin: 0 6px; }
+    .glass-card {
+      background: var(--glass-bg); border: 1px solid var(--glass-border);
+      border-radius: var(--radius); backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px); padding: 32px 36px; margin-bottom: 20px;
+    }
+    .content-h2 {
+      font-size: 1rem; font-weight: 700; color: var(--amber);
+      margin: 28px 0 10px; letter-spacing: -0.2px;
+    }
+    .content-h2:first-child { margin-top: 0; }
+    .glass-card p {
+      font-size: 0.9rem; color: var(--text-muted); line-height: 1.75; margin-bottom: 12px;
+    }
+    .glass-card p:last-child { margin-bottom: 0; }
+    .glass-card ul {
+      list-style: none; padding: 0; margin: 8px 0 12px;
+    }
+    .glass-card ul li {
+      font-size: 0.88rem; color: var(--text-muted); line-height: 1.7;
+      padding-left: 18px; position: relative; margin-bottom: 6px;
+    }
+    .glass-card ul li::before {
+      content: '—'; position: absolute; left: 0; color: var(--amber); font-family: var(--mono);
+    }
+    .glass-card a { color: var(--amber); text-decoration: none; transition: opacity 0.2s; }
+    .glass-card a:hover { opacity: 0.8; text-decoration: underline; }
+    .article-meta {
+      font-size: 0.78rem; color: var(--text-dim); font-family: var(--mono);
+      margin-bottom: 24px; display: flex; gap: 14px; justify-content: center; flex-wrap: wrap;
+    }
+    .article-list { margin: 18px 0 28px; display: flex; flex-direction: column; gap: 14px; }
+    .article-card {
+      background: var(--glass-bg); border: 1px solid var(--glass-border);
+      border-radius: var(--radius); backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px); padding: 26px 30px; transition: all 0.2s;
+    }
+    .article-card:hover { border-color: var(--amber-glow); }
+    .article-card h2 { font-size: 1.15rem; margin-bottom: 8px; letter-spacing: -0.3px; }
+    .article-card h2 a { color: var(--text); text-decoration: none; }
+    .article-card h2 a:hover { color: var(--amber); }
+    .article-card p.excerpt { font-size: 0.9rem; color: var(--text-muted); line-height: 1.65; margin-bottom: 12px; }
+    .article-card .meta { font-size: 0.75rem; color: var(--text-dim); font-family: var(--mono); display: flex; gap: 12px; align-items: center; flex-wrap: wrap; }
+    .article-card .read-more { color: var(--amber); text-decoration: none; font-size: 0.85rem; font-weight: 600; }
+    .article-card .read-more:hover { opacity: 0.8; }
+    .last-updated {
+      font-size: 0.75rem; color: var(--text-dim); margin-bottom: 24px;
+      font-family: var(--mono);
+    }
+    footer {
+      position: relative; z-index: 1; border-top: 1px solid var(--glass-border);
+      padding: 24px 20px; display: flex; flex-wrap: wrap; gap: 16px;
+      align-items: center; justify-content: space-between;
+      max-width: 900px; margin: 0 auto; font-size: 0.78rem; color: var(--text-dim);
+    }
+    .footer-links { display: flex; gap: 16px; flex-wrap: wrap; }
+    .footer-links a, footer a { color: var(--text-dim); text-decoration: none; transition: color 0.2s; }
+    .footer-links a:hover, footer a:hover { color: var(--amber); }
+    footer .footer-right { color: var(--text-dim); }
+    footer .footer-right a { color: var(--amber); }
+    @media (max-width: 640px) {
+      header { padding: 0 16px; }
+      .logo { font-size: 1rem; }
+      .nav-pill { padding: 4px 10px; font-size: 0.73rem; }
+      .lang-btn span { display: none; }
+      main { padding: 0 16px 60px; }
+      .glass-card { padding: 20px 18px; }
+      .article-card { padding: 20px 18px; }
+      footer { flex-direction: column; align-items: flex-start; gap: 10px; }
+    }
+  </style>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Decodifica Base64 di file binari: immagini, PDF e altro",
+  "author": {
+    "@type": "Organization",
+    "name": "MpmDigital",
+    "url": "https://mpmdigital.es/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "decodeb64.com",
+    "url": "https://decodeb64.com/"
+  },
+  "datePublished": "2026-08-01",
+  "inLanguage": "it",
+  "url": "https://decodeb64.com/it/blog/base64-decoding-binary-files-images-pdfs-and-more/"
+}
+  </script>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <a href="/it/" class="logo">
+    <span class="decode">decode</span><span class="b64">B64</span>
+  </a>
+  <div class="header-right">
+    <nav class="nav-pills">
+      <a href="https://encodeb64.com" class="nav-pill inactive" rel="noopener noreferrer" target="_blank">Codifica</a>
+      <a href="/it/" class="nav-pill inactive">Decodifica</a>
+      <a href="/it/base64-to-image" class="nav-pill inactive">Da Base64 a Immagine</a>
+      <a href="/it/blog" class="nav-pill inactive">Blog</a>
+    </nav>
+    <div class="lang-selector">
+      <button class="lang-btn" id="langBtn" aria-haspopup="listbox" aria-expanded="false">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+        <span id="langLabel">Italiano</span>
+        <svg viewBox="0 0 10 6" fill="currentColor" width="10" height="6"><path d="M0 0l5 6 5-6z"/></svg>
+      </button>
+      <div class="lang-dropdown" id="langDropdown" role="listbox">
+        <div class="lang-option" data-lang="en" role="option">🇺🇸 English</div>
+        <div class="lang-option" data-lang="es" role="option">🇪🇸 Español</div>
+        <div class="lang-option" data-lang="pt" role="option">🇧🇷 Português</div>
+        <div class="lang-option" data-lang="fr" role="option">🇫🇷 Français</div>
+        <div class="lang-option" data-lang="de" role="option">🇩🇪 Deutsch</div>
+        <div class="lang-option selected" data-lang="it" role="option">🇮🇹 Italiano</div>
+        <div class="lang-option" data-lang="zh" role="option">🇨🇳 中文</div>
+        <div class="lang-option" data-lang="ru" role="option">🇷🇺 Русский</div>
+        <div class="lang-option" data-lang="ja" role="option">🇯🇵 日本語</div>
+        <div class="lang-option" data-lang="ko" role="option">🇰🇷 한국어</div>
+        <div class="lang-option" data-lang="nl" role="option">🇳🇱 Nederlands</div>
+        <div class="lang-option" data-lang="hi" role="option">🇮🇳 हिन्दी</div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- MAIN -->
+<main>
+  <div class="page-hero">
+    <p class="breadcrumb"><a href="/it/">decodeb64.com</a><span>›</span><a href="/it/blog">Blog</a><span>›</span>Decodifica Base64 di file binari: immagini, PDF e altro</p>
+    <h1>Decodifica Base64 di file binari: immagini, PDF e altro</h1>
+    <div class="article-meta">
+      <span>Agosto 2026</span>
+      <span>·</span>
+      <span>5 min di lettura</span>
+    </div>
+  </div>
+
+  <div class="glass-card">
+    <p>La codifica Base64 non serve solo per il testo. Qualsiasi file binario — un'immagine, un PDF, una clip audio, un documento Word — può essere codificato come stringa Base64. Gli sviluppatori incontrano dati binari codificati in Base64 nelle risposte API, nei campi dei database, negli allegati email e nei file di configurazione. Questa guida spiega come decodificare questi file e recuperare il contenuto binario originale.</p>
+    <h2 class="content-h2">Perché i file binari vengono codificati in Base64</h2>
+    <p>I file binari contengono byte che cadono fuori dall'intervallo ASCII stampabile. Quando questi dati devono transitare attraverso un canale basato su testo — una risposta API JSON, un documento XML, il corpo di un'email, un header HTTP — devono prima essere convertiti in una rappresentazione testuale. Base64 è il modo standard per farlo.</p>
+    <p>Scenari comuni in cui troverete file binari codificati in Base64:</p>
+    <ul>
+      <li>Risposte API REST che restituiscono immagini, documenti o altri contenuti binari come campi JSON</li>
+      <li>Allegati email codificati in formato MIME</li>
+      <li>Campi di database che memorizzano dati binari come testo</li>
+      <li>File di configurazione (secret Kubernetes, pipeline CI/CD) contenenti certificati o chiavi</li>
+      <li>Email HTML con immagini incorporate come Data URI</li>
+    </ul>
+    <h2 class="content-h2">Riconoscere un file codificato in Base64</h2>
+    <p>Le stringhe Base64 assomigliano a una lunga sequenza di lettere, numeri e i caratteri +, / e = (oppure -, _ senza = per Base64URL). Un segno rivelatore è che la lunghezza della stringa è un multiplo di 4 (o di 3 per Base64URL senza padding).</p>
+    <p>Se la stringa inizia con <span style="font-family:var(--mono);color:var(--amber-light);">data:</span>, si tratta di una Data URI che include già il tipo di file: <span style="font-family:var(--mono);font-size:0.82rem;color:var(--text-muted);">data:image/png;base64,...</span> Questo rende facile identificare il tipo di file prima di decodificare.</p>
+    <p>Per le stringhe Base64 grezze senza prefisso, potete identificare il tipo di file osservando i primi byte dopo la decodifica — chiamati magic byte.</p>
+    <h2 class="content-h2">Magic byte — Come identificare i tipi di file dopo la decodifica</h2>
+    <p>I primi byte della maggior parte dei formati di file seguono uno schema fisso:</p>
+    <ul>
+      <li><strong style="color:var(--text);">PNG</strong>: byte 89 50 4E 47 (ASCII: .PNG)</li>
+      <li><strong style="color:var(--text);">JPEG</strong>: byte FF D8 FF</li>
+      <li><strong style="color:var(--text);">GIF</strong>: byte 47 49 46 38 (ASCII: GIF8)</li>
+      <li><strong style="color:var(--text);">PDF</strong>: byte 25 50 44 46 (ASCII: %PDF)</li>
+      <li><strong style="color:var(--text);">ZIP</strong>: byte 50 4B 03 04 (ASCII: PK..)</li>
+      <li><strong style="color:var(--text);">WebP</strong>: byte 52 49 46 46 ... 57 45 42 50 (ASCII: RIFF...WEBP)</li>
+    </ul>
+    <h2 class="content-h2"></h2>
+    <p><a href="https://decodeb64.com">decodeb64.com</a> rileva automaticamente il tipo di file da questi magic byte quando decodificate un file binario, così ottenete un download con l'estensione corretta.</p>
+    <h2 class="content-h2">Passo passo: decodificare un file binario Base64</h2>
+    <p><strong style="color:var(--text);">Passo 1:</strong> Ottenete la stringa Base64. Potrebbe provenire da una risposta API (copiando il valore del campo base64), un record di database o un file di configurazione.</p>
+    <p><strong style="color:var(--text);">Passo 2:</strong> Se la stringa è una Data URI (inizia con data:image/... o data:application/...), il tipo di file è già specificato. Se è una stringa Base64 grezza, potreste dover specificare il tipo di file manualmente o affidarvi al rilevamento automatico.</p>
+    <p><strong style="color:var(--text);">Passo 3:</strong> Andate su <a href="https://decodeb64.com">decodeb64.com</a> e usate la sezione di decodifica file. Caricate un file .txt contenente la stringa Base64, oppure incollatela direttamente nel decoder di testo.</p>
+    <p><strong style="color:var(--text);">Passo 4:</strong> Cliccate su Decodifica File. Lo strumento decodifica il contenuto binario nel browser e offre un download con l'estensione corretta.</p>
+    <h2 class="content-h2">Considerazioni sulla sicurezza</h2>
+    <p>Siate sempre cauti con i file decodificati provenienti da fonti non affidabili. Una stringa Base64 può codificare qualsiasi tipo di file, inclusi eseguibili, script e documenti dannosi. Prima di aprire un file decodificato:</p>
+    <ul>
+      <li>Verificate la fonte dei dati Base64</li>
+      <li>Controllate che il tipo di file corrisponda a quanto atteso</li>
+      <li>Eseguite una scansione antivirus se la fonte non è affidabile</li>
+      <li>Non eseguite mai un file decodificato senza averne verificato l'origine</li>
+    </ul>
+    <h2 class="content-h2">Considerazioni sui file di grandi dimensioni</h2>
+    <p>La codifica Base64 aumenta le dimensioni del file di circa il 33%. Un PDF di 10 MB diventa circa 13,3 MB come stringa Base64. Per file molto grandi, la decodifica nel browser può essere lenta a causa dei limiti di memoria. Per file oltre i 50 MB, considerate uno strumento da riga di comando o l'elaborazione lato server.</p>
+    <h2 class="content-h2">Decodifica Base64 specifica per le immagini</h2>
+    <p>Per le immagini codificate in Base64, decodeb64.com include un <a href="/base64-to-image">convertitore da Base64 a Immagine</a> dedicato. Mostra un'anteprima live dell'immagine decodificata, dimensioni e dimensione stimata del file, e consente di scaricare l'immagine come PNG, JPG o WebP — convertendo i formati tramite la Canvas API del browser, senza alcun upload su server.</p>
+    <p>I file binari codificati in Base64 sono comuni nello sviluppo web moderno. Capire come riconoscerli, decodificarli correttamente e gestirli in sicurezza è una competenza pratica che ripaga spesso — che stiate facendo debug di un'integrazione API, elaborando allegati email o ispezionando dati da un database.</p>
+  </div>
+</main>
+
+<!-- FOOTER -->
+<footer>
+  <span>decodeb64.com &copy; 2026</span>
+  <div class="footer-links">
+    <a href="/about">Chi siamo</a>
+    <a href="/privacy-policy">Privacy Policy</a>
+    <a href="/terms-of-use">Termini di utilizzo</a>
+    <a href="/contact">Contatti</a>
+    <a href="/blog">Blog</a>
+  </div>
+  <span class="footer-right"><span>Prova anche:</span> <a href="https://encodeb64.com" rel="noopener noreferrer" target="_blank">Base64 Encode — encodeb64.com →</a></span>
+  <span class="footer-right" style="font-size:0.72rem;color:var(--text-dim);">
+    Sviluppato da <a href="https://mpmdigital.es/" rel="noopener noreferrer" target="_blank" style="color:var(--amber,#ff8c42);">MpmDigital</a>
+  </span>
+</footer>
+
+<script>
+  // Language switcher
+  (function () {
+    var btn = document.getElementById('langBtn');
+    var dd = document.getElementById('langDropdown');
+    btn.addEventListener('click', function (e) {
+      e.stopPropagation();
+      dd.classList.toggle('open');
+      btn.setAttribute('aria-expanded', dd.classList.contains('open'));
+    });
+    document.addEventListener('click', function () {
+      dd.classList.remove('open');
+      btn.setAttribute('aria-expanded', 'false');
+    });
+    dd.addEventListener('click', function (e) {
+      var opt = e.target.closest('.lang-option');
+      if (!opt) return;
+      var sel = opt.dataset.lang;
+      var path = sel === 'en' ? '/blog/base64-decoding-binary-files-images-pdfs-and-more' : '/' + sel + '/blog/base64-decoding-binary-files-images-pdfs-and-more';
+      window.location.href = path;
+    });
+  })();
+</script>
+</body>
+</html>

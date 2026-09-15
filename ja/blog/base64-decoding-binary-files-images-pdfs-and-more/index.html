@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <!-- Ezoic privacy scripts -->
+  <script data-cfasync="false" src="https://cmp.gatekeeperconsent.com/min.js"></script>
+  <script data-cfasync="false" src="https://the.gatekeeperconsent.com/cmp.min.js"></script>
+  <!-- Ezoic main script -->
+  <script async src="//www.ezojs.com/ezoic/sa.min.js"></script>
+  <script>
+    window.ezstandalone = window.ezstandalone || {};
+    ezstandalone.cmd = ezstandalone.cmd || [];
+  </script>
+  <!-- Ezoic analytics -->
+  <script src="//ezoicanalytics.com/analytics.js"></script>
+  <script>
+    (function () {
+      var isProd = /decodeb64\.com$/.test(window.location.hostname);
+      window.dataLayer = window.dataLayer || [];
+      function gtag() { dataLayer.push(arguments); }
+      window.gtag = gtag;
+      gtag('consent', 'default', {
+        analytics_storage: 'denied', ad_storage: 'denied',
+        ad_user_data: 'denied', ad_personalization: 'denied', wait_for_update: 500
+      });
+      if (!isProd) return;
+      var ch = document.createElement('script');
+      ch.src = 'https://cdn.cookiehub.eu/c2/37267253.js';
+      ch.onload = function () {
+        document.addEventListener('DOMContentLoaded', function () {
+          window.cookiehub && window.cookiehub.load({});
+        });
+      };
+      document.head.appendChild(ch);
+      var ga = document.createElement('script');
+      ga.async = true;
+      ga.src = 'https://www.googletagmanager.com/gtag/js?id=G-JVDER6MN4Y';
+      document.head.appendChild(ga);
+      gtag('js', new Date());
+      gtag('config', 'G-JVDER6MN4Y');
+      var ad = document.createElement('script');
+      ad.async = true;
+      ad.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7602115974474104';
+      ad.crossOrigin = 'anonymous';
+      document.head.appendChild(ad);
+    })();
+  </script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Base64 でバイナリファイルをデコードする:画像・PDF ほか</title>
+  <meta name="description" content="Base64 エンコードされたバイナリファイル —— 画像、PDF、音声、ドキュメント —— のデコード方法を解説。ファイル形式の判定方法とデコードしたファイルの安全な取り扱いも紹介します。" />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://decodeb64.com/ja/blog/base64-decoding-binary-files-images-pdfs-and-more/" />
+  <link rel="alternate" hreflang="en" href="https://decodeb64.com/blog/base64-decoding-binary-files-images-pdfs-and-more/" />
+  <link rel="alternate" hreflang="es" href="https://decodeb64.com/es/blog/base64-decoding-binary-files-images-pdfs-and-more/" />
+  <link rel="alternate" hreflang="pt" href="https://decodeb64.com/pt/blog/base64-decoding-binary-files-images-pdfs-and-more/" />
+  <link rel="alternate" hreflang="fr" href="https://decodeb64.com/fr/blog/base64-decoding-binary-files-images-pdfs-and-more/" />
+  <link rel="alternate" hreflang="de" href="https://decodeb64.com/de/blog/base64-decoding-binary-files-images-pdfs-and-more/" />
+  <link rel="alternate" hreflang="it" href="https://decodeb64.com/it/blog/base64-decoding-binary-files-images-pdfs-and-more/" />
+  <link rel="alternate" hreflang="zh" href="https://decodeb64.com/zh/blog/base64-decoding-binary-files-images-pdfs-and-more/" />
+  <link rel="alternate" hreflang="ru" href="https://decodeb64.com/ru/blog/base64-decoding-binary-files-images-pdfs-and-more/" />
+  <link rel="alternate" hreflang="ja" href="https://decodeb64.com/ja/blog/base64-decoding-binary-files-images-pdfs-and-more/" />
+  <link rel="alternate" hreflang="ko" href="https://decodeb64.com/ko/blog/base64-decoding-binary-files-images-pdfs-and-more/" />
+  <link rel="alternate" hreflang="nl" href="https://decodeb64.com/nl/blog/base64-decoding-binary-files-images-pdfs-and-more/" />
+  <link rel="alternate" hreflang="hi" href="https://decodeb64.com/hi/blog/base64-decoding-binary-files-images-pdfs-and-more/" />
+  <link rel="alternate" hreflang="x-default" href="https://decodeb64.com/blog/base64-decoding-binary-files-images-pdfs-and-more/" />
+  <meta property="og:locale" content="ja_JP" />
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="decodeb64.com" />
+  <meta property="og:title" content="Base64 でバイナリファイルをデコードする:画像・PDF ほか" />
+  <meta property="og:description" content="Base64 エンコードされたバイナリファイル —— 画像、PDF、音声、ドキュメント —— のデコード方法を解説。ファイル形式の判定方法とデコードしたファイルの安全な取り扱いも紹介します。" />
+  <meta property="og:url" content="https://decodeb64.com/ja/blog/base64-decoding-binary-files-images-pdfs-and-more/" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="theme-color" content="#0d0d14" />
+  <meta name="color-scheme" content="dark" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Sora:wght@300;400;500;600;700&display=swap');
+    :root {
+      --bg: #0d0d14; --bg2: #12121c; --bg3: #1a1a28;
+      --amber: #ff8c42; --amber-dim: rgba(255,140,66,0.15);
+      --amber-glow: rgba(255,140,66,0.35); --amber-light: #ffb07a;
+      --glass-bg: rgba(255,255,255,0.04); --glass-border: rgba(255,255,255,0.09);
+      --text: #e8e8f0; --text-muted: #7a7a9a; --text-dim: #4a4a6a;
+      --green: #3ecf7e; --red: #ff5a5a; --red-dim: rgba(255,90,90,0.15);
+      --radius: 14px; --radius-sm: 8px;
+      --mono: 'JetBrains Mono', monospace; --sans: 'Sora', sans-serif;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--sans); background-color: var(--bg); color: var(--text);
+      min-height: 100vh; overflow-x: hidden; position: relative;
+    }
+    body::before {
+      content: ''; position: fixed; inset: 0;
+      background-image: radial-gradient(circle, rgba(255,140,66,0.12) 1px, transparent 1px);
+      background-size: 28px 28px; pointer-events: none; z-index: 0;
+    }
+    body::after {
+      content: ''; position: fixed; top: -20%; left: 50%; transform: translateX(-50%);
+      width: 800px; height: 500px;
+      background: radial-gradient(ellipse, rgba(255,140,66,0.06) 0%, transparent 70%);
+      pointer-events: none; z-index: 0;
+    }
+    header {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(13,13,20,0.85); backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px); border-bottom: 1px solid var(--glass-border);
+      padding: 0 24px; height: 62px; display: flex; align-items: center;
+      justify-content: space-between; gap: 16px;
+    }
+    .logo { font-family: var(--mono); font-size: 1.2rem; font-weight: 700;
+      letter-spacing: -0.5px; text-decoration: none; flex-shrink: 0; }
+    .logo span.decode { color: #ffffff; }
+    .logo span.b64 { color: var(--amber); }
+    .header-right { display: flex; align-items: center; gap: 10px; }
+    .nav-pills { display: flex; gap: 6px; }
+    .nav-pill {
+      font-family: var(--sans); font-size: 0.78rem; font-weight: 500;
+      padding: 5px 14px; border-radius: 20px; text-decoration: none;
+      transition: all 0.2s; border: 1px solid transparent;
+    }
+    .nav-pill.inactive { color: var(--text-muted); border-color: var(--glass-border); background: transparent; }
+    .nav-pill.inactive:hover { color: var(--text); border-color: rgba(255,255,255,0.18); }
+    .nav-pill.active { color: var(--bg); background: var(--amber); font-weight: 600; }
+    .lang-selector { position: relative; }
+    .lang-btn {
+      display: flex; align-items: center; gap: 6px; padding: 5px 12px;
+      background: var(--glass-bg); border: 1px solid var(--glass-border);
+      border-radius: 20px; color: var(--text-muted); cursor: pointer;
+      font-family: var(--sans); font-size: 0.78rem; transition: all 0.2s; white-space: nowrap;
+    }
+    .lang-btn:hover { color: var(--text); border-color: rgba(255,255,255,0.18); }
+    .lang-btn svg { width: 14px; height: 14px; flex-shrink: 0; }
+    .lang-dropdown {
+      display: none; position: absolute; top: calc(100% + 8px); right: 0;
+      background: #1a1a2e; border: 1px solid var(--glass-border);
+      border-radius: var(--radius-sm); overflow: hidden; min-width: 160px;
+      box-shadow: 0 12px 40px rgba(0,0,0,0.5); z-index: 200;
+    }
+    .lang-dropdown.open { display: block; }
+    .lang-option {
+      display: flex; align-items: center; gap: 8px; padding: 9px 14px;
+      cursor: pointer; font-size: 0.82rem; color: var(--text-muted); transition: all 0.15s;
+    }
+    .lang-option:hover { background: var(--amber-dim); color: var(--text); }
+    .lang-option.selected { color: var(--amber); }
+    main {
+      position: relative; z-index: 1; max-width: 900px;
+      margin: 0 auto; padding: 0 20px 80px;
+    }
+    .page-hero {
+      text-align: center; padding: 48px 20px 36px; position: relative;
+    }
+    .page-hero h1 {
+      font-size: clamp(1.8rem, 4vw, 2.8rem); font-weight: 700;
+      letter-spacing: -1px; line-height: 1.15; margin-bottom: 12px;
+    }
+    .page-hero .sub { color: var(--text-muted); font-size: 1rem; max-width: 560px; margin: 0 auto; }
+    .breadcrumb {
+      font-size: 0.78rem; color: var(--text-dim); margin-bottom: 8px;
+    }
+    .breadcrumb a { color: var(--text-dim); text-decoration: none; transition: color 0.2s; }
+    .breadcrumb a:hover { color: var(--amber); }
+    .breadcrumb span { color: var(--text-muted); margin: 0 6px; }
+    .glass-card {
+      background: var(--glass-bg); border: 1px solid var(--glass-border);
+      border-radius: var(--radius); backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px); padding: 32px 36px; margin-bottom: 20px;
+    }
+    .content-h2 {
+      font-size: 1rem; font-weight: 700; color: var(--amber);
+      margin: 28px 0 10px; letter-spacing: -0.2px;
+    }
+    .content-h2:first-child { margin-top: 0; }
+    .glass-card p {
+      font-size: 0.9rem; color: var(--text-muted); line-height: 1.75; margin-bottom: 12px;
+    }
+    .glass-card p:last-child { margin-bottom: 0; }
+    .glass-card ul {
+      list-style: none; padding: 0; margin: 8px 0 12px;
+    }
+    .glass-card ul li {
+      font-size: 0.88rem; color: var(--text-muted); line-height: 1.7;
+      padding-left: 18px; position: relative; margin-bottom: 6px;
+    }
+    .glass-card ul li::before {
+      content: '—'; position: absolute; left: 0; color: var(--amber); font-family: var(--mono);
+    }
+    .glass-card a { color: var(--amber); text-decoration: none; transition: opacity 0.2s; }
+    .glass-card a:hover { opacity: 0.8; text-decoration: underline; }
+    .article-meta {
+      font-size: 0.78rem; color: var(--text-dim); font-family: var(--mono);
+      margin-bottom: 24px; display: flex; gap: 14px; justify-content: center; flex-wrap: wrap;
+    }
+    .article-list { margin: 18px 0 28px; display: flex; flex-direction: column; gap: 14px; }
+    .article-card {
+      background: var(--glass-bg); border: 1px solid var(--glass-border);
+      border-radius: var(--radius); backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px); padding: 26px 30px; transition: all 0.2s;
+    }
+    .article-card:hover { border-color: var(--amber-glow); }
+    .article-card h2 { font-size: 1.15rem; margin-bottom: 8px; letter-spacing: -0.3px; }
+    .article-card h2 a { color: var(--text); text-decoration: none; }
+    .article-card h2 a:hover { color: var(--amber); }
+    .article-card p.excerpt { font-size: 0.9rem; color: var(--text-muted); line-height: 1.65; margin-bottom: 12px; }
+    .article-card .meta { font-size: 0.75rem; color: var(--text-dim); font-family: var(--mono); display: flex; gap: 12px; align-items: center; flex-wrap: wrap; }
+    .article-card .read-more { color: var(--amber); text-decoration: none; font-size: 0.85rem; font-weight: 600; }
+    .article-card .read-more:hover { opacity: 0.8; }
+    .last-updated {
+      font-size: 0.75rem; color: var(--text-dim); margin-bottom: 24px;
+      font-family: var(--mono);
+    }
+    footer {
+      position: relative; z-index: 1; border-top: 1px solid var(--glass-border);
+      padding: 24px 20px; display: flex; flex-wrap: wrap; gap: 16px;
+      align-items: center; justify-content: space-between;
+      max-width: 900px; margin: 0 auto; font-size: 0.78rem; color: var(--text-dim);
+    }
+    .footer-links { display: flex; gap: 16px; flex-wrap: wrap; }
+    .footer-links a, footer a { color: var(--text-dim); text-decoration: none; transition: color 0.2s; }
+    .footer-links a:hover, footer a:hover { color: var(--amber); }
+    footer .footer-right { color: var(--text-dim); }
+    footer .footer-right a { color: var(--amber); }
+    @media (max-width: 640px) {
+      header { padding: 0 16px; }
+      .logo { font-size: 1rem; }
+      .nav-pill { padding: 4px 10px; font-size: 0.73rem; }
+      .lang-btn span { display: none; }
+      main { padding: 0 16px 60px; }
+      .glass-card { padding: 20px 18px; }
+      .article-card { padding: 20px 18px; }
+      footer { flex-direction: column; align-items: flex-start; gap: 10px; }
+    }
+  </style>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Base64 でバイナリファイルをデコードする:画像・PDF ほか",
+  "author": {
+    "@type": "Organization",
+    "name": "MpmDigital",
+    "url": "https://mpmdigital.es/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "decodeb64.com",
+    "url": "https://decodeb64.com/"
+  },
+  "datePublished": "2026-08-01",
+  "inLanguage": "ja",
+  "url": "https://decodeb64.com/ja/blog/base64-decoding-binary-files-images-pdfs-and-more/"
+}
+  </script>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <a href="/ja/" class="logo">
+    <span class="decode">decode</span><span class="b64">B64</span>
+  </a>
+  <div class="header-right">
+    <nav class="nav-pills">
+      <a href="https://encodeb64.com" class="nav-pill inactive" rel="noopener noreferrer" target="_blank">エンコード</a>
+      <a href="/ja/" class="nav-pill inactive">デコード</a>
+      <a href="/ja/base64-to-image" class="nav-pill inactive">Base64 to Image</a>
+      <a href="/ja/blog" class="nav-pill inactive">ブログ</a>
+    </nav>
+    <div class="lang-selector">
+      <button class="lang-btn" id="langBtn" aria-haspopup="listbox" aria-expanded="false">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+        <span id="langLabel">日本語</span>
+        <svg viewBox="0 0 10 6" fill="currentColor" width="10" height="6"><path d="M0 0l5 6 5-6z"/></svg>
+      </button>
+      <div class="lang-dropdown" id="langDropdown" role="listbox">
+        <div class="lang-option" data-lang="en" role="option">🇺🇸 English</div>
+        <div class="lang-option" data-lang="es" role="option">🇪🇸 Español</div>
+        <div class="lang-option" data-lang="pt" role="option">🇧🇷 Português</div>
+        <div class="lang-option" data-lang="fr" role="option">🇫🇷 Français</div>
+        <div class="lang-option" data-lang="de" role="option">🇩🇪 Deutsch</div>
+        <div class="lang-option" data-lang="it" role="option">🇮🇹 Italiano</div>
+        <div class="lang-option" data-lang="zh" role="option">🇨🇳 中文</div>
+        <div class="lang-option" data-lang="ru" role="option">🇷🇺 Русский</div>
+        <div class="lang-option selected" data-lang="ja" role="option">🇯🇵 日本語</div>
+        <div class="lang-option" data-lang="ko" role="option">🇰🇷 한국어</div>
+        <div class="lang-option" data-lang="nl" role="option">🇳🇱 Nederlands</div>
+        <div class="lang-option" data-lang="hi" role="option">🇮🇳 हिन्दी</div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- MAIN -->
+<main>
+  <div class="page-hero">
+    <p class="breadcrumb"><a href="/ja/">decodeb64.com</a><span>›</span><a href="/ja/blog">ブログ</a><span>›</span>Base64 でバイナリファイルをデコードする:画像・PDF ほか</p>
+    <h1>Base64 でバイナリファイルをデコードする:画像・PDF ほか</h1>
+    <div class="article-meta">
+      <span>2026年8月</span>
+      <span>·</span>
+      <span>5 分で読了</span>
+    </div>
+  </div>
+
+  <div class="glass-card">
+    <p>Base64 エンコーディングはテキストだけのものではありません。画像、PDF、音声クリップ、Word ドキュメントなど、あらゆるバイナリファイルを Base64 文字列としてエンコードできます。開発者は API レスポンス、データベースのフィールド、メールの添付ファイル、設定ファイルなどで、Base64 エンコードされたバイナリデータに頻繁に遭遇します。このガイドでは、こうしたファイルをデコードして元のバイナリコンテンツを取り出す方法を解説します。</p>
+    <h2 class="content-h2">バイナリファイルが Base64 エンコードされる理由</h2>
+    <p>バイナリファイルには、印字可能な ASCII の範囲外にあるバイトが含まれています。このようなデータを、JSON API レスポンス、XML ドキュメント、メール本文、HTTP ヘッダーといったテキストベースのチャネルで扱う必要がある場合、まずテキスト表現へと変換しなければなりません。Base64 はそのための標準的な方法です。</p>
+    <p>Base64 エンコードされたバイナリファイルによく遭遇する場面には、以下のようなものがあります。</p>
+    <ul>
+      <li>画像やドキュメントなどのバイナリコンテンツを JSON フィールドとして返す REST API レスポンス</li>
+      <li>MIME 形式でエンコードされたメールの添付ファイル</li>
+      <li>バイナリデータをテキストとして保存するデータベースのフィールド</li>
+      <li>証明書や鍵を含む設定ファイル(Kubernetes の Secret、CI/CD パイプライン)</li>
+      <li>画像を Data URI として埋め込んだ HTML メール</li>
+    </ul>
+    <h2 class="content-h2">Base64 エンコードされたファイルを見分ける</h2>
+    <p>Base64 文字列は、英数字と +、/、=(Base64URL の場合は -、_ で = は付かない)といった記号からなる長い文字列に見えます。わかりやすい特徴として、文字列の長さが 4 の倍数(パディングなしの Base64URL の場合は 3 の倍数)になっている点が挙げられます。</p>
+    <p>文字列が <span style="font-family:var(--mono);color:var(--amber-light);">data:</span> で始まっている場合、それは Data URI であり、ファイル形式もすでに含まれています:<span style="font-family:var(--mono);font-size:0.82rem;color:var(--text-muted);">data:image/png;base64,...</span> これにより、デコードする前にファイル形式を簡単に判別できます。</p>
+    <p>接頭辞のない生の Base64 文字列の場合、デコード後の先頭バイトを見ることでファイル形式を判別できます —— これは「マジックバイト(magic bytes)」と呼ばれます。</p>
+    <h2 class="content-h2">マジックバイト —— デコード後にファイル形式を判別する方法</h2>
+    <p>ほとんどのファイル形式の先頭数バイトは、決まったパターンに従っています:</p>
+    <ul>
+      <li><strong style="color:var(--text);">PNG</strong>:バイト 89 50 4E 47(ASCII:.PNG)</li>
+      <li><strong style="color:var(--text);">JPEG</strong>:バイト FF D8 FF</li>
+      <li><strong style="color:var(--text);">GIF</strong>:バイト 47 49 46 38(ASCII:GIF8)</li>
+      <li><strong style="color:var(--text);">PDF</strong>:バイト 25 50 44 46(ASCII:%PDF)</li>
+      <li><strong style="color:var(--text);">ZIP</strong>:バイト 50 4B 03 04(ASCII:PK..)</li>
+      <li><strong style="color:var(--text);">WebP</strong>:バイト 52 49 46 46 ... 57 45 42 50(ASCII:RIFF...WEBP)</li>
+    </ul>
+    <h2 class="content-h2"></h2>
+    <p><a href="https://decodeb64.com">decodeb64.com</a> は、バイナリファイルをデコードする際にこれらのマジックバイトからファイル形式を自動的に判別するため、正しい拡張子でダウンロードできます。</p>
+    <h2 class="content-h2">ステップごとの手順:Base64 バイナリファイルをデコードする</h2>
+    <p><strong style="color:var(--text);">ステップ 1:</strong> Base64 文字列を取得します。API レスポンス(base64 フィールドの値をコピー)、データベースのレコード、設定ファイルなどが情報源になります。</p>
+    <p><strong style="color:var(--text);">ステップ 2:</strong> 文字列が Data URI(data:image/... または data:application/... で始まる)であれば、ファイル形式はすでに指定されています。生の Base64 文字列の場合は、ファイル形式を手動で指定するか、自動検出に頼る必要があるかもしれません。</p>
+    <p><strong style="color:var(--text);">ステップ 3:</strong> <a href="https://decodeb64.com">decodeb64.com</a> にアクセスし、ファイルデコードのセクションを使います。Base64 文字列を含む .txt ファイルをアップロードするか、テキストデコーダーに直接貼り付けます。</p>
+    <p><strong style="color:var(--text);">ステップ 4:</strong> 「Decode File」をクリックします。このツールはブラウザ内でバイナリコンテンツをデコードし、正しいファイル拡張子でのダウンロードを提供します。</p>
+    <h2 class="content-h2">安全に関する注意点</h2>
+    <p>信頼できないソースからのデコード済みファイルには、常に注意を払ってください。Base64 文字列は、実行ファイル、スクリプト、悪意のあるドキュメントを含む、あらゆる種類のファイルをエンコードできます。デコードしたファイルを開く前に、以下を確認しましょう。</p>
+    <ul>
+      <li>Base64 データの出所を確認する</li>
+      <li>ファイル形式が想定どおりであることを確認する</li>
+      <li>信頼できないソースの場合はウイルス対策ソフトでスキャンする</li>
+      <li>出所を確認していないデコード済みファイルは絶対に実行しない</li>
+    </ul>
+    <h2 class="content-h2">大きなファイルに関する注意点</h2>
+    <p>Base64 エンコーディングはファイルサイズを約 33% 増加させます。10MB の PDF は、Base64 文字列にすると約 13.3MB になります。非常に大きなファイルの場合、メモリの制約によりブラウザ内でのデコードが遅くなることがあります。50MB を超えるファイルについては、コマンドラインツールやサーバー側での処理の利用を検討してください。</p>
+    <h2 class="content-h2">画像に特化した Base64 デコード</h2>
+    <p>Base64 エンコードされた画像には、decodeb64.com 専用の<a href="/base64-to-image">Base64 to Image コンバーター</a>が用意されています。デコードされた画像のライブプレビューを表示し、寸法とおおよそのファイルサイズを示し、PNG・JPG・WebP 形式で画像をダウンロードできます —— サーバーへのアップロードなしに、ブラウザの Canvas API を使って形式を変換します。</p>
+    <p>Base64 エンコードされたバイナリファイルは、現代の Web 開発において一般的に見られるものです。それらを見分け、正しくデコードし、安全に扱う方法を理解しておくことは、API 連携のデバッグ、メール添付ファイルの処理、データベースのデータ確認など、さまざまな場面で役立つ実践的なスキルです。</p>
+  </div>
+</main>
+
+<!-- FOOTER -->
+<footer>
+  <span>decodeb64.com &copy; 2026</span>
+  <div class="footer-links">
+    <a href="/about">About</a>
+    <a href="/privacy-policy">プライバシーポリシー</a>
+    <a href="/terms-of-use">利用規約</a>
+    <a href="/contact">お問い合わせ</a>
+    <a href="/blog">ブログ</a>
+  </div>
+  <span class="footer-right"><span>あわせてどうぞ:</span> <a href="https://encodeb64.com" rel="noopener noreferrer" target="_blank">Base64 Encode — encodeb64.com →</a></span>
+  <span class="footer-right" style="font-size:0.72rem;color:var(--text-dim);">
+    開発: <a href="https://mpmdigital.es/" rel="noopener noreferrer" target="_blank" style="color:var(--amber,#ff8c42);">MpmDigital</a>
+  </span>
+</footer>
+
+<script>
+  // Language switcher
+  (function () {
+    var btn = document.getElementById('langBtn');
+    var dd = document.getElementById('langDropdown');
+    btn.addEventListener('click', function (e) {
+      e.stopPropagation();
+      dd.classList.toggle('open');
+      btn.setAttribute('aria-expanded', dd.classList.contains('open'));
+    });
+    document.addEventListener('click', function () {
+      dd.classList.remove('open');
+      btn.setAttribute('aria-expanded', 'false');
+    });
+    dd.addEventListener('click', function (e) {
+      var opt = e.target.closest('.lang-option');
+      if (!opt) return;
+      var sel = opt.dataset.lang;
+      var path = sel === 'en' ? '/blog/base64-decoding-binary-files-images-pdfs-and-more' : '/' + sel + '/blog/base64-decoding-binary-files-images-pdfs-and-more';
+      window.location.href = path;
+    });
+  })();
+</script>
+</body>
+</html>

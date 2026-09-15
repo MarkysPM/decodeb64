@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <!-- Ezoic privacy scripts -->
+  <script data-cfasync="false" src="https://cmp.gatekeeperconsent.com/min.js"></script>
+  <script data-cfasync="false" src="https://the.gatekeeperconsent.com/cmp.min.js"></script>
+  <!-- Ezoic main script -->
+  <script async src="//www.ezojs.com/ezoic/sa.min.js"></script>
+  <script>
+    window.ezstandalone = window.ezstandalone || {};
+    ezstandalone.cmd = ezstandalone.cmd || [];
+  </script>
+  <!-- Ezoic analytics -->
+  <script src="//ezoicanalytics.com/analytics.js"></script>
+  <script>
+    (function () {
+      var isProd = /decodeb64\.com$/.test(window.location.hostname);
+      window.dataLayer = window.dataLayer || [];
+      function gtag() { dataLayer.push(arguments); }
+      window.gtag = gtag;
+      gtag('consent', 'default', {
+        analytics_storage: 'denied', ad_storage: 'denied',
+        ad_user_data: 'denied', ad_personalization: 'denied', wait_for_update: 500
+      });
+      if (!isProd) return;
+      var ch = document.createElement('script');
+      ch.src = 'https://cdn.cookiehub.eu/c2/37267253.js';
+      ch.onload = function () {
+        document.addEventListener('DOMContentLoaded', function () {
+          window.cookiehub && window.cookiehub.load({});
+        });
+      };
+      document.head.appendChild(ch);
+      var ga = document.createElement('script');
+      ga.async = true;
+      ga.src = 'https://www.googletagmanager.com/gtag/js?id=G-JVDER6MN4Y';
+      document.head.appendChild(ga);
+      gtag('js', new Date());
+      gtag('config', 'G-JVDER6MN4Y');
+      var ad = document.createElement('script');
+      ad.async = true;
+      ad.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7602115974474104';
+      ad.crossOrigin = 'anonymous';
+      document.head.appendChild(ad);
+    })();
+  </script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>JWT 토큰을 디코딩하고 클레임을 확인하는 방법</title>
+  <meta name="description" content="JWT 토큰을 디코딩하고 클레임을 읽는 단계별 가이드. JWT의 구조와 인증 토큰에서 Base64URL 인코딩이 어떻게 동작하는지 이해해 봅시다." />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://decodeb64.com/ko/blog/how-to-decode-jwt-tokens-and-inspect-claims/" />
+  <link rel="alternate" hreflang="en" href="https://decodeb64.com/blog/how-to-decode-jwt-tokens-and-inspect-claims/" />
+  <link rel="alternate" hreflang="es" href="https://decodeb64.com/es/blog/how-to-decode-jwt-tokens-and-inspect-claims/" />
+  <link rel="alternate" hreflang="pt" href="https://decodeb64.com/pt/blog/how-to-decode-jwt-tokens-and-inspect-claims/" />
+  <link rel="alternate" hreflang="fr" href="https://decodeb64.com/fr/blog/how-to-decode-jwt-tokens-and-inspect-claims/" />
+  <link rel="alternate" hreflang="de" href="https://decodeb64.com/de/blog/how-to-decode-jwt-tokens-and-inspect-claims/" />
+  <link rel="alternate" hreflang="it" href="https://decodeb64.com/it/blog/how-to-decode-jwt-tokens-and-inspect-claims/" />
+  <link rel="alternate" hreflang="zh" href="https://decodeb64.com/zh/blog/how-to-decode-jwt-tokens-and-inspect-claims/" />
+  <link rel="alternate" hreflang="ru" href="https://decodeb64.com/ru/blog/how-to-decode-jwt-tokens-and-inspect-claims/" />
+  <link rel="alternate" hreflang="ja" href="https://decodeb64.com/ja/blog/how-to-decode-jwt-tokens-and-inspect-claims/" />
+  <link rel="alternate" hreflang="ko" href="https://decodeb64.com/ko/blog/how-to-decode-jwt-tokens-and-inspect-claims/" />
+  <link rel="alternate" hreflang="nl" href="https://decodeb64.com/nl/blog/how-to-decode-jwt-tokens-and-inspect-claims/" />
+  <link rel="alternate" hreflang="hi" href="https://decodeb64.com/hi/blog/how-to-decode-jwt-tokens-and-inspect-claims/" />
+  <link rel="alternate" hreflang="x-default" href="https://decodeb64.com/blog/how-to-decode-jwt-tokens-and-inspect-claims/" />
+  <meta property="og:locale" content="ko_KR" />
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="decodeb64.com" />
+  <meta property="og:title" content="JWT 토큰을 디코딩하고 클레임을 확인하는 방법" />
+  <meta property="og:description" content="JWT 토큰을 디코딩하고 클레임을 읽는 단계별 가이드. JWT의 구조와 인증 토큰에서 Base64URL 인코딩이 어떻게 동작하는지 이해해 봅시다." />
+  <meta property="og:url" content="https://decodeb64.com/ko/blog/how-to-decode-jwt-tokens-and-inspect-claims/" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="theme-color" content="#0d0d14" />
+  <meta name="color-scheme" content="dark" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Sora:wght@300;400;500;600;700&display=swap');
+    :root {
+      --bg: #0d0d14; --bg2: #12121c; --bg3: #1a1a28;
+      --amber: #ff8c42; --amber-dim: rgba(255,140,66,0.15);
+      --amber-glow: rgba(255,140,66,0.35); --amber-light: #ffb07a;
+      --glass-bg: rgba(255,255,255,0.04); --glass-border: rgba(255,255,255,0.09);
+      --text: #e8e8f0; --text-muted: #7a7a9a; --text-dim: #4a4a6a;
+      --green: #3ecf7e; --red: #ff5a5a; --red-dim: rgba(255,90,90,0.15);
+      --radius: 14px; --radius-sm: 8px;
+      --mono: 'JetBrains Mono', monospace; --sans: 'Sora', sans-serif;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--sans); background-color: var(--bg); color: var(--text);
+      min-height: 100vh; overflow-x: hidden; position: relative;
+    }
+    body::before {
+      content: ''; position: fixed; inset: 0;
+      background-image: radial-gradient(circle, rgba(255,140,66,0.12) 1px, transparent 1px);
+      background-size: 28px 28px; pointer-events: none; z-index: 0;
+    }
+    body::after {
+      content: ''; position: fixed; top: -20%; left: 50%; transform: translateX(-50%);
+      width: 800px; height: 500px;
+      background: radial-gradient(ellipse, rgba(255,140,66,0.06) 0%, transparent 70%);
+      pointer-events: none; z-index: 0;
+    }
+    header {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(13,13,20,0.85); backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px); border-bottom: 1px solid var(--glass-border);
+      padding: 0 24px; height: 62px; display: flex; align-items: center;
+      justify-content: space-between; gap: 16px;
+    }
+    .logo { font-family: var(--mono); font-size: 1.2rem; font-weight: 700;
+      letter-spacing: -0.5px; text-decoration: none; flex-shrink: 0; }
+    .logo span.decode { color: #ffffff; }
+    .logo span.b64 { color: var(--amber); }
+    .header-right { display: flex; align-items: center; gap: 10px; }
+    .nav-pills { display: flex; gap: 6px; }
+    .nav-pill {
+      font-family: var(--sans); font-size: 0.78rem; font-weight: 500;
+      padding: 5px 14px; border-radius: 20px; text-decoration: none;
+      transition: all 0.2s; border: 1px solid transparent;
+    }
+    .nav-pill.inactive { color: var(--text-muted); border-color: var(--glass-border); background: transparent; }
+    .nav-pill.inactive:hover { color: var(--text); border-color: rgba(255,255,255,0.18); }
+    .nav-pill.active { color: var(--bg); background: var(--amber); font-weight: 600; }
+    .lang-selector { position: relative; }
+    .lang-btn {
+      display: flex; align-items: center; gap: 6px; padding: 5px 12px;
+      background: var(--glass-bg); border: 1px solid var(--glass-border);
+      border-radius: 20px; color: var(--text-muted); cursor: pointer;
+      font-family: var(--sans); font-size: 0.78rem; transition: all 0.2s; white-space: nowrap;
+    }
+    .lang-btn:hover { color: var(--text); border-color: rgba(255,255,255,0.18); }
+    .lang-btn svg { width: 14px; height: 14px; flex-shrink: 0; }
+    .lang-dropdown {
+      display: none; position: absolute; top: calc(100% + 8px); right: 0;
+      background: #1a1a2e; border: 1px solid var(--glass-border);
+      border-radius: var(--radius-sm); overflow: hidden; min-width: 160px;
+      box-shadow: 0 12px 40px rgba(0,0,0,0.5); z-index: 200;
+    }
+    .lang-dropdown.open { display: block; }
+    .lang-option {
+      display: flex; align-items: center; gap: 8px; padding: 9px 14px;
+      cursor: pointer; font-size: 0.82rem; color: var(--text-muted); transition: all 0.15s;
+    }
+    .lang-option:hover { background: var(--amber-dim); color: var(--text); }
+    .lang-option.selected { color: var(--amber); }
+    main {
+      position: relative; z-index: 1; max-width: 900px;
+      margin: 0 auto; padding: 0 20px 80px;
+    }
+    .page-hero {
+      text-align: center; padding: 48px 20px 36px; position: relative;
+    }
+    .page-hero h1 {
+      font-size: clamp(1.8rem, 4vw, 2.8rem); font-weight: 700;
+      letter-spacing: -1px; line-height: 1.15; margin-bottom: 12px;
+    }
+    .page-hero .sub { color: var(--text-muted); font-size: 1rem; max-width: 560px; margin: 0 auto; }
+    .breadcrumb {
+      font-size: 0.78rem; color: var(--text-dim); margin-bottom: 8px;
+    }
+    .breadcrumb a { color: var(--text-dim); text-decoration: none; transition: color 0.2s; }
+    .breadcrumb a:hover { color: var(--amber); }
+    .breadcrumb span { color: var(--text-muted); margin: 0 6px; }
+    .glass-card {
+      background: var(--glass-bg); border: 1px solid var(--glass-border);
+      border-radius: var(--radius); backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px); padding: 32px 36px; margin-bottom: 20px;
+    }
+    .content-h2 {
+      font-size: 1rem; font-weight: 700; color: var(--amber);
+      margin: 28px 0 10px; letter-spacing: -0.2px;
+    }
+    .content-h2:first-child { margin-top: 0; }
+    .glass-card p {
+      font-size: 0.9rem; color: var(--text-muted); line-height: 1.75; margin-bottom: 12px;
+    }
+    .glass-card p:last-child { margin-bottom: 0; }
+    .glass-card ul {
+      list-style: none; padding: 0; margin: 8px 0 12px;
+    }
+    .glass-card ul li {
+      font-size: 0.88rem; color: var(--text-muted); line-height: 1.7;
+      padding-left: 18px; position: relative; margin-bottom: 6px;
+    }
+    .glass-card ul li::before {
+      content: '—'; position: absolute; left: 0; color: var(--amber); font-family: var(--mono);
+    }
+    .glass-card a { color: var(--amber); text-decoration: none; transition: opacity 0.2s; }
+    .glass-card a:hover { opacity: 0.8; text-decoration: underline; }
+    .article-meta {
+      font-size: 0.78rem; color: var(--text-dim); font-family: var(--mono);
+      margin-bottom: 24px; display: flex; gap: 14px; justify-content: center; flex-wrap: wrap;
+    }
+    .article-list { margin: 18px 0 28px; display: flex; flex-direction: column; gap: 14px; }
+    .article-card {
+      background: var(--glass-bg); border: 1px solid var(--glass-border);
+      border-radius: var(--radius); backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px); padding: 26px 30px; transition: all 0.2s;
+    }
+    .article-card:hover { border-color: var(--amber-glow); }
+    .article-card h2 { font-size: 1.15rem; margin-bottom: 8px; letter-spacing: -0.3px; }
+    .article-card h2 a { color: var(--text); text-decoration: none; }
+    .article-card h2 a:hover { color: var(--amber); }
+    .article-card p.excerpt { font-size: 0.9rem; color: var(--text-muted); line-height: 1.65; margin-bottom: 12px; }
+    .article-card .meta { font-size: 0.75rem; color: var(--text-dim); font-family: var(--mono); display: flex; gap: 12px; align-items: center; flex-wrap: wrap; }
+    .article-card .read-more { color: var(--amber); text-decoration: none; font-size: 0.85rem; font-weight: 600; }
+    .article-card .read-more:hover { opacity: 0.8; }
+    .last-updated {
+      font-size: 0.75rem; color: var(--text-dim); margin-bottom: 24px;
+      font-family: var(--mono);
+    }
+    footer {
+      position: relative; z-index: 1; border-top: 1px solid var(--glass-border);
+      padding: 24px 20px; display: flex; flex-wrap: wrap; gap: 16px;
+      align-items: center; justify-content: space-between;
+      max-width: 900px; margin: 0 auto; font-size: 0.78rem; color: var(--text-dim);
+    }
+    .footer-links { display: flex; gap: 16px; flex-wrap: wrap; }
+    .footer-links a, footer a { color: var(--text-dim); text-decoration: none; transition: color 0.2s; }
+    .footer-links a:hover, footer a:hover { color: var(--amber); }
+    footer .footer-right { color: var(--text-dim); }
+    footer .footer-right a { color: var(--amber); }
+    @media (max-width: 640px) {
+      header { padding: 0 16px; }
+      .logo { font-size: 1rem; }
+      .nav-pill { padding: 4px 10px; font-size: 0.73rem; }
+      .lang-btn span { display: none; }
+      main { padding: 0 16px 60px; }
+      .glass-card { padding: 20px 18px; }
+      .article-card { padding: 20px 18px; }
+      footer { flex-direction: column; align-items: flex-start; gap: 10px; }
+    }
+  </style>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "JWT 토큰을 디코딩하고 클레임을 확인하는 방법",
+  "author": {
+    "@type": "Organization",
+    "name": "MpmDigital",
+    "url": "https://mpmdigital.es/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "decodeb64.com",
+    "url": "https://decodeb64.com/"
+  },
+  "datePublished": "2026-08-01",
+  "inLanguage": "ko",
+  "url": "https://decodeb64.com/ko/blog/how-to-decode-jwt-tokens-and-inspect-claims/"
+}
+  </script>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <a href="/ko/" class="logo">
+    <span class="decode">decode</span><span class="b64">B64</span>
+  </a>
+  <div class="header-right">
+    <nav class="nav-pills">
+      <a href="https://encodeb64.com" class="nav-pill inactive" rel="noopener noreferrer" target="_blank">인코딩</a>
+      <a href="/ko/" class="nav-pill inactive">디코딩</a>
+      <a href="/ko/base64-to-image" class="nav-pill inactive">Base64 to Image</a>
+      <a href="/ko/blog" class="nav-pill inactive">블로그</a>
+    </nav>
+    <div class="lang-selector">
+      <button class="lang-btn" id="langBtn" aria-haspopup="listbox" aria-expanded="false">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+        <span id="langLabel">한국어</span>
+        <svg viewBox="0 0 10 6" fill="currentColor" width="10" height="6"><path d="M0 0l5 6 5-6z"/></svg>
+      </button>
+      <div class="lang-dropdown" id="langDropdown" role="listbox">
+        <div class="lang-option" data-lang="en" role="option">🇺🇸 English</div>
+        <div class="lang-option" data-lang="es" role="option">🇪🇸 Español</div>
+        <div class="lang-option" data-lang="pt" role="option">🇧🇷 Português</div>
+        <div class="lang-option" data-lang="fr" role="option">🇫🇷 Français</div>
+        <div class="lang-option" data-lang="de" role="option">🇩🇪 Deutsch</div>
+        <div class="lang-option" data-lang="it" role="option">🇮🇹 Italiano</div>
+        <div class="lang-option" data-lang="zh" role="option">🇨🇳 中文</div>
+        <div class="lang-option" data-lang="ru" role="option">🇷🇺 Русский</div>
+        <div class="lang-option" data-lang="ja" role="option">🇯🇵 日本語</div>
+        <div class="lang-option selected" data-lang="ko" role="option">🇰🇷 한국어</div>
+        <div class="lang-option" data-lang="nl" role="option">🇳🇱 Nederlands</div>
+        <div class="lang-option" data-lang="hi" role="option">🇮🇳 हिन्दी</div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- MAIN -->
+<main>
+  <div class="page-hero">
+    <p class="breadcrumb"><a href="/ko/">decodeb64.com</a><span>›</span><a href="/ko/blog">블로그</a><span>›</span>JWT 토큰을 디코딩하고 클레임을 확인하는 방법</p>
+    <h1>JWT 토큰을 디코딩하고 클레임을 확인하는 방법</h1>
+    <div class="article-meta">
+      <span>2026년 8월</span>
+      <span>·</span>
+      <span>6 분 소요</span>
+    </div>
+  </div>
+
+  <div class="glass-card">
+    <p>JWT 토큰은 현대 인증 시스템의 근간입니다. 로그인 문제를 디버깅하든, API가 반환하는 클레임을 살펴보든, OAuth 2.0의 내부 동작 원리를 배우든, JWT를 디코딩할 줄 아는 것은 개발자에게 필수적인 기술입니다. 이 가이드는 그 과정을 단계별로 안내합니다.</p>
+    <h2 class="content-h2">JWT의 구조</h2>
+    <p>JWT(JSON Web Token)는 점(.)으로 구분된 세 부분으로 이루어집니다:</p>
+    <p><span style="font-family:var(--mono);color:var(--amber-light);">[header].[payload].[signature]</span></p>
+    <p>실제 JWT는 이런 모습입니다:</p>
+    <p><span style="font-family:var(--mono);font-size:0.78rem;word-break:break-all;color:var(--text-muted);">eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c</span></p>
+    <p>각 부분은 표준 Base64가 아닌 Base64URL로 인코딩됩니다. Base64URL은 +를 -로, /를 _로 바꾸고 = 패딩을 제거해 HTTP 헤더와 URL에서 안전하게 사용할 수 있도록 합니다.</p>
+    <h2 class="content-h2">1부 — 헤더</h2>
+    <p>첫 번째 부분은 토큰을 설명하는 JSON 객체를 인코딩합니다:</p>
+    <p><span style="font-family:var(--mono);font-size:0.82rem;color:var(--text-muted);">eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9</span></p>
+    <p>디코딩하면:</p>
+    <p><span style="font-family:var(--mono);font-size:0.82rem;color:var(--amber-light);">{"alg":"HS256","typ":"JWT"}</span></p>
+    <p>“alg” 필드는 토큰 서명에 사용된 암호화 알고리즘을 서버에 알려줍니다. 흔히 쓰이는 값으로는 HS256(HMAC와 SHA-256), RS256(RSA와 SHA-256), ES256(ECDSA와 SHA-256)이 있습니다.</p>
+    <h2 class="content-h2">2부 — 페이로드(클레임)</h2>
+    <p>두 번째 부분은 클레임, 즉 토큰이 담고 있는 데이터를 인코딩합니다:</p>
+    <p><span style="font-family:var(--mono);font-size:0.78rem;word-break:break-all;color:var(--text-muted);">eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ</span></p>
+    <p>디코딩하면:</p>
+    <p><span style="font-family:var(--mono);font-size:0.82rem;color:var(--amber-light);">{"sub":"1234567890","name":"John Doe","iat":1516239022}</span></p>
+    <p>표준 클레임 이름:</p>
+    <ul>
+      <li><strong style="color:var(--text);">sub</strong>(subject) — 보통 사용자 ID</li>
+      <li><strong style="color:var(--text);">iat</strong>(issued at) — 토큰이 생성된 Unix 타임스탬프</li>
+      <li><strong style="color:var(--text);">exp</strong>(expiration) — 토큰이 만료되는 Unix 타임스탬프 — “token expired” 오류를 디버깅할 때 확인해야 할 값</li>
+      <li><strong style="color:var(--text);">iss</strong>(issuer) — 토큰을 발급한 서버 또는 서비스</li>
+      <li><strong style="color:var(--text);">aud</strong>(audience) — 토큰이 전달되도록 의도된 수신자</li>
+      <li><strong style="color:var(--text);">jti</strong>(JWT ID) — 재사용(replay) 공격을 막기 위한 토큰 고유 식별자</li>
+    </ul>
+    <h2 class="content-h2"></h2>
+    <p>커스텀 클레임에는 사용자 역할, 권한, 이메일 주소, 구독 등급 등 애플리케이션에 필요한 어떤 데이터든 담을 수 있습니다.</p>
+    <h2 class="content-h2">3부 — 서명</h2>
+    <p>세 번째 부분은 Base64URL로 인코딩된 JSON 객체가 아니라 암호화 서명입니다. 헤더와 페이로드를 시크릿 키로 해시하여 만들어집니다. 사람이 읽을 수 있는 텍스트로 디코딩할 수 없으며, 오직 해당 시크릿 키를 가진 서버만 검증할 수 있습니다.</p>
+    <h2 class="content-h2">JWT를 단계별로 디코딩하는 방법</h2>
+    <p><strong style="color:var(--text);">1단계:</strong> 애플리케이션, 브라우저 개발자 도구, 또는 API 응답에서 JWT 문자열을 복사합니다.</p>
+    <p><strong style="color:var(--text);">2단계:</strong> 점(.)을 기준으로 나눕니다. 세 부분이 나오는데, 세 번째 부분(서명)은 사람이 읽을 수 있는 텍스트로 디코딩할 수 없습니다.</p>
+    <p><strong style="color:var(--text);">3단계:</strong> 첫 번째나 두 번째 부분(헤더 또는 페이로드)을 <a href="https://decodeb64.com">decodeb64.com</a>에 붙여넣습니다. 이 디코더는 Base64URL을 자동으로 처리하므로 -를 +로, _를 /로 직접 바꿀 필요가 없습니다.</p>
+    <p><strong style="color:var(--text);">4단계:</strong> 디코딩된 JSON에서 클레임을 확인할 수 있습니다. 인증 문제를 디버깅 중이라면 exp 필드부터 확인하세요 — Unix 타임스탬프를 사람이 읽을 수 있는 날짜로 변환해 토큰이 만료되었는지 확인합니다.</p>
+    <h2 class="content-h2">디코딩과 검증의 차이</h2>
+    <p>중요한 차이점이 있습니다. JWT를 디코딩하는 것과 검증하는 것은 다릅니다. 누구나 JWT 페이로드를 디코딩해 클레임을 읽을 수 있습니다. JWT를 안전하게 만드는 것은 서명입니다 — 올바른 시크릿 키를 가진 서버만이 토큰이 진짜이고 변조되지 않았음을 검증할 수 있습니다.</p>
+    <p>적절한 JWT 라이브러리를 사용해 서버 측에서 서명을 검증하지 않은 JWT 클레임을 애플리케이션에서 절대 신뢰하지 마세요. 디코딩은 어디까지나 검사와 디버깅을 위한 것입니다.</p>
+    <h2 class="content-h2">흔한 JWT 디버깅 상황</h2>
+    <p><strong style="color:var(--text);">“토큰이 유효하지 않습니다”</strong> — 토큰 형식이 잘못되었거나 손상되었을 수 있습니다. 디코더에 붙여넣어 구조를 확인하세요.</p>
+    <p><strong style="color:var(--text);">“토큰이 만료되었습니다”</strong> — 페이로드를 디코딩해 exp 클레임을 확인하세요. Unix 타임스탬프를 변환해 언제 만료되었는지 확인합니다.</p>
+    <p><strong style="color:var(--text);">“클레임이 잘못되었습니다”</strong> — 페이로드를 디코딩해 토큰에 실제로 어떤 클레임이 담겨 있는지 확인하세요. 대개 권한 변경 이전에 발급된 토큰이 원인입니다.</p>
+    <p><strong style="color:var(--text);">“서명 검증에 실패했습니다”</strong> — 이 문제는 디코딩만으로는 해결할 수 없습니다. 서버가 헤더의 알고리즘에 맞는 올바른 시크릿 키 또는 공개 키를 사용하고 있는지 확인하세요.</p>
+    <h2 class="content-h2">지금 바로 시도해 보세요</h2>
+    <p>JWT를 <a href="https://decodeb64.com">decodeb64.com</a>에 붙여넣어 보세요. 이 도구는 Base64URL 인코딩을 자동으로 감지해 헤더와 페이로드를 디코딩합니다. 한 번에 여러 토큰을 확인해야 한다면 “줄마다 개별 디코딩” 모드도 사용할 수 있습니다.</p>
+    <p>JWT 토큰을 디코딩하는 일은 인증 시스템을 다루는 백엔드·프론트엔드 개발자에게 일상적인 작업입니다. 세 부분으로 이루어진 구조와 디코딩·검증의 차이를 이해하면 인증 문제가 발생했을 때 주도권을 쥘 수 있습니다.</p>
+  </div>
+</main>
+
+<!-- FOOTER -->
+<footer>
+  <span>decodeb64.com &copy; 2026</span>
+  <div class="footer-links">
+    <a href="/about">소개</a>
+    <a href="/privacy-policy">개인정보처리방침</a>
+    <a href="/terms-of-use">이용약관</a>
+    <a href="/contact">문의하기</a>
+    <a href="/blog">블로그</a>
+  </div>
+  <span class="footer-right"><span>이런 도구도 있어요:</span> <a href="https://encodeb64.com" rel="noopener noreferrer" target="_blank">Base64 Encode — encodeb64.com →</a></span>
+  <span class="footer-right" style="font-size:0.72rem;color:var(--text-dim);">
+    개발 <a href="https://mpmdigital.es/" rel="noopener noreferrer" target="_blank" style="color:var(--amber,#ff8c42);">MpmDigital</a>
+  </span>
+</footer>
+
+<script>
+  // Language switcher
+  (function () {
+    var btn = document.getElementById('langBtn');
+    var dd = document.getElementById('langDropdown');
+    btn.addEventListener('click', function (e) {
+      e.stopPropagation();
+      dd.classList.toggle('open');
+      btn.setAttribute('aria-expanded', dd.classList.contains('open'));
+    });
+    document.addEventListener('click', function () {
+      dd.classList.remove('open');
+      btn.setAttribute('aria-expanded', 'false');
+    });
+    dd.addEventListener('click', function (e) {
+      var opt = e.target.closest('.lang-option');
+      if (!opt) return;
+      var sel = opt.dataset.lang;
+      var path = sel === 'en' ? '/blog/how-to-decode-jwt-tokens-and-inspect-claims' : '/' + sel + '/blog/how-to-decode-jwt-tokens-and-inspect-claims';
+      window.location.href = path;
+    });
+  })();
+</script>
+</body>
+</html>
