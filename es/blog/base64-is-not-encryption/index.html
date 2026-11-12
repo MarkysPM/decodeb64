@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <script>
+    (function () {
+      var isProd = /decodeb64\.com$/.test(window.location.hostname);
+      window.dataLayer = window.dataLayer || [];
+      function gtag() { dataLayer.push(arguments); }
+      window.gtag = gtag;
+      gtag('consent', 'default', {
+        analytics_storage: 'denied', ad_storage: 'denied',
+        ad_user_data: 'denied', ad_personalization: 'denied', wait_for_update: 500
+      });
+      if (!isProd) return;
+      var ga = document.createElement('script');
+      ga.async = true;
+      ga.src = 'https://www.googletagmanager.com/gtag/js?id=G-JVDER6MN4Y';
+      document.head.appendChild(ga);
+      gtag('js', new Date());
+      gtag('config', 'G-JVDER6MN4Y');
+      var ad = document.createElement('script');
+      ad.async = true;
+      ad.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7602115974474104';
+      ad.crossOrigin = 'anonymous';
+      document.head.appendChild(ad);
+      // Google Funding Choices (consent message)
+      var fc = document.createElement('script');
+      fc.async = true;
+      fc.src = 'https://fundingchoicesmessages.google.com/i/pub-7602115974474104?ers=1';
+      document.head.appendChild(fc);
+      (function signalGooglefcPresent() {
+        if (!window.frames['googlefcPresent']) {
+          if (document.body) {
+            var ifr = document.createElement('iframe');
+            ifr.style.cssText = 'width:0;height:0;border:none;z-index:-1000;left:-1000px;top:-1000px;display:none';
+            ifr.name = 'googlefcPresent';
+            document.body.appendChild(ifr);
+          } else { setTimeout(signalGooglefcPresent, 0); }
+        }
+      })();
+    })();
+  </script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Base64 no es cifrado: mitos de seguridad y riesgos reales</title>
+  <meta name="description" content="Base64 solo cambia el aspecto de los datos y cualquiera puede revertirlo. Descubre por qué no es cifrado, dónde se usa mal y qué usar para proteger datos de verdad." />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://decodeb64.com/es/blog/base64-is-not-encryption/" />
+  <link rel="alternate" hreflang="en" href="https://decodeb64.com/blog/base64-is-not-encryption/" />
+  <link rel="alternate" hreflang="es" href="https://decodeb64.com/es/blog/base64-is-not-encryption/" />
+  <link rel="alternate" hreflang="pt" href="https://decodeb64.com/pt/blog/base64-is-not-encryption/" />
+  <link rel="alternate" hreflang="fr" href="https://decodeb64.com/fr/blog/base64-is-not-encryption/" />
+  <link rel="alternate" hreflang="de" href="https://decodeb64.com/de/blog/base64-is-not-encryption/" />
+  <link rel="alternate" hreflang="it" href="https://decodeb64.com/it/blog/base64-is-not-encryption/" />
+  <link rel="alternate" hreflang="zh" href="https://decodeb64.com/zh/blog/base64-is-not-encryption/" />
+  <link rel="alternate" hreflang="ru" href="https://decodeb64.com/ru/blog/base64-is-not-encryption/" />
+  <link rel="alternate" hreflang="ja" href="https://decodeb64.com/ja/blog/base64-is-not-encryption/" />
+  <link rel="alternate" hreflang="ko" href="https://decodeb64.com/ko/blog/base64-is-not-encryption/" />
+  <link rel="alternate" hreflang="nl" href="https://decodeb64.com/nl/blog/base64-is-not-encryption/" />
+  <link rel="alternate" hreflang="hi" href="https://decodeb64.com/hi/blog/base64-is-not-encryption/" />
+  <link rel="alternate" hreflang="x-default" href="https://decodeb64.com/blog/base64-is-not-encryption/" />
+  <meta property="og:locale" content="es_ES" />
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="decodeb64.com" />
+  <meta property="og:title" content="Base64 no es cifrado: mitos de seguridad y riesgos reales" />
+  <meta property="og:description" content="Guía paso a paso para decodificar tokens JWT y leer sus claims. Entiende la estructura de un JWT y cómo funciona la codificación Base64URL en los tokens de autenticación." />
+  <meta property="og:url" content="https://decodeb64.com/es/blog/base64-is-not-encryption/" />
+  <meta property="og:image" content="https://decodeb64.com/og-image.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:image" content="https://decodeb64.com/og-image.png" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="theme-color" content="#0d0d14" />
+  <meta name="color-scheme" content="dark" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Sora:wght@300;400;500;600;700&display=swap');
+    :root {
+      --bg: #0d0d14; --bg2: #12121c; --bg3: #1a1a28;
+      --amber: #ff8c42; --amber-dim: rgba(255,140,66,0.15);
+      --amber-glow: rgba(255,140,66,0.35); --amber-light: #ffb07a;
+      --glass-bg: rgba(255,255,255,0.04); --glass-border: rgba(255,255,255,0.09);
+      --text: #e8e8f0; --text-muted: #7a7a9a; --text-dim: #4a4a6a;
+      --green: #3ecf7e; --red: #ff5a5a; --red-dim: rgba(255,90,90,0.15);
+      --radius: 14px; --radius-sm: 8px;
+      --mono: 'JetBrains Mono', monospace; --sans: 'Sora', sans-serif;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--sans); background-color: var(--bg); color: var(--text);
+      min-height: 100vh; overflow-x: hidden; position: relative;
+    }
+    body::before {
+      content: ''; position: fixed; inset: 0;
+      background-image: radial-gradient(circle, rgba(255,140,66,0.12) 1px, transparent 1px);
+      background-size: 28px 28px; pointer-events: none; z-index: 0;
+    }
+    body::after {
+      content: ''; position: fixed; top: -20%; left: 50%; transform: translateX(-50%);
+      width: 800px; height: 500px;
+      background: radial-gradient(ellipse, rgba(255,140,66,0.06) 0%, transparent 70%);
+      pointer-events: none; z-index: 0;
+    }
+    header {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(13,13,20,0.85); backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px); border-bottom: 1px solid var(--glass-border);
+      padding: 0 24px; height: 62px; display: flex; align-items: center;
+      justify-content: space-between; gap: 16px;
+    }
+    .logo { font-family: var(--mono); font-size: 1.2rem; font-weight: 700;
+      letter-spacing: -0.5px; text-decoration: none; flex-shrink: 0; }
+    .logo span.decode { color: #ffffff; }
+    .logo span.b64 { color: var(--amber); }
+    .header-right { display: flex; align-items: center; gap: 10px; }
+    .nav-pills { display: flex; gap: 6px; }
+    .nav-pill {
+      font-family: var(--sans); font-size: 0.78rem; font-weight: 500;
+      padding: 5px 14px; border-radius: 20px; text-decoration: none;
+      transition: all 0.2s; border: 1px solid transparent;
+    }
+    .nav-pill.inactive { color: var(--text-muted); border-color: var(--glass-border); background: transparent; }
+    .nav-pill.inactive:hover { color: var(--text); border-color: rgba(255,255,255,0.18); }
+    .nav-pill.active { color: var(--bg); background: var(--amber); font-weight: 600; }
+    .lang-selector { position: relative; }
+    .lang-btn {
+      display: flex; align-items: center; gap: 6px; padding: 5px 12px;
+      background: var(--glass-bg); border: 1px solid var(--glass-border);
+      border-radius: 20px; color: var(--text-muted); cursor: pointer;
+      font-family: var(--sans); font-size: 0.78rem; transition: all 0.2s; white-space: nowrap;
+    }
+    .lang-btn:hover { color: var(--text); border-color: rgba(255,255,255,0.18); }
+    .lang-btn svg { width: 14px; height: 14px; flex-shrink: 0; }
+    .lang-dropdown {
+      display: none; position: absolute; top: calc(100% + 8px); right: 0;
+      background: #1a1a2e; border: 1px solid var(--glass-border);
+      border-radius: var(--radius-sm); overflow: hidden; min-width: 160px;
+      box-shadow: 0 12px 40px rgba(0,0,0,0.5); z-index: 200;
+    }
+    .lang-dropdown.open { display: block; }
+    .lang-option {
+      display: flex; align-items: center; gap: 8px; padding: 9px 14px;
+      cursor: pointer; font-size: 0.82rem; color: var(--text-muted); transition: all 0.15s;
+    }
+    .lang-option:hover { background: var(--amber-dim); color: var(--text); }
+    .lang-option.selected { color: var(--amber); }
+    main {
+      position: relative; z-index: 1; max-width: 900px;
+      margin: 0 auto; padding: 0 20px 80px;
+    }
+    .page-hero {
+      text-align: center; padding: 48px 20px 36px; position: relative;
+    }
+    .page-hero h1 {
+      font-size: clamp(1.8rem, 4vw, 2.8rem); font-weight: 700;
+      letter-spacing: -1px; line-height: 1.15; margin-bottom: 12px;
+    }
+    .page-hero .sub { color: var(--text-muted); font-size: 1rem; max-width: 560px; margin: 0 auto; }
+    .breadcrumb {
+      font-size: 0.78rem; color: var(--text-dim); margin-bottom: 8px;
+    }
+    .breadcrumb a { color: var(--text-dim); text-decoration: none; transition: color 0.2s; }
+    .breadcrumb a:hover { color: var(--amber); }
+    .breadcrumb span { color: var(--text-muted); margin: 0 6px; }
+    .glass-card {
+      background: var(--glass-bg); border: 1px solid var(--glass-border);
+      border-radius: var(--radius); backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px); padding: 32px 36px; margin-bottom: 20px;
+    }
+    .content-h2 {
+      font-size: 1rem; font-weight: 700; color: var(--amber);
+      margin: 28px 0 10px; letter-spacing: -0.2px;
+    }
+    .content-h2:first-child { margin-top: 0; }
+    .glass-card p {
+      font-size: 0.9rem; color: var(--text-muted); line-height: 1.75; margin-bottom: 12px;
+    }
+    .glass-card p:last-child { margin-bottom: 0; }
+    .glass-card ul {
+      list-style: none; padding: 0; margin: 8px 0 12px;
+    }
+    .glass-card ul li {
+      font-size: 0.88rem; color: var(--text-muted); line-height: 1.7;
+      padding-left: 18px; position: relative; margin-bottom: 6px;
+    }
+    .glass-card ul li::before {
+      content: '—'; position: absolute; left: 0; color: var(--amber); font-family: var(--mono);
+    }
+    .glass-card a { color: var(--amber); text-decoration: none; transition: opacity 0.2s; }
+    .glass-card a:hover { opacity: 0.8; text-decoration: underline; }
+    .article-meta {
+      font-size: 0.78rem; color: var(--text-dim); font-family: var(--mono);
+      margin-bottom: 24px; display: flex; gap: 14px; justify-content: center; flex-wrap: wrap;
+    }
+    .article-list { margin: 18px 0 28px; display: flex; flex-direction: column; gap: 14px; }
+    .article-card {
+      background: var(--glass-bg); border: 1px solid var(--glass-border);
+      border-radius: var(--radius); backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px); padding: 26px 30px; transition: all 0.2s;
+    }
+    .article-card:hover { border-color: var(--amber-glow); }
+    .article-card h2 { font-size: 1.15rem; margin-bottom: 8px; letter-spacing: -0.3px; }
+    .article-card h2 a { color: var(--text); text-decoration: none; }
+    .article-card h2 a:hover { color: var(--amber); }
+    .article-card p.excerpt { font-size: 0.9rem; color: var(--text-muted); line-height: 1.65; margin-bottom: 12px; }
+    .article-card .meta { font-size: 0.75rem; color: var(--text-dim); font-family: var(--mono); display: flex; gap: 12px; align-items: center; flex-wrap: wrap; }
+    .article-card .read-more { color: var(--amber); text-decoration: none; font-size: 0.85rem; font-weight: 600; }
+    .article-card .read-more:hover { opacity: 0.8; }
+    .last-updated {
+      font-size: 0.75rem; color: var(--text-dim); margin-bottom: 24px;
+      font-family: var(--mono);
+    }
+    footer {
+      position: relative; z-index: 1; border-top: 1px solid var(--glass-border);
+      padding: 24px 20px; display: flex; flex-wrap: wrap; gap: 16px;
+      align-items: center; justify-content: space-between;
+      max-width: 900px; margin: 0 auto; font-size: 0.78rem; color: var(--text-dim);
+    }
+    .footer-links { display: flex; gap: 16px; flex-wrap: wrap; }
+    .footer-links a, footer a { color: var(--text-dim); text-decoration: none; transition: color 0.2s; }
+    .footer-links a:hover, footer a:hover { color: var(--amber); }
+    footer .footer-right { color: var(--text-dim); }
+    footer .footer-right a { color: var(--amber); }
+    @media (max-width: 640px) {
+      header { padding: 0 16px; }
+      .logo { font-size: 1rem; }
+      .nav-pill { padding: 4px 10px; font-size: 0.73rem; }
+      .lang-btn span { display: none; }
+      main { padding: 0 16px 60px; }
+      .glass-card { padding: 20px 18px; }
+      .article-card { padding: 20px 18px; }
+      footer { flex-direction: column; align-items: flex-start; gap: 10px; }
+    }
+    .glass-card pre { background: rgba(0,0,0,0.35); border: 1px solid var(--glass-border); border-radius: 10px; padding: 14px 16px; margin: 0 0 16px; overflow-x: auto; font-family: var(--mono); font-size: 0.78rem; line-height: 1.6; color: var(--amber-light); white-space: pre; }
+    .glass-card code { font-family: var(--mono); font-size: 0.82em; color: var(--amber-light); background: rgba(255,255,255,0.05); padding: 1px 5px; border-radius: 4px; }
+    .glass-card pre code { background: none; padding: 0; }
+    .glass-card h2.content-h2 + p { margin-top: 0; }
+  </style>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Base64 no es cifrado: mitos de seguridad y riesgos reales",
+  "author": {
+    "@type": "Organization",
+    "name": "MpmDigital",
+    "url": "https://mpmdigital.es/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "decodeb64.com",
+    "url": "https://decodeb64.com/"
+  },
+  "datePublished": "2026-11-12",
+  "inLanguage": "es",
+  "url": "https://decodeb64.com/es/blog/base64-is-not-encryption/"
+}
+  </script>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <a href="/es/" class="logo">
+    <span class="decode">decode</span><span class="b64">B64</span>
+  </a>
+  <div class="header-right">
+    <nav class="nav-pills">
+      <a href="https://encodeb64.com" class="nav-pill inactive" rel="noopener noreferrer" target="_blank">Codificar</a>
+      <a href="/es/" class="nav-pill inactive">Decodificar</a>
+      <a href="/es/base64-to-image" class="nav-pill inactive">Base64 a Imagen</a>
+      <a href="/es/blog/" class="nav-pill inactive">Blog</a>
+    </nav>
+    <div class="lang-selector">
+      <button class="lang-btn" id="langBtn" aria-haspopup="listbox" aria-expanded="false">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+        <span id="langLabel">Español</span>
+        <svg viewBox="0 0 10 6" fill="currentColor" width="10" height="6"><path d="M0 0l5 6 5-6z"/></svg>
+      </button>
+      <div class="lang-dropdown" id="langDropdown" role="listbox">
+        <div class="lang-option" data-lang="en" role="option">🇺🇸 English</div>
+        <div class="lang-option selected" data-lang="es" role="option">🇪🇸 Español</div>
+        <div class="lang-option" data-lang="pt" role="option">🇧🇷 Português</div>
+        <div class="lang-option" data-lang="fr" role="option">🇫🇷 Français</div>
+        <div class="lang-option" data-lang="de" role="option">🇩🇪 Deutsch</div>
+        <div class="lang-option" data-lang="it" role="option">🇮🇹 Italiano</div>
+        <div class="lang-option" data-lang="zh" role="option">🇨🇳 中文</div>
+        <div class="lang-option" data-lang="ru" role="option">🇷🇺 Русский</div>
+        <div class="lang-option" data-lang="ja" role="option">🇯🇵 日本語</div>
+        <div class="lang-option" data-lang="ko" role="option">🇰🇷 한국어</div>
+        <div class="lang-option" data-lang="nl" role="option">🇳🇱 Nederlands</div>
+        <div class="lang-option" data-lang="hi" role="option">🇮🇳 हिन्दी</div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- MAIN -->
+<main>
+  <div class="page-hero">
+    <p class="breadcrumb"><a href="/es/">decodeb64.com</a><span>›</span><a href="/es/blog/">Blog</a><span>›</span>Base64 no es cifrado: mitos de seguridad y riesgos reales</p>
+    <h1>Base64 no es cifrado: mitos de seguridad y riesgos reales</h1>
+    <div class="article-meta">
+      <span>Noviembre de 2026</span>
+      <span>·</span>
+      <span>6 min de lectura</span>
+    </div>
+  </div>
+
+  <div class="glass-card">
+    <p>"La contraseña está guardada en Base64, así que está protegida." Variantes de esa frase aparecen en revisiones de código, auditorías de seguridad e incluso informes de incidentes en producción. Es falsa, y el error es peligroso porque la salida Base64 parece lo bastante revuelta como para transmitir seguridad. Este artículo explica qué hace realmente Base64, por qué no ofrece protección y qué usar en su lugar.</p>
+    <h2 class="content-h2">Qué es realmente Base64</h2>
+    <p>Base64 es una <strong style="color:var(--text);">codificación</strong>, no un cifrado. Su único trabajo es representar bytes arbitrarios con 64 caracteres imprimibles seguros para que los datos puedan viajar por sistemas pensados para texto: correo, JSON, XML, URLs, cabeceras HTTP. No hay clave, ni secreto, ni algoritmo que adivinar. Cualquier decodificador Base64 del mundo lo revierte de la misma forma.</p>
+    <p>Toma la cabecera de autenticación HTTP Basic. Una petición con usuario <code>user</code> y contraseña <code>password</code> envía:</p>
+<pre>Authorization: Basic dXNlcjpwYXNzd29yZA==</pre>
+    <p>Pega <code>dXNlcjpwYXNzd29yZA==</code> en cualquier decodificador y obtendrás <code>user:password</code> al instante. Cualquiera que pueda leer la petición puede leer las credenciales, por eso Basic auth solo debe usarse sobre HTTPS.</p>
+    <h2 class="content-h2">Codificación, cifrado y hash son cosas distintas</h2>
+    <ul>
+      <li><strong style="color:var(--text);">Codificación</strong> (Base64, hex, codificación URL): cambia la representación de los datos para que encajen en un medio. Reversible por cualquiera, sin secreto. Finalidad: compatibilidad.</li>
+      <li><strong style="color:var(--text);">Cifrado</strong> (AES, ChaCha20, RSA): transforma los datos para que solo quien tenga la clave pueda recuperarlos. Reversible solo con la clave. Finalidad: confidencialidad.</li>
+      <li><strong style="color:var(--text);">Hash</strong> (SHA-256, bcrypt, Argon2): produce una huella de tamaño fijo que no se puede revertir. Finalidad: comprobaciones de integridad y almacenamiento de contraseñas.</li>
+    </ul>
+    <p>Como resuelven problemas distintos, usar una en lugar de otra falla en silencio. Una "contraseña codificada en Base64" es una contraseña en texto plano con pasos extra.</p>
+    <h2 class="content-h2">Dónde la confusión causa daños reales</h2>
+    <p><strong style="color:var(--text);">Secretos en archivos de configuración.</strong> Los objetos <code>Secret</code> de Kubernetes guardan los valores en Base64. Es solo por seguridad binaria. Cualquiera que pueda leer el manifiesto o ejecutar <code>kubectl get secret -o yaml</code> puede decodificar todos los valores. Protégelos con RBAC, cifrado en reposo y un gestor de secretos externo.</p>
+    <p><strong style="color:var(--text);">Payloads de JWT.</strong> Un JWT firmado es JSON codificado en Base64URL, no cifrado. Cualquiera que tenga el token puede leer sus claims. No metas nunca contraseñas, datos personales ni detalles internos. Consulta <a href="/es/blog/how-to-decode-jwt-tokens-and-inspect-claims/">cómo decodificar e inspeccionar los claims de un JWT</a>.</p>
+    <p><strong style="color:var(--text);">Claves de API y URLs "ofuscadas".</strong> Esconder una clave de API en un script del cliente como cadena Base64 no detiene a nadie. Se encuentra y se decodifica en segundos, y es una fuente habitual de credenciales filtradas.</p>
+    <p><strong style="color:var(--text);">Tokens y cookies.</strong> Los datos de sesión guardados en una cookie como JSON en Base64 pueden ser leídos, editados y reenviados por el usuario a menos que también estén firmados o cifrados.</p>
+    <p><strong style="color:var(--text);">Malware y phishing.</strong> Los atacantes usan Base64 para ocultar scripts y URLs a una inspección superficial (el <code>-EncodedCommand</code> de PowerShell es un clásico). Los defensores los decodifican de forma rutinaria. La ofuscación no oculta nada a quien se molesta en mirar.</p>
+    <h2 class="content-h2">Riesgos reales, aunque menores, de Base64</h2>
+    <ul>
+      <li><strong style="color:var(--text);">Aumento de tamaño.</strong> La salida es un 33 % mayor que la entrada, lo que importa en cargas grandes, redes móviles y almacenamiento en bases de datos.</li>
+      <li><strong style="color:var(--text);">Cargas ocultas.</strong> Como Base64 convierte cualquier cosa en texto de apariencia inofensiva, los filtros que solo buscan texto sospechoso pueden pasar por alto contenido malicioso dentro. Las herramientas de seguridad deben decodificar antes de inspeccionar.</li>
+      <li><strong style="color:var(--text);">Archivos decodificados inseguros.</strong> Una cadena decodificada puede ser un ejecutable, un script o un SVG con JavaScript incrustado. No ejecutes ni renderices contenido decodificado de una fuente no confiable sin comprobar su tipo.</li>
+      <li><strong style="color:var(--text);">Inyección mediante texto decodificado.</strong> Si decodificas Base64 aportado por el usuario e insertas el resultado en HTML, SQL o un comando de shell, tienes el mismo riesgo de inyección que con cualquier entrada sin procesar.</li>
+    </ul>
+    <h2 class="content-h2">Qué usar en su lugar</h2>
+    <p>Ajusta la herramienta al objetivo real:</p>
+    <ul>
+      <li><strong style="color:var(--text);">Mantener los datos confidenciales en tránsito:</strong> TLS (HTTPS). Siempre.</li>
+      <li><strong style="color:var(--text);">Mantener los datos confidenciales en reposo:</strong> cifrado autenticado como AES-256-GCM o ChaCha20-Poly1305 con claves en un KMS o gestor de secretos. Después puedes codificar el texto cifrado en Base64 para guardarlo o enviarlo. Ese es el papel correcto de Base64: transportar bytes ya protegidos.</li>
+      <li><strong style="color:var(--text);">Guardar contraseñas:</strong> un hash de contraseñas lento y con sal como Argon2id, scrypt o bcrypt. Nunca las cifres ni codifiques de forma reversible.</li>
+      <li><strong style="color:var(--text);">Demostrar que los datos no se modificaron:</strong> un HMAC o una firma digital.</li>
+      <li><strong style="color:var(--text);">Mantener los secretos fuera del código del cliente:</strong> guárdalos en el servidor y expón solo tokens de corta duración y alcance limitado.</li>
+    </ul>
+    <h2 class="content-h2">Una prueba rápida</h2>
+    <p>Pregúntate: "Si un atacante viera este valor, ¿podría usarlo o leerlo?". Si el valor solo está codificado en Base64, la respuesta es sí, al instante. Puedes comprobarlo pegando cualquier cadena sospechosa en <a href="/es/">decodeb64.com</a>. La decodificación ocurre localmente en tu navegador, así que puedes inspeccionar tokens y cabeceras con seguridad, y es también una forma útil de auditar tu aplicación en busca de secretos "ocultos" en Base64.</p>
+    <p>Base64 es una herramienta útil y honesta mientras la uses para lo que es: una forma de transportar bytes por canales de solo texto. No protege nada, así que deja que la criptografía de verdad haga ese trabajo.</p>
+  </div>
+</main>
+
+<!-- FOOTER -->
+<footer>
+  <span>decodeb64.com &copy; 2026</span>
+  <div class="footer-links">
+    <a href="/about/">Sobre nosotros</a>
+    <a href="/privacy-policy/">Política de Privacidad</a>
+    <a href="/terms-of-use/">Términos de Uso</a>
+    <a href="/contact/">Contacto</a>
+    <a href="/blog/">Blog</a>
+  </div>
+  <span class="footer-right"><span>Prueba también:</span> <a href="https://encodeb64.com" rel="noopener noreferrer" target="_blank">Base64 Encode — encodeb64.com →</a></span>
+  <span class="footer-right" style="font-size:0.72rem;color:var(--text-dim);">
+    Desarrollado por <a href="https://mpmdigital.es/" rel="noopener noreferrer" target="_blank" style="color:var(--amber,#ff8c42);">MpmDigital</a>
+  </span>
+</footer>
+
+<script>
+  // Language switcher
+  (function () {
+    var btn = document.getElementById('langBtn');
+    var dd = document.getElementById('langDropdown');
+    btn.addEventListener('click', function (e) {
+      e.stopPropagation();
+      dd.classList.toggle('open');
+      btn.setAttribute('aria-expanded', dd.classList.contains('open'));
+    });
+    document.addEventListener('click', function () {
+      dd.classList.remove('open');
+      btn.setAttribute('aria-expanded', 'false');
+    });
+    dd.addEventListener('click', function (e) {
+      var opt = e.target.closest('.lang-option');
+      if (!opt) return;
+      var sel = opt.dataset.lang;
+      var path = (sel === 'en' ? '' : '/' + sel) + '/blog/base64-is-not-encryption/';
+      window.location.href = path;
+    });
+  })();
+</script>
+</body>
+</html>

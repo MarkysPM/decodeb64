@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="es">
 <head>
   <script>
     (function () {
@@ -42,29 +42,29 @@
   </script>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Décodage Base64 de fichiers binaires : images, PDF et plus</title>
-  <meta name="description" content="Apprenez à décoder des fichiers binaires encodés en Base64 — images, PDF, audio et documents." />
+  <title>Base64 en JavaScript: btoa, atob y las trampas de Unicode</title>
+  <meta name="description" content="Cómo codificar y decodificar Base64 en JavaScript con btoa, atob, TextEncoder y Buffer de Node.js, incluidos los errores de Unicode que sorprenden a casi todos." />
   <meta name="robots" content="index, follow" />
-  <link rel="canonical" href="https://decodeb64.com/fr/blog/base64-decoding-binary-files-images-pdfs-and-more/" />
-  <link rel="alternate" hreflang="en" href="https://decodeb64.com/blog/base64-decoding-binary-files-images-pdfs-and-more/" />
-  <link rel="alternate" hreflang="es" href="https://decodeb64.com/es/blog/base64-decoding-binary-files-images-pdfs-and-more/" />
-  <link rel="alternate" hreflang="pt" href="https://decodeb64.com/pt/blog/base64-decoding-binary-files-images-pdfs-and-more/" />
-  <link rel="alternate" hreflang="fr" href="https://decodeb64.com/fr/blog/base64-decoding-binary-files-images-pdfs-and-more/" />
-  <link rel="alternate" hreflang="de" href="https://decodeb64.com/de/blog/base64-decoding-binary-files-images-pdfs-and-more/" />
-  <link rel="alternate" hreflang="it" href="https://decodeb64.com/it/blog/base64-decoding-binary-files-images-pdfs-and-more/" />
-  <link rel="alternate" hreflang="zh" href="https://decodeb64.com/zh/blog/base64-decoding-binary-files-images-pdfs-and-more/" />
-  <link rel="alternate" hreflang="ru" href="https://decodeb64.com/ru/blog/base64-decoding-binary-files-images-pdfs-and-more/" />
-  <link rel="alternate" hreflang="ja" href="https://decodeb64.com/ja/blog/base64-decoding-binary-files-images-pdfs-and-more/" />
-  <link rel="alternate" hreflang="ko" href="https://decodeb64.com/ko/blog/base64-decoding-binary-files-images-pdfs-and-more/" />
-  <link rel="alternate" hreflang="nl" href="https://decodeb64.com/nl/blog/base64-decoding-binary-files-images-pdfs-and-more/" />
-  <link rel="alternate" hreflang="hi" href="https://decodeb64.com/hi/blog/base64-decoding-binary-files-images-pdfs-and-more/" />
-  <link rel="alternate" hreflang="x-default" href="https://decodeb64.com/blog/base64-decoding-binary-files-images-pdfs-and-more/" />
-  <meta property="og:locale" content="fr_FR" />
+  <link rel="canonical" href="https://decodeb64.com/es/blog/base64-encode-decode-javascript/" />
+  <link rel="alternate" hreflang="en" href="https://decodeb64.com/blog/base64-encode-decode-javascript/" />
+  <link rel="alternate" hreflang="es" href="https://decodeb64.com/es/blog/base64-encode-decode-javascript/" />
+  <link rel="alternate" hreflang="pt" href="https://decodeb64.com/pt/blog/base64-encode-decode-javascript/" />
+  <link rel="alternate" hreflang="fr" href="https://decodeb64.com/fr/blog/base64-encode-decode-javascript/" />
+  <link rel="alternate" hreflang="de" href="https://decodeb64.com/de/blog/base64-encode-decode-javascript/" />
+  <link rel="alternate" hreflang="it" href="https://decodeb64.com/it/blog/base64-encode-decode-javascript/" />
+  <link rel="alternate" hreflang="zh" href="https://decodeb64.com/zh/blog/base64-encode-decode-javascript/" />
+  <link rel="alternate" hreflang="ru" href="https://decodeb64.com/ru/blog/base64-encode-decode-javascript/" />
+  <link rel="alternate" hreflang="ja" href="https://decodeb64.com/ja/blog/base64-encode-decode-javascript/" />
+  <link rel="alternate" hreflang="ko" href="https://decodeb64.com/ko/blog/base64-encode-decode-javascript/" />
+  <link rel="alternate" hreflang="nl" href="https://decodeb64.com/nl/blog/base64-encode-decode-javascript/" />
+  <link rel="alternate" hreflang="hi" href="https://decodeb64.com/hi/blog/base64-encode-decode-javascript/" />
+  <link rel="alternate" hreflang="x-default" href="https://decodeb64.com/blog/base64-encode-decode-javascript/" />
+  <meta property="og:locale" content="es_ES" />
   <meta property="og:type" content="article" />
   <meta property="og:site_name" content="decodeb64.com" />
-  <meta property="og:title" content="Décodage Base64 de fichiers binaires : images, PDF et plus" />
-  <meta property="og:description" content="Apprenez à décoder des fichiers binaires encodés en Base64 — images, PDF, audio et documents. Inclut des conseils sur la détection du type de fichier et la gestion sécurisée des fichiers décodés." />
-  <meta property="og:url" content="https://decodeb64.com/fr/blog/base64-decoding-binary-files-images-pdfs-and-more/" />
+  <meta property="og:title" content="Base64 en JavaScript: btoa, atob y las trampas de Unicode" />
+  <meta property="og:description" content="Guía paso a paso para decodificar tokens JWT y leer sus claims. Entiende la estructura de un JWT y cómo funciona la codificación Base64URL en los tokens de autenticación." />
+  <meta property="og:url" content="https://decodeb64.com/es/blog/base64-encode-decode-javascript/" />
   <meta property="og:image" content="https://decodeb64.com/og-image.png" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
@@ -234,12 +234,16 @@
       .article-card { padding: 20px 18px; }
       footer { flex-direction: column; align-items: flex-start; gap: 10px; }
     }
+    .glass-card pre { background: rgba(0,0,0,0.35); border: 1px solid var(--glass-border); border-radius: 10px; padding: 14px 16px; margin: 0 0 16px; overflow-x: auto; font-family: var(--mono); font-size: 0.78rem; line-height: 1.6; color: var(--amber-light); white-space: pre; }
+    .glass-card code { font-family: var(--mono); font-size: 0.82em; color: var(--amber-light); background: rgba(255,255,255,0.05); padding: 1px 5px; border-radius: 4px; }
+    .glass-card pre code { background: none; padding: 0; }
+    .glass-card h2.content-h2 + p { margin-top: 0; }
   </style>
   <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
-  "headline": "Décodage Base64 de fichiers binaires : images, PDF et plus",
+  "headline": "Base64 en JavaScript: btoa, atob y las trampas de Unicode",
   "author": {
     "@type": "Organization",
     "name": "MpmDigital",
@@ -250,9 +254,9 @@
     "name": "decodeb64.com",
     "url": "https://decodeb64.com/"
   },
-  "datePublished": "2026-08-01",
-  "inLanguage": "fr",
-  "url": "https://decodeb64.com/fr/blog/base64-decoding-binary-files-images-pdfs-and-more/"
+  "datePublished": "2026-11-12",
+  "inLanguage": "es",
+  "url": "https://decodeb64.com/es/blog/base64-encode-decode-javascript/"
 }
   </script>
 </head>
@@ -260,27 +264,27 @@
 
 <!-- HEADER -->
 <header>
-  <a href="/fr/" class="logo">
+  <a href="/es/" class="logo">
     <span class="decode">decode</span><span class="b64">B64</span>
   </a>
   <div class="header-right">
     <nav class="nav-pills">
-      <a href="https://encodeb64.com" class="nav-pill inactive" rel="noopener noreferrer" target="_blank">Encoder</a>
-      <a href="/fr/" class="nav-pill inactive">Décoder</a>
-      <a href="/fr/base64-to-image" class="nav-pill inactive">Base64 vers Image</a>
-      <a href="/fr/blog/" class="nav-pill inactive">Blog</a>
+      <a href="https://encodeb64.com" class="nav-pill inactive" rel="noopener noreferrer" target="_blank">Codificar</a>
+      <a href="/es/" class="nav-pill inactive">Decodificar</a>
+      <a href="/es/base64-to-image" class="nav-pill inactive">Base64 a Imagen</a>
+      <a href="/es/blog/" class="nav-pill inactive">Blog</a>
     </nav>
     <div class="lang-selector">
       <button class="lang-btn" id="langBtn" aria-haspopup="listbox" aria-expanded="false">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
-        <span id="langLabel">Français</span>
+        <span id="langLabel">Español</span>
         <svg viewBox="0 0 10 6" fill="currentColor" width="10" height="6"><path d="M0 0l5 6 5-6z"/></svg>
       </button>
       <div class="lang-dropdown" id="langDropdown" role="listbox">
         <div class="lang-option" data-lang="en" role="option">🇺🇸 English</div>
-        <div class="lang-option" data-lang="es" role="option">🇪🇸 Español</div>
+        <div class="lang-option selected" data-lang="es" role="option">🇪🇸 Español</div>
         <div class="lang-option" data-lang="pt" role="option">🇧🇷 Português</div>
-        <div class="lang-option selected" data-lang="fr" role="option">🇫🇷 Français</div>
+        <div class="lang-option" data-lang="fr" role="option">🇫🇷 Français</div>
         <div class="lang-option" data-lang="de" role="option">🇩🇪 Deutsch</div>
         <div class="lang-option" data-lang="it" role="option">🇮🇹 Italiano</div>
         <div class="lang-option" data-lang="zh" role="option">🇨🇳 中文</div>
@@ -297,61 +301,110 @@
 <!-- MAIN -->
 <main>
   <div class="page-hero">
-    <p class="breadcrumb"><a href="/fr/">decodeb64.com</a><span>›</span><a href="/fr/blog/">Blog</a><span>›</span>Décodage Base64 de fichiers binaires : images, PDF et plus</p>
-    <h1>Décodage Base64 de fichiers binaires : images, PDF et plus</h1>
+    <p class="breadcrumb"><a href="/es/">decodeb64.com</a><span>›</span><a href="/es/blog/">Blog</a><span>›</span>Base64 en JavaScript: btoa, atob y las trampas de Unicode</p>
+    <h1>Base64 en JavaScript: btoa, atob y las trampas de Unicode</h1>
     <div class="article-meta">
-      <span>Août 2026</span>
+      <span>Noviembre de 2026</span>
       <span>·</span>
-      <span>5 min de lecture</span>
+      <span>7 min de lectura</span>
     </div>
   </div>
 
   <div class="glass-card">
-    <p>L'encodage Base64 ne concerne pas uniquement le texte. Tout fichier binaire — une image, un PDF, un clip audio, un document Word — peut être encodé en chaîne Base64. Les développeurs rencontrent des données binaires encodées en Base64 dans les réponses d'API, les champs de base de données, les pièces jointes d'e-mails et les fichiers de configuration. Ce guide explique comment décoder ces fichiers pour récupérer le contenu binaire d'origine.</p>
-    <h2 class="content-h2">Pourquoi les fichiers binaires sont encodés en Base64</h2>
-    <p>Les fichiers binaires contiennent des octets qui sortent de la plage ASCII imprimable. Lorsque ces données doivent transiter par un canal basé sur du texte — une réponse d'API JSON, un document XML, le corps d'un e-mail, un en-tête HTTP — elles doivent d'abord être converties en une représentation textuelle. Base64 est le moyen standard d'y parvenir.</p>
-    <p>Scénarios courants où vous rencontrerez des fichiers binaires encodés en Base64 :</p>
+    <p>JavaScript ofrece dos funciones integradas para Base64, <code>btoa()</code> y <code>atob()</code>, y funcionan perfectamente con ASCII. Los problemas empiezan en cuanto el texto contiene un emoji, una letra acentuada fuera de Latin-1 o datos binarios. Esta guía explica qué hacen realmente las funciones, por qué fallan y los patrones que funcionan tanto en el navegador como en Node.js.</p>
+    <h2 class="content-h2">Lo básico: btoa y atob</h2>
+    <p>Los nombres son históricos: <code>btoa</code> significa "binary to ASCII" (codificar) y <code>atob</code> "ASCII to binary" (decodificar).</p>
+<pre>btoa('Hello, World!');
+// "SGVsbG8sIFdvcmxkIQ=="
+
+atob('SGVsbG8sIFdvcmxkIQ==');
+// "Hello, World!"</pre>
+    <p>Ambas están disponibles en todos los navegadores modernos, en Web Workers y como globales en las versiones actuales de Node.js, Deno y Bun.</p>
+    <h2 class="content-h2">El problema de Unicode</h2>
+    <p>El detalle clave es que <code>btoa()</code> no recibe "texto". Recibe una *cadena binaria*, donde cada carácter debe tener un code point entre 0 y 255 y se trata como un byte. Cualquier valor superior lanza un error:</p>
+<pre>btoa('€');
+// Uncaught InvalidCharacterError: String contains an invalid character
+
+btoa('你好');
+// Uncaught InvalidCharacterError</pre>
+    <p>Caracteres como <code>é</code> (U+00E9) caben en el rango 0–255, así que <code>btoa('café')</code> parece funcionar, pero codifica el byte Latin-1 y no UTF-8. Otro sistema que decodifique el resultado como UTF-8 mostrará un carácter roto. Lo seguro es convertir primero la cadena a bytes UTF-8 y codificar esos bytes.</p>
+    <h2 class="content-h2">Codificar texto Unicode correctamente</h2>
+    <p>Usa <code>TextEncoder</code> para obtener los bytes UTF-8, conviértelos en una cadena binaria y llama a <code>btoa()</code>:</p>
+<pre>function encodeBase64(text) {
+  const bytes = new TextEncoder().encode(text);
+  let binary = '';
+  bytes.forEach(b => { binary += String.fromCharCode(b); });
+  return btoa(binary);
+}
+
+encodeBase64('€');      // "4oKs"
+encodeBase64('你好');   // "5L2g5aW9"</pre>
+    <p>Y a la inversa con <code>TextDecoder</code>:</p>
+<pre>function decodeBase64(b64) {
+  const binary = atob(b64);
+  const bytes = Uint8Array.from(binary, c => c.charCodeAt(0));
+  return new TextDecoder().decode(bytes);
+}
+
+decodeBase64('4oKs');   // "€"</pre>
+    <p>Con entradas muy grandes, construir la cadena carácter a carácter es lento. Procesa los bytes por bloques (por ejemplo, 32 768 a la vez con <code>String.fromCharCode.apply</code>) para evitar la lentitud y los límites de la pila de llamadas.</p>
+    <h2 class="content-h2">Node.js: usa Buffer</h2>
+    <p>En Node.js, <code>Buffer</code> maneja UTF-8 y datos binarios directamente, sin rodeos:</p>
+<pre>Buffer.from('€', 'utf8').toString('base64');
+// "4oKs"
+
+Buffer.from('4oKs', 'base64').toString('utf8');
+// "€"
+
+// Base64URL (Node.js 15.7+ and 14.18+)
+Buffer.from('hello?>', 'utf8').toString('base64url');</pre>
+    <p>Buffer es también la herramienta adecuada para archivos, porque puedes leer un archivo en un buffer y llamar a <code>.toString('base64')</code> sin crear una cadena intermedia de bytes.</p>
+    <h2 class="content-h2">Datos binarios en el navegador</h2>
+    <p>Para codificar un archivo que el usuario ha elegido, lo más sencillo suele ser <code>FileReader.readAsDataURL()</code>. El resultado es una data URI y la parte Base64 es todo lo que va después de la coma:</p>
+<pre>const reader = new FileReader();
+reader.onload = () => {
+  const dataUri = reader.result;           // "data:image/png;base64,iVBORw0..."
+  const base64  = dataUri.split(',')[1];   // just the Base64 payload
+};
+reader.readAsDataURL(file);</pre>
+    <p>Para el camino inverso y convertir Base64 en un archivo descargable o en la URL de una imagen, decodifica a un <code>Uint8Array</code>, envuélvelo en un <code>Blob</code> y crea una URL de objeto:</p>
+<pre>function base64ToBlob(b64, type = 'application/octet-stream') {
+  const binary = atob(b64);
+  const bytes = Uint8Array.from(binary, c => c.charCodeAt(0));
+  return new Blob([bytes], { type });
+}
+
+const url = URL.createObjectURL(base64ToBlob(b64, 'image/png'));
+img.src = url;</pre>
+    <p>Esto es lo que hace por detrás un conversor online de Base64 a imagen. Nuestra <a href="/es/base64-to-image">herramienta Base64 a Imagen</a> funciona íntegramente en tu navegador con este mismo enfoque, así que no se sube nada.</p>
+    <h2 class="content-h2">Base64URL en JavaScript</h2>
+    <p>Los navegadores no tienen un equivalente integrado de <code>btoa</code> para el alfabeto seguro para URL, así que convierte los caracteres tú mismo (consulta <a href="/es/blog/base64-vs-base64url-differences/">Base64 vs Base64URL</a>):</p>
+<pre>const toBase64Url = b64 =>
+  b64.replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
+
+const fromBase64Url = s => {
+  let b64 = s.replace(/-/g, '+').replace(/_/g, '/');
+  while (b64.length % 4) b64 += '=';
+  return b64;
+};</pre>
+    <h2 class="content-h2">Gestión de errores</h2>
+    <p><code>atob()</code> lanza un <code>InvalidCharacterError</code> si la entrada contiene caracteres fuera del alfabeto Base64. Ignora los espacios en blanco ASCII, así que los saltos de línea en una cadena larga no dan problemas, y las implementaciones actuales aceptan el relleno ausente siempre que la longitud no sea imposible (una longitud de 4n+1 nunca es válida). Envuelve siempre la decodificación de entradas no confiables en <code>try/catch</code>:</p>
+<pre>function safeDecode(b64) {
+  try {
+    return atob(b64.trim());
+  } catch (e) {
+    return null;   // not valid Base64
+  }
+}</pre>
+    <h2 class="content-h2">Referencia rápida</h2>
     <ul>
-      <li>Réponses d'API REST renvoyant des images, documents ou autre contenu binaire sous forme de champs JSON</li>
-      <li>Pièces jointes d'e-mails encodées au format MIME</li>
-      <li>Champs de base de données stockant des données binaires sous forme de texte</li>
-      <li>Fichiers de configuration (secrets Kubernetes, pipelines CI/CD) contenant des certificats ou des clés</li>
-      <li>E-mails HTML avec des images intégrées sous forme de Data URIs</li>
+      <li>Texto ASCII en el navegador: <code>btoa</code> / <code>atob</code>.</li>
+      <li>Cualquier texto Unicode: <code>TextEncoder</code> o <code>TextDecoder</code> alrededor de <code>btoa</code> o <code>atob</code>.</li>
+      <li>Node.js: <code>Buffer.from(...).toString('base64')</code>, que también admite <code>'base64url'</code>.</li>
+      <li>Archivos en el navegador: <code>FileReader.readAsDataURL()</code> para codificar, <code>Blob</code> más <code>URL.createObjectURL()</code> para decodificar.</li>
+      <li>No des por válida la cadena: captura errores y recorta los espacios.</li>
     </ul>
-    <h2 class="content-h2">Identifier un fichier encodé en Base64</h2>
-    <p>Les chaînes Base64 ressemblent à une longue séquence de lettres, de chiffres et des caractères +, / et = (ou -, _, sans = pour le Base64URL). Un signe révélateur est que la longueur de la chaîne est un multiple de 4 (ou de 3 pour le Base64URL sans remplissage).</p>
-    <p>Si la chaîne commence par <span style="font-family:var(--mono);color:var(--amber-light);">data:</span>, il s'agit d'une Data URI qui inclut le type de fichier : <span style="font-family:var(--mono);font-size:0.82rem;color:var(--text-muted);">data:image/png;base64,...</span> Cela facilite l'identification du type de fichier avant le décodage.</p>
-    <p>Pour les chaînes Base64 brutes sans préfixe, vous pouvez identifier le type de fichier en examinant les premiers octets après décodage — ce sont les « magic bytes ».</p>
-    <h2 class="content-h2">Magic Bytes — identifier les types de fichiers après décodage</h2>
-    <p>Les premiers octets de la plupart des formats de fichiers suivent un schéma fixe :</p>
-    <ul>
-      <li><strong style="color:var(--text);">PNG</strong> : octets 89 50 4E 47 (ASCII : .PNG)</li>
-      <li><strong style="color:var(--text);">JPEG</strong> : octets FF D8 FF</li>
-      <li><strong style="color:var(--text);">GIF</strong> : octets 47 49 46 38 (ASCII : GIF8)</li>
-      <li><strong style="color:var(--text);">PDF</strong> : octets 25 50 44 46 (ASCII : %PDF)</li>
-      <li><strong style="color:var(--text);">ZIP</strong> : octets 50 4B 03 04 (ASCII : PK..)</li>
-      <li><strong style="color:var(--text);">WebP</strong> : octets 52 49 46 46 ... 57 45 42 50 (ASCII : RIFF...WEBP)</li>
-    </ul>
-    <h2 class="content-h2"></h2>
-    <p><a href="https://decodeb64.com">decodeb64.com</a> détecte automatiquement le type de fichier à partir de ces magic bytes lors du décodage d'un fichier binaire, afin que vous obteniez un téléchargement avec la bonne extension.</p>
-    <h2 class="content-h2">Étape par étape : décoder un fichier binaire Base64</h2>
-    <p><strong style="color:var(--text);">Étape 1 :</strong> Obtenez la chaîne Base64. Elle peut provenir d'une réponse d'API (copiez la valeur du champ base64), d'un enregistrement de base de données ou d'un fichier de configuration.</p>
-    <p><strong style="color:var(--text);">Étape 2 :</strong> Si la chaîne est une Data URI (commence par data:image/... ou data:application/...), le type de fichier est déjà spécifié. Si c'est une chaîne Base64 brute, vous devrez peut-être spécifier le type de fichier manuellement ou vous fier à la détection automatique.</p>
-    <p><strong style="color:var(--text);">Étape 3 :</strong> Rendez-vous sur <a href="https://decodeb64.com">decodeb64.com</a> et utilisez la section de décodage de fichiers. Téléversez un fichier .txt contenant la chaîne Base64, ou collez-la directement dans le décodeur de texte.</p>
-    <p><strong style="color:var(--text);">Étape 4 :</strong> Cliquez sur Decode File. L'outil décode le contenu binaire dans votre navigateur et propose un téléchargement avec la bonne extension de fichier.</p>
-    <h2 class="content-h2">Considérations de sécurité</h2>
-    <p>Soyez toujours prudent avec les fichiers décodés provenant de sources non fiables. Une chaîne Base64 peut encoder n'importe quel type de fichier, y compris des exécutables, des scripts et des documents malveillants. Avant d'ouvrir un fichier décodé :</p>
-    <ul>
-      <li>Vérifiez la source des données Base64</li>
-      <li>Vérifiez que le type de fichier correspond à ce que vous attendez</li>
-      <li>Analysez-le avec un antivirus si la source n'est pas fiable</li>
-      <li>N'exécutez jamais un fichier décodé sans en vérifier l'origine</li>
-    </ul>
-    <h2 class="content-h2">Considérations sur les fichiers volumineux</h2>
-    <p>L'encodage Base64 augmente la taille du fichier d'environ 33 %. Un PDF de 10 Mo devient environ 13,3 Mo sous forme de chaîne Base64. Pour les très gros fichiers, le décodage dans le navigateur peut être lent en raison des contraintes de mémoire. Pour les fichiers de plus de 50 Mo, envisagez d'utiliser un outil en ligne de commande ou un traitement côté serveur.</p>
-    <h2 class="content-h2">Décodage Base64 spécifique aux images</h2>
-    <p>Pour les images encodées en Base64, decodeb64.com propose un <a href="/base64-to-image">convertisseur Base64 vers Image</a> dédié. Il affiche un aperçu en direct de l'image décodée, indique les dimensions et la taille de fichier estimée, et vous permet de télécharger l'image en PNG, JPG ou WebP — en convertissant les formats via la Canvas API du navigateur, sans aucun envoi vers un serveur.</p>
-    <p>Les fichiers binaires encodés en Base64 sont courants dans le développement web moderne. Savoir les identifier, les décoder correctement et les manipuler en toute sécurité est une compétence pratique qui s'avère souvent utile — que vous déboguiez une intégration d'API, traitiez des pièces jointes d'e-mails, ou inspectiez des données issues d'une base de données.</p>
+    <p>Si una decodificación falla y no sabes si el problema está en tu código o en los datos, pega la cadena en <a href="/es/">decodeb64.com</a>. Si allí se decodifica, los datos están bien y el fallo está en cómo tu código maneja Unicode, el relleno o el alfabeto seguro para URL.</p>
   </div>
 </main>
 
@@ -359,15 +412,15 @@
 <footer>
   <span>decodeb64.com &copy; 2026</span>
   <div class="footer-links">
-    <a href="/about/">À propos</a>
-    <a href="/privacy-policy/">Politique de Confidentialité</a>
-    <a href="/terms-of-use/">Conditions d'Utilisation</a>
-    <a href="/contact/">Contact</a>
+    <a href="/about/">Sobre nosotros</a>
+    <a href="/privacy-policy/">Política de Privacidad</a>
+    <a href="/terms-of-use/">Términos de Uso</a>
+    <a href="/contact/">Contacto</a>
     <a href="/blog/">Blog</a>
   </div>
-  <span class="footer-right"><span>Essayez aussi :</span> <a href="https://encodeb64.com" rel="noopener noreferrer" target="_blank">Base64 Encode — encodeb64.com →</a></span>
+  <span class="footer-right"><span>Prueba también:</span> <a href="https://encodeb64.com" rel="noopener noreferrer" target="_blank">Base64 Encode — encodeb64.com →</a></span>
   <span class="footer-right" style="font-size:0.72rem;color:var(--text-dim);">
-    Développé par <a href="https://mpmdigital.es/" rel="noopener noreferrer" target="_blank" style="color:var(--amber,#ff8c42);">MpmDigital</a>
+    Desarrollado por <a href="https://mpmdigital.es/" rel="noopener noreferrer" target="_blank" style="color:var(--amber,#ff8c42);">MpmDigital</a>
   </span>
 </footer>
 
@@ -389,7 +442,7 @@
       var opt = e.target.closest('.lang-option');
       if (!opt) return;
       var sel = opt.dataset.lang;
-      var path = sel === 'en' ? '/blog/base64-decoding-binary-files-images-pdfs-and-more' : '/' + sel + '/blog/base64-decoding-binary-files-images-pdfs-and-more';
+      var path = (sel === 'en' ? '' : '/' + sel) + '/blog/base64-encode-decode-javascript/';
       window.location.href = path;
     });
   })();
