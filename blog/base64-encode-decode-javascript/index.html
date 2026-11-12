@@ -47,6 +47,17 @@
   <meta name="robots" content="index, follow" />
   <link rel="canonical" href="https://decodeb64.com/blog/base64-encode-decode-javascript/" />
   <link rel="alternate" hreflang="en" href="https://decodeb64.com/blog/base64-encode-decode-javascript/" />
+  <link rel="alternate" hreflang="es" href="https://decodeb64.com/es/blog/base64-encode-decode-javascript/" />
+  <link rel="alternate" hreflang="pt" href="https://decodeb64.com/pt/blog/base64-encode-decode-javascript/" />
+  <link rel="alternate" hreflang="fr" href="https://decodeb64.com/fr/blog/base64-encode-decode-javascript/" />
+  <link rel="alternate" hreflang="de" href="https://decodeb64.com/de/blog/base64-encode-decode-javascript/" />
+  <link rel="alternate" hreflang="it" href="https://decodeb64.com/it/blog/base64-encode-decode-javascript/" />
+  <link rel="alternate" hreflang="zh" href="https://decodeb64.com/zh/blog/base64-encode-decode-javascript/" />
+  <link rel="alternate" hreflang="ru" href="https://decodeb64.com/ru/blog/base64-encode-decode-javascript/" />
+  <link rel="alternate" hreflang="ja" href="https://decodeb64.com/ja/blog/base64-encode-decode-javascript/" />
+  <link rel="alternate" hreflang="ko" href="https://decodeb64.com/ko/blog/base64-encode-decode-javascript/" />
+  <link rel="alternate" hreflang="nl" href="https://decodeb64.com/nl/blog/base64-encode-decode-javascript/" />
+  <link rel="alternate" hreflang="hi" href="https://decodeb64.com/hi/blog/base64-encode-decode-javascript/" />
   <link rel="alternate" hreflang="x-default" href="https://decodeb64.com/blog/base64-encode-decode-javascript/" />
   <meta property="og:locale" content="en_US" />
   <meta property="og:type" content="article" />
@@ -439,7 +450,7 @@ const fromBase64Url = s => {
       var opt = e.target.closest('.lang-option');
       if (!opt) return;
       var sel = opt.dataset.lang;
-      var path = sel === 'en' ? '/blog/' : '/' + sel + '/blog/';
+      var path = (sel === 'en' ? '' : '/' + sel) + '/blog/base64-encode-decode-javascript/';
       window.location.href = path;
     });
   })();

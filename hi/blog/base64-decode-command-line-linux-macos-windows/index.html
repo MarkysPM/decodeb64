@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <script>
+    (function () {
+      var isProd = /decodeb64\.com$/.test(window.location.hostname);
+      window.dataLayer = window.dataLayer || [];
+      function gtag() { dataLayer.push(arguments); }
+      window.gtag = gtag;
+      gtag('consent', 'default', {
+        analytics_storage: 'denied', ad_storage: 'denied',
+        ad_user_data: 'denied', ad_personalization: 'denied', wait_for_update: 500
+      });
+      if (!isProd) return;
+      var ga = document.createElement('script');
+      ga.async = true;
+      ga.src = 'https://www.googletagmanager.com/gtag/js?id=G-JVDER6MN4Y';
+      document.head.appendChild(ga);
+      gtag('js', new Date());
+      gtag('config', 'G-JVDER6MN4Y');
+      var ad = document.createElement('script');
+      ad.async = true;
+      ad.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7602115974474104';
+      ad.crossOrigin = 'anonymous';
+      document.head.appendChild(ad);
+      // Google Funding Choices (consent message)
+      var fc = document.createElement('script');
+      fc.async = true;
+      fc.src = 'https://fundingchoicesmessages.google.com/i/pub-7602115974474104?ers=1';
+      document.head.appendChild(fc);
+      (function signalGooglefcPresent() {
+        if (!window.frames['googlefcPresent']) {
+          if (document.body) {
+            var ifr = document.createElement('iframe');
+            ifr.style.cssText = 'width:0;height:0;border:none;z-index:-1000;left:-1000px;top:-1000px;display:none';
+            ifr.name = 'googlefcPresent';
+            document.body.appendChild(ifr);
+          } else { setTimeout(signalGooglefcPresent, 0); }
+        }
+      })();
+    })();
+  </script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>कमांड लाइन पर Base64 डिकोड करें: Linux, macOS और Windows</title>
+  <meta name="description" content="Linux, macOS और Windows के टर्मिनल में base64, openssl, PowerShell और certutil से Base64 डिकोड करने का तरीका, Base64URL और फ़ाइलों सहित।" />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://decodeb64.com/hi/blog/base64-decode-command-line-linux-macos-windows/" />
+  <link rel="alternate" hreflang="en" href="https://decodeb64.com/blog/base64-decode-command-line-linux-macos-windows/" />
+  <link rel="alternate" hreflang="es" href="https://decodeb64.com/es/blog/base64-decode-command-line-linux-macos-windows/" />
+  <link rel="alternate" hreflang="pt" href="https://decodeb64.com/pt/blog/base64-decode-command-line-linux-macos-windows/" />
+  <link rel="alternate" hreflang="fr" href="https://decodeb64.com/fr/blog/base64-decode-command-line-linux-macos-windows/" />
+  <link rel="alternate" hreflang="de" href="https://decodeb64.com/de/blog/base64-decode-command-line-linux-macos-windows/" />
+  <link rel="alternate" hreflang="it" href="https://decodeb64.com/it/blog/base64-decode-command-line-linux-macos-windows/" />
+  <link rel="alternate" hreflang="zh" href="https://decodeb64.com/zh/blog/base64-decode-command-line-linux-macos-windows/" />
+  <link rel="alternate" hreflang="ru" href="https://decodeb64.com/ru/blog/base64-decode-command-line-linux-macos-windows/" />
+  <link rel="alternate" hreflang="ja" href="https://decodeb64.com/ja/blog/base64-decode-command-line-linux-macos-windows/" />
+  <link rel="alternate" hreflang="ko" href="https://decodeb64.com/ko/blog/base64-decode-command-line-linux-macos-windows/" />
+  <link rel="alternate" hreflang="nl" href="https://decodeb64.com/nl/blog/base64-decode-command-line-linux-macos-windows/" />
+  <link rel="alternate" hreflang="hi" href="https://decodeb64.com/hi/blog/base64-decode-command-line-linux-macos-windows/" />
+  <link rel="alternate" hreflang="x-default" href="https://decodeb64.com/blog/base64-decode-command-line-linux-macos-windows/" />
+  <meta property="og:locale" content="hi_IN" />
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="decodeb64.com" />
+  <meta property="og:title" content="कमांड लाइन पर Base64 डिकोड करें: Linux, macOS और Windows" />
+  <meta property="og:description" content="Linux, macOS और Windows के टर्मिनल में base64, openssl, PowerShell और certutil से Base64 डिकोड करने का तरीका, Base64URL और फ़ाइलों सहित।" />
+  <meta property="og:url" content="https://decodeb64.com/hi/blog/base64-decode-command-line-linux-macos-windows/" />
+  <meta property="og:image" content="https://decodeb64.com/og-image.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:image" content="https://decodeb64.com/og-image.png" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="theme-color" content="#0d0d14" />
+  <meta name="color-scheme" content="dark" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Sora:wght@300;400;500;600;700&display=swap');
+    :root {
+      --bg: #0d0d14; --bg2: #12121c; --bg3: #1a1a28;
+      --amber: #ff8c42; --amber-dim: rgba(255,140,66,0.15);
+      --amber-glow: rgba(255,140,66,0.35); --amber-light: #ffb07a;
+      --glass-bg: rgba(255,255,255,0.04); --glass-border: rgba(255,255,255,0.09);
+      --text: #e8e8f0; --text-muted: #7a7a9a; --text-dim: #4a4a6a;
+      --green: #3ecf7e; --red: #ff5a5a; --red-dim: rgba(255,90,90,0.15);
+      --radius: 14px; --radius-sm: 8px;
+      --mono: 'JetBrains Mono', monospace; --sans: 'Sora', sans-serif;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--sans); background-color: var(--bg); color: var(--text);
+      min-height: 100vh; overflow-x: hidden; position: relative;
+    }
+    body::before {
+      content: ''; position: fixed; inset: 0;
+      background-image: radial-gradient(circle, rgba(255,140,66,0.12) 1px, transparent 1px);
+      background-size: 28px 28px; pointer-events: none; z-index: 0;
+    }
+    body::after {
+      content: ''; position: fixed; top: -20%; left: 50%; transform: translateX(-50%);
+      width: 800px; height: 500px;
+      background: radial-gradient(ellipse, rgba(255,140,66,0.06) 0%, transparent 70%);
+      pointer-events: none; z-index: 0;
+    }
+    header {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(13,13,20,0.85); backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px); border-bottom: 1px solid var(--glass-border);
+      padding: 0 24px; height: 62px; display: flex; align-items: center;
+      justify-content: space-between; gap: 16px;
+    }
+    .logo { font-family: var(--mono); font-size: 1.2rem; font-weight: 700;
+      letter-spacing: -0.5px; text-decoration: none; flex-shrink: 0; }
+    .logo span.decode { color: #ffffff; }
+    .logo span.b64 { color: var(--amber); }
+    .header-right { display: flex; align-items: center; gap: 10px; }
+    .nav-pills { display: flex; gap: 6px; }
+    .nav-pill {
+      font-family: var(--sans); font-size: 0.78rem; font-weight: 500;
+      padding: 5px 14px; border-radius: 20px; text-decoration: none;
+      transition: all 0.2s; border: 1px solid transparent;
+    }
+    .nav-pill.inactive { color: var(--text-muted); border-color: var(--glass-border); background: transparent; }
+    .nav-pill.inactive:hover { color: var(--text); border-color: rgba(255,255,255,0.18); }
+    .nav-pill.active { color: var(--bg); background: var(--amber); font-weight: 600; }
+    .lang-selector { position: relative; }
+    .lang-btn {
+      display: flex; align-items: center; gap: 6px; padding: 5px 12px;
+      background: var(--glass-bg); border: 1px solid var(--glass-border);
+      border-radius: 20px; color: var(--text-muted); cursor: pointer;
+      font-family: var(--sans); font-size: 0.78rem; transition: all 0.2s; white-space: nowrap;
+    }
+    .lang-btn:hover { color: var(--text); border-color: rgba(255,255,255,0.18); }
+    .lang-btn svg { width: 14px; height: 14px; flex-shrink: 0; }
+    .lang-dropdown {
+      display: none; position: absolute; top: calc(100% + 8px); right: 0;
+      background: #1a1a2e; border: 1px solid var(--glass-border);
+      border-radius: var(--radius-sm); overflow: hidden; min-width: 160px;
+      box-shadow: 0 12px 40px rgba(0,0,0,0.5); z-index: 200;
+    }
+    .lang-dropdown.open { display: block; }
+    .lang-option {
+      display: flex; align-items: center; gap: 8px; padding: 9px 14px;
+      cursor: pointer; font-size: 0.82rem; color: var(--text-muted); transition: all 0.15s;
+    }
+    .lang-option:hover { background: var(--amber-dim); color: var(--text); }
+    .lang-option.selected { color: var(--amber); }
+    main {
+      position: relative; z-index: 1; max-width: 900px;
+      margin: 0 auto; padding: 0 20px 80px;
+    }
+    .page-hero {
+      text-align: center; padding: 48px 20px 36px; position: relative;
+    }
+    .page-hero h1 {
+      font-size: clamp(1.8rem, 4vw, 2.8rem); font-weight: 700;
+      letter-spacing: -1px; line-height: 1.15; margin-bottom: 12px;
+    }
+    .page-hero .sub { color: var(--text-muted); font-size: 1rem; max-width: 560px; margin: 0 auto; }
+    .breadcrumb {
+      font-size: 0.78rem; color: var(--text-dim); margin-bottom: 8px;
+    }
+    .breadcrumb a { color: var(--text-dim); text-decoration: none; transition: color 0.2s; }
+    .breadcrumb a:hover { color: var(--amber); }
+    .breadcrumb span { color: var(--text-muted); margin: 0 6px; }
+    .glass-card {
+      background: var(--glass-bg); border: 1px solid var(--glass-border);
+      border-radius: var(--radius); backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px); padding: 32px 36px; margin-bottom: 20px;
+    }
+    .content-h2 {
+      font-size: 1rem; font-weight: 700; color: var(--amber);
+      margin: 28px 0 10px; letter-spacing: -0.2px;
+    }
+    .content-h2:first-child { margin-top: 0; }
+    .glass-card p {
+      font-size: 0.9rem; color: var(--text-muted); line-height: 1.75; margin-bottom: 12px;
+    }
+    .glass-card p:last-child { margin-bottom: 0; }
+    .glass-card ul {
+      list-style: none; padding: 0; margin: 8px 0 12px;
+    }
+    .glass-card ul li {
+      font-size: 0.88rem; color: var(--text-muted); line-height: 1.7;
+      padding-left: 18px; position: relative; margin-bottom: 6px;
+    }
+    .glass-card ul li::before {
+      content: '—'; position: absolute; left: 0; color: var(--amber); font-family: var(--mono);
+    }
+    .glass-card a { color: var(--amber); text-decoration: none; transition: opacity 0.2s; }
+    .glass-card a:hover { opacity: 0.8; text-decoration: underline; }
+    .article-meta {
+      font-size: 0.78rem; color: var(--text-dim); font-family: var(--mono);
+      margin-bottom: 24px; display: flex; gap: 14px; justify-content: center; flex-wrap: wrap;
+    }
+    .article-list { margin: 18px 0 28px; display: flex; flex-direction: column; gap: 14px; }
+    .article-card {
+      background: var(--glass-bg); border: 1px solid var(--glass-border);
+      border-radius: var(--radius); backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px); padding: 26px 30px; transition: all 0.2s;
+    }
+    .article-card:hover { border-color: var(--amber-glow); }
+    .article-card h2 { font-size: 1.15rem; margin-bottom: 8px; letter-spacing: -0.3px; }
+    .article-card h2 a { color: var(--text); text-decoration: none; }
+    .article-card h2 a:hover { color: var(--amber); }
+    .article-card p.excerpt { font-size: 0.9rem; color: var(--text-muted); line-height: 1.65; margin-bottom: 12px; }
+    .article-card .meta { font-size: 0.75rem; color: var(--text-dim); font-family: var(--mono); display: flex; gap: 12px; align-items: center; flex-wrap: wrap; }
+    .article-card .read-more { color: var(--amber); text-decoration: none; font-size: 0.85rem; font-weight: 600; }
+    .article-card .read-more:hover { opacity: 0.8; }
+    .last-updated {
+      font-size: 0.75rem; color: var(--text-dim); margin-bottom: 24px;
+      font-family: var(--mono);
+    }
+    footer {
+      position: relative; z-index: 1; border-top: 1px solid var(--glass-border);
+      padding: 24px 20px; display: flex; flex-wrap: wrap; gap: 16px;
+      align-items: center; justify-content: space-between;
+      max-width: 900px; margin: 0 auto; font-size: 0.78rem; color: var(--text-dim);
+    }
+    .footer-links { display: flex; gap: 16px; flex-wrap: wrap; }
+    .footer-links a, footer a { color: var(--text-dim); text-decoration: none; transition: color 0.2s; }
+    .footer-links a:hover, footer a:hover { color: var(--amber); }
+    footer .footer-right { color: var(--text-dim); }
+    footer .footer-right a { color: var(--amber); }
+    @media (max-width: 640px) {
+      header { padding: 0 16px; }
+      .logo { font-size: 1rem; }
+      .nav-pill { padding: 4px 10px; font-size: 0.73rem; }
+      .lang-btn span { display: none; }
+      main { padding: 0 16px 60px; }
+      .glass-card { padding: 20px 18px; }
+      .article-card { padding: 20px 18px; }
+      footer { flex-direction: column; align-items: flex-start; gap: 10px; }
+    }
+    .glass-card pre { background: rgba(0,0,0,0.35); border: 1px solid var(--glass-border); border-radius: 10px; padding: 14px 16px; margin: 0 0 16px; overflow-x: auto; font-family: var(--mono); font-size: 0.78rem; line-height: 1.6; color: var(--amber-light); white-space: pre; }
+    .glass-card code { font-family: var(--mono); font-size: 0.82em; color: var(--amber-light); background: rgba(255,255,255,0.05); padding: 1px 5px; border-radius: 4px; }
+    .glass-card pre code { background: none; padding: 0; }
+    .glass-card h2.content-h2 + p { margin-top: 0; }
+  </style>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "कमांड लाइन पर Base64 डिकोड करें: Linux, macOS और Windows",
+  "author": {
+    "@type": "Organization",
+    "name": "MpmDigital",
+    "url": "https://mpmdigital.es/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "decodeb64.com",
+    "url": "https://decodeb64.com/"
+  },
+  "datePublished": "2026-11-12",
+  "inLanguage": "hi",
+  "url": "https://decodeb64.com/hi/blog/base64-decode-command-line-linux-macos-windows/"
+}
+  </script>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <a href="/hi/" class="logo">
+    <span class="decode">decode</span><span class="b64">B64</span>
+  </a>
+  <div class="header-right">
+    <nav class="nav-pills">
+      <a href="https://encodeb64.com" class="nav-pill inactive" rel="noopener noreferrer" target="_blank">एन्कोड</a>
+      <a href="/hi/" class="nav-pill inactive">डिकोड</a>
+      <a href="/hi/base64-to-image" class="nav-pill inactive">Base64 to Image</a>
+      <a href="/hi/blog/" class="nav-pill inactive">ब्लॉग</a>
+    </nav>
+    <div class="lang-selector">
+      <button class="lang-btn" id="langBtn" aria-haspopup="listbox" aria-expanded="false">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+        <span id="langLabel">हिन्दी</span>
+        <svg viewBox="0 0 10 6" fill="currentColor" width="10" height="6"><path d="M0 0l5 6 5-6z"/></svg>
+      </button>
+      <div class="lang-dropdown" id="langDropdown" role="listbox">
+        <div class="lang-option" data-lang="en" role="option">🇺🇸 English</div>
+        <div class="lang-option" data-lang="es" role="option">🇪🇸 Español</div>
+        <div class="lang-option" data-lang="pt" role="option">🇧🇷 Português</div>
+        <div class="lang-option" data-lang="fr" role="option">🇫🇷 Français</div>
+        <div class="lang-option" data-lang="de" role="option">🇩🇪 Deutsch</div>
+        <div class="lang-option" data-lang="it" role="option">🇮🇹 Italiano</div>
+        <div class="lang-option" data-lang="zh" role="option">🇨🇳 中文</div>
+        <div class="lang-option" data-lang="ru" role="option">🇷🇺 Русский</div>
+        <div class="lang-option" data-lang="ja" role="option">🇯🇵 日本語</div>
+        <div class="lang-option" data-lang="ko" role="option">🇰🇷 한국어</div>
+        <div class="lang-option" data-lang="nl" role="option">🇳🇱 Nederlands</div>
+        <div class="lang-option selected" data-lang="hi" role="option">🇮🇳 हिन्दी</div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- MAIN -->
+<main>
+  <div class="page-hero">
+    <p class="breadcrumb"><a href="/hi/">decodeb64.com</a><span>›</span><a href="/hi/blog/">ब्लॉग</a><span>›</span>कमांड लाइन पर Base64 डिकोड करें: Linux, macOS और Windows</p>
+    <h1>कमांड लाइन पर Base64 डिकोड करें: Linux, macOS और Windows</h1>
+    <div class="article-meta">
+      <span>नवंबर 2026</span>
+      <span>·</span>
+      <span>6 मिनट का पठन</span>
+    </div>
+  </div>
+
+  <div class="glass-card">
+    <p>Base64 डिकोड करने के लिए आपको ब्राउज़र या स्क्रिप्ट की ज़रूरत नहीं है। हर प्रमुख ऑपरेटिंग सिस्टम में ऐसा उपकरण आता है जो यह काम एक पंक्ति में कर देता है, जो तब काम आता है जब आप SSH पर लॉग पढ़ रहे हों, पाइपलाइन में किसी टोकन की जाँच कर रहे हों या CI वेरिएबल से कोई फ़ाइल बहाल कर रहे हों। यह गाइड Linux, macOS और Windows के कमांड और उन छोटे अंतरों को कवर करती है जिनके कारण वे विफल होते हैं।</p>
+    <h2 class="content-h2">Linux: base64 कमांड</h2>
+    <p>GNU coreutils में लगभग हर डिस्ट्रीब्यूशन पर <code>base64</code> शामिल है। डिकोड करने के लिए <code>-d</code> (या <code>--decode</code>) जोड़ें:</p>
+<pre>echo 'SGVsbG8sIFdvcmxkIQ==' | base64 -d
+# Hello, World!</pre>
+    <p>जब मान किसी वेरिएबल से आए तो <code>printf '%s'</code> या <code>echo -n</code> का उपयोग करें, ताकि अंत की नई पंक्ति इनपुट का हिस्सा न बने:</p>
+<pre>printf '%s' "$TOKEN" | base64 -d</pre>
+    <p>किसी फ़ाइल को दूसरी फ़ाइल में डिकोड करने के लिए आउटपुट को रीडायरेक्ट करें। बाइनरी परिणाम हमेशा फ़ाइल में भेजें, टर्मिनल पर नहीं:</p>
+<pre>base64 -d encoded.txt &gt; photo.png
+file photo.png
+# photo.png: PNG image data, 800 x 600, 8-bit/color RGBA</pre>
+    <p>GNU <code>base64</code> इनपुट में नई पंक्तियाँ सहन कर लेता है पर बाकी कचरे को <code>base64: invalid input</code> से अस्वीकार कर देता है। <code>-i</code> (<code>--ignore-garbage</code>) विकल्प उसे वर्णमाला से बाहर के अक्षर छोड़ने देता है, जो उपयोगी है पर खराब डेटा छिपा सकता है, इसलिए इसे सोच-समझकर इस्तेमाल करें।</p>
+    <h2 class="content-h2">macOS: वही उपकरण, थोड़े अलग फ़्लैग</h2>
+    <p>macOS में BSD संस्करण आता है। पुराने रिलीज़ डिकोड करने के लिए बड़े अक्षर वाला <code>-D</code> इस्तेमाल करते हैं, और नए <code>-d</code> भी स्वीकार करते हैं। यदि एक फ़्लैग एरर दे, तो दूसरा आज़माएँ:</p>
+<pre>echo 'SGVsbG8sIFdvcmxkIQ==' | base64 -D
+echo 'SGVsbG8sIFdvcmxkIQ==' | base64 -d     # newer macOS versions</pre>
+    <p>BSD उपकरण <code>-i</code> और <code>-o</code> से फ़ाइलें पढ़ता और लिखता है:</p>
+<pre>base64 -D -i encoded.txt -o photo.png</pre>
+    <p>macOS पर आप क्लिपबोर्ड से सीधे भी डिकोड कर सकते हैं, जो अभी कॉपी की गई चीज़ को जाँचने का सबसे तेज़ तरीका है:</p>
+<pre>pbpaste | base64 -D</pre>
+    <p>Linux पर इसके समकक्ष के लिए <code>xclip -o</code> या <code>wl-paste</code> का उपयोग होता है।</p>
+    <h2 class="content-h2">Windows: PowerShell</h2>
+    <p>PowerShell सीधे .NET को कॉल कर सकता है। <code>FromBase64String</code> bytes लौटाता है, इसलिए जब सामग्री टेक्स्ट हो तो उन्हें टेक्स्ट में बदलें:</p>
+<pre>$bytes = [Convert]::FromBase64String('SGVsbG8sIFdvcmxkIQ==')
+[Text.Encoding]::UTF8.GetString($bytes)
+# Hello, World!</pre>
+    <p>Base64 से फ़ाइल बहाल करने के लिए:</p>
+<pre>$b64 = Get-Content .\encoded.txt -Raw
+[IO.File]::WriteAllBytes("$PWD\photo.png", [Convert]::FromBase64String($b64))</pre>
+    <p>.NET इनपुट के खाली स्थान और नई पंक्तियों को अनदेखा करता है, इसलिए लपेटी गई फ़ाइल या <code>Get-Content -Raw</code> की अंतिम नई पंक्ति से कोई समस्या नहीं होती। लेकिन अमान्य अक्षरों और गलत लंबाई पर वह एरर देता है। <code>[IO.File]::WriteAllBytes</code> के साथ पूरा पाथ इस्तेमाल करें, क्योंकि .NET सापेक्ष पाथ को प्रोसेस की डायरेक्टरी के आधार पर हल करता है, आपके मौजूदा PowerShell स्थान के आधार पर नहीं।</p>
+    <h2 class="content-h2">Windows: certutil</h2>
+    <p>अंतर्निहित <code>certutil</code> क्लासिक कमांड प्रॉम्प्ट से काम करता है और उसे PowerShell की ज़रूरत नहीं है:</p>
+<pre>certutil -decode encoded.txt photo.png</pre>
+    <p>यह फ़ाइल पढ़ता है, मानक इनपुट नहीं। यह कच्चा Base64 और <code>-----BEGIN ...-----</code> मार्कर वाली PEM-शैली की फ़ाइलें, दोनों स्वीकार करता है, और लिखे गए बाइट की संख्या के साथ सफलता का संदेश दिखाता है।</p>
+    <h2 class="content-h2">हर जगह: openssl</h2>
+    <p>यदि OpenSSL इंस्टॉल है, तो वह तीनों सिस्टमों पर एक जैसा व्यवहार करता है:</p>
+<pre>echo 'SGVsbG8sIFdvcmxkIQ==' | openssl base64 -d -A</pre>
+    <p><code>-A</code> फ़्लैग उसे बताता है कि इनपुट एक ही पंक्ति में है। इसके बिना OpenSSL हर 64 अक्षर पर नई पंक्तियाँ अपेक्षित करता है और लंबी एक-पंक्ति स्ट्रिंग पर विफल हो सकता है या कुछ नहीं लौटा सकता।</p>
+    <h2 class="content-h2">Base64URL डिकोड करना (JWT के हिस्से और टोकन)</h2>
+    <p>ये उपकरण मानक वर्णमाला की अपेक्षा करते हैं, इसलिए <code>-</code> और <code>_</code> वाला या <code>=</code> पैडिंग के बिना Base64URL इनपुट एरर देता है। पहले उसे बदलें। एक दोबारा इस्तेमाल होने वाला शेल फ़ंक्शन:</p>
+<pre>b64url_decode() {
+  local s="${1//-/+}"
+  s="${s//_//}"
+  case $(( ${#s} % 4 )) in
+    2) s="$s==" ;;
+    3) s="$s=" ;;
+  esac
+  printf '%s' "$s" | base64 -d
+}
+
+# Inspect the payload of a JWT (this does not verify the signature)
+b64url_decode "$(echo "$JWT" | cut -d. -f2)" | jq .</pre>
+    <p>वर्णमालाएँ अलग क्यों हैं, इसके लिए <a href="/hi/blog/base64-vs-base64url-differences/">Base64 बनाम Base64URL</a> और पेलोड में क्या है, इसके लिए <a href="/hi/blog/how-to-decode-jwt-tokens-and-inspect-claims/">JWT क्लेम की जाँच</a> देखें। PowerShell में यही तर्क <code>FromBase64String</code> को कॉल करने से पहले <code>-</code> और <code>_</code> को बदलना और पैडिंग जोड़ना है।</p>
+    <h2 class="content-h2">जाँचें कि आपने क्या डिकोड किया</h2>
+    <p>डिकोड किया गया आउटपुट टेक्स्ट या कोई भी बाइनरी फ़ाइल हो सकता है। उसे खोलने या चलाने से पहले देख लें:</p>
+<pre>base64 -d encoded.txt | file -          # identify the type
+base64 -d encoded.txt | xxd | head      # first bytes in hex</pre>
+    <p>हस्ताक्षर मदद करते हैं: <code>%PDF</code> एक PDF है, <code>PK</code> एक ZIP या Office फ़ाइल है, और स्ट्रिंग की शुरुआत में Base64 टेक्स्ट <code>iVBORw0KGgo</code> एक PNG है। कभी भी ऐसी डिकोड की गई फ़ाइल न चलाएँ जिसकी आपने अपेक्षा नहीं की थी। इस पर और <a href="/hi/blog/base64-decoding-binary-files-images-pdfs-and-more/">बाइनरी फ़ाइलें डिकोड करने</a> में।</p>
+    <h2 class="content-h2">समस्या निवारण</h2>
+    <ul>
+      <li><strong style="color:var(--text);">invalid input (Linux) या error decoding (macOS):</strong> मान में संभवतः <code>data:...;base64,</code> प्रीफ़िक्स, URL-सुरक्षित अक्षर या भटके हुए उद्धरण चिह्न हैं। पहले उन्हें हटाएँ।</li>
+      <li><strong style="color:var(--text);">आउटपुट कचरा है:</strong> सामग्री बाइनरी है। उसे टर्मिनल की बजाय फ़ाइल में लिखें।</li>
+      <li><strong style="color:var(--text);">कुछ प्रिंट नहीं हुआ या कट गया:</strong> जाँचें कि नई पंक्ति गायब तो नहीं, OpenSSL के साथ <code>-A</code> तो नहीं छूटा, या क्या शेल ने <code>+</code>, <code>/</code> या <code>=</code> को विशेष रूप से संभाल लिया क्योंकि मान उद्धरण चिह्नों में नहीं था।</li>
+      <li><strong style="color:var(--text);">Linux पर चलता है, macOS पर विफल:</strong> <code>-d</code> और <code>-D</code> के बीच बदलें।</li>
+    </ul>
+    <p>जब कमांड लाइन की डिकोडिंग किसी मान का अर्थ न समझा पाए, तो उसे <a href="/hi/">decodeb64.com</a> में पेस्ट करें। वह वर्णमाला पहचानता है, पैडिंग सुधारता है और बताता है कि परिणाम टेक्स्ट है या फ़ाइल, सब कुछ आपके ब्राउज़र में स्थानीय रूप से।</p>
+  </div>
+</main>
+
+<!-- FOOTER -->
+<footer>
+  <span>decodeb64.com &copy; 2026</span>
+  <div class="footer-links">
+    <a href="/about/">परिचय</a>
+    <a href="/privacy-policy/">गोपनीयता नीति</a>
+    <a href="/terms-of-use/">उपयोग की शर्तें</a>
+    <a href="/contact/">संपर्क करें</a>
+    <a href="/blog/">ब्लॉग</a>
+  </div>
+  <span class="footer-right"><span>यह भी आज़माएं:</span> <a href="https://encodeb64.com" rel="noopener noreferrer" target="_blank">Base64 Encode — encodeb64.com →</a></span>
+  <span class="footer-right" style="font-size:0.72rem;color:var(--text-dim);">
+    डेवलपर <a href="https://mpmdigital.es/" rel="noopener noreferrer" target="_blank" style="color:var(--amber,#ff8c42);">MpmDigital</a>
+  </span>
+</footer>
+
+<script>
+  // Language switcher
+  (function () {
+    var btn = document.getElementById('langBtn');
+    var dd = document.getElementById('langDropdown');
+    btn.addEventListener('click', function (e) {
+      e.stopPropagation();
+      dd.classList.toggle('open');
+      btn.setAttribute('aria-expanded', dd.classList.contains('open'));
+    });
+    document.addEventListener('click', function () {
+      dd.classList.remove('open');
+      btn.setAttribute('aria-expanded', 'false');
+    });
+    dd.addEventListener('click', function (e) {
+      var opt = e.target.closest('.lang-option');
+      if (!opt) return;
+      var sel = opt.dataset.lang;
+      var path = (sel === 'en' ? '' : '/' + sel) + '/blog/base64-decode-command-line-linux-macos-windows/';
+      window.location.href = path;
+    });
+  })();
+</script>
+</body>
+</html>
