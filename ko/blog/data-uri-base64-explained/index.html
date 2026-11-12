@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <script>
+    (function () {
+      var isProd = /decodeb64\.com$/.test(window.location.hostname);
+      window.dataLayer = window.dataLayer || [];
+      function gtag() { dataLayer.push(arguments); }
+      window.gtag = gtag;
+      gtag('consent', 'default', {
+        analytics_storage: 'denied', ad_storage: 'denied',
+        ad_user_data: 'denied', ad_personalization: 'denied', wait_for_update: 500
+      });
+      if (!isProd) return;
+      var ga = document.createElement('script');
+      ga.async = true;
+      ga.src = 'https://www.googletagmanager.com/gtag/js?id=G-JVDER6MN4Y';
+      document.head.appendChild(ga);
+      gtag('js', new Date());
+      gtag('config', 'G-JVDER6MN4Y');
+      var ad = document.createElement('script');
+      ad.async = true;
+      ad.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7602115974474104';
+      ad.crossOrigin = 'anonymous';
+      document.head.appendChild(ad);
+      // Google Funding Choices (consent message)
+      var fc = document.createElement('script');
+      fc.async = true;
+      fc.src = 'https://fundingchoicesmessages.google.com/i/pub-7602115974474104?ers=1';
+      document.head.appendChild(fc);
+      (function signalGooglefcPresent() {
+        if (!window.frames['googlefcPresent']) {
+          if (document.body) {
+            var ifr = document.createElement('iframe');
+            ifr.style.cssText = 'width:0;height:0;border:none;z-index:-1000;left:-1000px;top:-1000px;display:none';
+            ifr.name = 'googlefcPresent';
+            document.body.appendChild(ifr);
+          } else { setTimeout(signalGooglefcPresent, 0); }
+        }
+      })();
+    })();
+  </script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>데이터 URI 설명: 파일을 Base64로 임베드하기</title>
+  <meta name="description" content="데이터 URI란 무엇인지, 구문은 어떻게 동작하는지, 이미지를 Base64로 임베드하면 언제 도움이 되고 언제 성능을 해치는지, 데이터 URI를 만들고 디코딩하는 방법." />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://decodeb64.com/ko/blog/data-uri-base64-explained/" />
+  <link rel="alternate" hreflang="en" href="https://decodeb64.com/blog/data-uri-base64-explained/" />
+  <link rel="alternate" hreflang="es" href="https://decodeb64.com/es/blog/data-uri-base64-explained/" />
+  <link rel="alternate" hreflang="pt" href="https://decodeb64.com/pt/blog/data-uri-base64-explained/" />
+  <link rel="alternate" hreflang="fr" href="https://decodeb64.com/fr/blog/data-uri-base64-explained/" />
+  <link rel="alternate" hreflang="de" href="https://decodeb64.com/de/blog/data-uri-base64-explained/" />
+  <link rel="alternate" hreflang="it" href="https://decodeb64.com/it/blog/data-uri-base64-explained/" />
+  <link rel="alternate" hreflang="zh" href="https://decodeb64.com/zh/blog/data-uri-base64-explained/" />
+  <link rel="alternate" hreflang="ru" href="https://decodeb64.com/ru/blog/data-uri-base64-explained/" />
+  <link rel="alternate" hreflang="ja" href="https://decodeb64.com/ja/blog/data-uri-base64-explained/" />
+  <link rel="alternate" hreflang="ko" href="https://decodeb64.com/ko/blog/data-uri-base64-explained/" />
+  <link rel="alternate" hreflang="nl" href="https://decodeb64.com/nl/blog/data-uri-base64-explained/" />
+  <link rel="alternate" hreflang="hi" href="https://decodeb64.com/hi/blog/data-uri-base64-explained/" />
+  <link rel="alternate" hreflang="x-default" href="https://decodeb64.com/blog/data-uri-base64-explained/" />
+  <meta property="og:locale" content="ko_KR" />
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="decodeb64.com" />
+  <meta property="og:title" content="데이터 URI 설명: 파일을 Base64로 임베드하기" />
+  <meta property="og:description" content="데이터 URI란 무엇인지, 구문은 어떻게 동작하는지, 이미지를 Base64로 임베드하면 언제 도움이 되고 언제 성능을 해치는지, 데이터 URI를 만들고 디코딩하는 방법." />
+  <meta property="og:url" content="https://decodeb64.com/ko/blog/data-uri-base64-explained/" />
+  <meta property="og:image" content="https://decodeb64.com/og-image.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:image" content="https://decodeb64.com/og-image.png" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="theme-color" content="#0d0d14" />
+  <meta name="color-scheme" content="dark" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Sora:wght@300;400;500;600;700&display=swap');
+    :root {
+      --bg: #0d0d14; --bg2: #12121c; --bg3: #1a1a28;
+      --amber: #ff8c42; --amber-dim: rgba(255,140,66,0.15);
+      --amber-glow: rgba(255,140,66,0.35); --amber-light: #ffb07a;
+      --glass-bg: rgba(255,255,255,0.04); --glass-border: rgba(255,255,255,0.09);
+      --text: #e8e8f0; --text-muted: #7a7a9a; --text-dim: #4a4a6a;
+      --green: #3ecf7e; --red: #ff5a5a; --red-dim: rgba(255,90,90,0.15);
+      --radius: 14px; --radius-sm: 8px;
+      --mono: 'JetBrains Mono', monospace; --sans: 'Sora', sans-serif;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--sans); background-color: var(--bg); color: var(--text);
+      min-height: 100vh; overflow-x: hidden; position: relative;
+    }
+    body::before {
+      content: ''; position: fixed; inset: 0;
+      background-image: radial-gradient(circle, rgba(255,140,66,0.12) 1px, transparent 1px);
+      background-size: 28px 28px; pointer-events: none; z-index: 0;
+    }
+    body::after {
+      content: ''; position: fixed; top: -20%; left: 50%; transform: translateX(-50%);
+      width: 800px; height: 500px;
+      background: radial-gradient(ellipse, rgba(255,140,66,0.06) 0%, transparent 70%);
+      pointer-events: none; z-index: 0;
+    }
+    header {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(13,13,20,0.85); backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px); border-bottom: 1px solid var(--glass-border);
+      padding: 0 24px; height: 62px; display: flex; align-items: center;
+      justify-content: space-between; gap: 16px;
+    }
+    .logo { font-family: var(--mono); font-size: 1.2rem; font-weight: 700;
+      letter-spacing: -0.5px; text-decoration: none; flex-shrink: 0; }
+    .logo span.decode { color: #ffffff; }
+    .logo span.b64 { color: var(--amber); }
+    .header-right { display: flex; align-items: center; gap: 10px; }
+    .nav-pills { display: flex; gap: 6px; }
+    .nav-pill {
+      font-family: var(--sans); font-size: 0.78rem; font-weight: 500;
+      padding: 5px 14px; border-radius: 20px; text-decoration: none;
+      transition: all 0.2s; border: 1px solid transparent;
+    }
+    .nav-pill.inactive { color: var(--text-muted); border-color: var(--glass-border); background: transparent; }
+    .nav-pill.inactive:hover { color: var(--text); border-color: rgba(255,255,255,0.18); }
+    .nav-pill.active { color: var(--bg); background: var(--amber); font-weight: 600; }
+    .lang-selector { position: relative; }
+    .lang-btn {
+      display: flex; align-items: center; gap: 6px; padding: 5px 12px;
+      background: var(--glass-bg); border: 1px solid var(--glass-border);
+      border-radius: 20px; color: var(--text-muted); cursor: pointer;
+      font-family: var(--sans); font-size: 0.78rem; transition: all 0.2s; white-space: nowrap;
+    }
+    .lang-btn:hover { color: var(--text); border-color: rgba(255,255,255,0.18); }
+    .lang-btn svg { width: 14px; height: 14px; flex-shrink: 0; }
+    .lang-dropdown {
+      display: none; position: absolute; top: calc(100% + 8px); right: 0;
+      background: #1a1a2e; border: 1px solid var(--glass-border);
+      border-radius: var(--radius-sm); overflow: hidden; min-width: 160px;
+      box-shadow: 0 12px 40px rgba(0,0,0,0.5); z-index: 200;
+    }
+    .lang-dropdown.open { display: block; }
+    .lang-option {
+      display: flex; align-items: center; gap: 8px; padding: 9px 14px;
+      cursor: pointer; font-size: 0.82rem; color: var(--text-muted); transition: all 0.15s;
+    }
+    .lang-option:hover { background: var(--amber-dim); color: var(--text); }
+    .lang-option.selected { color: var(--amber); }
+    main {
+      position: relative; z-index: 1; max-width: 900px;
+      margin: 0 auto; padding: 0 20px 80px;
+    }
+    .page-hero {
+      text-align: center; padding: 48px 20px 36px; position: relative;
+    }
+    .page-hero h1 {
+      font-size: clamp(1.8rem, 4vw, 2.8rem); font-weight: 700;
+      letter-spacing: -1px; line-height: 1.15; margin-bottom: 12px;
+    }
+    .page-hero .sub { color: var(--text-muted); font-size: 1rem; max-width: 560px; margin: 0 auto; }
+    .breadcrumb {
+      font-size: 0.78rem; color: var(--text-dim); margin-bottom: 8px;
+    }
+    .breadcrumb a { color: var(--text-dim); text-decoration: none; transition: color 0.2s; }
+    .breadcrumb a:hover { color: var(--amber); }
+    .breadcrumb span { color: var(--text-muted); margin: 0 6px; }
+    .glass-card {
+      background: var(--glass-bg); border: 1px solid var(--glass-border);
+      border-radius: var(--radius); backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px); padding: 32px 36px; margin-bottom: 20px;
+    }
+    .content-h2 {
+      font-size: 1rem; font-weight: 700; color: var(--amber);
+      margin: 28px 0 10px; letter-spacing: -0.2px;
+    }
+    .content-h2:first-child { margin-top: 0; }
+    .glass-card p {
+      font-size: 0.9rem; color: var(--text-muted); line-height: 1.75; margin-bottom: 12px;
+    }
+    .glass-card p:last-child { margin-bottom: 0; }
+    .glass-card ul {
+      list-style: none; padding: 0; margin: 8px 0 12px;
+    }
+    .glass-card ul li {
+      font-size: 0.88rem; color: var(--text-muted); line-height: 1.7;
+      padding-left: 18px; position: relative; margin-bottom: 6px;
+    }
+    .glass-card ul li::before {
+      content: '—'; position: absolute; left: 0; color: var(--amber); font-family: var(--mono);
+    }
+    .glass-card a { color: var(--amber); text-decoration: none; transition: opacity 0.2s; }
+    .glass-card a:hover { opacity: 0.8; text-decoration: underline; }
+    .article-meta {
+      font-size: 0.78rem; color: var(--text-dim); font-family: var(--mono);
+      margin-bottom: 24px; display: flex; gap: 14px; justify-content: center; flex-wrap: wrap;
+    }
+    .article-list { margin: 18px 0 28px; display: flex; flex-direction: column; gap: 14px; }
+    .article-card {
+      background: var(--glass-bg); border: 1px solid var(--glass-border);
+      border-radius: var(--radius); backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px); padding: 26px 30px; transition: all 0.2s;
+    }
+    .article-card:hover { border-color: var(--amber-glow); }
+    .article-card h2 { font-size: 1.15rem; margin-bottom: 8px; letter-spacing: -0.3px; }
+    .article-card h2 a { color: var(--text); text-decoration: none; }
+    .article-card h2 a:hover { color: var(--amber); }
+    .article-card p.excerpt { font-size: 0.9rem; color: var(--text-muted); line-height: 1.65; margin-bottom: 12px; }
+    .article-card .meta { font-size: 0.75rem; color: var(--text-dim); font-family: var(--mono); display: flex; gap: 12px; align-items: center; flex-wrap: wrap; }
+    .article-card .read-more { color: var(--amber); text-decoration: none; font-size: 0.85rem; font-weight: 600; }
+    .article-card .read-more:hover { opacity: 0.8; }
+    .last-updated {
+      font-size: 0.75rem; color: var(--text-dim); margin-bottom: 24px;
+      font-family: var(--mono);
+    }
+    footer {
+      position: relative; z-index: 1; border-top: 1px solid var(--glass-border);
+      padding: 24px 20px; display: flex; flex-wrap: wrap; gap: 16px;
+      align-items: center; justify-content: space-between;
+      max-width: 900px; margin: 0 auto; font-size: 0.78rem; color: var(--text-dim);
+    }
+    .footer-links { display: flex; gap: 16px; flex-wrap: wrap; }
+    .footer-links a, footer a { color: var(--text-dim); text-decoration: none; transition: color 0.2s; }
+    .footer-links a:hover, footer a:hover { color: var(--amber); }
+    footer .footer-right { color: var(--text-dim); }
+    footer .footer-right a { color: var(--amber); }
+    @media (max-width: 640px) {
+      header { padding: 0 16px; }
+      .logo { font-size: 1rem; }
+      .nav-pill { padding: 4px 10px; font-size: 0.73rem; }
+      .lang-btn span { display: none; }
+      main { padding: 0 16px 60px; }
+      .glass-card { padding: 20px 18px; }
+      .article-card { padding: 20px 18px; }
+      footer { flex-direction: column; align-items: flex-start; gap: 10px; }
+    }
+    .glass-card pre { background: rgba(0,0,0,0.35); border: 1px solid var(--glass-border); border-radius: 10px; padding: 14px 16px; margin: 0 0 16px; overflow-x: auto; font-family: var(--mono); font-size: 0.78rem; line-height: 1.6; color: var(--amber-light); white-space: pre; }
+    .glass-card code { font-family: var(--mono); font-size: 0.82em; color: var(--amber-light); background: rgba(255,255,255,0.05); padding: 1px 5px; border-radius: 4px; }
+    .glass-card pre code { background: none; padding: 0; }
+    .glass-card h2.content-h2 + p { margin-top: 0; }
+  </style>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "데이터 URI 설명: 파일을 Base64로 임베드하기",
+  "author": {
+    "@type": "Organization",
+    "name": "MpmDigital",
+    "url": "https://mpmdigital.es/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "decodeb64.com",
+    "url": "https://decodeb64.com/"
+  },
+  "datePublished": "2026-11-12",
+  "inLanguage": "ko",
+  "url": "https://decodeb64.com/ko/blog/data-uri-base64-explained/"
+}
+  </script>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <a href="/ko/" class="logo">
+    <span class="decode">decode</span><span class="b64">B64</span>
+  </a>
+  <div class="header-right">
+    <nav class="nav-pills">
+      <a href="https://encodeb64.com" class="nav-pill inactive" rel="noopener noreferrer" target="_blank">인코딩</a>
+      <a href="/ko/" class="nav-pill inactive">디코딩</a>
+      <a href="/ko/base64-to-image" class="nav-pill inactive">Base64 to Image</a>
+      <a href="/ko/blog/" class="nav-pill inactive">블로그</a>
+    </nav>
+    <div class="lang-selector">
+      <button class="lang-btn" id="langBtn" aria-haspopup="listbox" aria-expanded="false">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+        <span id="langLabel">한국어</span>
+        <svg viewBox="0 0 10 6" fill="currentColor" width="10" height="6"><path d="M0 0l5 6 5-6z"/></svg>
+      </button>
+      <div class="lang-dropdown" id="langDropdown" role="listbox">
+        <div class="lang-option" data-lang="en" role="option">🇺🇸 English</div>
+        <div class="lang-option" data-lang="es" role="option">🇪🇸 Español</div>
+        <div class="lang-option" data-lang="pt" role="option">🇧🇷 Português</div>
+        <div class="lang-option" data-lang="fr" role="option">🇫🇷 Français</div>
+        <div class="lang-option" data-lang="de" role="option">🇩🇪 Deutsch</div>
+        <div class="lang-option" data-lang="it" role="option">🇮🇹 Italiano</div>
+        <div class="lang-option" data-lang="zh" role="option">🇨🇳 中文</div>
+        <div class="lang-option" data-lang="ru" role="option">🇷🇺 Русский</div>
+        <div class="lang-option" data-lang="ja" role="option">🇯🇵 日本語</div>
+        <div class="lang-option selected" data-lang="ko" role="option">🇰🇷 한국어</div>
+        <div class="lang-option" data-lang="nl" role="option">🇳🇱 Nederlands</div>
+        <div class="lang-option" data-lang="hi" role="option">🇮🇳 हिन्दी</div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- MAIN -->
+<main>
+  <div class="page-hero">
+    <p class="breadcrumb"><a href="/ko/">decodeb64.com</a><span>›</span><a href="/ko/blog/">블로그</a><span>›</span>데이터 URI 설명: 파일을 Base64로 임베드하기</p>
+    <h1>데이터 URI 설명: 파일을 Base64로 임베드하기</h1>
+    <div class="article-meta">
+      <span>2026년 11월</span>
+      <span>·</span>
+      <span>7 분 소요</span>
+    </div>
+  </div>
+
+  <div class="glass-card">
+    <p>데이터 URI를 쓰면 파일의 내용을 URL 안에 직접 넣을 수 있습니다. 브라우저에 다운로드할 주소를 알려 주는 대신 데이터 자체를 건네는 셈입니다. HTML이나 CSS에서 <code>src="data:image/png;base64,iVBORw0KGgo..."</code> 같은 거대한 값을 본 적이 있을 것입니다. 이 글은 데이터 URI가 어떻게 만들어지는지, 언제 좋은 선택인지, 그리고 언제 모르는 사이에 페이지를 느리게 만드는지 설명합니다.</p>
+    <h2 class="content-h2">구문</h2>
+    <p>데이터 URI는 RFC 2397에 정의된 네 부분으로 구성됩니다.</p>
+<pre>data:[&lt;media type&gt;][;charset=&lt;charset&gt;][;base64],&lt;data&gt;</pre>
+    <ul>
+      <li><strong style="color:var(--text);">data:</strong> 스킴으로, <code>https:</code>와 같은 자리입니다.</li>
+      <li><strong style="color:var(--text);">미디어 타입</strong>(선택): <code>image/png</code>나 <code>text/plain</code> 같은 MIME 타입. 생략하면 기본값은 <code>text/plain;charset=US-ASCII</code>입니다.</li>
+      <li><strong style="color:var(--text);">;base64</strong>(선택 플래그): 데이터가 Base64로 인코딩되었음을 나타냅니다. 없으면 데이터는 퍼센트 인코딩된 텍스트로 취급됩니다.</li>
+      <li><strong style="color:var(--text);">쉼표, 그다음 데이터:</strong> 첫 번째 쉼표 뒤의 모든 것이 페이로드입니다.</li>
+    </ul>
+    <p>작지만 완전한 예는 1×1 투명 GIF입니다.</p>
+<pre>data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7</pre>
+    <p>Base64를 쓰지 않는 일반 텍스트 예입니다.</p>
+<pre>data:text/plain;charset=utf-8,Hello%20World</pre>
+    <h2 class="content-h2">사용할 수 있는 곳</h2>
+    <p>브라우저가 리소스의 URL을 받아들이는 곳이면 어디서든 가능합니다.</p>
+<pre>&lt;!-- Image --&gt;
+&lt;img src="data:image/png;base64,iVBORw0KGgo..." alt="icon"&gt;
+
+/* CSS background */
+.icon { background-image: url("data:image/svg+xml;base64,PHN2Zy..."); }
+
+&lt;!-- Favicon --&gt;
+&lt;link rel="icon" href="data:image/png;base64,iVBORw0KGgo..."&gt;
+
+&lt;!-- Download link --&gt;
+&lt;a href="data:text/plain;base64,SGVsbG8=" download="hello.txt"&gt;Download&lt;/a&gt;</pre>
+    <p>외부 이미지가 자주 차단되는 HTML 이메일, 단일 파일 HTML 내보내기, 작은 썸네일을 반환하는 JSON API, 그리고 <code>canvas.toDataURL()</code>이 데이터 URI를 반환하기 때문에 canvas 코드에서도 흔합니다.</p>
+    <h2 class="content-h2">실제 비용: 약 33% 더 커짐</h2>
+    <p>Base64는 3바이트를 4문자로 표현하므로 인코딩된 파일은 원본보다 대략 3분의 1 큽니다. 30KB 이미지는 약 40KB의 텍스트가 됩니다. HTML이나 CSS에 Gzip 또는 Brotli를 적용하면 일부를 되찾지만, 이미지는 이미 압축되어 있으므로 절감 효과는 작습니다.</p>
+    <h2 class="content-h2">데이터 URI가 도움이 될 때</h2>
+    <ul>
+      <li><strong style="color:var(--text);">아주 작은 에셋</strong>(대략 2–4KB 미만): 작은 아이콘, 스페이서 이미지, 로딩 자리표시자. HTTP 요청 한 번과 그에 따른 왕복 지연을 아낄 수 있습니다.</li>
+      <li><strong style="color:var(--text);">첫 화면의 핵심 이미지</strong>: 첫 렌더링에 나타나야 하며 한 페이지에서만 쓰는 이미지.</li>
+      <li><strong style="color:var(--text);">자체 완결형 문서</strong>: 단일 파일 HTML 보고서, 이메일, 에셋 호스팅 없이 붙여 넣고 싶은 스니펫.</li>
+      <li><strong style="color:var(--text);">브라우저에서만 존재하는 생성된 콘텐츠</strong>: canvas 스냅샷이나 사용자가 내려받을 수 있는 텍스트 파일 같은 것.</li>
+    </ul>
+    <h2 class="content-h2">해가 될 때</h2>
+    <ul>
+      <li><strong style="color:var(--text);">별도 캐싱 없음.</strong> 일반 이미지는 브라우저가 캐시하고 페이지 간에 재사용합니다. 임베드된 이미지는 그것을 담은 HTML이나 CSS 사본마다 다시 다운로드됩니다.</li>
+      <li><strong style="color:var(--text);">렌더링 차단.</strong> 스타일시트 안의 큰 데이터 URI는 CSS를 키우고, 브라우저는 렌더링 전에 이를 내려받아 파싱해야 합니다. CSS 안의 이미지는 첫 페인트를 늦출 수 있습니다.</li>
+      <li><strong style="color:var(--text);">유지 보수가 어려움.</strong> 템플릿 한가운데의 50KB짜리 Base64 덩어리는 검토, 비교, 갱신이 어렵습니다.</li>
+      <li><strong style="color:var(--text);">메모리와 파싱 비용.</strong> 매우 큰 URI(수백 KB)는 파싱이 느리고 일부 도구는 잘라 냅니다.</li>
+    </ul>
+    <p>HTTP/2와 HTTP/3에서는 추가 요청이 저렴해서, 예전에 임베드를 옹호하던 근거의 상당 부분이 사라졌습니다. 경험칙은 이렇습니다. 아이콘은 임베드하고 나머지는 링크하세요.</p>
+    <h2 class="content-h2">SVG는 특별한 경우</h2>
+    <p>SVG는 텍스트이므로 Base64가 필요 없습니다. 마크업을 퍼센트 인코딩하는 편이 보통 더 작고 읽기도 쉽습니다.</p>
+<pre>url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10'%3E%3Ccircle cx='5' cy='5' r='4'/%3E%3C/svg%3E")</pre>
+    <p>URI가 올바르게 파싱되려면 최소한 <code>&lt;</code>, <code>&gt;</code>, <code>#</code>을 인코딩해야 합니다(또는 큰따옴표 속성 안에서 작은따옴표를 사용하세요).</p>
+    <h2 class="content-h2">데이터 URI 만들기</h2>
+    <p><strong style="color:var(--text);">브라우저에서는</strong> <code>FileReader.readAsDataURL(file)</code>로 파일을 읽으면 올바른 MIME 타입이 포함된 전체 URI를 얻습니다. 자세한 내용은 <a href="/ko/blog/base64-encode-decode-javascript/">JavaScript Base64 가이드</a>를 참고하세요.</p>
+    <p><strong style="color:var(--text);">명령줄에서</strong>(Linux 또는 macOS):</p>
+<pre>echo "data:image/png;base64,$(base64 -w0 logo.png)"
+# macOS: base64 -i logo.png</pre>
+    <p><strong style="color:var(--text);">Python에서</strong>:</p>
+<pre>import base64
+b64 = base64.b64encode(open("logo.png", "rb").read()).decode()
+uri = f"data:image/png;base64,{b64}"</pre>
+    <h2 class="content-h2">데이터 URI를 다시 파일로 디코딩하기</h2>
+    <p>첫 번째 쉼표까지 포함해 앞부분을 모두 제거하고, 나머지를 Base64 디코딩하세요. 쉼표 앞부분은 파일 형식을 알려 주며, 확장자를 고르는 데 필요합니다. 이미지를 보거나 저장하고 싶을 뿐이라면, 전체 문자열을 저희 <a href="/ko/base64-to-image">Base64 이미지 변환기</a>에 붙여 넣으세요. 원시 Base64와 전체 데이터 URI를 모두 받아 미리보기를 보여 주고, PNG, JPG, WebP로 내려받을 수 있습니다.</p>
+    <h2 class="content-h2">보안 참고</h2>
+    <p>데이터 URI 자체가 위험한 것은 아니지만 두 가지 규칙을 기억하세요. 첫째, 브라우저는 HTML이나 스크립트 콘텐츠를 담은 <code>data:</code> URL로의 최상위 이동을 차단합니다. 공격자들이 피싱 페이지에 사용했기 때문입니다. <code>data:text/html</code> 링크를 열 수 있다고 기대하지 마세요. 둘째, 신뢰할 수 없는 출처에서 받은 데이터 URI에는 스크립트가 내장된 SVG를 포함해 무엇이든 들어 있을 수 있습니다. 디코딩된 파일은 다른 다운로드와 똑같이 조심해서 다루고, 신뢰할 수 없는 데이터 URI를 <code>innerHTML</code>이나 페이지로 렌더링될 <code>href</code>에 넣지 마세요.</p>
+    <p>작은 에셋과 자체 완결형 문서에 쓰면 데이터 URI는 편리한 도구입니다. 큰 이미지에 쓰면 페이지가 무겁고 느려집니다. 임베드하기 전에 측정하세요.</p>
+  </div>
+</main>
+
+<!-- FOOTER -->
+<footer>
+  <span>decodeb64.com &copy; 2026</span>
+  <div class="footer-links">
+    <a href="/about/">소개</a>
+    <a href="/privacy-policy/">개인정보처리방침</a>
+    <a href="/terms-of-use/">이용약관</a>
+    <a href="/contact/">문의하기</a>
+    <a href="/blog/">블로그</a>
+  </div>
+  <span class="footer-right"><span>이런 도구도 있어요:</span> <a href="https://encodeb64.com" rel="noopener noreferrer" target="_blank">Base64 Encode — encodeb64.com →</a></span>
+  <span class="footer-right" style="font-size:0.72rem;color:var(--text-dim);">
+    개발 <a href="https://mpmdigital.es/" rel="noopener noreferrer" target="_blank" style="color:var(--amber,#ff8c42);">MpmDigital</a>
+  </span>
+</footer>
+
+<script>
+  // Language switcher
+  (function () {
+    var btn = document.getElementById('langBtn');
+    var dd = document.getElementById('langDropdown');
+    btn.addEventListener('click', function (e) {
+      e.stopPropagation();
+      dd.classList.toggle('open');
+      btn.setAttribute('aria-expanded', dd.classList.contains('open'));
+    });
+    document.addEventListener('click', function () {
+      dd.classList.remove('open');
+      btn.setAttribute('aria-expanded', 'false');
+    });
+    dd.addEventListener('click', function (e) {
+      var opt = e.target.closest('.lang-option');
+      if (!opt) return;
+      var sel = opt.dataset.lang;
+      var path = (sel === 'en' ? '' : '/' + sel) + '/blog/data-uri-base64-explained/';
+      window.location.href = path;
+    });
+  })();
+</script>
+</body>
+</html>

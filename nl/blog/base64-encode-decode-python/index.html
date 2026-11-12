@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <script>
+    (function () {
+      var isProd = /decodeb64\.com$/.test(window.location.hostname);
+      window.dataLayer = window.dataLayer || [];
+      function gtag() { dataLayer.push(arguments); }
+      window.gtag = gtag;
+      gtag('consent', 'default', {
+        analytics_storage: 'denied', ad_storage: 'denied',
+        ad_user_data: 'denied', ad_personalization: 'denied', wait_for_update: 500
+      });
+      if (!isProd) return;
+      var ga = document.createElement('script');
+      ga.async = true;
+      ga.src = 'https://www.googletagmanager.com/gtag/js?id=G-JVDER6MN4Y';
+      document.head.appendChild(ga);
+      gtag('js', new Date());
+      gtag('config', 'G-JVDER6MN4Y');
+      var ad = document.createElement('script');
+      ad.async = true;
+      ad.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7602115974474104';
+      ad.crossOrigin = 'anonymous';
+      document.head.appendChild(ad);
+      // Google Funding Choices (consent message)
+      var fc = document.createElement('script');
+      fc.async = true;
+      fc.src = 'https://fundingchoicesmessages.google.com/i/pub-7602115974474104?ers=1';
+      document.head.appendChild(fc);
+      (function signalGooglefcPresent() {
+        if (!window.frames['googlefcPresent']) {
+          if (document.body) {
+            var ifr = document.createElement('iframe');
+            ifr.style.cssText = 'width:0;height:0;border:none;z-index:-1000;left:-1000px;top:-1000px;display:none';
+            ifr.name = 'googlefcPresent';
+            document.body.appendChild(ifr);
+          } else { setTimeout(signalGooglefcPresent, 0); }
+        }
+      })();
+    })();
+  </script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Base64 in Python: strings, bestanden en URL&#x27;s coderen en decoderen</title>
+  <meta name="description" content="Praktische gids voor de base64-module van Python: strings, bestanden en URL-veilige tokens coderen en decoderen, &#x27;Incorrect padding&#x27; oplossen en bytes versus str hanteren." />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://decodeb64.com/nl/blog/base64-encode-decode-python/" />
+  <link rel="alternate" hreflang="en" href="https://decodeb64.com/blog/base64-encode-decode-python/" />
+  <link rel="alternate" hreflang="es" href="https://decodeb64.com/es/blog/base64-encode-decode-python/" />
+  <link rel="alternate" hreflang="pt" href="https://decodeb64.com/pt/blog/base64-encode-decode-python/" />
+  <link rel="alternate" hreflang="fr" href="https://decodeb64.com/fr/blog/base64-encode-decode-python/" />
+  <link rel="alternate" hreflang="de" href="https://decodeb64.com/de/blog/base64-encode-decode-python/" />
+  <link rel="alternate" hreflang="it" href="https://decodeb64.com/it/blog/base64-encode-decode-python/" />
+  <link rel="alternate" hreflang="zh" href="https://decodeb64.com/zh/blog/base64-encode-decode-python/" />
+  <link rel="alternate" hreflang="ru" href="https://decodeb64.com/ru/blog/base64-encode-decode-python/" />
+  <link rel="alternate" hreflang="ja" href="https://decodeb64.com/ja/blog/base64-encode-decode-python/" />
+  <link rel="alternate" hreflang="ko" href="https://decodeb64.com/ko/blog/base64-encode-decode-python/" />
+  <link rel="alternate" hreflang="nl" href="https://decodeb64.com/nl/blog/base64-encode-decode-python/" />
+  <link rel="alternate" hreflang="hi" href="https://decodeb64.com/hi/blog/base64-encode-decode-python/" />
+  <link rel="alternate" hreflang="x-default" href="https://decodeb64.com/blog/base64-encode-decode-python/" />
+  <meta property="og:locale" content="nl_NL" />
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="decodeb64.com" />
+  <meta property="og:title" content="Base64 in Python: strings, bestanden en URL&#x27;s coderen en decoderen" />
+  <meta property="og:description" content="Stapsgewijze handleiding voor het decoderen van JWT-tokens en het lezen van hun claims. Begrijp de JWT-structuur en hoe Base64URL-codering werkt in authenticatietokens." />
+  <meta property="og:url" content="https://decodeb64.com/nl/blog/base64-encode-decode-python/" />
+  <meta property="og:image" content="https://decodeb64.com/og-image.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:image" content="https://decodeb64.com/og-image.png" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="theme-color" content="#0d0d14" />
+  <meta name="color-scheme" content="dark" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Sora:wght@300;400;500;600;700&display=swap');
+    :root {
+      --bg: #0d0d14; --bg2: #12121c; --bg3: #1a1a28;
+      --amber: #ff8c42; --amber-dim: rgba(255,140,66,0.15);
+      --amber-glow: rgba(255,140,66,0.35); --amber-light: #ffb07a;
+      --glass-bg: rgba(255,255,255,0.04); --glass-border: rgba(255,255,255,0.09);
+      --text: #e8e8f0; --text-muted: #7a7a9a; --text-dim: #4a4a6a;
+      --green: #3ecf7e; --red: #ff5a5a; --red-dim: rgba(255,90,90,0.15);
+      --radius: 14px; --radius-sm: 8px;
+      --mono: 'JetBrains Mono', monospace; --sans: 'Sora', sans-serif;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--sans); background-color: var(--bg); color: var(--text);
+      min-height: 100vh; overflow-x: hidden; position: relative;
+    }
+    body::before {
+      content: ''; position: fixed; inset: 0;
+      background-image: radial-gradient(circle, rgba(255,140,66,0.12) 1px, transparent 1px);
+      background-size: 28px 28px; pointer-events: none; z-index: 0;
+    }
+    body::after {
+      content: ''; position: fixed; top: -20%; left: 50%; transform: translateX(-50%);
+      width: 800px; height: 500px;
+      background: radial-gradient(ellipse, rgba(255,140,66,0.06) 0%, transparent 70%);
+      pointer-events: none; z-index: 0;
+    }
+    header {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(13,13,20,0.85); backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px); border-bottom: 1px solid var(--glass-border);
+      padding: 0 24px; height: 62px; display: flex; align-items: center;
+      justify-content: space-between; gap: 16px;
+    }
+    .logo { font-family: var(--mono); font-size: 1.2rem; font-weight: 700;
+      letter-spacing: -0.5px; text-decoration: none; flex-shrink: 0; }
+    .logo span.decode { color: #ffffff; }
+    .logo span.b64 { color: var(--amber); }
+    .header-right { display: flex; align-items: center; gap: 10px; }
+    .nav-pills { display: flex; gap: 6px; }
+    .nav-pill {
+      font-family: var(--sans); font-size: 0.78rem; font-weight: 500;
+      padding: 5px 14px; border-radius: 20px; text-decoration: none;
+      transition: all 0.2s; border: 1px solid transparent;
+    }
+    .nav-pill.inactive { color: var(--text-muted); border-color: var(--glass-border); background: transparent; }
+    .nav-pill.inactive:hover { color: var(--text); border-color: rgba(255,255,255,0.18); }
+    .nav-pill.active { color: var(--bg); background: var(--amber); font-weight: 600; }
+    .lang-selector { position: relative; }
+    .lang-btn {
+      display: flex; align-items: center; gap: 6px; padding: 5px 12px;
+      background: var(--glass-bg); border: 1px solid var(--glass-border);
+      border-radius: 20px; color: var(--text-muted); cursor: pointer;
+      font-family: var(--sans); font-size: 0.78rem; transition: all 0.2s; white-space: nowrap;
+    }
+    .lang-btn:hover { color: var(--text); border-color: rgba(255,255,255,0.18); }
+    .lang-btn svg { width: 14px; height: 14px; flex-shrink: 0; }
+    .lang-dropdown {
+      display: none; position: absolute; top: calc(100% + 8px); right: 0;
+      background: #1a1a2e; border: 1px solid var(--glass-border);
+      border-radius: var(--radius-sm); overflow: hidden; min-width: 160px;
+      box-shadow: 0 12px 40px rgba(0,0,0,0.5); z-index: 200;
+    }
+    .lang-dropdown.open { display: block; }
+    .lang-option {
+      display: flex; align-items: center; gap: 8px; padding: 9px 14px;
+      cursor: pointer; font-size: 0.82rem; color: var(--text-muted); transition: all 0.15s;
+    }
+    .lang-option:hover { background: var(--amber-dim); color: var(--text); }
+    .lang-option.selected { color: var(--amber); }
+    main {
+      position: relative; z-index: 1; max-width: 900px;
+      margin: 0 auto; padding: 0 20px 80px;
+    }
+    .page-hero {
+      text-align: center; padding: 48px 20px 36px; position: relative;
+    }
+    .page-hero h1 {
+      font-size: clamp(1.8rem, 4vw, 2.8rem); font-weight: 700;
+      letter-spacing: -1px; line-height: 1.15; margin-bottom: 12px;
+    }
+    .page-hero .sub { color: var(--text-muted); font-size: 1rem; max-width: 560px; margin: 0 auto; }
+    .breadcrumb {
+      font-size: 0.78rem; color: var(--text-dim); margin-bottom: 8px;
+    }
+    .breadcrumb a { color: var(--text-dim); text-decoration: none; transition: color 0.2s; }
+    .breadcrumb a:hover { color: var(--amber); }
+    .breadcrumb span { color: var(--text-muted); margin: 0 6px; }
+    .glass-card {
+      background: var(--glass-bg); border: 1px solid var(--glass-border);
+      border-radius: var(--radius); backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px); padding: 32px 36px; margin-bottom: 20px;
+    }
+    .content-h2 {
+      font-size: 1rem; font-weight: 700; color: var(--amber);
+      margin: 28px 0 10px; letter-spacing: -0.2px;
+    }
+    .content-h2:first-child { margin-top: 0; }
+    .glass-card p {
+      font-size: 0.9rem; color: var(--text-muted); line-height: 1.75; margin-bottom: 12px;
+    }
+    .glass-card p:last-child { margin-bottom: 0; }
+    .glass-card ul {
+      list-style: none; padding: 0; margin: 8px 0 12px;
+    }
+    .glass-card ul li {
+      font-size: 0.88rem; color: var(--text-muted); line-height: 1.7;
+      padding-left: 18px; position: relative; margin-bottom: 6px;
+    }
+    .glass-card ul li::before {
+      content: '—'; position: absolute; left: 0; color: var(--amber); font-family: var(--mono);
+    }
+    .glass-card a { color: var(--amber); text-decoration: none; transition: opacity 0.2s; }
+    .glass-card a:hover { opacity: 0.8; text-decoration: underline; }
+    .article-meta {
+      font-size: 0.78rem; color: var(--text-dim); font-family: var(--mono);
+      margin-bottom: 24px; display: flex; gap: 14px; justify-content: center; flex-wrap: wrap;
+    }
+    .article-list { margin: 18px 0 28px; display: flex; flex-direction: column; gap: 14px; }
+    .article-card {
+      background: var(--glass-bg); border: 1px solid var(--glass-border);
+      border-radius: var(--radius); backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px); padding: 26px 30px; transition: all 0.2s;
+    }
+    .article-card:hover { border-color: var(--amber-glow); }
+    .article-card h2 { font-size: 1.15rem; margin-bottom: 8px; letter-spacing: -0.3px; }
+    .article-card h2 a { color: var(--text); text-decoration: none; }
+    .article-card h2 a:hover { color: var(--amber); }
+    .article-card p.excerpt { font-size: 0.9rem; color: var(--text-muted); line-height: 1.65; margin-bottom: 12px; }
+    .article-card .meta { font-size: 0.75rem; color: var(--text-dim); font-family: var(--mono); display: flex; gap: 12px; align-items: center; flex-wrap: wrap; }
+    .article-card .read-more { color: var(--amber); text-decoration: none; font-size: 0.85rem; font-weight: 600; }
+    .article-card .read-more:hover { opacity: 0.8; }
+    .last-updated {
+      font-size: 0.75rem; color: var(--text-dim); margin-bottom: 24px;
+      font-family: var(--mono);
+    }
+    footer {
+      position: relative; z-index: 1; border-top: 1px solid var(--glass-border);
+      padding: 24px 20px; display: flex; flex-wrap: wrap; gap: 16px;
+      align-items: center; justify-content: space-between;
+      max-width: 900px; margin: 0 auto; font-size: 0.78rem; color: var(--text-dim);
+    }
+    .footer-links { display: flex; gap: 16px; flex-wrap: wrap; }
+    .footer-links a, footer a { color: var(--text-dim); text-decoration: none; transition: color 0.2s; }
+    .footer-links a:hover, footer a:hover { color: var(--amber); }
+    footer .footer-right { color: var(--text-dim); }
+    footer .footer-right a { color: var(--amber); }
+    @media (max-width: 640px) {
+      header { padding: 0 16px; }
+      .logo { font-size: 1rem; }
+      .nav-pill { padding: 4px 10px; font-size: 0.73rem; }
+      .lang-btn span { display: none; }
+      main { padding: 0 16px 60px; }
+      .glass-card { padding: 20px 18px; }
+      .article-card { padding: 20px 18px; }
+      footer { flex-direction: column; align-items: flex-start; gap: 10px; }
+    }
+    .glass-card pre { background: rgba(0,0,0,0.35); border: 1px solid var(--glass-border); border-radius: 10px; padding: 14px 16px; margin: 0 0 16px; overflow-x: auto; font-family: var(--mono); font-size: 0.78rem; line-height: 1.6; color: var(--amber-light); white-space: pre; }
+    .glass-card code { font-family: var(--mono); font-size: 0.82em; color: var(--amber-light); background: rgba(255,255,255,0.05); padding: 1px 5px; border-radius: 4px; }
+    .glass-card pre code { background: none; padding: 0; }
+    .glass-card h2.content-h2 + p { margin-top: 0; }
+  </style>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Base64 in Python: strings, bestanden en URL's coderen en decoderen",
+  "author": {
+    "@type": "Organization",
+    "name": "MpmDigital",
+    "url": "https://mpmdigital.es/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "decodeb64.com",
+    "url": "https://decodeb64.com/"
+  },
+  "datePublished": "2026-11-12",
+  "inLanguage": "nl",
+  "url": "https://decodeb64.com/nl/blog/base64-encode-decode-python/"
+}
+  </script>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <a href="/nl/" class="logo">
+    <span class="decode">decode</span><span class="b64">B64</span>
+  </a>
+  <div class="header-right">
+    <nav class="nav-pills">
+      <a href="https://encodeb64.com" class="nav-pill inactive" rel="noopener noreferrer" target="_blank">Coderen</a>
+      <a href="/nl/" class="nav-pill inactive">Decoderen</a>
+      <a href="/nl/base64-to-image" class="nav-pill inactive">Base64 naar Afbeelding</a>
+      <a href="/nl/blog/" class="nav-pill inactive">Blog</a>
+    </nav>
+    <div class="lang-selector">
+      <button class="lang-btn" id="langBtn" aria-haspopup="listbox" aria-expanded="false">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+        <span id="langLabel">Nederlands</span>
+        <svg viewBox="0 0 10 6" fill="currentColor" width="10" height="6"><path d="M0 0l5 6 5-6z"/></svg>
+      </button>
+      <div class="lang-dropdown" id="langDropdown" role="listbox">
+        <div class="lang-option" data-lang="en" role="option">🇺🇸 English</div>
+        <div class="lang-option" data-lang="es" role="option">🇪🇸 Español</div>
+        <div class="lang-option" data-lang="pt" role="option">🇧🇷 Português</div>
+        <div class="lang-option" data-lang="fr" role="option">🇫🇷 Français</div>
+        <div class="lang-option" data-lang="de" role="option">🇩🇪 Deutsch</div>
+        <div class="lang-option" data-lang="it" role="option">🇮🇹 Italiano</div>
+        <div class="lang-option" data-lang="zh" role="option">🇨🇳 中文</div>
+        <div class="lang-option" data-lang="ru" role="option">🇷🇺 Русский</div>
+        <div class="lang-option" data-lang="ja" role="option">🇯🇵 日本語</div>
+        <div class="lang-option" data-lang="ko" role="option">🇰🇷 한국어</div>
+        <div class="lang-option selected" data-lang="nl" role="option">🇳🇱 Nederlands</div>
+        <div class="lang-option" data-lang="hi" role="option">🇮🇳 हिन्दी</div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- MAIN -->
+<main>
+  <div class="page-hero">
+    <p class="breadcrumb"><a href="/nl/">decodeb64.com</a><span>›</span><a href="/nl/blog/">Blog</a><span>›</span>Base64 in Python: strings, bestanden en URL&#x27;s coderen en decoderen</p>
+    <h1>Base64 in Python: strings, bestanden en URL&#x27;s coderen en decoderen</h1>
+    <div class="article-meta">
+      <span>November 2026</span>
+      <span>·</span>
+      <span>7 min. leestijd</span>
+    </div>
+  </div>
+
+  <div class="glass-card">
+    <p>Python levert alles wat je voor Base64 nodig hebt in de standaardmodule <code>base64</code>. Wat de meeste mensen in de war brengt is niet de API maar het typesysteem: Base64 werkt met *bytes*, terwijl het merendeel van je gegevens als <code>str</code> begint. Als je die grens begrijpt, is de rest eenvoudig.</p>
+    <h2 class="content-h2">Een string coderen</h2>
+    <p><code>b64encode()</code> neemt bytes en geeft bytes terug. Om tekst te coderen moet je die eerst in bytes omzetten, en om het resultaat te tonen decodeer je het meestal weer naar een string:</p>
+<pre>import base64
+
+text = "Hello, World!"
+encoded = base64.b64encode(text.encode("utf-8"))
+print(encoded)                    # b'SGVsbG8sIFdvcmxkIQ=='
+print(encoded.decode("ascii"))    # SGVsbG8sIFdvcmxkIQ==</pre>
+    <p>Een <code>str</code> rechtstreeks doorgeven geeft <code>TypeError: a bytes-like object is required, not 'str'</code>. Die fout betekent altijd dat je de <code>.encode()</code>-stap bent vergeten.</p>
+    <h2 class="content-h2">Een string decoderen</h2>
+    <p><code>b64decode()</code> accepteert bytes of een <code>str</code> met alleen ASCII en geeft bytes terug. Is de inhoud tekst, decodeer de bytes dan met de juiste tekencodering:</p>
+<pre>raw = base64.b64decode("SGVsbG8sIFdvcmxkIQ==")
+print(raw)                    # b'Hello, World!'
+print(raw.decode("utf-8"))    # Hello, World!</pre>
+    <p>Geef de codering altijd expliciet op. <code>"héllo"</code> wordt bijvoorbeeld <code>aMOpbGxv</code> omdat de <code>é</code> in UTF-8 twee bytes beslaat. Als de afzender een andere codering gebruikte, zoals Latin-1 of UTF-16, geeft decoderen als UTF-8 een <code>UnicodeDecodeError</code> of onleesbare tekst.</p>
+    <h2 class="content-h2">Strikte validatie</h2>
+    <p>Standaard is <code>b64decode()</code> ruimhartig: het laat tekens die niet in het Base64-alfabet staan stilletjes vallen. Dat is handig bij regeleinden, maar kan beschadigde gegevens verbergen. Geef <code>validate=True</code> mee om bij elk ongeldig teken een <code>binascii.Error</code> te krijgen:</p>
+<pre>import binascii
+
+try:
+    data = base64.b64decode(user_input, validate=True)
+except binascii.Error as e:
+    print("Not valid Base64:", e)</pre>
+    <h2 class="content-h2">"Incorrect padding" oplossen</h2>
+    <p>De meest voorkomende Base64-fout in Python is <code>binascii.Error: Incorrect padding</code>. Het betekent dat de stringlengte geen veelvoud van vier is, wat vaak gebeurt bij Base64URL-waarden (zoals JWT-delen) waarvan de <code>=</code>-tekens zijn verwijderd. Herstel ze vóór het decoderen:</p>
+<pre>def b64decode_padded(s: str) -> bytes:
+    s = s.strip()
+    s += "=" * (-len(s) % 4)
+    return base64.urlsafe_b64decode(s)</pre>
+    <p>De uitdrukking <code>-len(s) % 4</code> geeft het aantal ontbrekende tekens (0, 1, 2 of 3). Een rest van 1 teken is nooit geldige Base64, dus een string waarvan de lengte één boven een veelvoud van vier ligt is afgekapt of beschadigd en geen enkele opvulling lost dat op.</p>
+    <h2 class="content-h2">URL-veilige Base64</h2>
+    <p>Voor tokens, identificaties en alles wat in een URL komt, gebruik je de URL-veilige varianten, die <code>+</code> en <code>/</code> vervangen door <code>-</code> en <code>_</code> (zie <a href="/nl/blog/base64-vs-base64url-differences/">Base64 vs Base64URL</a>):</p>
+<pre>token = base64.urlsafe_b64encode(b"\xfb\xff")
+print(token)                      # b'-_8='
+
+# Strip padding if the receiving system expects it
+print(token.rstrip(b"=").decode()) # -_8</pre>
+    <p>Let op dat <code>urlsafe_b64encode()</code> de opvulling behoudt. Haal die er zelf af wanneer een specificatie zoals JWT de vorm zonder opvulling vereist.</p>
+    <h2 class="content-h2">Bestanden coderen en decoderen</h2>
+    <p>Open bestanden in binaire modus (<code>"rb"</code> en <code>"wb"</code>) zodat Python de inhoud niet als tekst probeert te interpreteren:</p>
+<pre># File to Base64 string
+with open("photo.png", "rb") as f:
+    b64 = base64.b64encode(f.read()).decode("ascii")
+
+# Base64 string back to file
+with open("copy.png", "wb") as f:
+    f.write(base64.b64decode(b64))</pre>
+    <p>Een data-URI uit een bestand opbouwen kost nog maar één regel extra:</p>
+<pre>data_uri = f"data:image/png;base64,{b64}"</pre>
+    <p>Laad bij grote bestanden niet alles in het geheugen. De module biedt <code>base64.encode(input, output)</code> en <code>base64.decode(input, output)</code>, die streamen tussen twee binaire bestandsobjecten en bij het coderen elke 76 tekens een regeleinde invoegen.</p>
+    <h2 class="content-h2">Een data-URI of JWT-deel decoderen</h2>
+    <p>Verwijder het voorvoegsel vóór het decoderen, want <code>data:image/png;base64,</code> maakt geen deel uit van de Base64-gegevens:</p>
+<pre>def decode_data_uri(uri: str) -> bytes:
+    header, _, payload = uri.partition(",")
+    return base64.b64decode(payload)</pre>
+    <p>Om bij het debuggen de payload van een JWT in te zien (dit controleert de handtekening *niet*):</p>
+<pre>import json
+
+def jwt_payload(token: str) -> dict:
+    payload = token.split(".")[1]
+    payload += "=" * (-len(payload) % 4)
+    return json.loads(base64.urlsafe_b64decode(payload))</pre>
+    <p>Lees meer over wat veilig te vertrouwen is in <a href="/nl/blog/how-to-decode-jwt-tokens-and-inspect-claims/">onze JWT-decodeergids</a>.</p>
+    <h2 class="content-h2">Andere functies in de module</h2>
+    <ul>
+      <li><code>b32encode()</code> en <code>b32decode()</code>: Base32, handig voor leesbare codes zoals TOTP-geheimen.</li>
+      <li><code>b16encode()</code> en <code>b16decode()</code>: gewoon hexadecimaal.</li>
+      <li><code>a85encode()</code> en <code>b85encode()</code>: compactere coderingen (ongeveer 25% groei in plaats van 33%), tegen de prijs van een groter alfabet.</li>
+    </ul>
+    <h2 class="content-h2">Checklist als iets misgaat</h2>
+    <ul>
+      <li><strong style="color:var(--text);">TypeError over bytes:</strong> roep <code>.encode()</code> aan vóór het coderen.</li>
+      <li><strong style="color:var(--text);">Incorrect padding:</strong> de string is afgekapt of de <code>=</code> zijn verwijderd; vul aan tot een veelvoud van vier.</li>
+      <li><strong style="color:var(--text);">Ongeldige tekens met validate=True:</strong> de waarde is waarschijnlijk Base64URL, bevat witruimte of heeft nog een data-URI-voorvoegsel.</li>
+      <li><strong style="color:var(--text);">UnicodeDecodeError:</strong> de gedecodeerde bytes zijn geen UTF-8-tekst. Het kan een afbeelding, een gecomprimeerde blob of een andere codering zijn.</li>
+    </ul>
+    <p>Wil je een second opinion over een verdachte waarde, plak hem dan in <a href="/nl/">decodeb64.com</a>; het meldt het gedetecteerde formaat en toont de gedecodeerde inhoud zonder iets naar een server te sturen.</p>
+  </div>
+</main>
+
+<!-- FOOTER -->
+<footer>
+  <span>decodeb64.com &copy; 2026</span>
+  <div class="footer-links">
+    <a href="/about/">Over ons</a>
+    <a href="/privacy-policy/">Privacybeleid</a>
+    <a href="/terms-of-use/">Gebruiksvoorwaarden</a>
+    <a href="/contact/">Contact</a>
+    <a href="/blog/">Blog</a>
+  </div>
+  <span class="footer-right"><span>Probeer ook:</span> <a href="https://encodeb64.com" rel="noopener noreferrer" target="_blank">Base64 Encode — encodeb64.com →</a></span>
+  <span class="footer-right" style="font-size:0.72rem;color:var(--text-dim);">
+    Ontwikkeld door <a href="https://mpmdigital.es/" rel="noopener noreferrer" target="_blank" style="color:var(--amber,#ff8c42);">MpmDigital</a>
+  </span>
+</footer>
+
+<script>
+  // Language switcher
+  (function () {
+    var btn = document.getElementById('langBtn');
+    var dd = document.getElementById('langDropdown');
+    btn.addEventListener('click', function (e) {
+      e.stopPropagation();
+      dd.classList.toggle('open');
+      btn.setAttribute('aria-expanded', dd.classList.contains('open'));
+    });
+    document.addEventListener('click', function () {
+      dd.classList.remove('open');
+      btn.setAttribute('aria-expanded', 'false');
+    });
+    dd.addEventListener('click', function (e) {
+      var opt = e.target.closest('.lang-option');
+      if (!opt) return;
+      var sel = opt.dataset.lang;
+      var path = (sel === 'en' ? '' : '/' + sel) + '/blog/base64-encode-decode-python/';
+      window.location.href = path;
+    });
+  })();
+</script>
+</body>
+</html>
