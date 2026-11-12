@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <script>
+    (function () {
+      var isProd = /decodeb64\.com$/.test(window.location.hostname);
+      window.dataLayer = window.dataLayer || [];
+      function gtag() { dataLayer.push(arguments); }
+      window.gtag = gtag;
+      gtag('consent', 'default', {
+        analytics_storage: 'denied', ad_storage: 'denied',
+        ad_user_data: 'denied', ad_personalization: 'denied', wait_for_update: 500
+      });
+      if (!isProd) return;
+      var ga = document.createElement('script');
+      ga.async = true;
+      ga.src = 'https://www.googletagmanager.com/gtag/js?id=G-JVDER6MN4Y';
+      document.head.appendChild(ga);
+      gtag('js', new Date());
+      gtag('config', 'G-JVDER6MN4Y');
+      var ad = document.createElement('script');
+      ad.async = true;
+      ad.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7602115974474104';
+      ad.crossOrigin = 'anonymous';
+      document.head.appendChild(ad);
+      // Google Funding Choices (consent message)
+      var fc = document.createElement('script');
+      fc.async = true;
+      fc.src = 'https://fundingchoicesmessages.google.com/i/pub-7602115974474104?ers=1';
+      document.head.appendChild(fc);
+      (function signalGooglefcPresent() {
+        if (!window.frames['googlefcPresent']) {
+          if (document.body) {
+            var ifr = document.createElement('iframe');
+            ifr.style.cssText = 'width:0;height:0;border:none;z-index:-1000;left:-1000px;top:-1000px;display:none';
+            ifr.name = 'googlefcPresent';
+            document.body.appendChild(ifr);
+          } else { setTimeout(signalGooglefcPresent, 0); }
+        }
+      })();
+    })();
+  </script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>HTML 이메일과 웹 페이지에서 Base64 이미지를 디코딩하는 방법</title>
+  <meta name="description" content="HTML 이메일, .eml 파일, 웹 페이지에서 Base64 이미지를 추출하고 디코딩하세요: 데이터 URI, cid 첨부, Python 스크립트, 결과를 안전하게 다루는 법." />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://decodeb64.com/ko/blog/decode-base64-images-from-html-emails/" />
+  <link rel="alternate" hreflang="en" href="https://decodeb64.com/blog/decode-base64-images-from-html-emails/" />
+  <link rel="alternate" hreflang="es" href="https://decodeb64.com/es/blog/decode-base64-images-from-html-emails/" />
+  <link rel="alternate" hreflang="pt" href="https://decodeb64.com/pt/blog/decode-base64-images-from-html-emails/" />
+  <link rel="alternate" hreflang="fr" href="https://decodeb64.com/fr/blog/decode-base64-images-from-html-emails/" />
+  <link rel="alternate" hreflang="de" href="https://decodeb64.com/de/blog/decode-base64-images-from-html-emails/" />
+  <link rel="alternate" hreflang="it" href="https://decodeb64.com/it/blog/decode-base64-images-from-html-emails/" />
+  <link rel="alternate" hreflang="zh" href="https://decodeb64.com/zh/blog/decode-base64-images-from-html-emails/" />
+  <link rel="alternate" hreflang="ru" href="https://decodeb64.com/ru/blog/decode-base64-images-from-html-emails/" />
+  <link rel="alternate" hreflang="ja" href="https://decodeb64.com/ja/blog/decode-base64-images-from-html-emails/" />
+  <link rel="alternate" hreflang="ko" href="https://decodeb64.com/ko/blog/decode-base64-images-from-html-emails/" />
+  <link rel="alternate" hreflang="nl" href="https://decodeb64.com/nl/blog/decode-base64-images-from-html-emails/" />
+  <link rel="alternate" hreflang="hi" href="https://decodeb64.com/hi/blog/decode-base64-images-from-html-emails/" />
+  <link rel="alternate" hreflang="x-default" href="https://decodeb64.com/blog/decode-base64-images-from-html-emails/" />
+  <meta property="og:locale" content="ko_KR" />
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="decodeb64.com" />
+  <meta property="og:title" content="HTML 이메일과 웹 페이지에서 Base64 이미지를 디코딩하는 방법" />
+  <meta property="og:description" content="HTML 이메일, .eml 파일, 웹 페이지에서 Base64 이미지를 추출하고 디코딩하세요: 데이터 URI, cid 첨부, Python 스크립트, 결과를 안전하게 다루는 법." />
+  <meta property="og:url" content="https://decodeb64.com/ko/blog/decode-base64-images-from-html-emails/" />
+  <meta property="og:image" content="https://decodeb64.com/og-image.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:image" content="https://decodeb64.com/og-image.png" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="theme-color" content="#0d0d14" />
+  <meta name="color-scheme" content="dark" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Sora:wght@300;400;500;600;700&display=swap');
+    :root {
+      --bg: #0d0d14; --bg2: #12121c; --bg3: #1a1a28;
+      --amber: #ff8c42; --amber-dim: rgba(255,140,66,0.15);
+      --amber-glow: rgba(255,140,66,0.35); --amber-light: #ffb07a;
+      --glass-bg: rgba(255,255,255,0.04); --glass-border: rgba(255,255,255,0.09);
+      --text: #e8e8f0; --text-muted: #7a7a9a; --text-dim: #4a4a6a;
+      --green: #3ecf7e; --red: #ff5a5a; --red-dim: rgba(255,90,90,0.15);
+      --radius: 14px; --radius-sm: 8px;
+      --mono: 'JetBrains Mono', monospace; --sans: 'Sora', sans-serif;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--sans); background-color: var(--bg); color: var(--text);
+      min-height: 100vh; overflow-x: hidden; position: relative;
+    }
+    body::before {
+      content: ''; position: fixed; inset: 0;
+      background-image: radial-gradient(circle, rgba(255,140,66,0.12) 1px, transparent 1px);
+      background-size: 28px 28px; pointer-events: none; z-index: 0;
+    }
+    body::after {
+      content: ''; position: fixed; top: -20%; left: 50%; transform: translateX(-50%);
+      width: 800px; height: 500px;
+      background: radial-gradient(ellipse, rgba(255,140,66,0.06) 0%, transparent 70%);
+      pointer-events: none; z-index: 0;
+    }
+    header {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(13,13,20,0.85); backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px); border-bottom: 1px solid var(--glass-border);
+      padding: 0 24px; height: 62px; display: flex; align-items: center;
+      justify-content: space-between; gap: 16px;
+    }
+    .logo { font-family: var(--mono); font-size: 1.2rem; font-weight: 700;
+      letter-spacing: -0.5px; text-decoration: none; flex-shrink: 0; }
+    .logo span.decode { color: #ffffff; }
+    .logo span.b64 { color: var(--amber); }
+    .header-right { display: flex; align-items: center; gap: 10px; }
+    .nav-pills { display: flex; gap: 6px; }
+    .nav-pill {
+      font-family: var(--sans); font-size: 0.78rem; font-weight: 500;
+      padding: 5px 14px; border-radius: 20px; text-decoration: none;
+      transition: all 0.2s; border: 1px solid transparent;
+    }
+    .nav-pill.inactive { color: var(--text-muted); border-color: var(--glass-border); background: transparent; }
+    .nav-pill.inactive:hover { color: var(--text); border-color: rgba(255,255,255,0.18); }
+    .nav-pill.active { color: var(--bg); background: var(--amber); font-weight: 600; }
+    .lang-selector { position: relative; }
+    .lang-btn {
+      display: flex; align-items: center; gap: 6px; padding: 5px 12px;
+      background: var(--glass-bg); border: 1px solid var(--glass-border);
+      border-radius: 20px; color: var(--text-muted); cursor: pointer;
+      font-family: var(--sans); font-size: 0.78rem; transition: all 0.2s; white-space: nowrap;
+    }
+    .lang-btn:hover { color: var(--text); border-color: rgba(255,255,255,0.18); }
+    .lang-btn svg { width: 14px; height: 14px; flex-shrink: 0; }
+    .lang-dropdown {
+      display: none; position: absolute; top: calc(100% + 8px); right: 0;
+      background: #1a1a2e; border: 1px solid var(--glass-border);
+      border-radius: var(--radius-sm); overflow: hidden; min-width: 160px;
+      box-shadow: 0 12px 40px rgba(0,0,0,0.5); z-index: 200;
+    }
+    .lang-dropdown.open { display: block; }
+    .lang-option {
+      display: flex; align-items: center; gap: 8px; padding: 9px 14px;
+      cursor: pointer; font-size: 0.82rem; color: var(--text-muted); transition: all 0.15s;
+    }
+    .lang-option:hover { background: var(--amber-dim); color: var(--text); }
+    .lang-option.selected { color: var(--amber); }
+    main {
+      position: relative; z-index: 1; max-width: 900px;
+      margin: 0 auto; padding: 0 20px 80px;
+    }
+    .page-hero {
+      text-align: center; padding: 48px 20px 36px; position: relative;
+    }
+    .page-hero h1 {
+      font-size: clamp(1.8rem, 4vw, 2.8rem); font-weight: 700;
+      letter-spacing: -1px; line-height: 1.15; margin-bottom: 12px;
+    }
+    .page-hero .sub { color: var(--text-muted); font-size: 1rem; max-width: 560px; margin: 0 auto; }
+    .breadcrumb {
+      font-size: 0.78rem; color: var(--text-dim); margin-bottom: 8px;
+    }
+    .breadcrumb a { color: var(--text-dim); text-decoration: none; transition: color 0.2s; }
+    .breadcrumb a:hover { color: var(--amber); }
+    .breadcrumb span { color: var(--text-muted); margin: 0 6px; }
+    .glass-card {
+      background: var(--glass-bg); border: 1px solid var(--glass-border);
+      border-radius: var(--radius); backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px); padding: 32px 36px; margin-bottom: 20px;
+    }
+    .content-h2 {
+      font-size: 1rem; font-weight: 700; color: var(--amber);
+      margin: 28px 0 10px; letter-spacing: -0.2px;
+    }
+    .content-h2:first-child { margin-top: 0; }
+    .glass-card p {
+      font-size: 0.9rem; color: var(--text-muted); line-height: 1.75; margin-bottom: 12px;
+    }
+    .glass-card p:last-child { margin-bottom: 0; }
+    .glass-card ul {
+      list-style: none; padding: 0; margin: 8px 0 12px;
+    }
+    .glass-card ul li {
+      font-size: 0.88rem; color: var(--text-muted); line-height: 1.7;
+      padding-left: 18px; position: relative; margin-bottom: 6px;
+    }
+    .glass-card ul li::before {
+      content: '—'; position: absolute; left: 0; color: var(--amber); font-family: var(--mono);
+    }
+    .glass-card a { color: var(--amber); text-decoration: none; transition: opacity 0.2s; }
+    .glass-card a:hover { opacity: 0.8; text-decoration: underline; }
+    .article-meta {
+      font-size: 0.78rem; color: var(--text-dim); font-family: var(--mono);
+      margin-bottom: 24px; display: flex; gap: 14px; justify-content: center; flex-wrap: wrap;
+    }
+    .article-list { margin: 18px 0 28px; display: flex; flex-direction: column; gap: 14px; }
+    .article-card {
+      background: var(--glass-bg); border: 1px solid var(--glass-border);
+      border-radius: var(--radius); backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px); padding: 26px 30px; transition: all 0.2s;
+    }
+    .article-card:hover { border-color: var(--amber-glow); }
+    .article-card h2 { font-size: 1.15rem; margin-bottom: 8px; letter-spacing: -0.3px; }
+    .article-card h2 a { color: var(--text); text-decoration: none; }
+    .article-card h2 a:hover { color: var(--amber); }
+    .article-card p.excerpt { font-size: 0.9rem; color: var(--text-muted); line-height: 1.65; margin-bottom: 12px; }
+    .article-card .meta { font-size: 0.75rem; color: var(--text-dim); font-family: var(--mono); display: flex; gap: 12px; align-items: center; flex-wrap: wrap; }
+    .article-card .read-more { color: var(--amber); text-decoration: none; font-size: 0.85rem; font-weight: 600; }
+    .article-card .read-more:hover { opacity: 0.8; }
+    .last-updated {
+      font-size: 0.75rem; color: var(--text-dim); margin-bottom: 24px;
+      font-family: var(--mono);
+    }
+    footer {
+      position: relative; z-index: 1; border-top: 1px solid var(--glass-border);
+      padding: 24px 20px; display: flex; flex-wrap: wrap; gap: 16px;
+      align-items: center; justify-content: space-between;
+      max-width: 900px; margin: 0 auto; font-size: 0.78rem; color: var(--text-dim);
+    }
+    .footer-links { display: flex; gap: 16px; flex-wrap: wrap; }
+    .footer-links a, footer a { color: var(--text-dim); text-decoration: none; transition: color 0.2s; }
+    .footer-links a:hover, footer a:hover { color: var(--amber); }
+    footer .footer-right { color: var(--text-dim); }
+    footer .footer-right a { color: var(--amber); }
+    @media (max-width: 640px) {
+      header { padding: 0 16px; }
+      .logo { font-size: 1rem; }
+      .nav-pill { padding: 4px 10px; font-size: 0.73rem; }
+      .lang-btn span { display: none; }
+      main { padding: 0 16px 60px; }
+      .glass-card { padding: 20px 18px; }
+      .article-card { padding: 20px 18px; }
+      footer { flex-direction: column; align-items: flex-start; gap: 10px; }
+    }
+    .glass-card pre { background: rgba(0,0,0,0.35); border: 1px solid var(--glass-border); border-radius: 10px; padding: 14px 16px; margin: 0 0 16px; overflow-x: auto; font-family: var(--mono); font-size: 0.78rem; line-height: 1.6; color: var(--amber-light); white-space: pre; }
+    .glass-card code { font-family: var(--mono); font-size: 0.82em; color: var(--amber-light); background: rgba(255,255,255,0.05); padding: 1px 5px; border-radius: 4px; }
+    .glass-card pre code { background: none; padding: 0; }
+    .glass-card h2.content-h2 + p { margin-top: 0; }
+  </style>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "HTML 이메일과 웹 페이지에서 Base64 이미지를 디코딩하는 방법",
+  "author": {
+    "@type": "Organization",
+    "name": "MpmDigital",
+    "url": "https://mpmdigital.es/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "decodeb64.com",
+    "url": "https://decodeb64.com/"
+  },
+  "datePublished": "2026-11-12",
+  "inLanguage": "ko",
+  "url": "https://decodeb64.com/ko/blog/decode-base64-images-from-html-emails/"
+}
+  </script>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <a href="/ko/" class="logo">
+    <span class="decode">decode</span><span class="b64">B64</span>
+  </a>
+  <div class="header-right">
+    <nav class="nav-pills">
+      <a href="https://encodeb64.com" class="nav-pill inactive" rel="noopener noreferrer" target="_blank">인코딩</a>
+      <a href="/ko/" class="nav-pill inactive">디코딩</a>
+      <a href="/ko/base64-to-image" class="nav-pill inactive">Base64 to Image</a>
+      <a href="/ko/blog/" class="nav-pill inactive">블로그</a>
+    </nav>
+    <div class="lang-selector">
+      <button class="lang-btn" id="langBtn" aria-haspopup="listbox" aria-expanded="false">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+        <span id="langLabel">한국어</span>
+        <svg viewBox="0 0 10 6" fill="currentColor" width="10" height="6"><path d="M0 0l5 6 5-6z"/></svg>
+      </button>
+      <div class="lang-dropdown" id="langDropdown" role="listbox">
+        <div class="lang-option" data-lang="en" role="option">🇺🇸 English</div>
+        <div class="lang-option" data-lang="es" role="option">🇪🇸 Español</div>
+        <div class="lang-option" data-lang="pt" role="option">🇧🇷 Português</div>
+        <div class="lang-option" data-lang="fr" role="option">🇫🇷 Français</div>
+        <div class="lang-option" data-lang="de" role="option">🇩🇪 Deutsch</div>
+        <div class="lang-option" data-lang="it" role="option">🇮🇹 Italiano</div>
+        <div class="lang-option" data-lang="zh" role="option">🇨🇳 中文</div>
+        <div class="lang-option" data-lang="ru" role="option">🇷🇺 Русский</div>
+        <div class="lang-option" data-lang="ja" role="option">🇯🇵 日本語</div>
+        <div class="lang-option selected" data-lang="ko" role="option">🇰🇷 한국어</div>
+        <div class="lang-option" data-lang="nl" role="option">🇳🇱 Nederlands</div>
+        <div class="lang-option" data-lang="hi" role="option">🇮🇳 हिन्दी</div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- MAIN -->
+<main>
+  <div class="page-hero">
+    <p class="breadcrumb"><a href="/ko/">decodeb64.com</a><span>›</span><a href="/ko/blog/">블로그</a><span>›</span>HTML 이메일과 웹 페이지에서 Base64 이미지를 디코딩하는 방법</p>
+    <h1>HTML 이메일과 웹 페이지에서 Base64 이미지를 디코딩하는 방법</h1>
+    <div class="article-meta">
+      <span>2026년 11월</span>
+      <span>·</span>
+      <span>7 분 소요</span>
+    </div>
+  </div>
+
+  <div class="glass-card">
+    <p>때로는 필요한 이미지가 파일이 아니라 이메일이나 페이지 소스 코드 속의 아주 긴 문자열일 때가 있습니다. 뉴스레터, 청구서, 서명, 내보낸 보고서는 이미지를 Base64로 임베드하는 일이 많습니다. 어디에 숨어 있는지, 두 가지 임베드 방식 중 어느 것을 썼는지만 알면 꺼내는 것은 간단합니다.</p>
+    <h2 class="content-h2">이미지가 이메일 안에 들어가는 방식</h2>
+    <p>HTML 이메일에 이미지를 넣는 일반적인 방법은 두 가지입니다.</p>
+    <ul>
+      <li><strong style="color:var(--text);">HTML 안의 데이터 URI.</strong> 이미지가 마크업의 일부입니다: <code>&lt;img src="data:image/png;base64,iVBORw0KGgo..."&gt;</code>. 구문은 <a href="/ko/blog/data-uri-base64-explained/">데이터 URI</a> 가이드를 참고하세요. Gmail을 비롯한 많은 이메일 클라이언트가 이를 표시하지 않으므로 실제 캠페인에서는 드뭅니다.</li>
+      <li><strong style="color:var(--text);">cid:로 참조되는 첨부 파트.</strong> 이메일은 여러 파트로 이루어진 MIME 메시지입니다. HTML에는 <code>&lt;img src="cid:logo123"&gt;</code>이 있고, <code>Content-ID: &lt;logo123&gt;</code>과 <code>Content-Transfer-Encoding: base64</code>를 가진 별도 파트가 이미지 바이트를 담고 있습니다. 이메일의 인라인 이미지에 쓰는 표준적인 방법입니다.</li>
+    </ul>
+    <p>둘 다 내부적으로는 Base64이지만, 추출 방법이 다릅니다.</p>
+    <h2 class="content-h2">경우 1: HTML 안의 데이터 URI</h2>
+    <p>페이지 소스나 이메일의 HTML 보기를 열어 <code>src="data:image/..."</code> 속성을 찾으세요. 이미지를 가장 빨리 보는 방법은 <code>data:image/png;base64,</code> 접두사를 포함한 값 전체를 복사해 저희 <a href="/ko/base64-to-image">Base64 이미지 변환기</a>에 붙여 넣는 것입니다. 미리보기를 보여 주고, 아무것도 업로드하지 않은 채 PNG, JPG, WebP로 내려받을 수 있습니다.</p>
+    <p>큰 파일에서 모든 이미지를 자동으로 꺼내려면 짧은 Python 스크립트를 쓰세요.</p>
+<pre>import base64, re
+
+html = open("page.html", encoding="utf-8").read()
+pattern = r'data:image/(png|jpeg|gif|webp);base64,([A-Za-z0-9+/=\s]+)'
+
+for i, (ext, b64) in enumerate(re.findall(pattern, html)):
+    data = base64.b64decode("".join(b64.split()))
+    with open(f"image{i}.{ext}", "wb") as f:
+        f.write(data)</pre>
+    <p><code>"".join(b64.split())</code>은 이메일 시스템이 긴 줄을 줄바꿈하면서 넣은 줄바꿈을 제거합니다. Python에 대한 자세한 내용은 <a href="/ko/blog/base64-encode-decode-python/">Python의 Base64</a>를 참고하세요.</p>
+    <h2 class="content-h2">경우 2: .eml 파일의 첨부</h2>
+    <p>메시지를 <code>.eml</code>로 저장하세요(대부분의 클라이언트에 "다운로드"나 "다른 이름으로 저장"이 있습니다). Python 표준 <code>email</code> 패키지는 MIME을 이해하고 Base64 디코딩을 대신 처리합니다.</p>
+<pre>from email import policy
+from email.parser import BytesParser
+
+with open("message.eml", "rb") as f:
+    msg = BytesParser(policy=policy.default).parse(f)
+
+for n, part in enumerate(msg.walk()):
+    if part.get_content_maintype() != "image":
+        continue
+    data = part.get_payload(decode=True)      # Base64 already decoded
+    name = part.get_filename()
+    if not name:
+        cid = (part["Content-ID"] or f"image{n}").strip("&lt;&gt;")
+        name = f"{cid}.{part.get_content_subtype()}"
+    with open(name, "wb") as out:
+        out.write(data)</pre>
+    <p><code>get_payload(decode=True)</code>를 쓰면 라이브러리가 <code>Content-Transfer-Encoding</code> 헤더를 처리하므로, 파트가 Base64든 quoted-printable이든 동작합니다.</p>
+    <p>MIME 파트의 원시 텍스트만 있다면, <code>Content-Transfer-Encoding: base64</code> 아래 빈 줄 다음의 블록을 복사해 <a href="/ko/">decodeb64.com</a>이나 이미지 변환기에 붙여 넣으세요. 블록 안의 줄바꿈은 문제가 되지 않습니다.</p>
+    <h2 class="content-h2">경우 3: 브라우저에서</h2>
+    <p>웹 페이지에서는 텍스트 단계를 완전히 건너뛸 수 있습니다.</p>
+    <ul>
+      <li>이미지를 마우스 오른쪽 버튼으로 클릭해 "새 탭에서 이미지 열기"를 선택한 뒤 저장하세요. 브라우저가 데이터 URI를 대신 디코딩합니다.</li>
+      <li>또는 DevTools를 열어 Elements 패널에서 <code>&lt;img&gt;</code> 요소를 선택하고 <code>src</code> 속성을 복사하세요.</li>
+      <li>콘솔에서 <code>fetch(img.src).then(r =&gt; r.blob())</code>은 디코딩된 바이트를 내려받을 수 있는 Blob으로 반환합니다.</li>
+    </ul>
+    <h2 class="content-h2">처음 몇 글자로 형식 알아보기</h2>
+    <p>데이터 URI 접두사가 없어도, Base64의 처음 몇 글자가 파일 형식을 드러냅니다.</p>
+    <ul>
+      <li><code>iVBORw0KGgo</code> — PNG</li>
+      <li><code>/9j/</code> — JPEG</li>
+      <li><code>R0lGOD</code> — GIF</li>
+      <li><code>UklGR</code> — WebP(RIFF 컨테이너)</li>
+      <li><code>PHN2Zy</code> 또는 <code>PD94bWw</code> — SVG 또는 XML 텍스트</li>
+      <li><code>JVBERi0</code> — PDF(이미지가 아님)</li>
+    </ul>
+    <p><a href="/ko/blog/base64-decoding-binary-files-images-pdfs-and-more/">이진 파일 디코딩</a> 가이드에 더 긴 목록이 있습니다. 저장할 때는 올바른 확장자를 쓰세요. 그렇지 않으면 파일이 열리지 않을 수 있습니다.</p>
+    <h2 class="content-h2">아주 작은 이미지는 대개 추적기입니다</h2>
+    <p>이메일에 1×1 픽셀 이미지가 있다면 거의 항상 메시지가 열렸는지 감지하는 추적 픽셀입니다. 디코딩하면 빈 정사각형이나 투명한 정사각형이 보일 것입니다. 데이터 URI 픽셀은 외부와 통신하지 않지만, URL에서 불러오는 픽셀은 통신합니다. 많은 클라이언트가 원격 이미지를 기본으로 차단하는 이유입니다.</p>
+    <h2 class="content-h2">결과를 안전하게 다루기</h2>
+    <ul>
+      <li><strong style="color:var(--text);">SVG에는 스크립트가 있을 수 있습니다.</strong> 모르는 이메일의 SVG를 브라우저에서 그대로 열거나 <code>innerHTML</code>로 페이지에 주입하지 마세요.</li>
+      <li><strong style="color:var(--text);">선언된 형식을 믿지 마세요.</strong> <code>image/png</code>로 표시된 파트가 다른 무언가일 수 있습니다. 위에서 보인 대로 처음 몇 바이트를 확인하세요.</li>
+      <li><strong style="color:var(--text);">피싱 메시지는 콘텐츠를 Base64에 숨깁니다.</strong> 자신의 컴퓨터에서 디코딩해 보는 것은 괜찮지만, 임베드된 링크를 클릭하거나 첨부 파일을 실행하는 것은 안 됩니다.</li>
+      <li><strong style="color:var(--text);">개인정보.</strong> 개인 이미지를 온라인 도구에 붙여 넣으면, 도구가 로컬에서 동작하지 않는 한 업로드됩니다. decodeb64.com은 브라우저 안에서 디코딩하므로 데이터가 기기를 떠나지 않습니다.</li>
+    </ul>
+    <h2 class="content-h2">디코딩이 실패한다면</h2>
+    <p>흔한 용의자는 문자열에 남은 <code>data:...;base64,</code> 접두사, 값 안의 공백이나 HTML 엔티티(<code>+</code> 대신 <code>&amp;#43;</code> 같은 것), 저장 중 잘린 메시지입니다. <a href="/ko/blog/fix-base64-decoding-errors/">Base64 디코딩이 실패하는 이유</a>가 각 경우에 대한 짧은 체크리스트를 안내합니다.</p>
+  </div>
+</main>
+
+<!-- FOOTER -->
+<footer>
+  <span>decodeb64.com &copy; 2026</span>
+  <div class="footer-links">
+    <a href="/about/">소개</a>
+    <a href="/privacy-policy/">개인정보처리방침</a>
+    <a href="/terms-of-use/">이용약관</a>
+    <a href="/contact/">문의하기</a>
+    <a href="/blog/">블로그</a>
+  </div>
+  <span class="footer-right"><span>이런 도구도 있어요:</span> <a href="https://encodeb64.com" rel="noopener noreferrer" target="_blank">Base64 Encode — encodeb64.com →</a></span>
+  <span class="footer-right" style="font-size:0.72rem;color:var(--text-dim);">
+    개발 <a href="https://mpmdigital.es/" rel="noopener noreferrer" target="_blank" style="color:var(--amber,#ff8c42);">MpmDigital</a>
+  </span>
+</footer>
+
+<script>
+  // Language switcher
+  (function () {
+    var btn = document.getElementById('langBtn');
+    var dd = document.getElementById('langDropdown');
+    btn.addEventListener('click', function (e) {
+      e.stopPropagation();
+      dd.classList.toggle('open');
+      btn.setAttribute('aria-expanded', dd.classList.contains('open'));
+    });
+    document.addEventListener('click', function () {
+      dd.classList.remove('open');
+      btn.setAttribute('aria-expanded', 'false');
+    });
+    dd.addEventListener('click', function (e) {
+      var opt = e.target.closest('.lang-option');
+      if (!opt) return;
+      var sel = opt.dataset.lang;
+      var path = (sel === 'en' ? '' : '/' + sel) + '/blog/decode-base64-images-from-html-emails/';
+      window.location.href = path;
+    });
+  })();
+</script>
+</body>
+</html>
