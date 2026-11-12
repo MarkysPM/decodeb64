@@ -468,7 +468,7 @@
   <!-- Blog index — language versions -->
   <url>
     <loc>https://decodeb64.com/blog/</loc>
-    <lastmod>2026-08-01</lastmod>
+    <lastmod>2026-11-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://decodeb64.com/blog/" />
@@ -1384,6 +1384,44 @@
     <xhtml:link rel="alternate" hreflang="hi" href="https://decodeb64.com/hi/blog/base64-decoding-binary-files-images-pdfs-and-more/" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://decodeb64.com/blog/base64-decoding-binary-files-images-pdfs-and-more/" />
   </url>
+  <!-- English-only blog articles -->
+  <url>
+    <loc>https://decodeb64.com/blog/base64-vs-base64url-differences/</loc>
+    <lastmod>2026-11-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://decodeb64.com/blog/base64-encode-decode-javascript/</loc>
+    <lastmod>2026-11-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://decodeb64.com/blog/base64-encode-decode-python/</loc>
+    <lastmod>2026-11-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://decodeb64.com/blog/data-uri-base64-explained/</loc>
+    <lastmod>2026-11-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://decodeb64.com/blog/fix-base64-decoding-errors/</loc>
+    <lastmod>2026-11-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://decodeb64.com/blog/base64-is-not-encryption/</loc>
+    <lastmod>2026-11-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
   <!-- Legal pages -->
   <url>
     <loc>https://decodeb64.com/about/</loc>

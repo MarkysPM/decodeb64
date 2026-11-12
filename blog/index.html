@@ -1,17 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <!-- Ezoic privacy scripts -->
-  <script data-cfasync="false" src="https://cmp.gatekeeperconsent.com/min.js"></script>
-  <script data-cfasync="false" src="https://the.gatekeeperconsent.com/cmp.min.js"></script>
-  <!-- Ezoic main script -->
-  <script async src="//www.ezojs.com/ezoic/sa.min.js"></script>
-  <script>
-    window.ezstandalone = window.ezstandalone || {};
-    ezstandalone.cmd = ezstandalone.cmd || [];
-  </script>
-  <!-- Ezoic analytics -->
-  <script src="//ezoicanalytics.com/analytics.js"></script>
   <script>
     (function () {
       var isProd = /decodeb64\.com$/.test(window.location.hostname);
@@ -250,6 +239,36 @@
       "blogPost": [
         {
           "@type": "BlogPosting",
+          "headline": "Base64 vs Base64URL: What Is the Difference?",
+          "url": "https://decodeb64.com/blog/base64-vs-base64url-differences/"
+        },
+        {
+          "@type": "BlogPosting",
+          "headline": "Base64 in JavaScript: btoa, atob and Unicode Pitfalls",
+          "url": "https://decodeb64.com/blog/base64-encode-decode-javascript/"
+        },
+        {
+          "@type": "BlogPosting",
+          "headline": "Base64 in Python: Encode and Decode Strings, Files and URLs",
+          "url": "https://decodeb64.com/blog/base64-encode-decode-python/"
+        },
+        {
+          "@type": "BlogPosting",
+          "headline": "Data URIs Explained: Embedding Files as Base64",
+          "url": "https://decodeb64.com/blog/data-uri-base64-explained/"
+        },
+        {
+          "@type": "BlogPosting",
+          "headline": "Why Base64 Decoding Fails: 8 Common Errors and How to Fix Them",
+          "url": "https://decodeb64.com/blog/fix-base64-decoding-errors/"
+        },
+        {
+          "@type": "BlogPosting",
+          "headline": "Base64 Is Not Encryption: Security Myths and Real Risks",
+          "url": "https://decodeb64.com/blog/base64-is-not-encryption/"
+        },
+        {
+          "@type": "BlogPosting",
           "headline": "What Is Base64 Decoding and When Do You Need It?",
           "url": "https://decodeb64.com/blog/what-is-base64-decoding-and-when-do-you-need-it/"
         },
@@ -333,6 +352,72 @@
   </div>
 
   <div class="article-list">
+    <article class="article-card">
+      <h2><a href="/blog/base64-vs-base64url-differences/">Base64 vs Base64URL: What Is the Difference?</a></h2>
+      <p class="excerpt">Base64 and Base64URL look almost identical but are not interchangeable. Learn the exact differences, when to use each, and how to convert between them.</p>
+      <div class="meta">
+        <span>November 2026</span>
+        <span>·</span>
+        <span>6 min read</span>
+        <span>·</span>
+        <a class="read-more" href="/blog/base64-vs-base64url-differences/">Read more →</a>
+      </div>
+    </article>
+    <article class="article-card">
+      <h2><a href="/blog/base64-encode-decode-javascript/">Base64 in JavaScript: btoa, atob and Unicode Pitfalls</a></h2>
+      <p class="excerpt">How to encode and decode Base64 in JavaScript with btoa, atob, TextEncoder and Node.js Buffer, including the Unicode errors that trip up most developers.</p>
+      <div class="meta">
+        <span>November 2026</span>
+        <span>·</span>
+        <span>7 min read</span>
+        <span>·</span>
+        <a class="read-more" href="/blog/base64-encode-decode-javascript/">Read more →</a>
+      </div>
+    </article>
+    <article class="article-card">
+      <h2><a href="/blog/base64-encode-decode-python/">Base64 in Python: Encode and Decode Strings, Files and URLs</a></h2>
+      <p class="excerpt">Practical guide to Python's base64 module: encode and decode strings, files and URL-safe tokens, fix 'Incorrect padding' errors and handle bytes versus str.</p>
+      <div class="meta">
+        <span>November 2026</span>
+        <span>·</span>
+        <span>7 min read</span>
+        <span>·</span>
+        <a class="read-more" href="/blog/base64-encode-decode-python/">Read more →</a>
+      </div>
+    </article>
+    <article class="article-card">
+      <h2><a href="/blog/data-uri-base64-explained/">Data URIs Explained: Embedding Files as Base64</a></h2>
+      <p class="excerpt">What a data URI is, how its syntax works, when embedding images as Base64 helps or hurts performance, and how to create and decode data URIs.</p>
+      <div class="meta">
+        <span>November 2026</span>
+        <span>·</span>
+        <span>7 min read</span>
+        <span>·</span>
+        <a class="read-more" href="/blog/data-uri-base64-explained/">Read more →</a>
+      </div>
+    </article>
+    <article class="article-card">
+      <h2><a href="/blog/fix-base64-decoding-errors/">Why Base64 Decoding Fails: 8 Common Errors and How to Fix Them</a></h2>
+      <p class="excerpt">Invalid character, incorrect padding, garbled output? Learn the eight most common reasons Base64 decoding fails and exactly how to diagnose and fix each one.</p>
+      <div class="meta">
+        <span>November 2026</span>
+        <span>·</span>
+        <span>7 min read</span>
+        <span>·</span>
+        <a class="read-more" href="/blog/fix-base64-decoding-errors/">Read more →</a>
+      </div>
+    </article>
+    <article class="article-card">
+      <h2><a href="/blog/base64-is-not-encryption/">Base64 Is Not Encryption: Security Myths and Real Risks</a></h2>
+      <p class="excerpt">Base64 only changes how data looks; anyone can reverse it. Learn why it is not encryption, where it is misused, and what to use to actually protect data.</p>
+      <div class="meta">
+        <span>November 2026</span>
+        <span>·</span>
+        <span>6 min read</span>
+        <span>·</span>
+        <a class="read-more" href="/blog/base64-is-not-encryption/">Read more →</a>
+      </div>
+    </article>
     <article class="article-card">
       <h2><a href="/blog/what-is-base64-decoding-and-when-do-you-need-it/">What Is Base64 Decoding and When Do You Need It?</a></h2>
       <p class="excerpt">A clear explanation of Base64 decoding — what it is, how it works, and the most common situations where developers need to decode Base64 strings.</p>
