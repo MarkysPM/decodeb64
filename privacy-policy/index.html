@@ -23,6 +23,21 @@
       ad.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7602115974474104';
       ad.crossOrigin = 'anonymous';
       document.head.appendChild(ad);
+      // Google Funding Choices (consent message)
+      var fc = document.createElement('script');
+      fc.async = true;
+      fc.src = 'https://fundingchoicesmessages.google.com/i/pub-7602115974474104?ers=1';
+      document.head.appendChild(fc);
+      (function signalGooglefcPresent() {
+        if (!window.frames['googlefcPresent']) {
+          if (document.body) {
+            var ifr = document.createElement('iframe');
+            ifr.style.cssText = 'width:0;height:0;border:none;z-index:-1000;left:-1000px;top:-1000px;display:none';
+            ifr.name = 'googlefcPresent';
+            document.body.appendChild(ifr);
+          } else { setTimeout(signalGooglefcPresent, 0); }
+        }
+      })();
     })();
   </script>
   <meta charset="UTF-8" />
@@ -256,7 +271,7 @@
     <p>We use Google AdSense to display advertisements. Google may use cookies to serve ads based on your prior visits to this or other websites. You can opt out of personalised advertising at <a href="https://adssettings.google.com/" rel="noopener noreferrer" target="_blank">Google's Ad Settings</a>.</p>
 
     <h2 class="content-h2">4. Cookies</h2>
-    <p>Analytics and advertising storage are denied by default (Google Consent Mode v2), so no analytics or advertising cookies are set unless consent is given.</p>
+    <p>We use Google's consent management message (shown to visitors in the European Economic Area, the UK and Switzerland) to manage cookie consent in compliance with the GDPR. Analytics and advertising storage are denied by default (Google Consent Mode v2), so no analytics or advertising cookies are set unless you give consent. You can change your choice at any time through the consent message.</p>
 
     <h2 class="content-h2">5. Third-party services</h2>
     <p>Our website is hosted on Cloudflare Pages. Cloudflare may retain standard server access logs. Please refer to <a href="https://www.cloudflare.com/privacypolicy/" rel="noopener noreferrer" target="_blank">Cloudflare's Privacy Policy</a> for details.</p>
