@@ -2,19 +2,8 @@ import os
 
 BASE = r'D:\Datos\Proyectos\decodeb64'
 
-# ── Shared head scripts (Ezoic + analytics) ─────────────────────────────────
+# ── Shared head scripts (Google consent, analytics, AdSense) ─────────────────
 HEAD_SCRIPTS = '''\
-  <!-- Ezoic privacy scripts -->
-  <script data-cfasync="false" src="https://cmp.gatekeeperconsent.com/min.js"></script>
-  <script data-cfasync="false" src="https://the.gatekeeperconsent.com/cmp.min.js"></script>
-  <!-- Ezoic main script -->
-  <script async src="//www.ezojs.com/ezoic/sa.min.js"></script>
-  <script>
-    window.ezstandalone = window.ezstandalone || {};
-    ezstandalone.cmd = ezstandalone.cmd || [];
-  </script>
-  <!-- Ezoic analytics -->
-  <script src="//ezoicanalytics.com/analytics.js"></script>
   <script>
     (function () {
       var isProd = /decodeb64\\.com$/.test(window.location.hostname);
@@ -23,7 +12,12 @@ HEAD_SCRIPTS = '''\
       window.gtag = gtag;
       gtag('consent', 'default', {
         analytics_storage: 'denied', ad_storage: 'denied',
-        ad_user_data: 'denied', ad_personalization: 'denied', wait_for_update: 500
+        ad_user_data: 'denied', ad_personalization: 'denied', wait_for_update: 500,
+        region: [
+          'AT', 'BE', 'BG', 'HR', 'CY', 'CZ', 'DK', 'EE', 'FI', 'FR', 'DE',
+          'GR', 'HU', 'IE', 'IT', 'LV', 'LT', 'LU', 'MT', 'NL', 'PL', 'PT',
+          'RO', 'SK', 'SI', 'ES', 'SE', 'IS', 'LI', 'NO', 'GB', 'CH'
+        ]
       });
       if (!isProd) return;
       var ga = document.createElement('script');
@@ -37,6 +31,21 @@ HEAD_SCRIPTS = '''\
       ad.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7602115974474104';
       ad.crossOrigin = 'anonymous';
       document.head.appendChild(ad);
+      // Google Funding Choices (consent message)
+      var fc = document.createElement('script');
+      fc.async = true;
+      fc.src = 'https://fundingchoicesmessages.google.com/i/pub-7602115974474104?ers=1';
+      document.head.appendChild(fc);
+      (function signalGooglefcPresent() {
+        if (!window.frames['googlefcPresent']) {
+          if (document.body) {
+            var ifr = document.createElement('iframe');
+            ifr.style.cssText = 'width:0;height:0;border:none;z-index:-1000;left:-1000px;top:-1000px;display:none';
+            ifr.name = 'googlefcPresent';
+            document.body.appendChild(ifr);
+          } else { setTimeout(signalGooglefcPresent, 0); }
+        }
+      })();
     })();
   </script>'''
 
@@ -338,7 +347,7 @@ PRIVACY_HTML = f'''<!DOCTYPE html>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Privacy Policy — decodeb64.com</title>
-  <meta name="description" content="Privacy Policy for decodeb64.com. We process no personal data — all Base64 decoding happens locally in your browser." />
+  <meta name="description" content="Privacy Policy for decodeb64.com. All Base64 processing happens locally in your browser." />
   <meta name="robots" content="index, follow" />
   <link rel="canonical" href="https://decodeb64.com/privacy-policy" />
   <link rel="alternate" hreflang="en" href="https://decodeb64.com/privacy-policy" />
@@ -347,7 +356,7 @@ PRIVACY_HTML = f'''<!DOCTYPE html>
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="decodeb64.com" />
   <meta property="og:title" content="Privacy Policy — decodeb64.com" />
-  <meta property="og:description" content="Privacy Policy for decodeb64.com. We process no personal data — all Base64 decoding happens locally in your browser." />
+  <meta property="og:description" content="Privacy Policy for decodeb64.com. All Base64 processing happens locally in your browser." />
   <meta property="og:url" content="https://decodeb64.com/privacy-policy" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="theme-color" content="#0d0d14" />
@@ -370,7 +379,7 @@ PRIVACY_HTML = f'''<!DOCTYPE html>
   </div>
 
   <div class="glass-card">
-    <p class="last-updated">Last updated: August 2026</p>
+    <p class="last-updated">Last updated: November 2026</p>
 
     <h2 class="content-h2">1. Overview</h2>
     <p>decodeb64.com is operated by MpmDigital (<a href="https://mpmdigital.es/" rel="noopener noreferrer" target="_blank">https://mpmdigital.es/</a>). This Privacy Policy explains how we handle information when you use our website.</p>
@@ -380,28 +389,33 @@ PRIVACY_HTML = f'''<!DOCTYPE html>
     <ul>
       <li>The text, files, or Base64 strings you encode or decode</li>
       <li>Your IP address (beyond standard server logs retained by our hosting provider, Cloudflare)</li>
-      <li>Personal identifiable information of any kind</li>
-      <li>Cookies for tracking or advertising purposes</li>
+      <li>Personal information you type, upload or process in the tool</li>
+      <li>Tracking or advertising cookies without your consent</li>
     </ul>
     <p>All encoding and decoding operations happen entirely in your browser using standard JavaScript APIs. Nothing is uploaded to our servers.</p>
 
-    <h2 class="content-h2">3. Analytics</h2>
-    <p>We use Google Analytics 4 to collect anonymous usage statistics (page views, session duration, general geographic region). This data is anonymised and does not identify individual users. You can opt out via your browser's privacy settings or by using an ad blocker.</p>
-    <p>We use Google AdSense to display advertisements. Google may use cookies to serve ads based on your prior visits to this or other websites. You can opt out of personalised advertising at <a href="https://adssettings.google.com/" rel="noopener noreferrer" target="_blank">Google's Ad Settings</a>.</p>
+    <h2 class="content-h2">3. Consent</h2>
+    <p>For visitors in the European Economic Area, the United Kingdom and Switzerland, analytics and advertising storage are denied by default until you make a choice in Google's consent message. You can change your choice at any time by clearing this site's cookies and reloading the page, which shows the message again.</p>
 
-    <h2 class="content-h2">4. Cookies</h2>
-    <p>We use Ezoic's consent management platform to manage cookie consent in compliance with GDPR. Only strictly necessary cookies are set by default. You may update your preferences at any time via the cookie banner.</p>
+    <h2 class="content-h2">4. Google Analytics</h2>
+    <p>Where consent is required, we use Google Analytics 4 to collect anonymous usage statistics (pages viewed, session duration, general region).</p>
 
-    <h2 class="content-h2">5. Third-party services</h2>
+    <h2 class="content-h2">5. Google AdSense</h2>
+    <p>Where consent is required, Google AdSense may use cookies and identifiers to show and personalise ads. You can manage personalised advertising at <a href="https://adssettings.google.com/" rel="noopener noreferrer" target="_blank">https://adssettings.google.com/</a>.</p>
+
+    <h2 class="content-h2">6. Cloudflare Web Analytics</h2>
+    <p>We use Cloudflare Web Analytics to measure aggregated traffic and page performance (page views, visits, country, device type). It does not use cookies or local storage, does not track you across sessions and does not collect personal data. It applies to all visitors, including those in the EU.</p>
+
+    <h2 class="content-h2">7. Third-party services</h2>
     <p>Our website is hosted on Cloudflare Pages. Cloudflare may retain standard server access logs. Please refer to <a href="https://www.cloudflare.com/privacypolicy/" rel="noopener noreferrer" target="_blank">Cloudflare's Privacy Policy</a> for details.</p>
 
-    <h2 class="content-h2">6. Your rights (GDPR)</h2>
-    <p>If you are located in the European Union, you have rights under the GDPR including the right to access, rectify, and erase personal data. Since we collect no personal data, there is nothing to access or erase. For any privacy-related questions, contact us at: <a href="mailto:contacto@mpmdigital.es">contacto@mpmdigital.es</a></p>
+    <h2 class="content-h2">8. Your rights (GDPR)</h2>
+    <p>If you are located in the European Union, you have rights under the GDPR including the right to access, rectify, and erase personal data. The content you process in the tool is never sent to us, so we hold no copy of it. For data processed by Google with your consent, you can exercise your rights through Google or contact us. For any privacy-related questions, contact us at: <a href="mailto:contacto@mpmdigital.es">contacto@mpmdigital.es</a></p>
 
-    <h2 class="content-h2">7. Changes to this policy</h2>
+    <h2 class="content-h2">9. Changes to this policy</h2>
     <p>We may update this policy from time to time. The "Last updated" date at the top of this page will reflect any changes.</p>
 
-    <h2 class="content-h2">8. Contact</h2>
+    <h2 class="content-h2">10. Contact</h2>
     <p>MpmDigital<br>
     Website: <a href="https://mpmdigital.es/" rel="noopener noreferrer" target="_blank">https://mpmdigital.es/</a><br>
     Email: <a href="mailto:contacto@mpmdigital.es">contacto@mpmdigital.es</a></p>

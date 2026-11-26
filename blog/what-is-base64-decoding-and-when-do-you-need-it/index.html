@@ -9,7 +9,12 @@
       window.gtag = gtag;
       gtag('consent', 'default', {
         analytics_storage: 'denied', ad_storage: 'denied',
-        ad_user_data: 'denied', ad_personalization: 'denied', wait_for_update: 500
+        ad_user_data: 'denied', ad_personalization: 'denied', wait_for_update: 500,
+        region: [
+          'AT', 'BE', 'BG', 'HR', 'CY', 'CZ', 'DK', 'EE', 'FI', 'FR', 'DE',
+          'GR', 'HU', 'IE', 'IT', 'LV', 'LT', 'LU', 'MT', 'NL', 'PL', 'PT',
+          'RO', 'SK', 'SI', 'ES', 'SE', 'IS', 'LI', 'NO', 'GB', 'CH'
+        ]
       });
       if (!isProd) return;
       var ga = document.createElement('script');
@@ -265,7 +270,7 @@
   </a>
   <div class="header-right">
     <nav class="nav-pills">
-      <a href="https://encodeb64.com" class="nav-pill inactive" rel="noopener noreferrer" target="_blank">Encode</a>
+      <a href="https://encodeb64.com/?utm_source=decodeb64.com&amp;utm_medium=referral&amp;utm_campaign=cross_site" class="nav-pill inactive" rel="noopener noreferrer" target="_blank">Encode</a>
       <a href="/" class="nav-pill inactive">Decode</a>
       <a href="/base64-to-image" class="nav-pill inactive">Base64 to Image</a>
       <a href="/blog/" class="nav-pill inactive">Blog</a>
@@ -345,7 +350,7 @@
     <a href="/contact/">Contact</a>
     <a href="/blog/">Blog</a>
   </div>
-  <span class="footer-right"><span>Also try:</span> <a href="https://encodeb64.com" rel="noopener noreferrer" target="_blank">Base64 Encode — encodeb64.com →</a></span>
+  <span class="footer-right"><span>Also try:</span> <a href="https://encodeb64.com/?utm_source=decodeb64.com&amp;utm_medium=referral&amp;utm_campaign=cross_site" rel="noopener noreferrer" target="_blank">Base64 Encode — encodeb64.com →</a></span>
   <span class="footer-right" style="font-size:0.72rem;color:var(--text-dim);">
     Developed by <a href="https://mpmdigital.es/" rel="noopener noreferrer" target="_blank" style="color:var(--amber,#ff8c42);">MpmDigital</a>
   </span>

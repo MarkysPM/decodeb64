@@ -9,7 +9,12 @@
       window.gtag = gtag;
       gtag('consent', 'default', {
         analytics_storage: 'denied', ad_storage: 'denied',
-        ad_user_data: 'denied', ad_personalization: 'denied', wait_for_update: 500
+        ad_user_data: 'denied', ad_personalization: 'denied', wait_for_update: 500,
+        region: [
+          'AT', 'BE', 'BG', 'HR', 'CY', 'CZ', 'DK', 'EE', 'FI', 'FR', 'DE',
+          'GR', 'HU', 'IE', 'IT', 'LV', 'LT', 'LU', 'MT', 'NL', 'PL', 'PT',
+          'RO', 'SK', 'SI', 'ES', 'SE', 'IS', 'LI', 'NO', 'GB', 'CH'
+        ]
       });
       if (!isProd) return;
       var ga = document.createElement('script');
@@ -269,7 +274,7 @@
   </a>
   <div class="header-right">
     <nav class="nav-pills">
-      <a href="https://encodeb64.com" class="nav-pill inactive" rel="noopener noreferrer" target="_blank">인코딩</a>
+      <a href="https://encodeb64.com/?utm_source=decodeb64.com&amp;utm_medium=referral&amp;utm_campaign=cross_site" class="nav-pill inactive" rel="noopener noreferrer" target="_blank">인코딩</a>
       <a href="/ko/" class="nav-pill inactive">디코딩</a>
       <a href="/ko/base64-to-image" class="nav-pill inactive">Base64 to Image</a>
       <a href="/ko/blog/" class="nav-pill inactive">블로그</a>
@@ -394,7 +399,7 @@ for n, part in enumerate(msg.walk()):
     <a href="/contact/">문의하기</a>
     <a href="/blog/">블로그</a>
   </div>
-  <span class="footer-right"><span>이런 도구도 있어요:</span> <a href="https://encodeb64.com" rel="noopener noreferrer" target="_blank">Base64 Encode — encodeb64.com →</a></span>
+  <span class="footer-right"><span>이런 도구도 있어요:</span> <a href="https://encodeb64.com/?utm_source=decodeb64.com&amp;utm_medium=referral&amp;utm_campaign=cross_site" rel="noopener noreferrer" target="_blank">Base64 Encode — encodeb64.com →</a></span>
   <span class="footer-right" style="font-size:0.72rem;color:var(--text-dim);">
     개발 <a href="https://mpmdigital.es/" rel="noopener noreferrer" target="_blank" style="color:var(--amber,#ff8c42);">MpmDigital</a>
   </span>
