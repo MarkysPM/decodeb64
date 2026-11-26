@@ -17,6 +17,20 @@
         ]
       });
       if (!isProd) return;
+      // CookieHub (consent banner)
+      var ch = document.createElement('script');
+      ch.async = true;
+      ch.src = 'https://cdn.cookiehub.eu/c2/37267253.js';
+      ch.onload = function () {
+        if (document.readyState === 'loading') {
+          document.addEventListener('DOMContentLoaded', function () {
+            window.cookiehub && window.cookiehub.load({});
+          });
+        } else {
+          window.cookiehub && window.cookiehub.load({});
+        }
+      };
+      document.head.appendChild(ch);
       var ga = document.createElement('script');
       ga.async = true;
       ga.src = 'https://www.googletagmanager.com/gtag/js?id=G-JVDER6MN4Y';
